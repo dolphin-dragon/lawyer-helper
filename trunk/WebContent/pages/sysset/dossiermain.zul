@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?page title="title" ?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul ">
+	<zscript src="dossiermain.zs" />
+	<window id="winDossierMain" title="案源管理" width="100%"
+		border="normal">		
+		<button label="新建案卷" onClick="windossier.doModal();" />
+		<button label="修改案卷" onClick="update()" />
+		<button label="删除案卷" onClick="del()" />
+		<button label="案卷归档" onClick="del()" />
+		<button label="案卷报告" onClick="del()" />
+		<listbox id="box" fixedLayout="true" multiple="false"
+			checkmark="false" onCreate="initAddItem()">
+			<listhead style="text-align:center;">
+				<listheader label="案件编号" width="140px"/>
+				<listheader label="案卷编号" />
+				<listheader label="分类" />
+				<listheader label="建立时间" />
+				<listheader label="状态" />
+				<listheader label="案件阶段" />
+				<listheader label="备注" />
+			</listhead>
+			<listitem forEach="&#36;{dossierLst}" id="&#36;{each.id}">
+				<listcell label="&#36;{each.id}"/>
+				<listcell label="&#36;{each.code}"/>
+				<listcell label="&#36;{each.type}"/>
+				<listcell label="&#36;{each.cDate}" />
+				<listcell label="&#36;{each.status}"/>
+				<listcell label="&#36;{each.judge}"/>
+				<listcell label="&#36;{each.brief}"/>
+			</listitem>
+		</listbox>
+	</window>
+
+	<!-- 新建部门窗体 -->
+	<window id="windossier" title="新建案源" border="normal" width="660px"
+		mode="overlapped" position="center" visible="false" onClose="btnCancle()">
+		<grid>
+			<columns sizable="false">
+				<column width="160px" />
+				<column width="240px" />
+				<column width="160px" />
+				<column width="240px" />
+			</columns>
+			<rows>
+				<row spans="1,4">
+					<label value="案卷编号：" style="color:blue;"/>
+					<textbox id="DOSSIERCODE" width="100%"/>									
+				</row>
+				<row spans="1,4">
+					<label value="案卷名称：" />
+					<textbox id="DOSSIERNAME"  width="100%"/>				
+				</row>
+				<row>
+					<label value="案卷标的：" />
+					<decimalbox id="BIAODI"  format="###.##" value="0.00" />
+					<!-- label value="收费方式：" />
+					<combobox id="FANGSHI" / -->
+					<label value="" />
+					<label value="" />
+				</row>
+				<row>
+					<label value="案源收费：" />					
+					<decimalbox id="SHOUFEI"  format="###.##" value="0.00" />
+					<!-- label value="案源比例：" />
+					<textbox id="BILI" / -->
+					<label value="" />
+					<label value="" />
+				</row>
+				<row >
+					<label value="案卷状态：" />
+					<combobox id="STATUS" onCreate="initDossierStatus()"/>
+					<label value="收案日期：" />
+					<datebox id="SHOUANRQ" cols="18" format="yyyy/MM/dd"
+						onCreate="self.value = new Date()" />
+				</row>
+				<row >
+					<label value="案件类型：" />
+					<combobox id="AJLX" onCreate="initDossierType()"/>
+					<label value="收案方式：" />
+					<combobox id="SAFS" onCreate="initShouAn()"/>
+				</row>
+				<row>					
+					<label value="归档日期：" />
+					<datebox id="GDRQ" cols="18" format="yyyy/MM/dd"
+						onCreate="self.value = new Date()" />
+					<label value="" />
+					<label value="" />
+				</row>	
+				<row>
+					<label value="当事人：" />
+					<textbox id="DSR" />
+					<label value="审理阶段：" />
+					<combobox id="SLJD" onCreate="initJieDuan()"/>
+				</row>
+				<row>
+					<label value="当事人身份：" />
+					<combobox id="DSRSF" onCreate="initShenFen()"/>					
+					<label value="法律援助：" />
+					<radiogroup id="FLYZ">
+						<radio label="是" id="01" checked="true"/>
+						<radio label="否" id="00"/>
+					</radiogroup>					
+				</row>	
+				<row>
+					<label value="主办律师：" />
+					<textbox id="ZBLS" />
+					<label value="是否涉外：" />
+					<radiogroup id="SW">
+						<radio label="是" id="1" checked="true"/>
+						<radio label="否" id="0"/>
+					</radiogroup>
+				</row>
+				<row>
+					<label value="协办律师：" />
+					<textbox id="XBLS" />
+					<label value="司法分类：" />
+					<combobox id="SFFL" onCreate="initSiFa()"/>
+				</row>									
+				<row spans="5">
+					<label value="案由：" />					
+				</row>
+				<row spans="5">					
+					<textbox id="AY" rows="6" width="100%"/>
+				</row>
+				<row spans="5">
+					<label value="基本案情：" />					
+				</row>
+				<row spans="5">					
+					<textbox id="JBAQ" rows="6" width="100%"/>
+				</row>
+				<row spans="5">
+					<hbox>
+						<label value="案源资料：" />
+						<button id="btnAttAdd" label="添加" onClick="winAtt.doModal();"/>
+					</hbox>					
+				</row>
+				<row spans="5">
+					<listbox id="boxdossier" fixedLayout="true" multiple="false"
+						checkmark="false" onCreate="">
+						<listhead style="text-align:center;">							
+							<listheader label="名称" />
+							<listheader label="描述" />							
+							<listheader label="大小" />
+							<listheader label="存放位置" />							
+						</listhead>
+					</listbox>
+				</row>
+				<row spans="5" align="center">
+					<div width="100%" align="center">
+						<button label="确定" onClick="btnOK()" />
+						<button label="取消" onClick="btnCancle()" />
+					</div>
+				</row>
+			</rows>
+		</grid>
+	</window>
+	<window title="添加案源资料" id="winAtt" border="normal" width="360px"
+		mode="overlapped" position="center" visible="false" onClose="btnAttCancle()">
+
+	</window>
+	<!--window>
+    <label value="test"></label>
+    zscript src="/pages/upload.zs"/>
+    <button label="upload" onClick="uploadAtt()"/>   
+   <vbox id="file">
+    </vbox>
+</window-->
+</zk>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul ">
+	<zscript src="usermain.zs"/>	
+	<window id="winUserMain" title="用户管理" width="100%" border="normal">					
+		<button label="新建用户" onClick="winuser.doModal();" />					
+		<button label="修改用户" onClick="update()" />
+		<button label="删除用户" onClick="del()" />
+		<listbox id="box" fixedLayout="true" multiple="false"
+			checkmark="false" width="100%" mold="paging" pagingPosition="both" pageSize="10"
+			 onCreate="initAddItem()">			
+			<listhead style="text-align:center;">
+				<listheader label="姓名"/>
+				<listheader label="性别" />
+				<listheader label="电话" />
+				<listheader label="邮箱地址" />
+				<listheader label="年龄" />
+			</listhead>
+			<listitem forEach="&#36;{usersLst}" id="&#36;{each._ID}">			
+				<listcell label="&#36;{each.name}"/>				
+				<listcell label="&#36;{each.sex}"/>
+				<listcell label="&#36;{each.phone}"/>
+				<listcell label="&#36;{each.email}"/>
+				<listcell label="&#36;{each.address}"/>
+			</listitem>
+		</listbox>
+		<!-- radiogroup id="gridId">
+		<grid id="grid" mold="paging" pageSize="5">
+			<columns sizable="true">				
+				<column label="选择" width="5px"/>
+				<column label="姓名" align="center"/>
+				<column label="性别" align="center"/>
+				<column label="电话" align="center"/>
+				<column label="邮箱地址" align="center"/>
+				<column label="年龄" align="center"/>
+			</columns>
+			<rows >				
+				<row forEach="&#36;{items}" id="&#36;{each._ID}_row">					
+					<radio id="&#36;{each._ID}" />						
+					<label value="&#36;{each.name}"/>
+					<label value="&#36;{each.sex}"/>
+					<label value="&#36;{each.phone}"/>
+					<label value="&#36;{each.email}"/>
+					<label value="&#36;{each.address}"/>				
+				</row>
+			</rows>
+		</grid>
+		</radiogroup -->
+	</window>
+
+	<!-- 新建部门窗体 -->
+	<window id="winuser" border="normal" width="100%" mode="overlapped"
+		position="center" visible="false">			
+		<grid>
+			<columns sizable="false">
+				<column width="60px" />
+				<column width="240px" />
+			</columns>
+			<rows>
+				<row>
+					<label value="姓名：" />
+					<textbox id="txtUsername" />
+				</row>
+				<row>
+					<label value="性别：" />
+					<radiogroup id="radSex" onCheck="">
+						<radio label="男" id="1" checked="true"/>
+						<radio label="女" id="0"/>
+						<radio label="未知" id="2"/>
+					</radiogroup>
+				</row>
+				<row>
+					<label value="出生日期：" />
+					<datebox id="birthday" cols="20" format="yyyy/MM/dd"/>
+				</row>
+				<row>
+					<label value="家庭住址：" />
+					<textbox id="txtAddress" />
+				</row>
+				<row>
+					<label value="Email：" />
+					<textbox id="txtEmail" />
+				</row>
+				<row>
+					<label value="电话：" />
+					<textbox id="txtTel" />
+				</row>				
+				<row>
+					<label value="入职时间：" />
+					<datebox id="entry" cols="20" format="yyyy/MM/dd"/>
+				</row>
+				<row>
+					<label value="教育程度：" />
+					<combobox id="jiaoyu" onCreate="jiaoyu.setSelectedIndex(0)">
+						<comboitem label="大学本科以上" id="01" />
+						<comboitem label="大学本科" id="02"/>
+						<comboitem label="大学本科以下" id="03"/>
+					</combobox>
+				</row>
+				<row>
+					<label value="MSN：" />
+					<textbox id="txtMSN" />
+				</row>
+				<row>
+					<label value="QQ：" />
+					<textbox id="txtQQ" />
+				</row>
+				<row>
+					<label value="职务：" />
+					<combobox id="duty" onCreate="duty.setSelectedIndex(0)">
+						<comboitem label="律师" id="001"/>
+						<comboitem label="主任" id="002"/>
+						<comboitem label="助理" id="003"/>
+					</combobox>
+				</row>
+				<row spans="2" align="center">
+					<div width="100%" align="center">
+						<button label="确定" onClick="btnOK()" />
+						<button label="取消" onClick="btnCancle()" />
+					</div>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

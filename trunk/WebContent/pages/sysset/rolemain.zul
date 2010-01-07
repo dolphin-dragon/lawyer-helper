@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?page title="角色管理" ?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul ">
+	<zscript src="rolemain.zs"/>
+	<window id="winRole" title="角色管理" width="640px"
+		border="normal">
+		<button label="新建角色" onClick="create()" />
+		<button label="修改角色" onClick="update()" />
+		<button label="删除角色" onClick="del()" />
+
+		<zscript>List items = dmobj.getRoles(_sysid);</zscript>
+		<listbox id="box" fixedLayout="true" multiple="false"
+			checkmark="false" mold="paging" pagingPosition="both"
+			pageSize="10">
+			<listhead style="text-align:center;">
+				<listheader label="角色名称" />
+				<listheader label="说明" />
+				<listheader label="备注" />
+			</listhead>
+			<listitem forEach="&#36;{items}" id="&#36;{each.id}">
+				<listcell label="&#36;{each.name}" />
+				<listcell label="&#36;{each.descript}" />
+				<listcell label="&#36;{each.descript}" />
+			</listitem>
+		</listbox>
+	</window>
+
+	<!-- 新建部门窗体 -->
+	<window id="winrole" border="normal" width="360px" mode="overlapped"
+		position="center" visible="false">
+		<grid>
+			<columns sizable="false">
+				<column width="60px" />
+				<column width="240px" />
+			</columns>
+			<rows>
+				<row id="rowRoleNum">
+					<label value="角色编码：" />
+					<textbox id="txtRoleNum" readonly="true"/>
+				</row>
+				<row id="rowDept">
+					<label value="角色名称：" />
+					<textbox id="txtRoleName"  />
+				</row>
+				<row>
+					<label value="权限：" />
+					<combobox id="quanxian" onCreate="quanxian.setSelectedIndex(0)">
+						<comboitem label="大学本科以上" id="01" />
+						<comboitem label="大学本科" id="02"/>
+						<comboitem label="大学本科以下" id="03"/>
+					</combobox>
+				</row>
+				<row>
+					<label value="职责描述：" />
+					<textbox id="des" rows="5" width="250px" />
+				</row>
+				<row spans="2">
+					<checkbox id="checkIsUsed" label="启用" onCheck="true"/>
+				</row>
+				<row spans="2" align="center">
+					<div width="100%" align="center">
+						<button label="确定" onClick="btnOK()" />
+						<button label="取消" onClick="btnCancle()" />
+					</div>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>
