@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?page title="title" ?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul ">
+	<zscript src="contactmain.zs" />	
+	<window id="winContact" title="联系人管理" width="100%"
+		border="normal">		
+		<button label="新建" onClick="addContacter()" />
+		<button label="修改" onClick="update()" />
+		<button label="删除" onClick="delContacter()" />
+
+		<listbox id="box" fixedLayout="true" multiple="false"
+			checkmark="false" mold="paging" pageSize="10" onCreate="initAddItem()">
+			<listhead style="text-align:center;">
+				<listheader label="姓名" />
+				<listheader label="性别" />
+				<listheader label="身份" />
+				<listheader label="维护律师" />
+			</listhead>
+			<listitem forEach="&#36;{contacterLst}" id="&#36;{each.id}">
+				<listcell label="&#36;{each.name}"/>
+				<listcell label="&#36;{each.sex}"/>
+				<listcell label="&#36;{each.id}"/>
+				<listcell label="&#36;{each.name}" />
+			</listitem>
+		</listbox>
+	</window>
+
+	<!-- 新建联系人窗体 -->
+	<window id="winCon" border="normal" width="360px" mode="overlapped"
+		position="center" visible="false">
+		<grid>
+			<columns sizable="false">
+				<column width="100px" />
+				<column width="240px" />
+			</columns>
+			<rows>
+				<row>
+					<label value="姓名：" />
+					<textbox id="txtName" />
+				</row>
+				<row>
+					<label value="性别：" />
+					<radiogroup id="radSex">
+						<radio label="男" id="1" checked="true" />
+						<radio label="女" id="0" />
+						<radio label="未知" id="2" />
+					</radiogroup>
+				</row>
+				<row>
+					<label value="联系人身份：" />
+					<combobox id="shenfen"
+						onCreate="shenfen.setSelectedIndex(0)">
+						<comboitem label="大学本科以上" id="01" />
+						<comboitem label="大学本科" id="02" />
+						<comboitem label="大学本科以下" id="03" />
+					</combobox>
+				</row>
+				<row>
+					<label value="维护律师：" />
+					<combobox id="weihu">
+						<comboitem label="大学本科以上" />
+						<comboitem label="大学本科" />
+						<comboitem label="大学本科以下" />
+					</combobox>
+				</row>
+				<row>
+					<label value="分组：" />
+					<combobox id="fenzu"
+						onCreate="fenzu.setSelectedIndex(0)">
+						<comboitem label="大学本科以上" />
+						<comboitem label="大学本科" />
+						<comboitem label="大学本科以下" />
+					</combobox>
+				</row>
+				<row>
+					<label value="所属部门：" />
+					<combobox id="cmbDept"
+						onCreate="cmbDept.setSelectedIndex(0)">
+						<comboitem label="大学本科以上" />
+						<comboitem label="大学本科" />
+						<comboitem label="大学本科以下" />
+					</combobox>
+				</row>
+				<row spans="2">
+					<checkbox id="checkIsPub" label="公共联系人"
+						checked="true" />
+				</row>
+				<row spans="2">
+					<checkbox id="chkInfo" label="添加详细信息"
+						onCheck="addInfo()" />
+				</row>
+				<row spans="2">
+					<!-- 详细信息网格 -->
+					<grid id="gridInfo" visible="false">
+						<columns sizable="false">
+							<column width="100px" />
+							<column width="240px" />
+						</columns>
+						<rows>
+							<row>
+								<label value="出生日期：" />
+								<datebox id="birthday" cols="20"
+									format="yyyy/MM/dd" />
+							</row>
+							<row>
+								<label value="家庭住址：" />
+								<textbox id="txtAddress" />
+							</row>
+							<row>
+								<label value="Email：" />
+								<textbox id="txtEmail" />
+							</row>
+							<row>
+								<label value="电话：" />
+								<textbox id="txtTel" />
+							</row>
+							<row>
+								<label value="工作单位：" />
+								<textbox id="txtWordAdd" />
+							</row>
+						</rows>
+					</grid>
+				</row>
+				<row spans="2" align="center">
+					<div width="100%" align="center">
+						<button label="确定" onClick="btnOK()" />
+						<button label="取消" onClick="btnCancle()" />
+					</div>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

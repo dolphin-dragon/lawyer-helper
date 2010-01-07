@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?page title="title" ?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul ">
+	<zscript src="orglist.zs" />
+	<window id="winOrgMain" title="" width="100%"
+		border="none">
+		<vbox>
+			<hbox>
+				<button label="添加" onClick="showUsersHelp()"></button>
+				<button label="删除" onClick="delUsers()"></button>
+			</hbox>
+			<listbox id="lstUsers" fixedLayout="true" multiple="true"
+				checkmark="true" mold="paging" pagingPosition="both" pageSize="10"
+				onCreate="initAddItem()">
+				<listhead style="text-align:center;">
+					<listheader label="姓名" />
+					<listheader label="角色" />
+					<listheader label="性别" />
+					<listheader label="电话" />
+					<listheader label="Email" />
+					<listheader label="年龄" />
+				</listhead>
+				<listitem forEach="&#36;{userslst}" id="&#36;{each.userid}">
+					<listcell label="&#36;{each.userid}" />
+					<listcell label="" />
+					<listcell label="" />
+					<listcell label="" />
+					<listcell label="" />
+					<listcell label="" />
+				</listitem>
+			</listbox>
+		</vbox>
+	</window>
+	<window id="winUsers" title="人员选择" border="normal" mode="overlapped"
+		position="center" visible="false" width="340px">
+		<vbox>
+			<listbox id="lstSysUsers" fixedLayout="true" multiple="true"
+				checkmark="true" mold="paging" pageSize="10"
+				 onCreate="initAddUsersItem()">
+				<listhead>
+					<listheader label="姓名" />
+				</listhead>
+				<listitem forEach="&#36;{usersItems}" id="&#36;{each._ID}" label="&#36;{each.name}"/>				
+			</listbox>
+			<hbox>
+				<div align="right" width="320">
+					<button label="确定" onClick="btnOK()" />
+					<button label="取消" onClick="cancle()" />
+				</div>
+			</hbox>
+		</vbox>
+	</window>
+</zk>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?page title="title" ?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul ">
+	<zscript src="casemain.zs" />
+	<window id="winCaseMain" title="案源管理" width="100%"
+		border="normal">		
+		<button label="添加新案源" onClick="wincase.doModal();" />
+		<button label="修改案源" onClick="update()" />
+		<button label="删除案源" onClick="del()" />
+		<listbox id="box" fixedLayout="true" multiple="true"
+			checkmark="true" onCreate="initAddItem()">
+			<listhead style="text-align:center;">
+				<listheader label="案源编号" />
+				<listheader label="名称" />
+				<listheader label="分类" />
+				<listheader label="建立时间" />
+				<listheader label="接案时间" />
+				<listheader label="案源提供者" />
+				<listheader label="案件描述" />
+			</listhead>
+			<listitem forEach="&#36;{caseLst}" id="&#36;{each.id}">
+				<listcell label="&#36;{each.id}"/>
+				<listcell label="&#36;{each.name}"/>
+				<listcell label="&#36;{each.contactType}"/>
+				<listcell label="&#36;{each.sdate}" />
+				<listcell label="&#36;{each.sdate}"/>
+				<listcell label="&#36;{each.contacter}"/>
+				<listcell label="&#36;{each.reason}"/>
+			</listitem>
+		</listbox>
+	</window>
+	<!-- 新建部门窗体 -->
+	<window id="wincase" title="新建案源" border="normal" width="660px"
+		mode="overlapped" position="center" visible="false" onClose="btnCancle()">
+		<grid>
+			<columns sizable="false">
+				<column width="200px" />
+				<column width="240px" />
+				<column width="220px" />
+				<column width="300px" />
+				<column width="200px" />
+			</columns>
+			<rows>
+				<row>
+					<label value="案源编号：" />
+					<textbox id="casecode" />
+					<label value="当事人：" />
+					<div>
+						<textbox id="parties" />
+						<button width="25px" label="+联系人"/>
+					</div>
+				</row>
+				<row>
+					<label value="案源分类：" />
+					<combobox id="cmbType" readonly="true" onCreate="initCaseType()"/>
+					<label value="案件来源方式：" />
+					<combobox id="cmbFS" readonly="true" onCreate="initCaseFS()"/>
+				</row>
+				<row>
+					<label value="案源提供者：" />
+					<combobox id="cmbTiGong"  readonly="true" onCreate="initCaseTiGong()"/>
+					<label value="接案日期：" />
+					<datebox id="dbJieAn" cols="18" format="yyyy/MM/dd"
+						onCreate="self.value = new Date()" />
+				</row>
+				<row spans="1,4">
+					<label value="案源名称：" />
+					<textbox id="txtCaseName" width="78%"/>
+				</row>
+				<row spans="5">
+					<label value="案源描述：" />					
+				</row>
+				<row spans="5">					
+					<textbox id="txtDsc" rows="10" width="81%"/>
+				</row>
+				<row spans="5">
+					<hbox>
+						<label value="案源资料：" />
+						<button id="btnAttAdd" label="添加"/>
+					</hbox>					
+				</row>
+				<row spans="5">
+					<listbox id="lstAtt" fixedLayout="true" multiple="false"
+						checkmark="false" onCreate="">
+						<listhead style="text-align:center;">							
+							<listheader label="名称" />
+							<listheader label="描述" />							
+							<listheader label="大小" />
+							<listheader label="存放位置" />							
+						</listhead>						
+					</listbox>
+				</row>
+				<row spans="5" align="center">
+					<div width="100%" align="center">
+						<button label="确定" onClick="btnOK()" />
+						<button label="取消" onClick="btnCancle()" />
+					</div>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

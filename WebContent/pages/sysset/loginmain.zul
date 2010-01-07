@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul ">
+	<zscript src="loginmain.zs" />
+	<window id="winLoginMain" title="登录管理" width="100%" border="normal"
+	 onCreate="initInfo()">		
+		<button label="添加" onClick="winlogin.doModal();" />
+		<button label="修改" onClick="update()" />
+		<button label="删除" onClick="del()" />
+		<listbox id="box" fixedLayout="true" multiple="false"
+			checkmark="false" mold="paging" pagingPosition="both" pageSize="10">
+			<listhead style="text-align:center;">
+				<listheader label="登录ID"/>
+				<listheader label="登录名称" />
+				<listheader label="状态" />
+				<listheader label="登录校验" />
+			</listhead>
+			<listitem forEach="&#36;{items}" id="&#36;{each.id}">			
+				<listcell label="&#36;{each.id}"/>				
+				<listcell label="&#36;{each.name}"/>
+				<listcell label="&#36;{each.status}"/>
+				<listcell label="&#36;{each.sdate}"/>
+			</listitem>
+		</listbox>
+	</window>
+	<!-- 新建部门窗体 -->
+	<window id="winlogin" border="normal" width="360px" mode="overlapped"
+		position="center" visible="false">
+		<grid>
+			<columns sizable="false">
+				<column width="60px" />
+				<column width="240px" />
+			</columns>
+			<rows>				
+				<row>
+					<label value="登录ID：" />
+					<textbox id="txtUserID"/>
+				</row>
+				<row>
+					<label value="用户：" onCreate=""/>
+					<combobox id="cmbUsers" readonly="true"/>
+				</row>
+				<row>
+					<label value="密码：" />
+					<textbox id="txtPwd" type="password" />
+				</row>
+				<row>
+					<label value="确认密码：" />
+					<textbox id="txtRePwd" type="password" />
+				</row>
+				<row>
+					<label value="状态：" />
+					<radiogroup id="rapFlag">
+						<radio label="启用" id="1" checked="true"/>
+						<radio label="不启用" id="0"/>
+					</radiogroup>
+				</row>
+				<row spans="2" align="center">
+					<div width="100%" align="center">
+						<button label="确定" onClick="btnOK()" />
+						<button label="取消" onClick="btnCancle()" />
+					</div>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

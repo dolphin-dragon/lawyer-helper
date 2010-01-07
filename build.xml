@@ -1,0 +1,403 @@
+<project name="Lawyer" default="compile" basedir=".">
+  <description>Builds, tests, and runs the project Lawyer.</description>
+  <property name="build.compiler" value="modern"/>
+  <property name="build.sysclasspath" value="ignore"/>
+  <property name="user.name" value="dolphin.lzy"/>
+  <property name="name" value="Lawyer"/>
+  <property name="version" value="0.0.0.1"/>
+	
+  <property name="src" value="${basedir}/src"/>    
+  <property name="classes" value="${basedir}/classes"/>  
+  <property name="javadocs" value="${target}/javadocs"/>
+	
+  <property name="deploy" value="${basedir}/deploy"/>
+  <property name="target" value="${basedir}/target" />
+  
+  <property name="webRoot" value="${basedir}/WebContent"/>
+  <property name="lib" value="${basedir}/lib"/>
+  <property name="zk-lib" value="${webRoot}/WEB-INF/lib"/>
+	
+  <property name="configs" value="${basedir}/configs"/>
+
+  <property name="LawyerServer" value="${deploy}/${name}.war"/>
+  <property name="LawyerSparrow" value="${deploy}/${name}Sparrow"/>
+	
+  <property name="LawyerCore" value="${name}-Core"/>
+  <property name="LawyerCommons" value="${name}-Commons"/>
+  <property name="LawyerClient" value="${name}-Client"/>
+  <property name="LawyerZKWeb" value="LawyerWeb-zk"/>
+	
+  <!-- ============================================================= -->
+  <!-- Classpath with libraries needed to compile this application   -->
+  <!-- ============================================================= -->
+  <path id="compile.classpath">
+    <fileset dir="${lib}">
+      <include name="**/*.jar"/>
+      <include name="**/*.zip"/>
+    </fileset>
+    <fileset dir="${zk-lib}">
+      <include name="**/*.jar"/>
+      <include name="**/*.zip"/>
+    </fileset>
+  </path>
+
+  <!-- ============================================================= -->
+  <!-- Compiles the source code                                      -->
+  <!-- ============================================================= -->
+  <target name="compile" >
+  	<mkdir dir="${classes}"/>
+    <javac srcdir="${src}" destdir="${classes}" debug="on" excludes="**/bak/**" optimize="on" target="1.5" source="1.5">
+      <classpath refid="compile.classpath"/>
+    	<!--
+    	<exclude name="crpp/datacenter/schedule/ExtractArea.java"/>
+    	-->
+    </javac>
+    <!-- copy over the language and other properties files. -->      
+    <copy todir="${classes}">
+      <fileset dir="${src}">
+        <include name="**/*.properties"/>
+      </fileset>
+    </copy>
+  	<copy todir="${classes}/configs">
+  	  <fileset dir="${configs}">
+  	  </fileset>
+    </copy>
+  </target>
+
+  <!-- ============================================================= -->
+  <!-- Clean up all files that are generated.                        -->
+  <!-- ============================================================= -->
+  <target name="clean">
+  	<!--项目编译代码清空-->
+  	<delete includeemptydirs="true">
+  	  <fileset dir="${classes}">
+  	    <include name="**/*"/>
+  	  </fileset>
+  	</delete>
+  	
+  	<!--项目部署清空，直接删除文件夹-->
+  	<deltree dir="${LawyerServer}"/>
+  	<deltree dir="${LawyerSparrow}"/>
+  	
+  	<deltree dir="${target}/${name}.war/"/>
+  	<deltree dir="${target}/${name}Sparrow/"/>
+  	
+  	<delete>
+  	  <fileset dir="${target}">
+  	    <include name="**/*"/>
+  	  </fileset>
+    </delete>
+  </target>
+
+  <!-- ============================================================= -->
+  <!-- Clean and then compile the project                            -->
+  <!-- ============================================================= -->
+  <target name="rebuild">
+    <antcall target="clean"/>
+    <antcall target="deploy"/>
+  </target>
+
+  <!-- ============================================================= -->
+  <!-- Create the jar file                                           -->
+  <!-- ============================================================= -->
+  <target name="jar" depends="compile">
+    <mkdir dir="${target}"/>
+  	<mkdir dir="${target}/${name}.war/"/>
+  	<mkdir dir="${target}/${name}Sparrow/"/>
+
+  	<!--打包核心包，主要包括com.law.bean com.law.dao com.law.service 三个包中的所有类-->
+    <jar jarfile="${target}/${LawyerCore}-${version}.jar">
+      <manifest>
+		<attribute name="Built-By" value="${user.name}"/>
+		<section name="com/law">
+			<attribute name="Specification-Title" value="${name}"/>
+			<attribute name="Specification-Version" value="${version}"/>
+			<attribute name="Specification-Vendor" value="${user.name}"/>
+			<attribute name="Implementation-Title" value="${LawyerCore}"/>
+			<attribute name="Implementation-Version" value="${version}"/> 
+			<attribute name="Implementation-Vendor" value="${user.name}"/>
+		</section>
+	  </manifest>
+      <fileset dir="${classes}">
+      	<include name="/com/law/bean/**.*"/>
+      	<include name="/com/law/dao/**.*"/>
+      	<include name="/com/law/service/**.*"/>
+      </fileset>
+    </jar>
+  	<!--打包系统支持包，主要包括com.law.action com.law.master com.law.report com.law.util  四个包中的类-->  	
+    <jar jarfile="${target}/${LawyerCommons}-${version}.jar">
+      <manifest>
+    	<attribute name="Built-By" value="${user.name}"/>
+    		<section name="com/law">
+    		  <attribute name="Specification-Title" value="${name}"/>
+    		  <attribute name="Specification-Version" value="${version}"/>
+    		  <attribute name="Specification-Vendor" value="${user.name}"/>
+    		  <attribute name="Implementation-Title" value="${LawyerCore}"/>
+    		  <attribute name="Implementation-Version" value="${version}"/> 
+    		  <attribute name="Implementation-Vendor" value="${user.name}"/>
+    		</section>
+    	  </manifest>
+        <fileset dir="${classes}">
+          <include name="/com/law/action/**.*"/>
+          <include name="/com/law/master/**.*"/>
+          <include name="/com/law/report/**.*"/>
+          <include name="/com/law/util/**.*"/>
+        </fileset>
+    </jar>
+  	<!--打包系统客户端打包，主要包括com.law.client但不包括com.law.client.zk中的内容-->
+    <jar jarfile="${target}/${LawyerClient}-${version}.jar">
+      <manifest>
+  		<attribute name="Built-By" value="${user.name}"/>
+  		<section name="com/law">
+  		  <attribute name="Specification-Title" value="${name}"/>
+  		  <attribute name="Specification-Version" value="${version}"/>
+  		  <attribute name="Specification-Vendor" value="${user.name}"/>
+  		  <attribute name="Implementation-Title" value="${LawyerCore}"/>
+  		  <attribute name="Implementation-Version" value="${version}"/> 
+  		  <attribute name="Implementation-Vendor" value="${user.name}"/>
+  		</section>
+  	  </manifest>
+      <fileset dir="${classes}">
+       	<include name="/com/law/client/**.*"/>
+        <exclude name="/com/law/client/zk/**.*"/>
+      </fileset>
+    </jar>
+  	<!--打包系统Web使用的包，主要包括com.law.client.zk-->
+    <jar jarfile="${target}/${LawyerZKWeb}-${version}.jar">
+      <manifest>
+  		<attribute name="Built-By" value="${user.name}"/>
+  		<section name="com/law">
+  		  <attribute name="Specification-Title" value="${name}"/>
+  		  <attribute name="Specification-Version" value="${version}"/>
+  		  <attribute name="Specification-Vendor" value="${user.name}"/>
+  		  <attribute name="Implementation-Title" value="${LawyerCore}"/>
+  		  <attribute name="Implementation-Version" value="${version}"/> 
+  		  <attribute name="Implementation-Vendor" value="${user.name}"/>
+  		</section>
+  	  </manifest>
+      <fileset dir="${classes}">
+        <include name="/com/law/client/zk/**.*"/>
+      </fileset>
+    </jar>
+  	
+  	
+  	<!-- 系统部署包 -->
+  	<copy todir="${target}/${name}.war/">
+  	  <fileset dir="${webRoot}">  	  	
+  	  </fileset>
+  	</copy>
+  	<!--copy todir="${target}/${name}.war/configs">
+  	  <fileset dir="${configs}">
+  	  </fileset>
+  	</copy-->
+  	<copy todir="${target}/${name}.war/WEB-INF/classes/configs">
+  	  <fileset dir="${configs}">
+  	  </fileset>
+  	</copy>
+  	<!--拷贝系统必须包-->
+  	<copy todir="${target}/${name}.war/WEB-INF/lib">      
+  	 <fileset dir="${lib}/commons">
+  	   <include name="*.jar"/>
+  	 </fileset>      
+  	 <fileset dir="${lib}/xml">
+  	   <include name="*.jar"/>
+  	 </fileset>      
+  	 <fileset dir="${lib}/zk">
+  	   <include name="*.jar"/>
+  	 </fileset>
+  	 <fileset dir="${lib}/db-lib">
+  	   <include name="*.jar"/>
+  	 </fileset>
+  	 <fileset dir="${lib}">
+  	   <include name="*.jar"/>
+  	 </fileset>
+  	 <!--拷贝系统的核心包、支持包、web实现包-->
+  	 <fileset dir="${target}">
+  	   <include name="${LawyerCore}-${version}.jar"/>
+  	   <include name="${LawyerCommons}-${version}.jar"/>
+  	   <include name="${LawyerZKWeb}-${version}.jar"/>
+  	 </fileset>
+  	</copy>
+  
+  	<!-- 客户器端部署包 -->
+  	<copy todir="${target}/${name}Sparrow/lib">
+  	  <!--拷贝系统必须包-->
+  	  <fileset dir="${lib}/commons">
+  	    <include name="*.jar"/>
+  	  </fileset>
+  	  <fileset dir="${lib}/xml">
+  	    <include name="*.jar"/>
+  	  </fileset>
+  	  <fileset dir="${lib}/zk">
+  	   	<include name="*.jar"/>
+  	  </fileset>
+  	  <fileset dir="${lib}/db-lib">
+  	   	<include name="*.jar"/>
+  	  </fileset>
+  	  <!--拷贝客户端的开发包-->
+  	  <fileset dir="${target}">
+  	    <include name="${LawyerClient}-${version}.jar"/>
+  	   	<include name="${LawyerCore}-${version}.jar"/>
+  	   	<include name="${LawyerCommons}-${version}.jar"/>
+  	  </fileset>
+  	  </copy>
+  	  <copy todir="${target}/${name}Sparrow/configs">
+  	    <fileset dir="${configs}">
+  	    </fileset>
+  	  </copy>
+  </target>
+
+  <!-- ============================================================= -->
+  <!-- deploy date collection service                                -->
+  <!-- ============================================================= -->
+  <target name="deploy" depends="jar">  	
+	<war warfile="${LawyerServer}" webxml="${target}/${name}.war/WEB-INF/web.xml">
+	   <fileset dir="${target}/${name}.war/">
+	   </fileset>
+	</war>
+  	
+  	<mkdir dir="${LawyerSparrow}/"/>
+  	<!-- 客户器端部署包 -->
+    <copy todir="${LawyerSparrow}/">
+      <!--拷贝系统必须包-->
+      <fileset dir="${target}/${name}Sparrow/">        
+      </fileset>      
+    </copy>
+  </target>
+
+  <!-- ============================================================= -->
+  <!-- 发布采集工具软件包                                                                                                                        -->
+  <!-- ============================================================= -->
+  <target name="release" depends="deploy">
+    <mkdir dir="${deploy}/${version}"/>
+    <mkdir dir="${deploy}/${version}/${name}.war"/>
+    <mkdir dir="${deploy}/${version}/${name}Sparrow"/>
+  	
+  	<copy todir="${deploy}/${version}/${name}.war">
+      <fileset dir="${LawyerServer}"/>
+  	</copy>
+  	<copy todir="${deploy}/${version}/${name}Sparrow">
+      <fileset dir="${LawyerSparrow}"/>
+  	</copy>
+  </target>
+
+  <!-- ============================================================= -->
+  <!-- 发布服务部署到本地的Tomcat中                                                                                              -->
+  <!-- ============================================================= -->
+  <property name="Localtomcat.home" value="D:\work\apache-tomcat-6.0.18"/>
+  <target name="deployLocalTomcat">
+  	<antcall target="clean"/>
+  	<antcall target="deploy"/>
+  	<copy todir="${Localtomcat.home}/webapps/${name}">
+  	  <fileset dir="${LawyerServer}">
+  	  </fileset>
+  	</copy>
+  </target>
+  <target name="RestartLocalTomcat">
+  	<antcall target="Localtomcat.stop"/>
+  	<antcall target="Localtomcat.start"/>
+  </target>
+
+  <target name="Localtomcat.start">
+	<java jar="${Localtomcat.home}/bin/bootstrap.jar" fork="true">
+	<jvmarg value="-Dcatalina.home=${Localtomcat.home}"/>
+	</java>
+  </target>	
+  <target name="Localtomcat.stop">
+	<java jar="${Localtomcat.home}/bin/bootstrap.jar" fork="true">
+	<jvmarg value="-Dcatalina.home=${Localtomcat.home}"/>
+	<arg line="stop"/>
+	</java>
+  </target>
+
+  <!-- ============================================================= -->
+  <!-- 发布服务部署到远程的Tomcat中                                                                                              -->
+  <!-- ============================================================= -->	
+  <!-- 导入ant发布命令 -->
+  <taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask" >
+    <classpath>
+	<pathelement path="${lib}/ant/catalina-ant.jar"/>
+	</classpath>
+  </taskdef>
+
+  <taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask" >
+	<classpath>
+	<pathelement path="${lib}/ant/catalina-ant.jar"/>
+	</classpath>
+  </taskdef>   
+  <taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask" >
+	<classpath>
+	<pathelement path="${lib}/ant/catalina-ant.jar"/>
+	</classpath>
+  </taskdef>
+	
+  <!-- 部署的应用名称-->
+  <property name="project.name" value="Lawyer"/>
+
+  <!-- tomcat参数 -->
+  <property name="tomcat.server" value="202.100.101.168"/>
+  <property name="tomcat.username" value="admin"/>
+  <property name="tomcat.password" value="admin"/>
+  <property name="tomcat.port" value="8080"/>
+  <property name="tomcat.project.path" value="/${project.name}"/>
+  <property name="tomcat.server.url" value="http://${tomcat.server}:${tomcat.port}"/>
+  <property name="tomcat.deploy.url" value="http://${tomcat.server}:${tomcat.port}/manager"/>
+
+  <!-- 运行命令 -->
+  <target name="deploy-TOMCAT" depends="deploy">
+	<echo message="deploy start" />
+	<deploy url="${tomcat.deploy.url}" username="${tomcat.username}" password="${tomcat.password}" path="${tomcat.project.path}" war="file:${LawyerServer}" update="true" />
+	<echo message="deploy end" />
+  </target>
+
+  <target name="undeploy-TOMCAT">
+	<echo message="undeploy start" />
+	<undeploy url="${tomcat.deploy.url}" username="${tomcat.username}" password="${tomcat.password}" path="${tomcat.project.path}"/>
+	<echo message="undeploy end" />
+  </target>
+
+  <target name="reload-TOMCAT">
+	<echo message="reload-TOMCAT start" />
+	<reload url="${tomcat.deploy.url}" username="${tomcat.username}" password="${tomcat.password}" path="${tomcat.project.path}"/>
+	<echo message="reload-TOMCAT end" />
+  </target>
+
+	
+  <!-- SVN 从资源库下载资料 -->
+  <property name="remote.url_1" value="svn://202.100.100.226:9898/Lawyer/src/" />
+  <property name="remote.url_2" value="svn://202.100.100.226:9898/Lawyer/WebContent/pages" />
+  <property name="local.src" value="${src}" />
+  <property name="local.pages" value="${webRoot}/pages" />
+
+  <taskdef name="svn" classname="org.tigris.subversion.svnant.SvnTask" >
+	<classpath>
+	  <pathelement path="${lib}/svn/ganymed.jar"/>
+	  <pathelement path="${lib}/svn/svnant.jar"/>
+	  <pathelement path="${lib}/svn/svnClientAdapter.jar"/>
+	  <pathelement path="${lib}/svn/svnjavahl.jar"/>
+	  <pathelement path="${lib}/svn/svnkit.jar"/>
+	</classpath>
+  </taskdef>
+
+  <target name="checkout">
+    <svn javahl="true" username="lzy" password="lzy" >
+    	<update dir="${local.pages}"/>
+    	<update dir="${local.src}"/>
+      <checkout url="${remote.url_1}" destPath="${local.src}" />
+      <checkout url="${remote.url_2}" destPath="${local.pages}" />
+    </svn>
+  </target>
+  <target name="update">
+	<svn javahl="true" username="lzy" password="lzy" >
+	    <update dir="${local.pages}"/>
+	    <update dir="${local.src}"/>
+	</svn>
+  </target>
+
+  <target name="checkoutInfo">
+	<echo message="checkout"/> 
+  </target>
+  <target name="updateInfo">
+	<echo message="update"/> 
+  </target>
+</project>
