@@ -1,15 +1,9 @@
 package com.law.client.zk;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Vector;
 
-import org.omg.CORBA.PRIVATE_MEMBER;
-import org.python.antlr.PythonParser.return_stmt_return;
 import org.zkoss.zk.ui.Sessions;
 
 import com.law.bean.Login;
@@ -45,10 +39,10 @@ public class LoginUser {
 			this._loginObj.setName(this._username);
 			this._loginObj.setPw(this._pwd);
 			this._loginObj.setUserid(this._userId);
-			this._loginObj.setStatus(this._isflag);//ÆôÓÃ×´Ì¬
-			this._loginObj.setSdate(new Date());//ÉèÖÃÆôÓÃÊ±¼ä
-			this._loginObj.setEdate(new Date());//ÉèÖÃ½ØÖ¹Ê±¼ä
-			this._loginObj.setRole(null);//ÉèÖÃ½ÇÉ«
+			this._loginObj.setStatus(this._isflag);//ï¿½ï¿½ï¿½ï¿½×´Ì¬
+			this._loginObj.setSdate(new Date());//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+			this._loginObj.setEdate(new Date());//ï¿½ï¿½ï¿½Ã½ï¿½Ö¹Ê±ï¿½ï¿½
+			this._loginObj.setRole(null);//ï¿½ï¿½ï¿½Ã½ï¿½É«
 			
 			this._LoginServiceObj.saveLogin(this._loginObj);
 		} catch (Exception e) {

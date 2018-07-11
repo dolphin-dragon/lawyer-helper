@@ -4,8 +4,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import org.python.antlr.PythonParser.list_for_return;
-import org.zkoss.zul.Div;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Tabbox;
 import org.zkoss.zul.Tabpanel;
@@ -83,7 +81,7 @@ public class CaseManager {
 	}
 
 	/**
-	 * 在tabpanel上加载案源列表
+	 * 锟斤拷tabpanel锟较硷拷锟截帮拷源锟叫憋拷
 	 */
 	private void initCases(Tabpanel tabpanel, int day) {
 		try {
@@ -118,12 +116,12 @@ public class CaseManager {
 	}
 
 	/**
-	 * 功能说明：tabbox选择事件
+	 * 锟斤拷锟斤拷说锟斤拷锟斤拷tabbox选锟斤拷锟铰硷拷
 	 */
 	public void treeOnSelect() {
-		// 获得选中的tab的ID
+		// 锟斤拷锟窖★拷械锟絫ab锟斤拷ID
 		String tabIdStr = this.tabcase.getSelectedTab().getId();
-		// 获得选中的Tabpanel对象
+		// 锟斤拷锟窖★拷械锟絋abpanel锟斤拷锟斤拷
 		Tabpanel tabpanel = this.tabcase.getSelectedPanel();
 
 		if ("tab0".equals(tabIdStr)) {
@@ -137,7 +135,7 @@ public class CaseManager {
 		}
 	}
 
-	// 新建案源
+	// 锟铰斤拷锟斤拷源
 	public void addCase(HashMap parmap) {
 		initInfo(parmap);
 		setCaseInfo();
@@ -197,7 +195,7 @@ public class CaseManager {
 	}
 
 	/**
-	 * 功能说明：根据Case的ID获得CaseSource对象，一般修改时根据选择的记录获得对象
+	 * 锟斤拷锟斤拷说锟斤拷锟斤拷锟斤拷锟斤拷Case锟斤拷ID锟斤拷锟紺aseSource锟斤拷锟斤拷一锟斤拷锟睫革拷时锟斤拷锟斤拷选锟斤拷募锟铰硷拷锟矫讹拷锟斤拷
 	 * 
 	 * @param caseSourceID
 	 * @return
