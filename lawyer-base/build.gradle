@@ -7,13 +7,14 @@ targetCompatibility = 1.7  //指定生成的class文件的jdk版本
 compileJava.options.encoding = 'UTF-8' //设置源文件编码
 
 sourceSets {
-	main.java.srcDirs = ['src']
+	//main.java.srcDirs = ['src']
+	main.java.srcDirs = ['src','gen/src']
+	main.resources.srcDirs = ['resources','gen/resources']
 }
 
 jar {
     manifest {
-        attributes 'Implementation-Title': 'lawyer-base',
-                   'Implementation-Version': version
+        attributes 'Implementation-Title': 'lawyer-base','Implementation-Version': version
     }
 }
 
@@ -23,7 +24,7 @@ repositories {
 }
 
 dependencies {
-
+	compile 'generate-framework:generate:0.1.+'
 }
 
 uploadArchives {

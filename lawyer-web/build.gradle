@@ -12,7 +12,7 @@ targetCompatibility = 1.7  //指定生成的class文件的jdk版本
 
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
-//webAppDirName = 'WebRoot'    // 设置 WebApp 根目录
+webAppDirName = 'WebRoot'    // 设置 WebApp 根目录
 
 //sourceSets.main.java.srcDir 'src/main/java'   // 设置 Java 源码所在目录
 
