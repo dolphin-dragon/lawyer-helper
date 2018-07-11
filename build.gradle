@@ -1,0 +1,39 @@
+import org.gradle.plugins.ide.eclipse.model.Facet
+   
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+
+sourceCompatibility = 1.6
+version = '0.0.1-SNAPSHOT'
+archivesBaseName="lawyer-helper"
+webAppDirName = 'WebContent'
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+sourceSets {
+	main.java.srcDirs = ['src']
+	// main.resources.srcDirs = ['src/main/resources','src/main/env_product']
+	main.resources.srcDirs = ['configs']
+	// main.resources.srcDirs = ['src/main/resources','src/main/env_test']
+	//  test.java.srcDirs = ['src/test/java']
+	// test.resources.srcDirs = ['src/test/resources']
+}
+
+configurations.all {
+	resolutionStrategy.cacheChangingModulesFor 1, 'seconds'
+}
+
+repositories {
+	maven { url 'http://127.0.0.1:8081/nexus/content/groups/public/'}  
+	mavenCentral()
+}
+
+dependencies {
+	//compile project(':eep-base')
+	compile 'org.zkoss.zk:zul:5.0.10'
+	compile 'com.jolbox:bonecp:0.8.0.RELEASE'
+	compile 'c3p0:c3p0:0.9.1.2'
+	compile 'org.zkoss.zk:zkplus:5.0.10'
+	compile 'org.zkoss.zk:zhtml:5.0.10'
+}
