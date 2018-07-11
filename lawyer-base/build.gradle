@@ -1,0 +1,40 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+
+sourceCompatibility = 1.7   //指定编译java源代码的jdk版本
+targetCompatibility = 1.7  //指定生成的class文件的jdk版本
+compileJava.options.encoding = 'UTF-8' //设置源文件编码
+
+sourceSets {
+	main.java.srcDirs = ['src']
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'lawyer-base',
+                   'Implementation-Version': version
+    }
+}
+
+repositories {
+ 	maven { url maven_rep} 
+    mavenCentral()
+}
+
+dependencies {
+
+}
+
+uploadArchives {
+	repositories {
+		mavenDeployer {
+            pom.groupId = "lawyer-helper"
+            pom.artifactId = "lawyer-base"
+            pom.version = version+'-SNAPSHOT'
+            repository(url: maven_snapshots) {
+                authentication(userName: maven_user, password: maven_upwd)
+            }
+        }
+    }
+}

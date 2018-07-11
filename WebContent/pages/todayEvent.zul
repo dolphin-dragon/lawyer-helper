@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<zk xmlns="http://www.zkoss.org/2005/zul"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul ">
-<!-- 对当前用户进行当日事件的展示，主要包括当日的案源、办理的案件、当日工作报告等信息  -->
-<window title="今日事项" border="normal" width="100%"  height="100%">
-</window>
-</zk>

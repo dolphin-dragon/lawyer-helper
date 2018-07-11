@@ -1,39 +1,30 @@
-import org.gradle.plugins.ide.eclipse.model.Facet
-   
-apply plugin: 'java'
-apply plugin: 'war'
-apply plugin: 'eclipse-wtp'
+subprojects {
+	version = '0.0.1-SNAPSHOT'
+	//archivesBaseName="lawyer-helper"
+    apply plugin: 'java'
+	[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
-sourceCompatibility = 1.6
-version = '0.0.1-SNAPSHOT'
-archivesBaseName="lawyer-helper"
-webAppDirName = 'WebContent'
-
-[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-
-sourceSets {
-	main.java.srcDirs = ['src']
-	// main.resources.srcDirs = ['src/main/resources','src/main/env_product']
-	main.resources.srcDirs = ['configs']
-	// main.resources.srcDirs = ['src/main/resources','src/main/env_test']
-	//  test.java.srcDirs = ['src/test/java']
-	// test.resources.srcDirs = ['src/test/resources']
-}
-
-configurations.all {
-	resolutionStrategy.cacheChangingModulesFor 1, 'seconds'
+ext {
+	//maven { url 'http://127.0.0.1:8081/nexus/content/groups/public/'} 
+	maven_rep = 'http://nexus.qudui.com/nexus/content/groups/public/'
+	maven_snapshots = 'http://nexus.qudui.com/nexus/content/repositories/snapshots/'
+	maven_user = 'dev'
+	maven_upwd = 'devqudui123'
 }
 
 repositories {
-	maven { url 'http://127.0.0.1:8081/nexus/content/groups/public/'}  
-	mavenCentral()
+	maven { url maven_rep} 
+    mavenCentral()
+    jcenter()
+}
+
+configurations.all {
+    //每隔1分钟小时检查远程依赖是否存在更新
+	resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+    //采用动态版本声明的依赖缓存10分钟
+    resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
 }
 
 dependencies {
-	//compile project(':eep-base')
-	compile 'org.zkoss.zk:zul:5.0.10'
-	compile 'com.jolbox:bonecp:0.8.0.RELEASE'
-	compile 'c3p0:c3p0:0.9.1.2'
-	compile 'org.zkoss.zk:zkplus:5.0.10'
-	compile 'org.zkoss.zk:zhtml:5.0.10'
+}
 }

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?page title=""?>
-<!-- 对当前用户进行当日事件的展示，主要包括当日的案源、办理的案件、当日工作报告等信息  -->
-<zk>
-<window title="今日事项" height="150" border="normal">
-New Content Here!
-</window>
-</zk>

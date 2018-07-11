@@ -1,6 +1,7 @@
 /classes/
 /build/
 /bin/
+/bak/
 .settings/
 .gradle/
 .classpath
