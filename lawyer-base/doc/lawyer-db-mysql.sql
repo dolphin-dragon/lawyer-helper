@@ -15,8 +15,10 @@ DROP TABLE IF EXISTS law_customer;
 -- 结案统计数据表
 CREATE TABLE law_case_close_stat
 (
-	-- 案源标识
-	id varchar(64) NOT NULL COMMENT '唯一标识',
+	-- 结案ID标识
+	id int NOT NULL AUTO_INCREMENT COMMENT '结案ID标识',
+	-- 案件编号
+	ccode varchar(64) COMMENT '案件编号',
 	-- 原告信息
 	plaintiff varchar(90) COMMENT '原告',
 	-- 被告信息
@@ -72,7 +74,7 @@ CREATE TABLE law_case_close_stat
 	-- 成本回款
 	cost numeric(19,2) COMMENT '成本回款',
 	-- 案件分类：A/B/C/D
-	type varchar(1) COMMENT '案件分类',
+	ctype varchar(1) COMMENT '案件分类',
 	-- 线索提供者
 	provider varchar(16) COMMENT '线索人',
 	-- 线索费
@@ -89,17 +91,20 @@ CREATE TABLE law_case_close_stat
 	remarks varchar(255) COMMENT '备注信息',
 	-- 删除标记（0：正常；1：删除）
 	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
-	PRIMARY KEY (id)
+	PRIMARY KEY (id),
+	UNIQUE (ccode)
 ) ENGINE = InnoDB COMMENT = '结案统计数据表' DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
 
 
 -- 案件信息登记数据表
 CREATE TABLE law_case_legal
 (
-	-- 案件编号
-	id varchar(64) NOT NULL COMMENT '案件编号',
+	-- 案件ID
+	id int NOT NULL AUTO_INCREMENT COMMENT '案件ID',
+	-- 案源编号
+	scode varchar(64) COMMENT '案源编号',
 	-- 立案案号信息
-	code varchar(120) COMMENT '案件案号',
+	code varchar(64) COMMENT '案件案号',
 	-- 案由信息
 	cause varchar(300) COMMENT '案由',
 	-- 案件原告信息
@@ -107,7 +112,7 @@ CREATE TABLE law_case_legal
 	-- 案件被告信息
 	defendant varchar(64) COMMENT '被告',
 	-- 案件适用程序
-	procedure varchar(30) COMMENT '适用程序',
+	cprocedure varchar(30) COMMENT '适用程序',
 	-- 立案日期
 	case_date datetime COMMENT '立案日期',
 	-- 开庭日期
@@ -119,7 +124,7 @@ CREATE TABLE law_case_legal
 	-- 承办律师信息
 	lawyer varchar(64) COMMENT '承办律师',
 	-- 案件情况简介说明
-	desc varchar(600) COMMENT '案件情况',
+	cdesc varchar(600) COMMENT '案件情况',
 	-- 创建者
 	create_by varchar(64) NOT NULL COMMENT '创建者',
 	-- 创建时间
@@ -132,15 +137,18 @@ CREATE TABLE law_case_legal
 	remarks varchar(255) COMMENT '备注信息',
 	-- 删除标记（0：正常；1：删除）
 	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
-	PRIMARY KEY (id)
-) COMMENT = '案件信息登记数据表';
+	PRIMARY KEY (id),
+	UNIQUE (code)
+) ENGINE = InnoDB COMMENT = '案件信息登记数据表' DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
 
 
 -- 案源信息收集数据表
 CREATE TABLE law_case_source
 (
-	-- 案源编号
-	id varchar(64) NOT NULL COMMENT '案源编号',
+	-- 案源ID
+	id int NOT NULL AUTO_INCREMENT COMMENT '案源ID',
+	-- 案源编码
+	code varchar(64) COMMENT '案源编码',
 	-- 案源名称信息
 	title varchar(120) NOT NULL COMMENT '案源名称',
 	-- 案源描述
@@ -169,19 +177,22 @@ CREATE TABLE law_case_source
 	remarks varchar(255) COMMENT '备注信息',
 	-- 删除标记（0：正常；1：删除）
 	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
-	PRIMARY KEY (id)
+	PRIMARY KEY (id),
+	UNIQUE (code)
 ) ENGINE = InnoDB COMMENT = '案源信息收集数据表' DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
 
 
 -- 客户信息数据表
 CREATE TABLE law_customer
 (
+	-- 客户ID
+	id int NOT NULL AUTO_INCREMENT COMMENT '客户ID',
 	-- 客户编码
-	id varchar(64) NOT NULL COMMENT '客户编码',
+	code varchar(64) COMMENT '客户编码',
 	-- 客户名称
 	name varchar(60) NOT NULL COMMENT '客户名称',
 	-- 客户类别信息 0个人 1企业
-	type varchar(2) DEFAULT '0' NOT NULL COMMENT '客户类别',
+	ctype varchar(2) DEFAULT '0' NOT NULL COMMENT '客户类别',
 	-- 客户身份证信息
 	id_card varchar(30) COMMENT '客户身份证信息',
 	-- 企业组织结构代码信息
@@ -202,8 +213,9 @@ CREATE TABLE law_customer
 	remarks varchar(255) COMMENT '备注信息',
 	-- 删除标记（0：正常；1：删除）
 	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
-	PRIMARY KEY (id)
-) COMMENT = '客户信息数据表';
+	PRIMARY KEY (id),
+	UNIQUE (code)
+) ENGINE = InnoDB COMMENT = '客户信息数据表' DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
 
 
 

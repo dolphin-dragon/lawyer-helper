@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lawyer.base.ccase.dao.LawCaseSourceDao" > 
+<!--*********************************** generation code  start ***********************************-->
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="lawyer.base.ccase.entity.LawCaseSource" >
+	<result column="id" property="id" jdbcType="INTEGER"/>
+	<result column="code" property="code" jdbcType="VARCHAR"/>
+	<result column="title" property="title" jdbcType="VARCHAR"/>
+	<result column="c_desc" property="cDesc" jdbcType="VARCHAR"/>
+	<result column="record_date" property="recordDate" jdbcType="DATE"/>
+	<result column="close_date" property="closeDate" jdbcType="DATE"/>
+	<result column="receive_date" property="receiveDate" jdbcType="DATE"/>
+	<result column="m_lawyer" property="mLawyer" jdbcType="VARCHAR"/>
+	<result column="provider" property="provider" jdbcType="VARCHAR"/>
+	<result column="status" property="status" jdbcType="VARCHAR"/>
+	<result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+	<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+	<result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+	<result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+	<result column="remarks" property="remarks" jdbcType="VARCHAR"/>
+	<result column="del_flag" property="delFlag" jdbcType="CHAR"/>
+</resultMap>
+       
+<!-- law_case_source table all fields -->
+<sql id="Base_Column_List" >
+	 id,code,title,c_desc,record_date,close_date,receive_date,m_lawyer,provider,status,create_by,create_date,update_by,update_date,remarks,del_flag
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+<trim prefix = "where" prefixOverrides="and|or">
+	<!--  -->
+		<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	<!--  -->
+		 	<if test="code != null and code != ''" >
+	    and code =  #{code}
+	</if>
+	<!--  -->
+		 	<if test="title != null and title != ''" >
+	    and title =  #{title}
+	</if>
+	<!--  -->
+		 	<if test="cDesc != null and cDesc != ''" >
+	    and c_desc =  #{cDesc}
+	</if>
+	<!--  -->
+		<if test="recordDate != null" >
+	    and record_date =  #{recordDate}
+	</if>
+	<!--  -->
+		<if test="closeDate != null" >
+	    and close_date =  #{closeDate}
+	</if>
+	<!--  -->
+		<if test="receiveDate != null" >
+	    and receive_date =  #{receiveDate}
+	</if>
+	<!--  -->
+		 	<if test="mLawyer != null and mLawyer != ''" >
+	    and m_lawyer =  #{mLawyer}
+	</if>
+	<!--  -->
+		 	<if test="provider != null and provider != ''" >
+	    and provider =  #{provider}
+	</if>
+	<!--  -->
+		 	<if test="status != null and status != ''" >
+	    and status =  #{status}
+	</if>
+	<!--  -->
+		 	<if test="createBy != null and createBy != ''" >
+	    and create_by =  #{createBy}
+	</if>
+	<!--  -->
+		<if test="createDate != null" >
+	    and create_date =  #{createDate}
+	</if>
+	<!--  -->
+		 	<if test="updateBy != null and updateBy != ''" >
+	    and update_by =  #{updateBy}
+	</if>
+	<!--  -->
+		<if test="updateDate != null" >
+	    and update_date =  #{updateDate}
+	</if>
+	<!--  -->
+		 	<if test="remarks != null and remarks != ''" >
+	    and remarks =  #{remarks}
+	</if>
+	<!--  -->
+		 	<if test="delFlag != null and delFlag != ''" >
+	    and del_flag =  #{delFlag}
+	</if>
+</trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into law_case_source(id,code,title,c_desc,record_date,close_date,receive_date,m_lawyer,provider,status,create_by,create_date,update_by,update_date,remarks,del_flag)
+ values(#{id,jdbcType=INTEGER},#{code,jdbcType=VARCHAR},#{title,jdbcType=VARCHAR},#{cDesc,jdbcType=VARCHAR},#{recordDate,jdbcType=DATE},#{closeDate,jdbcType=DATE},#{receiveDate,jdbcType=DATE},#{mLawyer,jdbcType=VARCHAR},#{provider,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{createBy,jdbcType=VARCHAR},#{createDate,jdbcType=TIMESTAMP},#{updateBy,jdbcType=VARCHAR},#{updateDate,jdbcType=TIMESTAMP},#{remarks,jdbcType=VARCHAR},#{delFlag,jdbcType=CHAR})
+</insert>
+
+<!-- 根据id，修改记录-->
+ <update id="update" parameterType="Object" >
+  update law_case_source set code=#{code,jdbcType=VARCHAR},title=#{title,jdbcType=VARCHAR},c_desc=#{cDesc,jdbcType=VARCHAR},record_date=#{recordDate,jdbcType=DATE},close_date=#{closeDate,jdbcType=DATE},receive_date=#{receiveDate,jdbcType=DATE},m_lawyer=#{mLawyer,jdbcType=VARCHAR},provider=#{provider,jdbcType=VARCHAR},status=#{status,jdbcType=VARCHAR},create_by=#{createBy,jdbcType=VARCHAR},create_date=#{createDate,jdbcType=TIMESTAMP},update_by=#{updateBy,jdbcType=VARCHAR},update_date=#{updateDate,jdbcType=TIMESTAMP},remarks=#{remarks,jdbcType=VARCHAR},del_flag=#{delFlag,jdbcType=CHAR} where id=#{id,jdbcType=INTEGER}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update law_case_source set 
+	<trim  suffixOverrides="," >
+	<if test="code != null  ">
+		code=#{code,jdbcType=VARCHAR},
+	</if>
+	<if test="title != null  ">
+		title=#{title,jdbcType=VARCHAR},
+	</if>
+	<if test="cDesc != null  ">
+		c_desc=#{cDesc,jdbcType=VARCHAR},
+	</if>
+	<if test="recordDate != null  ">
+		record_date=#{recordDate,jdbcType=DATE},
+	</if>
+	<if test="closeDate != null  ">
+		close_date=#{closeDate,jdbcType=DATE},
+	</if>
+	<if test="receiveDate != null  ">
+		receive_date=#{receiveDate,jdbcType=DATE},
+	</if>
+	<if test="mLawyer != null  ">
+		m_lawyer=#{mLawyer,jdbcType=VARCHAR},
+	</if>
+	<if test="provider != null  ">
+		provider=#{provider,jdbcType=VARCHAR},
+	</if>
+	<if test="status != null  ">
+		status=#{status,jdbcType=VARCHAR},
+	</if>
+	<if test="createBy != null  ">
+		create_by=#{createBy,jdbcType=VARCHAR},
+	</if>
+	<if test="createDate != null  ">
+		create_date=#{createDate,jdbcType=TIMESTAMP},
+	</if>
+	<if test="updateBy != null  ">
+		update_by=#{updateBy,jdbcType=VARCHAR},
+	</if>
+	<if test="updateDate != null  ">
+		update_date=#{updateDate,jdbcType=TIMESTAMP},
+	</if>
+	<if test="remarks != null  ">
+		remarks=#{remarks,jdbcType=VARCHAR},
+	</if>
+	<if test="delFlag != null  ">
+		del_flag=#{delFlag,jdbcType=CHAR},
+	</if>
+	</trim> where id=#{id,jdbcType=INTEGER}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from law_case_source where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 案源信息收集数据表 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from law_case_source where id = #{id}
+</select>
+
+<!-- 案源信息收集数据表 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from law_case_source 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询案源信息收集数据表列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+
+	select 
+	<include refid="Base_Column_List"/>
+	from law_case_source 
+	<include refid="Example_Where_Clause"/>
+	
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+
+	<if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+
+</select>
+<!--*********************************** generation code  end ***********************************-->
+
+	
+</mapper>

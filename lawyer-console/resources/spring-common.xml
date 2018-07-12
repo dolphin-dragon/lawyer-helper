@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"  
+    xmlns:tx="http://www.springframework.org/schema/tx" 
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- Annotation Config -->
+	<context:annotation-config/>
+
+	<!-- 扫描Service包 -->
+	<context:component-scan base-package="com.otter.service,lawyer.base.ccase.service" />
+	
+	<!-- ***************加载资源文件*************** -->
+	<bean id="commonPros" class="com.base.util.PropertiesConfig">
+		<property name="locations">
+			<list>
+		     	<value>classpath:dbconfig.properties</value>
+		    </list>
+		</property>
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+	</bean>
+
+	<!-- ***************配置数据源************** -->
+	<!-- springframework DriverManagerDataSource -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >	
+         <property name="driverClassName" value="${db.driverClassName}"/> 
+         <property name="url" value="${db.url}"/> 
+         <property name="username"><value>${db.username}</value></property> 
+         <property name="password"><value>${db.password}</value></property>
+	</bean>
+
+	<!-- alibaba druid DruidDataSource -->
+	<!--
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<property name="driverClassName" value="${db.driverClassName}"/>
+		<property name="url" value="${db.url}" />
+		<property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}" />
+		<property name="initialSize" value="${db.pool.initialSize}" />
+		<property name="minIdle" value="${db.pool.minIdle}" />
+		<property name="maxActive" value="${db.pool.maxActive}" />
+		<property name="removeAbandoned" value="${db.pool.removeAbandoned}" />
+  		<property name="removeAbandonedTimeout" value="${db.pool.removeAbandonedTimeout}" />
+  		<property name="logAbandoned" value="${db.pool.logAbandoned}" />
+   		<property name="maxWait" value="${db.pool.maxWait}" />
+   		<property name="timeBetweenEvictionRunsMillis" value="${db.pool.timeBetweenEvictionRunsMillis}" />
+   		<property name="minEvictableIdleTimeMillis" value="${db.pool.minEvictableIdleTimeMillis}" />
+		<property name="validationQuery" value="${db.pool.validationQuery}" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		<property name="poolPreparedStatements" value="false" />
+		<property name="maxPoolPreparedStatementPerConnectionSize" value="${db.pool.maxPoolPreparedStatementPerConnectionSize}" />
+		<property name="filters" value="stat" />
+	</bean>
+	-->
+
+	<!-- ***************事务配置************** -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<aop:config>
+        <aop:advisor pointcut="execution(* com.otter.service.*.*(..))"  advice-ref="txAdvice" />
+        <aop:advisor pointcut="execution(* lawyer.base.ccase.service.*.*(..))"  advice-ref="txAdvice" />
+    </aop:config>
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>  
+            <tx:method name="get*" read-only="true" />
+            <tx:method name="query*" read-only="true" />
+            <tx:method name="find*" read-only="true" />
+            <tx:method name="load*" read-only="true" />
+            <tx:method name="select*" read-only="true" />
+            <tx:method name="*" propagation="REQUIRED" rollback-for="Exception" />
+        </tx:attributes>
+    </tx:advice>
+    
+    <!-- ***************MyBatis扫包及配置文件************** -->
+    <!-- 扫描MyBatis配置文件,默认*Mapper.xml -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations">
+			 <list>
+			 	<!-- mysql database mapper -->
+			 	<value>classpath:com/otter/mapper/*Mapper.xml</value>
+			 	<!-- oracle database mapper 
+			  	<value>classpath:oracle/com/otter/mapper/*Mapper.xml</value>
+			  	-->
+			  	<value>classpath:lawyer/base/ccase/mapper/*Mapper.xml</value>
+			 </list>
+		</property>
+	</bean>
+	<!-- 扫描MyBatis的Daop配置,默认为dao目录  -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">    
+	    <property name="basePackage" value="com.otter.dao,lawyer.base.ccase.dao" />
+	    <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+
+	<!-- Spring通过一个 BeanPostProcessor对 @Autowired 进行解析，所以要让 @Autowired 起作用必须事先在 Spring容器中声明AutowiredAnnotationBeanPostProcessor -->
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+
+	<!-- 配置SqlSessionTemplate -->
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+
+	<!-- Spring 工具类 -->
+	<bean id="springContextUtil" class="com.base.util.SpringContextUtil" />
+</beans>

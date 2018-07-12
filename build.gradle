@@ -1,5 +1,5 @@
 subprojects {
-	version = '0.0.1-SNAPSHOT'
+	version = '0.0.1'
 	//archivesBaseName="lawyer-helper"
     apply plugin: 'java'
 	[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
@@ -20,9 +20,9 @@ repositories {
 
 configurations.all {
     //每隔1分钟小时检查远程依赖是否存在更新
-	resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+	resolutionStrategy.cacheChangingModulesFor 1, 'seconds'
     //采用动态版本声明的依赖缓存10分钟
-    resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
+    resolutionStrategy.cacheDynamicVersionsFor 10, 'seconds'
 }
 
 dependencies {

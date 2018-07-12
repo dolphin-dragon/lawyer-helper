@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lawyer.base.ccase.dao.LawCaseLegalDao" > 
+<!--*********************************** generation code  start ***********************************-->
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="lawyer.base.ccase.entity.LawCaseLegal" >
+	<result column="id" property="id" jdbcType="INTEGER"/>
+	<result column="scode" property="scode" jdbcType="VARCHAR"/>
+	<result column="code" property="code" jdbcType="VARCHAR"/>
+	<result column="cause" property="cause" jdbcType="VARCHAR"/>
+	<result column="plaintiff" property="plaintiff" jdbcType="VARCHAR"/>
+	<result column="defendant" property="defendant" jdbcType="VARCHAR"/>
+	<result column="cprocedure" property="cprocedure" jdbcType="VARCHAR"/>
+	<result column="case_date" property="caseDate" jdbcType="TIMESTAMP"/>
+	<result column="open_date" property="openDate" jdbcType="TIMESTAMP"/>
+	<result column="case_source_id" property="caseSourceId" jdbcType="VARCHAR"/>
+	<result column="judge" property="judge" jdbcType="VARCHAR"/>
+	<result column="lawyer" property="lawyer" jdbcType="VARCHAR"/>
+	<result column="cdesc" property="cdesc" jdbcType="VARCHAR"/>
+	<result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+	<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+	<result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+	<result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+	<result column="remarks" property="remarks" jdbcType="VARCHAR"/>
+	<result column="del_flag" property="delFlag" jdbcType="CHAR"/>
+</resultMap>
+       
+<!-- law_case_legal table all fields -->
+<sql id="Base_Column_List" >
+	 id,scode,code,cause,plaintiff,defendant,cprocedure,case_date,open_date,case_source_id,judge,lawyer,cdesc,create_by,create_date,update_by,update_date,remarks,del_flag
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+<trim prefix = "where" prefixOverrides="and|or">
+	<!--  -->
+		<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	<!--  -->
+		 	<if test="scode != null and scode != ''" >
+	    and scode =  #{scode}
+	</if>
+	<!--  -->
+		 	<if test="code != null and code != ''" >
+	    and code =  #{code}
+	</if>
+	<!--  -->
+		 	<if test="cause != null and cause != ''" >
+	    and cause =  #{cause}
+	</if>
+	<!--  -->
+		 	<if test="plaintiff != null and plaintiff != ''" >
+	    and plaintiff =  #{plaintiff}
+	</if>
+	<!--  -->
+		 	<if test="defendant != null and defendant != ''" >
+	    and defendant =  #{defendant}
+	</if>
+	<!--  -->
+		 	<if test="cprocedure != null and cprocedure != ''" >
+	    and cprocedure =  #{cprocedure}
+	</if>
+	<!--  -->
+		<if test="caseDate != null" >
+	    and case_date =  #{caseDate}
+	</if>
+	<!--  -->
+		<if test="openDate != null" >
+	    and open_date =  #{openDate}
+	</if>
+	<!--  -->
+		 	<if test="caseSourceId != null and caseSourceId != ''" >
+	    and case_source_id =  #{caseSourceId}
+	</if>
+	<!--  -->
+		 	<if test="judge != null and judge != ''" >
+	    and judge =  #{judge}
+	</if>
+	<!--  -->
+		 	<if test="lawyer != null and lawyer != ''" >
+	    and lawyer =  #{lawyer}
+	</if>
+	<!--  -->
+		 	<if test="cdesc != null and cdesc != ''" >
+	    and cdesc =  #{cdesc}
+	</if>
+	<!--  -->
+		 	<if test="createBy != null and createBy != ''" >
+	    and create_by =  #{createBy}
+	</if>
+	<!--  -->
+		<if test="createDate != null" >
+	    and create_date =  #{createDate}
+	</if>
+	<!--  -->
+		 	<if test="updateBy != null and updateBy != ''" >
+	    and update_by =  #{updateBy}
+	</if>
+	<!--  -->
+		<if test="updateDate != null" >
+	    and update_date =  #{updateDate}
+	</if>
+	<!--  -->
+		 	<if test="remarks != null and remarks != ''" >
+	    and remarks =  #{remarks}
+	</if>
+	<!--  -->
+		 	<if test="delFlag != null and delFlag != ''" >
+	    and del_flag =  #{delFlag}
+	</if>
+</trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into law_case_legal(id,scode,code,cause,plaintiff,defendant,cprocedure,case_date,open_date,case_source_id,judge,lawyer,cdesc,create_by,create_date,update_by,update_date,remarks,del_flag)
+ values(#{id,jdbcType=INTEGER},#{scode,jdbcType=VARCHAR},#{code,jdbcType=VARCHAR},#{cause,jdbcType=VARCHAR},#{plaintiff,jdbcType=VARCHAR},#{defendant,jdbcType=VARCHAR},#{cprocedure,jdbcType=VARCHAR},#{caseDate,jdbcType=TIMESTAMP},#{openDate,jdbcType=TIMESTAMP},#{caseSourceId,jdbcType=VARCHAR},#{judge,jdbcType=VARCHAR},#{lawyer,jdbcType=VARCHAR},#{cdesc,jdbcType=VARCHAR},#{createBy,jdbcType=VARCHAR},#{createDate,jdbcType=TIMESTAMP},#{updateBy,jdbcType=VARCHAR},#{updateDate,jdbcType=TIMESTAMP},#{remarks,jdbcType=VARCHAR},#{delFlag,jdbcType=CHAR})
+</insert>
+
+<!-- 根据id，修改记录-->
+ <update id="update" parameterType="Object" >
+  update law_case_legal set scode=#{scode,jdbcType=VARCHAR},code=#{code,jdbcType=VARCHAR},cause=#{cause,jdbcType=VARCHAR},plaintiff=#{plaintiff,jdbcType=VARCHAR},defendant=#{defendant,jdbcType=VARCHAR},cprocedure=#{cprocedure,jdbcType=VARCHAR},case_date=#{caseDate,jdbcType=TIMESTAMP},open_date=#{openDate,jdbcType=TIMESTAMP},case_source_id=#{caseSourceId,jdbcType=VARCHAR},judge=#{judge,jdbcType=VARCHAR},lawyer=#{lawyer,jdbcType=VARCHAR},cdesc=#{cdesc,jdbcType=VARCHAR},create_by=#{createBy,jdbcType=VARCHAR},create_date=#{createDate,jdbcType=TIMESTAMP},update_by=#{updateBy,jdbcType=VARCHAR},update_date=#{updateDate,jdbcType=TIMESTAMP},remarks=#{remarks,jdbcType=VARCHAR},del_flag=#{delFlag,jdbcType=CHAR} where id=#{id,jdbcType=INTEGER}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update law_case_legal set 
+	<trim  suffixOverrides="," >
+	<if test="scode != null  ">
+		scode=#{scode,jdbcType=VARCHAR},
+	</if>
+	<if test="code != null  ">
+		code=#{code,jdbcType=VARCHAR},
+	</if>
+	<if test="cause != null  ">
+		cause=#{cause,jdbcType=VARCHAR},
+	</if>
+	<if test="plaintiff != null  ">
+		plaintiff=#{plaintiff,jdbcType=VARCHAR},
+	</if>
+	<if test="defendant != null  ">
+		defendant=#{defendant,jdbcType=VARCHAR},
+	</if>
+	<if test="cprocedure != null  ">
+		cprocedure=#{cprocedure,jdbcType=VARCHAR},
+	</if>
+	<if test="caseDate != null  ">
+		case_date=#{caseDate,jdbcType=TIMESTAMP},
+	</if>
+	<if test="openDate != null  ">
+		open_date=#{openDate,jdbcType=TIMESTAMP},
+	</if>
+	<if test="caseSourceId != null  ">
+		case_source_id=#{caseSourceId,jdbcType=VARCHAR},
+	</if>
+	<if test="judge != null  ">
+		judge=#{judge,jdbcType=VARCHAR},
+	</if>
+	<if test="lawyer != null  ">
+		lawyer=#{lawyer,jdbcType=VARCHAR},
+	</if>
+	<if test="cdesc != null  ">
+		cdesc=#{cdesc,jdbcType=VARCHAR},
+	</if>
+	<if test="createBy != null  ">
+		create_by=#{createBy,jdbcType=VARCHAR},
+	</if>
+	<if test="createDate != null  ">
+		create_date=#{createDate,jdbcType=TIMESTAMP},
+	</if>
+	<if test="updateBy != null  ">
+		update_by=#{updateBy,jdbcType=VARCHAR},
+	</if>
+	<if test="updateDate != null  ">
+		update_date=#{updateDate,jdbcType=TIMESTAMP},
+	</if>
+	<if test="remarks != null  ">
+		remarks=#{remarks,jdbcType=VARCHAR},
+	</if>
+	<if test="delFlag != null  ">
+		del_flag=#{delFlag,jdbcType=CHAR},
+	</if>
+	</trim> where id=#{id,jdbcType=INTEGER}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from law_case_legal where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 案件信息登记数据表 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from law_case_legal where id = #{id}
+</select>
+
+<!-- 案件信息登记数据表 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from law_case_legal 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询案件信息登记数据表列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+
+	select 
+	<include refid="Base_Column_List"/>
+	from law_case_legal 
+	<include refid="Example_Where_Clause"/>
+	
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+
+	<if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+
+</select>
+<!--*********************************** generation code  end ***********************************-->
+
+	
+</mapper>
