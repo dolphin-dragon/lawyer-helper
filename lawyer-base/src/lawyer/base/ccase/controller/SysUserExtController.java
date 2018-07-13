@@ -88,6 +88,7 @@ public class SysUserExtController extends BaseAction{
 		
 		//Map<String,Object>  context = new HashMap<String,Object>();
 		if(entity.getUid()==null||StringUtils.isBlank(entity.getUid().toString())){
+				entity.setUid(entity.getId());
 				sysUserExtService.add(entity);
 		}else{
 			sysUserExtService.update(entity);

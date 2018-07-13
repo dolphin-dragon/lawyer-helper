@@ -27,12 +27,18 @@
      <div id="edit-win" class="easyui-dialog" title="Basic window" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
+     		 <input class="hidden" name="uid">
      		 <div class="ui-edit">
 		     	   <div class="ftitle">用户信息维护</div>
-					<div class="fitem">
+					<!-- <div class="fitem">
 						<label>用户ID</label>
 						<input name="uid" type="text" maxlength="11" class="easyui-numberbox" data-options="" missingMessage="请填写用户ID">
+					</div> -->
+					<div class="fitem">
+						<label>手机号码</label>
+						<input name="email" type="text" maxlength="20" class="easyui-validatebox" data-options="" readonly="readonly" missingMessage="注册Email"  >
 					</div>
+					
 					<div class="fitem">
 						<label>手机号码</label>
 						<input name="phone" type="text" maxlength="20" class="easyui-validatebox" data-options="" missingMessage="请填写手机号码">
