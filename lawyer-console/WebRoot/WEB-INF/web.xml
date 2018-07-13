@@ -53,15 +53,15 @@
 		<servlet-class>com.otter.servlet.ImageServlet</servlet-class>
 		<init-param>
 			<param-name>width</param-name>
-			<param-value>65</param-value>
+			<param-value>80</param-value>
 		</init-param>
 		<init-param>
 			<param-name>height</param-name>
-			<param-value>23</param-value>
+			<param-value>35</param-value>
 		</init-param>
 		<init-param>
 			<param-name>codeCount</param-name>
-			<param-value>4</param-value>
+			<param-value>5</param-value>
 		</init-param>
 	</servlet>
 

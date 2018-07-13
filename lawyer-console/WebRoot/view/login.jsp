@@ -57,6 +57,20 @@ label.iPhoneCheckLabelOn span {
 	width: 500px;
 	height: 51px;
 }
+
+#login .vc-text {
+	width: 220px;
+	height: 36px;
+	background-image: url(plug-in/login/images/vcode.png);
+}
+#login .vc-pic {
+	vertical-align: middle;
+	cursor: pointer;
+	width: 240px;
+	height: 36px;
+	padding-bottom: 10px;
+}
+
 </style>
  </head>
  <body>
@@ -67,17 +81,22 @@ label.iPhoneCheckLabelOn span {
    <span>登陆成功!请稍后....</span>
   </div>
   <div id="login">
+  	<div class="ribbon" style="background-image:url(plug-in/login/images/typelogin.png);"></div>
    <div class="inner">
     <div class="logo">
      <img src="plug-in/login/images/toplogo.png"/>
     </div>
     <div class="formLogin">
-     <form name="formLogin" id="formLogin" action="loginController.do?login" check="checkuser.do" method="post">
+     <form name="formLogin" id="formLogin" action="loginController.do?login" check="toLogin.do" method="post">
       <div class="tip">
        <input class="userName" name="email" type="text" id="email"  value='admin@qq.com' title="用户名" iscookie="true"  nullmsg="请输入用户名!"/>
       </div>
       <div class="tip">
        <input class="password" name="pwd" type="password"  value='otter%T^Y&U' id="pwd" title="密码" nullmsg="请输入密码!"/>
+      </div>
+      <div class="tip">
+ 		<img class="vc-pic" id="vc-pic" src="ImageServlet" />
+		<input class="vc-text" name="verifyCode" type="text" id="verifyCode" title="验证码" nullmsg="请输入验证码!"/>
       </div>
       <div class="loginButton">
        <div style="float: right; padding: 3px 0; margin-right: -12px;">

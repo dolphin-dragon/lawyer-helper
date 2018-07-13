@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS law_case_close_stat;
 DROP TABLE IF EXISTS law_case_legal;
 DROP TABLE IF EXISTS law_case_source;
 DROP TABLE IF EXISTS law_customer;
+DROP TABLE IF EXISTS sys_user_ext;
 
 
 
@@ -216,6 +217,39 @@ CREATE TABLE law_customer
 	PRIMARY KEY (id),
 	UNIQUE (code)
 ) ENGINE = InnoDB COMMENT = '客户信息数据表' DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+
+
+-- 用户信息表
+CREATE TABLE sys_user_ext
+(
+	-- 用户ID
+	uid int COMMENT '用户ID',
+	-- 手机号码
+	phone varchar(20) COMMENT '手机号码',
+	-- 联系电话
+	tel varchar(20) COMMENT '联系电话',
+	-- QQ号码
+	QQ varchar(20) COMMENT 'QQ号码',
+	-- 职位类别
+	position varchar(5) COMMENT '职位类别',
+	-- 出生日期
+	birt date COMMENT '出生日期',
+	-- 入职时间
+	entryDate date COMMENT '入职时间',
+	-- 创建者
+	create_by varchar(64) NOT NULL COMMENT '创建者',
+	-- 创建时间
+	create_date datetime NOT NULL COMMENT '创建时间',
+	-- 更新者
+	update_by varchar(64) NOT NULL COMMENT '更新者',
+	-- 更新时间
+	update_date datetime NOT NULL COMMENT '更新时间',
+	-- 备注信息
+	remarks varchar(255) COMMENT '备注信息',
+	-- 删除标记（0：正常；1：删除）
+	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
+	UNIQUE (uid)
+) ENGINE = InnoDB COMMENT = '用户信息表' DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
 
 
 

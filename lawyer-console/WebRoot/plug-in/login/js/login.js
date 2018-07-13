@@ -25,8 +25,15 @@ $(document).ready(function() {
 			}, 200).hide();
 		});
 	});
-
+	//验证码图片绑定点击事件
+	$("#vc-pic").click(function(){//刷新验证码
+		var _url = "ImageServlet?time="+new Date().getTime();
+		$("#vc-pic").attr('src',_url);
+	});
+	$("#vc-pic").click;
 });
+
+
 $('.userload').click(function(e) {
 	$('.formLogin').animate({
 		opacity : 1,
