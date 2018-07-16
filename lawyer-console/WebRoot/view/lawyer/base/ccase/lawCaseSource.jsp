@@ -28,8 +28,10 @@
      		 <input class="hidden" name="id">
      		 
      		 <input class="hidden" name="createBy">
+     		 <input class="hidden" name="createName">
      		 <input class="hidden" name="createDate">
      		 <input class="hidden" name="updateBy">
+     		 <input class="hidden" name="updateName">
      		 <input class="hidden" name="updateDate">
      		 <input class="hidden" name="delFlag">
      		 <div class="ui-edit">
@@ -71,20 +73,28 @@
 						<input name="status" type="text" maxlength="2" class="easyui-validatebox" data-options="required:true" missingMessage="请填写处理状态">
 					</div>
 					<!-- <div class="fitem">
-						<label>创建者</label>
-						<input name="createBy" type="text" maxlength="64" class="easyui-validatebox" data-options="required:true" missingMessage="请填写创建者">
+						<label>创建者ID</label>
+						<input name="createBy" type="text" maxlength="64" class="easyui-validatebox" data-options="required:true" missingMessage="请填写创建者ID">
+					</div>
+					<div class="fitem">
+						<label>创建人</label>
+						<input name="createName" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写创建人">
 					</div>
 					<div class="fitem">
 						<label>创建时间</label>
 						<input name="createDate" type="text" maxlength="19" class="easyui-datetimebox" data-options="required:true" missingMessage="请填写创建时间">
 					</div>
 					<div class="fitem">
-						<label>更新者</label>
-						<input name="updateBy" type="text" maxlength="64" class="easyui-validatebox" data-options="required:true" missingMessage="请填写更新者">
+						<label>修改人ID</label>
+						<input name="updateBy" type="text" maxlength="64" class="easyui-validatebox" data-options="required:true" missingMessage="请填写修改人ID">
 					</div>
 					<div class="fitem">
-						<label>更新时间</label>
-						<input name="updateDate" type="text" maxlength="19" class="easyui-datetimebox" data-options="required:true" missingMessage="请填写更新时间">
+						<label>修改人</label>
+						<input name="updateName" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写修改人">
+					</div>
+					<div class="fitem">
+						<label>修改时间</label>
+						<input name="updateDate" type="text" maxlength="19" class="easyui-datetimebox" data-options="required:true" missingMessage="请填写修改时间">
 					</div> -->
 					<div class="fitem">
 						<label>备注信息</label>

@@ -178,9 +178,14 @@ otter.lawCaseCloseStat = function(){
 								return row.providerFee;
 							}
 						},
-					{field:'create_by',title:'创建者',align:'center',sortable:true,
+					{field:'create_by',title:'创建者ID',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.createBy;
+							}
+						},
+					{field:'create_name',title:'创建人',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.createName;
 							}
 						},
 					{field:'create_date',title:'创建时间',align:'center',sortable:true,
@@ -188,12 +193,17 @@ otter.lawCaseCloseStat = function(){
 								return row.createDate;
 							}
 						},
-					{field:'update_by',title:'更新者',align:'center',sortable:true,
+					{field:'update_by',title:'修改人ID',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.updateBy;
 							}
 						},
-					{field:'update_date',title:'更新时间',align:'center',sortable:true,
+					{field:'update_name',title:'修改人',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.updateName;
+							}
+						},
+					{field:'update_date',title:'修改时间',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.updateDate;
 							}
