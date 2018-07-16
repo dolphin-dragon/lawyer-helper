@@ -80,14 +80,18 @@ CREATE TABLE law_case_close_stat
 	provider varchar(16) COMMENT '线索人',
 	-- 线索费
 	provider_fee numeric(19,2) COMMENT '线索费',
-	-- 创建者
-	create_by varchar(64) NOT NULL COMMENT '创建者',
+	-- 创建者ID
+	create_by varchar(64) NOT NULL COMMENT '创建者ID',
+	-- 创建人
+	create_name varchar(32) COMMENT '创建人',
 	-- 创建时间
 	create_date datetime NOT NULL COMMENT '创建时间',
-	-- 更新者
-	update_by varchar(64) NOT NULL COMMENT '更新者',
-	-- 更新时间
-	update_date datetime NOT NULL COMMENT '更新时间',
+	-- 修改人ID
+	update_by varchar(64) NOT NULL COMMENT '修改人ID',
+	-- 修改人
+	update_name varchar(32) COMMENT '修改人',
+	-- 修改时间
+	update_date datetime NOT NULL COMMENT '修改时间',
 	-- 备注信息
 	remarks varchar(255) COMMENT '备注信息',
 	-- 删除标记（0：正常；1：删除）
@@ -126,14 +130,18 @@ CREATE TABLE law_case_legal
 	lawyer varchar(64) COMMENT '承办律师',
 	-- 案件情况简介说明
 	cdesc varchar(600) COMMENT '案件情况',
-	-- 创建者
-	create_by varchar(64) NOT NULL COMMENT '创建者',
+	-- 创建者ID
+	create_by varchar(64) NOT NULL COMMENT '创建者ID',
+	-- 创建人
+	create_name varchar(32) COMMENT '创建人',
 	-- 创建时间
 	create_date datetime NOT NULL COMMENT '创建时间',
-	-- 更新者
-	update_by varchar(64) NOT NULL COMMENT '更新者',
-	-- 更新时间
-	update_date datetime NOT NULL COMMENT '更新时间',
+	-- 修改人ID
+	update_by varchar(64) NOT NULL COMMENT '修改人ID',
+	-- 修改人
+	update_name varchar(32) COMMENT '修改人',
+	-- 修改时间
+	update_date datetime NOT NULL COMMENT '修改时间',
 	-- 备注信息
 	remarks varchar(255) COMMENT '备注信息',
 	-- 删除标记（0：正常；1：删除）
@@ -166,14 +174,18 @@ CREATE TABLE law_case_source
 	provider varchar(64) COMMENT '案源提供者',
 	-- 案源受理状态， 0案源登记 1案源受理 4案源不受理 6立案处理 9结案处理 
 	status varchar(2) DEFAULT '0' NOT NULL COMMENT '处理状态',
-	-- 创建者
-	create_by varchar(64) NOT NULL COMMENT '创建者',
+	-- 创建者ID
+	create_by varchar(64) NOT NULL COMMENT '创建者ID',
+	-- 创建人
+	create_name varchar(32) COMMENT '创建人',
 	-- 创建时间
 	create_date datetime NOT NULL COMMENT '创建时间',
-	-- 更新者
-	update_by varchar(64) NOT NULL COMMENT '更新者',
-	-- 更新时间
-	update_date datetime NOT NULL COMMENT '更新时间',
+	-- 修改人ID
+	update_by varchar(64) NOT NULL COMMENT '修改人ID',
+	-- 修改人
+	update_name varchar(32) COMMENT '修改人',
+	-- 修改时间
+	update_date datetime NOT NULL COMMENT '修改时间',
 	-- 备注信息
 	remarks varchar(255) COMMENT '备注信息',
 	-- 删除标记（0：正常；1：删除）
@@ -202,14 +214,18 @@ CREATE TABLE law_customer
 	phone varchar(20) COMMENT '联系电话',
 	-- 联系人信息
 	linkman varchar(16) COMMENT '联系人',
-	-- 创建者
-	create_by varchar(64) NOT NULL COMMENT '创建者',
+	-- 创建者ID
+	create_by varchar(64) NOT NULL COMMENT '创建者ID',
+	-- 创建人
+	create_name varchar(32) COMMENT '创建人',
 	-- 创建时间
 	create_date datetime NOT NULL COMMENT '创建时间',
-	-- 更新者
-	update_by varchar(64) NOT NULL COMMENT '更新者',
-	-- 更新时间
-	update_date datetime NOT NULL COMMENT '更新时间',
+	-- 修改人ID
+	update_by varchar(64) NOT NULL COMMENT '修改人ID',
+	-- 修改人
+	update_name varchar(32) COMMENT '修改人',
+	-- 修改时间
+	update_date datetime NOT NULL COMMENT '修改时间',
 	-- 备注信息
 	remarks varchar(255) COMMENT '备注信息',
 	-- 删除标记（0：正常；1：删除）
@@ -240,14 +256,18 @@ CREATE TABLE sys_user_ext
 	birt date COMMENT '出生日期',
 	-- 入职时间
 	entryDate date COMMENT '入职时间',
-	-- 创建者
-	create_by varchar(64) NOT NULL COMMENT '创建者',
+	-- 创建者ID
+	create_by varchar(64) NOT NULL COMMENT '创建者ID',
+	-- 创建人
+	create_name varchar(32) COMMENT '创建人',
 	-- 创建时间
 	create_date datetime NOT NULL COMMENT '创建时间',
-	-- 更新者
-	update_by varchar(64) NOT NULL COMMENT '更新者',
-	-- 更新时间
-	update_date datetime NOT NULL COMMENT '更新时间',
+	-- 修改人ID
+	update_by varchar(64) NOT NULL COMMENT '修改人ID',
+	-- 修改人
+	update_name varchar(32) COMMENT '修改人',
+	-- 修改时间
+	update_date datetime NOT NULL COMMENT '修改时间',
 	-- 备注信息
 	remarks varchar(255) COMMENT '备注信息',
 	-- 删除标记（0：正常；1：删除）
