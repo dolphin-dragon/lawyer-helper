@@ -9,7 +9,7 @@ public class CodeUtil {
 		String tableInfo[] = new String[]{"结案统计数据表","案件信息登记数据表","案源信息收集数据表","客户信息数据表"};
 		
 		tables = new String[] { "sys_user_ext"};
-		tableInfo = new String[]{"用户信息维护"};
+		tableInfo = new String[]{"用户设置"};
 		
 		for (int i = 0; i < tables.length; i++) {
 			String tableName = tables[i];

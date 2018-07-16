@@ -4,7 +4,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+#if ($keyType =='01')
 import java.util.UUID;
+#end
 
 import org.apache.commons.lang.StringUtils;
 import javax.servlet.http.HttpServletRequest;
