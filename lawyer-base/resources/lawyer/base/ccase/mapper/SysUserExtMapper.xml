@@ -165,12 +165,12 @@
 <!-- 根据id查询 用户信息维护 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
 	select <include refid="Base_Column_List" /> 
-	 from (select a.id,a.email,b.* from sys_user a left join sys_user_ext b on(a.id=b.uid)) c where c.id = #{id}
+	 from (select a.id,a.email,b.* from sys_user a left join sys_user_ext b on(a.id=b.uid) where a.superAdmin!=1) c where c.id = #{id}
 </select>
 
 <!-- 用户设置 列表总数-->
 <select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
-	select count(1) from (select a.id,a.email,b.* from sys_user a left join sys_user_ext b on(a.id=b.uid)) c 
+	select count(1) from (select a.id,a.email,b.* from sys_user a left join sys_user_ext b on(a.id=b.uid) where a.superAdmin!=1) c 
 	<include refid="Example_Where_Clause"/>
 </select>
   	
@@ -178,7 +178,7 @@
 <select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
 	select 
 	<include refid="Base_Column_List"/>
-	from (select a.id,a.email,b.* from sys_user a left join sys_user_ext b on(a.id=b.uid)) c  
+	from (select a.id,a.email,b.* from sys_user a left join sys_user_ext b on(a.id=b.uid) where a.superAdmin!=1) c  
 	<include refid="Example_Where_Clause"/>
 	
 	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
