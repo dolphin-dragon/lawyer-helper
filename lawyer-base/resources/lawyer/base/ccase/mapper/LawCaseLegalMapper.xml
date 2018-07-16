@@ -20,8 +20,10 @@
 	<result column="lawyer" property="lawyer" jdbcType="VARCHAR"/>
 	<result column="cdesc" property="cdesc" jdbcType="VARCHAR"/>
 	<result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+	<result column="create_name" property="createName" jdbcType="VARCHAR"/>
 	<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
 	<result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+	<result column="update_name" property="updateName" jdbcType="VARCHAR"/>
 	<result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
 	<result column="remarks" property="remarks" jdbcType="VARCHAR"/>
 	<result column="del_flag" property="delFlag" jdbcType="CHAR"/>
@@ -29,7 +31,7 @@
        
 <!-- law_case_legal table all fields -->
 <sql id="Base_Column_List" >
-	 id,scode,code,cause,plaintiff,defendant,cprocedure,case_date,open_date,case_source_id,judge,lawyer,cdesc,create_by,create_date,update_by,update_date,remarks,del_flag
+	 id,scode,code,cause,plaintiff,defendant,cprocedure,case_date,open_date,case_source_id,judge,lawyer,cdesc,create_by,create_name,create_date,update_by,update_name,update_date,remarks,del_flag
 </sql>
 
 <!-- 查询条件 -->
@@ -92,12 +94,20 @@
 	    and create_by =  #{createBy}
 	</if>
 	<!--  -->
+		 	<if test="createName != null and createName != ''" >
+	    and create_name =  #{createName}
+	</if>
+	<!--  -->
 		<if test="createDate != null" >
 	    and create_date =  #{createDate}
 	</if>
 	<!--  -->
 		 	<if test="updateBy != null and updateBy != ''" >
 	    and update_by =  #{updateBy}
+	</if>
+	<!--  -->
+		 	<if test="updateName != null and updateName != ''" >
+	    and update_name =  #{updateName}
 	</if>
 	<!--  -->
 		<if test="updateDate != null" >
@@ -119,13 +129,13 @@
 <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey>
-  insert into law_case_legal(id,scode,code,cause,plaintiff,defendant,cprocedure,case_date,open_date,case_source_id,judge,lawyer,cdesc,create_by,create_date,update_by,update_date,remarks,del_flag)
- values(#{id,jdbcType=INTEGER},#{scode,jdbcType=VARCHAR},#{code,jdbcType=VARCHAR},#{cause,jdbcType=VARCHAR},#{plaintiff,jdbcType=VARCHAR},#{defendant,jdbcType=VARCHAR},#{cprocedure,jdbcType=VARCHAR},#{caseDate,jdbcType=TIMESTAMP},#{openDate,jdbcType=TIMESTAMP},#{caseSourceId,jdbcType=VARCHAR},#{judge,jdbcType=VARCHAR},#{lawyer,jdbcType=VARCHAR},#{cdesc,jdbcType=VARCHAR},#{createBy,jdbcType=VARCHAR},#{createDate,jdbcType=TIMESTAMP},#{updateBy,jdbcType=VARCHAR},#{updateDate,jdbcType=TIMESTAMP},#{remarks,jdbcType=VARCHAR},#{delFlag,jdbcType=CHAR})
+  insert into law_case_legal(id,scode,code,cause,plaintiff,defendant,cprocedure,case_date,open_date,case_source_id,judge,lawyer,cdesc,create_by,create_name,create_date,update_by,update_name,update_date,remarks,del_flag)
+ values(#{id,jdbcType=INTEGER},#{scode,jdbcType=VARCHAR},#{code,jdbcType=VARCHAR},#{cause,jdbcType=VARCHAR},#{plaintiff,jdbcType=VARCHAR},#{defendant,jdbcType=VARCHAR},#{cprocedure,jdbcType=VARCHAR},#{caseDate,jdbcType=TIMESTAMP},#{openDate,jdbcType=TIMESTAMP},#{caseSourceId,jdbcType=VARCHAR},#{judge,jdbcType=VARCHAR},#{lawyer,jdbcType=VARCHAR},#{cdesc,jdbcType=VARCHAR},#{createBy,jdbcType=VARCHAR},#{createName,jdbcType=VARCHAR},#{createDate,jdbcType=TIMESTAMP},#{updateBy,jdbcType=VARCHAR},#{updateName,jdbcType=VARCHAR},#{updateDate,jdbcType=TIMESTAMP},#{remarks,jdbcType=VARCHAR},#{delFlag,jdbcType=CHAR})
 </insert>
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update law_case_legal set scode=#{scode,jdbcType=VARCHAR},code=#{code,jdbcType=VARCHAR},cause=#{cause,jdbcType=VARCHAR},plaintiff=#{plaintiff,jdbcType=VARCHAR},defendant=#{defendant,jdbcType=VARCHAR},cprocedure=#{cprocedure,jdbcType=VARCHAR},case_date=#{caseDate,jdbcType=TIMESTAMP},open_date=#{openDate,jdbcType=TIMESTAMP},case_source_id=#{caseSourceId,jdbcType=VARCHAR},judge=#{judge,jdbcType=VARCHAR},lawyer=#{lawyer,jdbcType=VARCHAR},cdesc=#{cdesc,jdbcType=VARCHAR},create_by=#{createBy,jdbcType=VARCHAR},create_date=#{createDate,jdbcType=TIMESTAMP},update_by=#{updateBy,jdbcType=VARCHAR},update_date=#{updateDate,jdbcType=TIMESTAMP},remarks=#{remarks,jdbcType=VARCHAR},del_flag=#{delFlag,jdbcType=CHAR} where id=#{id,jdbcType=INTEGER}
+  update law_case_legal set scode=#{scode,jdbcType=VARCHAR},code=#{code,jdbcType=VARCHAR},cause=#{cause,jdbcType=VARCHAR},plaintiff=#{plaintiff,jdbcType=VARCHAR},defendant=#{defendant,jdbcType=VARCHAR},cprocedure=#{cprocedure,jdbcType=VARCHAR},case_date=#{caseDate,jdbcType=TIMESTAMP},open_date=#{openDate,jdbcType=TIMESTAMP},case_source_id=#{caseSourceId,jdbcType=VARCHAR},judge=#{judge,jdbcType=VARCHAR},lawyer=#{lawyer,jdbcType=VARCHAR},cdesc=#{cdesc,jdbcType=VARCHAR},create_by=#{createBy,jdbcType=VARCHAR},create_name=#{createName,jdbcType=VARCHAR},create_date=#{createDate,jdbcType=TIMESTAMP},update_by=#{updateBy,jdbcType=VARCHAR},update_name=#{updateName,jdbcType=VARCHAR},update_date=#{updateDate,jdbcType=TIMESTAMP},remarks=#{remarks,jdbcType=VARCHAR},del_flag=#{delFlag,jdbcType=CHAR} where id=#{id,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -171,11 +181,17 @@
 	<if test="createBy != null  ">
 		create_by=#{createBy,jdbcType=VARCHAR},
 	</if>
+	<if test="createName != null  ">
+		create_name=#{createName,jdbcType=VARCHAR},
+	</if>
 	<if test="createDate != null  ">
 		create_date=#{createDate,jdbcType=TIMESTAMP},
 	</if>
 	<if test="updateBy != null  ">
 		update_by=#{updateBy,jdbcType=VARCHAR},
+	</if>
+	<if test="updateName != null  ">
+		update_name=#{updateName,jdbcType=VARCHAR},
 	</if>
 	<if test="updateDate != null  ">
 		update_date=#{updateDate,jdbcType=TIMESTAMP},

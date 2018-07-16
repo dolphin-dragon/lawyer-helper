@@ -17,8 +17,10 @@
 	<result column="provider" property="provider" jdbcType="VARCHAR"/>
 	<result column="status" property="status" jdbcType="VARCHAR"/>
 	<result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+	<result column="create_name" property="createName" jdbcType="VARCHAR"/>
 	<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
 	<result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+	<result column="update_name" property="updateName" jdbcType="VARCHAR"/>
 	<result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
 	<result column="remarks" property="remarks" jdbcType="VARCHAR"/>
 	<result column="del_flag" property="delFlag" jdbcType="CHAR"/>
@@ -26,7 +28,7 @@
        
 <!-- law_case_source table all fields -->
 <sql id="Base_Column_List" >
-	 id,code,title,c_desc,record_date,close_date,receive_date,m_lawyer,provider,status,create_by,create_date,update_by,update_date,remarks,del_flag
+	 id,code,title,c_desc,record_date,close_date,receive_date,m_lawyer,provider,status,create_by,create_name,create_date,update_by,update_name,update_date,remarks,del_flag
 </sql>
 
 <!-- 查询条件 -->
@@ -77,12 +79,20 @@
 	    and create_by =  #{createBy}
 	</if>
 	<!--  -->
+		 	<if test="createName != null and createName != ''" >
+	    and create_name =  #{createName}
+	</if>
+	<!--  -->
 		<if test="createDate != null" >
 	    and create_date =  #{createDate}
 	</if>
 	<!--  -->
 		 	<if test="updateBy != null and updateBy != ''" >
 	    and update_by =  #{updateBy}
+	</if>
+	<!--  -->
+		 	<if test="updateName != null and updateName != ''" >
+	    and update_name =  #{updateName}
 	</if>
 	<!--  -->
 		<if test="updateDate != null" >
@@ -104,13 +114,13 @@
 <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey>
-  insert into law_case_source(id,code,title,c_desc,record_date,close_date,receive_date,m_lawyer,provider,status,create_by,create_date,update_by,update_date,remarks,del_flag)
- values(#{id,jdbcType=INTEGER},#{code,jdbcType=VARCHAR},#{title,jdbcType=VARCHAR},#{cDesc,jdbcType=VARCHAR},#{recordDate,jdbcType=DATE},#{closeDate,jdbcType=DATE},#{receiveDate,jdbcType=DATE},#{mLawyer,jdbcType=VARCHAR},#{provider,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{createBy,jdbcType=VARCHAR},#{createDate,jdbcType=TIMESTAMP},#{updateBy,jdbcType=VARCHAR},#{updateDate,jdbcType=TIMESTAMP},#{remarks,jdbcType=VARCHAR},#{delFlag,jdbcType=CHAR})
+  insert into law_case_source(id,code,title,c_desc,record_date,close_date,receive_date,m_lawyer,provider,status,create_by,create_name,create_date,update_by,update_name,update_date,remarks,del_flag)
+ values(#{id,jdbcType=INTEGER},#{code,jdbcType=VARCHAR},#{title,jdbcType=VARCHAR},#{cDesc,jdbcType=VARCHAR},#{recordDate,jdbcType=DATE},#{closeDate,jdbcType=DATE},#{receiveDate,jdbcType=DATE},#{mLawyer,jdbcType=VARCHAR},#{provider,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{createBy,jdbcType=VARCHAR},#{createName,jdbcType=VARCHAR},#{createDate,jdbcType=TIMESTAMP},#{updateBy,jdbcType=VARCHAR},#{updateName,jdbcType=VARCHAR},#{updateDate,jdbcType=TIMESTAMP},#{remarks,jdbcType=VARCHAR},#{delFlag,jdbcType=CHAR})
 </insert>
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update law_case_source set code=#{code,jdbcType=VARCHAR},title=#{title,jdbcType=VARCHAR},c_desc=#{cDesc,jdbcType=VARCHAR},record_date=#{recordDate,jdbcType=DATE},close_date=#{closeDate,jdbcType=DATE},receive_date=#{receiveDate,jdbcType=DATE},m_lawyer=#{mLawyer,jdbcType=VARCHAR},provider=#{provider,jdbcType=VARCHAR},status=#{status,jdbcType=VARCHAR},create_by=#{createBy,jdbcType=VARCHAR},create_date=#{createDate,jdbcType=TIMESTAMP},update_by=#{updateBy,jdbcType=VARCHAR},update_date=#{updateDate,jdbcType=TIMESTAMP},remarks=#{remarks,jdbcType=VARCHAR},del_flag=#{delFlag,jdbcType=CHAR} where id=#{id,jdbcType=INTEGER}
+  update law_case_source set code=#{code,jdbcType=VARCHAR},title=#{title,jdbcType=VARCHAR},c_desc=#{cDesc,jdbcType=VARCHAR},record_date=#{recordDate,jdbcType=DATE},close_date=#{closeDate,jdbcType=DATE},receive_date=#{receiveDate,jdbcType=DATE},m_lawyer=#{mLawyer,jdbcType=VARCHAR},provider=#{provider,jdbcType=VARCHAR},status=#{status,jdbcType=VARCHAR},create_by=#{createBy,jdbcType=VARCHAR},create_name=#{createName,jdbcType=VARCHAR},create_date=#{createDate,jdbcType=TIMESTAMP},update_by=#{updateBy,jdbcType=VARCHAR},update_name=#{updateName,jdbcType=VARCHAR},update_date=#{updateDate,jdbcType=TIMESTAMP},remarks=#{remarks,jdbcType=VARCHAR},del_flag=#{delFlag,jdbcType=CHAR} where id=#{id,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -147,11 +157,17 @@
 	<if test="createBy != null  ">
 		create_by=#{createBy,jdbcType=VARCHAR},
 	</if>
+	<if test="createName != null  ">
+		create_name=#{createName,jdbcType=VARCHAR},
+	</if>
 	<if test="createDate != null  ">
 		create_date=#{createDate,jdbcType=TIMESTAMP},
 	</if>
 	<if test="updateBy != null  ">
 		update_by=#{updateBy,jdbcType=VARCHAR},
+	</if>
+	<if test="updateName != null  ">
+		update_name=#{updateName,jdbcType=VARCHAR},
 	</if>
 	<if test="updateDate != null  ">
 		update_date=#{updateDate,jdbcType=TIMESTAMP},

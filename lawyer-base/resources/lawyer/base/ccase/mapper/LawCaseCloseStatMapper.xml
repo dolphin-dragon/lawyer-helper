@@ -39,8 +39,10 @@
 	<result column="provider" property="provider" jdbcType="VARCHAR"/>
 	<result column="provider_fee" property="providerFee" jdbcType="DECIMAL"/>
 	<result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+	<result column="create_name" property="createName" jdbcType="VARCHAR"/>
 	<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
 	<result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+	<result column="update_name" property="updateName" jdbcType="VARCHAR"/>
 	<result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
 	<result column="remarks" property="remarks" jdbcType="VARCHAR"/>
 	<result column="del_flag" property="delFlag" jdbcType="CHAR"/>
@@ -48,7 +50,7 @@
        
 <!-- law_case_close_stat table all fields -->
 <sql id="Base_Column_List" >
-	 id,ccode,plaintiff,defendant,close_type,close_date,compensation_amont,fair_fee,travel_expenses,defendant_legal_fare,advance_fair_fee,advance_legal_fare,refund_fee,return_fee,cost_fair_fee,cost_legal_fare,receive_due,receive_date,receive_account,lawyer_pay_base,lawyer_pay,master_lawyer,slave_lawyer_one,slave_lawyer_two,slave_lawyer_three,account_info,achievement,due,cost,ctype,provider,provider_fee,create_by,create_date,update_by,update_date,remarks,del_flag
+	 id,ccode,plaintiff,defendant,close_type,close_date,compensation_amont,fair_fee,travel_expenses,defendant_legal_fare,advance_fair_fee,advance_legal_fare,refund_fee,return_fee,cost_fair_fee,cost_legal_fare,receive_due,receive_date,receive_account,lawyer_pay_base,lawyer_pay,master_lawyer,slave_lawyer_one,slave_lawyer_two,slave_lawyer_three,account_info,achievement,due,cost,ctype,provider,provider_fee,create_by,create_name,create_date,update_by,update_name,update_date,remarks,del_flag
 </sql>
 
 <!-- 查询条件 -->
@@ -187,12 +189,20 @@
 	    and create_by =  #{createBy}
 	</if>
 	<!--  -->
+		 	<if test="createName != null and createName != ''" >
+	    and create_name =  #{createName}
+	</if>
+	<!--  -->
 		<if test="createDate != null" >
 	    and create_date =  #{createDate}
 	</if>
 	<!--  -->
 		 	<if test="updateBy != null and updateBy != ''" >
 	    and update_by =  #{updateBy}
+	</if>
+	<!--  -->
+		 	<if test="updateName != null and updateName != ''" >
+	    and update_name =  #{updateName}
 	</if>
 	<!--  -->
 		<if test="updateDate != null" >
@@ -214,13 +224,13 @@
 <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey>
-  insert into law_case_close_stat(id,ccode,plaintiff,defendant,close_type,close_date,compensation_amont,fair_fee,travel_expenses,defendant_legal_fare,advance_fair_fee,advance_legal_fare,refund_fee,return_fee,cost_fair_fee,cost_legal_fare,receive_due,receive_date,receive_account,lawyer_pay_base,lawyer_pay,master_lawyer,slave_lawyer_one,slave_lawyer_two,slave_lawyer_three,account_info,achievement,due,cost,ctype,provider,provider_fee,create_by,create_date,update_by,update_date,remarks,del_flag)
- values(#{id,jdbcType=INTEGER},#{ccode,jdbcType=VARCHAR},#{plaintiff,jdbcType=VARCHAR},#{defendant,jdbcType=VARCHAR},#{closeType,jdbcType=VARCHAR},#{closeDate,jdbcType=TIMESTAMP},#{compensationAmont,jdbcType=DECIMAL},#{fairFee,jdbcType=DECIMAL},#{travelExpenses,jdbcType=DECIMAL},#{defendantLegalFare,jdbcType=DECIMAL},#{advanceFairFee,jdbcType=DECIMAL},#{advanceLegalFare,jdbcType=DECIMAL},#{refundFee,jdbcType=DECIMAL},#{returnFee,jdbcType=DECIMAL},#{costFairFee,jdbcType=DECIMAL},#{costLegalFare,jdbcType=DECIMAL},#{receiveDue,jdbcType=DECIMAL},#{receiveDate,jdbcType=TIMESTAMP},#{receiveAccount,jdbcType=DECIMAL},#{lawyerPayBase,jdbcType=DECIMAL},#{lawyerPay,jdbcType=DECIMAL},#{masterLawyer,jdbcType=VARCHAR},#{slaveLawyerOne,jdbcType=VARCHAR},#{slaveLawyerTwo,jdbcType=VARCHAR},#{slaveLawyerThree,jdbcType=VARCHAR},#{accountInfo,jdbcType=VARCHAR},#{achievement,jdbcType=DECIMAL},#{due,jdbcType=DECIMAL},#{cost,jdbcType=DECIMAL},#{ctype,jdbcType=VARCHAR},#{provider,jdbcType=VARCHAR},#{providerFee,jdbcType=DECIMAL},#{createBy,jdbcType=VARCHAR},#{createDate,jdbcType=TIMESTAMP},#{updateBy,jdbcType=VARCHAR},#{updateDate,jdbcType=TIMESTAMP},#{remarks,jdbcType=VARCHAR},#{delFlag,jdbcType=CHAR})
+  insert into law_case_close_stat(id,ccode,plaintiff,defendant,close_type,close_date,compensation_amont,fair_fee,travel_expenses,defendant_legal_fare,advance_fair_fee,advance_legal_fare,refund_fee,return_fee,cost_fair_fee,cost_legal_fare,receive_due,receive_date,receive_account,lawyer_pay_base,lawyer_pay,master_lawyer,slave_lawyer_one,slave_lawyer_two,slave_lawyer_three,account_info,achievement,due,cost,ctype,provider,provider_fee,create_by,create_name,create_date,update_by,update_name,update_date,remarks,del_flag)
+ values(#{id,jdbcType=INTEGER},#{ccode,jdbcType=VARCHAR},#{plaintiff,jdbcType=VARCHAR},#{defendant,jdbcType=VARCHAR},#{closeType,jdbcType=VARCHAR},#{closeDate,jdbcType=TIMESTAMP},#{compensationAmont,jdbcType=DECIMAL},#{fairFee,jdbcType=DECIMAL},#{travelExpenses,jdbcType=DECIMAL},#{defendantLegalFare,jdbcType=DECIMAL},#{advanceFairFee,jdbcType=DECIMAL},#{advanceLegalFare,jdbcType=DECIMAL},#{refundFee,jdbcType=DECIMAL},#{returnFee,jdbcType=DECIMAL},#{costFairFee,jdbcType=DECIMAL},#{costLegalFare,jdbcType=DECIMAL},#{receiveDue,jdbcType=DECIMAL},#{receiveDate,jdbcType=TIMESTAMP},#{receiveAccount,jdbcType=DECIMAL},#{lawyerPayBase,jdbcType=DECIMAL},#{lawyerPay,jdbcType=DECIMAL},#{masterLawyer,jdbcType=VARCHAR},#{slaveLawyerOne,jdbcType=VARCHAR},#{slaveLawyerTwo,jdbcType=VARCHAR},#{slaveLawyerThree,jdbcType=VARCHAR},#{accountInfo,jdbcType=VARCHAR},#{achievement,jdbcType=DECIMAL},#{due,jdbcType=DECIMAL},#{cost,jdbcType=DECIMAL},#{ctype,jdbcType=VARCHAR},#{provider,jdbcType=VARCHAR},#{providerFee,jdbcType=DECIMAL},#{createBy,jdbcType=VARCHAR},#{createName,jdbcType=VARCHAR},#{createDate,jdbcType=TIMESTAMP},#{updateBy,jdbcType=VARCHAR},#{updateName,jdbcType=VARCHAR},#{updateDate,jdbcType=TIMESTAMP},#{remarks,jdbcType=VARCHAR},#{delFlag,jdbcType=CHAR})
 </insert>
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update law_case_close_stat set ccode=#{ccode,jdbcType=VARCHAR},plaintiff=#{plaintiff,jdbcType=VARCHAR},defendant=#{defendant,jdbcType=VARCHAR},close_type=#{closeType,jdbcType=VARCHAR},close_date=#{closeDate,jdbcType=TIMESTAMP},compensation_amont=#{compensationAmont,jdbcType=DECIMAL},fair_fee=#{fairFee,jdbcType=DECIMAL},travel_expenses=#{travelExpenses,jdbcType=DECIMAL},defendant_legal_fare=#{defendantLegalFare,jdbcType=DECIMAL},advance_fair_fee=#{advanceFairFee,jdbcType=DECIMAL},advance_legal_fare=#{advanceLegalFare,jdbcType=DECIMAL},refund_fee=#{refundFee,jdbcType=DECIMAL},return_fee=#{returnFee,jdbcType=DECIMAL},cost_fair_fee=#{costFairFee,jdbcType=DECIMAL},cost_legal_fare=#{costLegalFare,jdbcType=DECIMAL},receive_due=#{receiveDue,jdbcType=DECIMAL},receive_date=#{receiveDate,jdbcType=TIMESTAMP},receive_account=#{receiveAccount,jdbcType=DECIMAL},lawyer_pay_base=#{lawyerPayBase,jdbcType=DECIMAL},lawyer_pay=#{lawyerPay,jdbcType=DECIMAL},master_lawyer=#{masterLawyer,jdbcType=VARCHAR},slave_lawyer_one=#{slaveLawyerOne,jdbcType=VARCHAR},slave_lawyer_two=#{slaveLawyerTwo,jdbcType=VARCHAR},slave_lawyer_three=#{slaveLawyerThree,jdbcType=VARCHAR},account_info=#{accountInfo,jdbcType=VARCHAR},achievement=#{achievement,jdbcType=DECIMAL},due=#{due,jdbcType=DECIMAL},cost=#{cost,jdbcType=DECIMAL},ctype=#{ctype,jdbcType=VARCHAR},provider=#{provider,jdbcType=VARCHAR},provider_fee=#{providerFee,jdbcType=DECIMAL},create_by=#{createBy,jdbcType=VARCHAR},create_date=#{createDate,jdbcType=TIMESTAMP},update_by=#{updateBy,jdbcType=VARCHAR},update_date=#{updateDate,jdbcType=TIMESTAMP},remarks=#{remarks,jdbcType=VARCHAR},del_flag=#{delFlag,jdbcType=CHAR} where id=#{id,jdbcType=INTEGER}
+  update law_case_close_stat set ccode=#{ccode,jdbcType=VARCHAR},plaintiff=#{plaintiff,jdbcType=VARCHAR},defendant=#{defendant,jdbcType=VARCHAR},close_type=#{closeType,jdbcType=VARCHAR},close_date=#{closeDate,jdbcType=TIMESTAMP},compensation_amont=#{compensationAmont,jdbcType=DECIMAL},fair_fee=#{fairFee,jdbcType=DECIMAL},travel_expenses=#{travelExpenses,jdbcType=DECIMAL},defendant_legal_fare=#{defendantLegalFare,jdbcType=DECIMAL},advance_fair_fee=#{advanceFairFee,jdbcType=DECIMAL},advance_legal_fare=#{advanceLegalFare,jdbcType=DECIMAL},refund_fee=#{refundFee,jdbcType=DECIMAL},return_fee=#{returnFee,jdbcType=DECIMAL},cost_fair_fee=#{costFairFee,jdbcType=DECIMAL},cost_legal_fare=#{costLegalFare,jdbcType=DECIMAL},receive_due=#{receiveDue,jdbcType=DECIMAL},receive_date=#{receiveDate,jdbcType=TIMESTAMP},receive_account=#{receiveAccount,jdbcType=DECIMAL},lawyer_pay_base=#{lawyerPayBase,jdbcType=DECIMAL},lawyer_pay=#{lawyerPay,jdbcType=DECIMAL},master_lawyer=#{masterLawyer,jdbcType=VARCHAR},slave_lawyer_one=#{slaveLawyerOne,jdbcType=VARCHAR},slave_lawyer_two=#{slaveLawyerTwo,jdbcType=VARCHAR},slave_lawyer_three=#{slaveLawyerThree,jdbcType=VARCHAR},account_info=#{accountInfo,jdbcType=VARCHAR},achievement=#{achievement,jdbcType=DECIMAL},due=#{due,jdbcType=DECIMAL},cost=#{cost,jdbcType=DECIMAL},ctype=#{ctype,jdbcType=VARCHAR},provider=#{provider,jdbcType=VARCHAR},provider_fee=#{providerFee,jdbcType=DECIMAL},create_by=#{createBy,jdbcType=VARCHAR},create_name=#{createName,jdbcType=VARCHAR},create_date=#{createDate,jdbcType=TIMESTAMP},update_by=#{updateBy,jdbcType=VARCHAR},update_name=#{updateName,jdbcType=VARCHAR},update_date=#{updateDate,jdbcType=TIMESTAMP},remarks=#{remarks,jdbcType=VARCHAR},del_flag=#{delFlag,jdbcType=CHAR} where id=#{id,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -323,11 +333,17 @@
 	<if test="createBy != null  ">
 		create_by=#{createBy,jdbcType=VARCHAR},
 	</if>
+	<if test="createName != null  ">
+		create_name=#{createName,jdbcType=VARCHAR},
+	</if>
 	<if test="createDate != null  ">
 		create_date=#{createDate,jdbcType=TIMESTAMP},
 	</if>
 	<if test="updateBy != null  ">
 		update_by=#{updateBy,jdbcType=VARCHAR},
+	</if>
+	<if test="updateName != null  ">
+		update_name=#{updateName,jdbcType=VARCHAR},
 	</if>
 	<if test="updateDate != null  ">
 		update_date=#{updateDate,jdbcType=TIMESTAMP},
