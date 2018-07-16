@@ -38,6 +38,7 @@
 						<label>手机号码</label>
 						<input name="email" type="text" maxlength="20" class="easyui-validatebox" data-options="" readonly="readonly" missingMessage="注册Email"  >
 					</div>
+					
 					<div class="fitem">
 						<label>手机号码</label>
 						<input name="phone" type="text" maxlength="20" class="easyui-validatebox" data-options="" missingMessage="请填写手机号码">

@@ -26,6 +26,8 @@ repositories {
 
 dependencies {
 	compile 'base.framework:base-framework:0.1.+'
+	//compile 'web.framework:web-framework:0.1.+'
+	
 	//compile 'generate-framework:generate:0.1.+'
 	//runtime 'mysql:mysql-connector-java:5.+'
 }
