@@ -14,21 +14,31 @@ otter.sysUserExt = function(){
 				}
 			},
   			dataGrid:{
-  				title:'用户信息维护',
+  				title:'用户设置',
 	   			url:'dataList.do',
 	   			toolbar:[
-					{id:'btnadd',text:'添加',btnType:'add'},
-					{id:'btnedit',text:'修改',btnType:'edit'},
-					{id:'btndelete',text:'删除',btnType:'remove'}
+					/*{id:'btnadd',text:'添加',btnType:'add'},*/
+					{id:'btnedit',text:'修改',btnType:'edit'}
+					/*{id:'btndelete',text:'删除',btnType:'remove'}*/
 				],
 	   			columns:[[
-					{field:'id',checkbox:true},
+					{field:'uid',checkbox:true},
 /*					{field:'uid',title:'用户ID',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.uid;
 							}
 						},*/
-					{field:'email',title:'注册邮箱',align:'center',sortable:true,
+					{field:'name',title:'姓名',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.name;
+							}
+						},
+					{field:'sex',title:'性别',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.sex;
+							}
+						},
+					{field:'email',title:'登录邮箱',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.email;
 							}

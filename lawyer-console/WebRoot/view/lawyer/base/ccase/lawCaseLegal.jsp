@@ -26,6 +26,12 @@
      <div id="edit-win" class="easyui-dialog" title="Basic window" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
+     		 
+     		 <input class="hidden" name="createBy">
+     		 <input class="hidden" name="createDate">
+     		 <input class="hidden" name="updateBy">
+     		 <input class="hidden" name="updateDate">
+     		 <input class="hidden" name="delFlag">
      		 <div class="ui-edit">
 		     	   <div class="ftitle">案件信息登记数据表</div>
 					<div class="fitem">
@@ -76,7 +82,7 @@
 						<label>案件情况</label>
 						<input name="cdesc" type="text" maxlength="600" class="easyui-validatebox" data-options="" missingMessage="请填写案件情况">
 					</div>
-					<div class="fitem">
+					<!-- <div class="fitem">
 						<label>创建者</label>
 						<input name="createBy" type="text" maxlength="64" class="easyui-validatebox" data-options="required:true" missingMessage="请填写创建者">
 					</div>
@@ -91,15 +97,15 @@
 					<div class="fitem">
 						<label>更新时间</label>
 						<input name="updateDate" type="text" maxlength="19" class="easyui-datetimebox" data-options="required:true" missingMessage="请填写更新时间">
-					</div>
+					</div> -->
 					<div class="fitem">
 						<label>备注信息</label>
 						<input name="remarks" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写备注信息">
 					</div>
-					<div class="fitem">
+					<!-- <div class="fitem">
 						<label>删除标记</label>
 						<input name="delFlag" type="text" maxlength="1" class="easyui-validatebox" data-options="required:true" missingMessage="请填写删除标记">
-					</div>
+					</div> -->
   			</div>
      	</form>
   	 </div>
