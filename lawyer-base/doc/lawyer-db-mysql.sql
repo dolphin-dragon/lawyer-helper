@@ -224,6 +224,10 @@ CREATE TABLE sys_user_ext
 (
 	-- 用户ID
 	uid int COMMENT '用户ID',
+	-- 姓名
+	name varchar(20) COMMENT '姓名',
+	-- 性别
+	sex varchar(1) COMMENT '性别',
 	-- 手机号码
 	phone varchar(20) COMMENT '手机号码',
 	-- 联系电话
