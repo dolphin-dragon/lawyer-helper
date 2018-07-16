@@ -10,6 +10,7 @@
  	 <form id="searchForm">
         <p class="ui-fields">
 			<label class="ui-label">用户ID:</label><input name="uid" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">姓名:</label><input name="name" class="easyui-box ui-text" style="width:100px;">
 			<label class="ui-label">手机号码:</label><input name="phone" class="easyui-box ui-text" style="width:100px;">
 			<label class="ui-label">联系电话:</label><input name="tel" class="easyui-box ui-text" style="width:100px;">
 	    </p>
@@ -29,16 +30,23 @@
      		 <input class="hidden" name="id">
      		 <input class="hidden" name="uid">
      		 <div class="ui-edit">
-		     	   <div class="ftitle">用户信息维护</div>
+		     	   <div class="ftitle">用户设置</div>
 					<!-- <div class="fitem">
 						<label>用户ID</label>
 						<input name="uid" type="text" maxlength="11" class="easyui-numberbox" data-options="" missingMessage="请填写用户ID">
 					</div> -->
 					<div class="fitem">
-						<label>手机号码</label>
+						<label>姓名</label>
+						<input name="name" type="text" maxlength="20" class="easyui-validatebox" data-options="" missingMessage="请填写姓名">
+					</div>
+					<div class="fitem">
+						<label>性别</label>
+						<input name="sex" type="text" maxlength="1" class="easyui-validatebox" data-options="" missingMessage="请填写性别">
+					</div>
+					<div class="fitem">
+						<label>登录邮箱</label>
 						<input name="email" type="text" maxlength="20" class="easyui-validatebox" data-options="" readonly="readonly" missingMessage="注册Email"  >
 					</div>
-					
 					<div class="fitem">
 						<label>手机号码</label>
 						<input name="phone" type="text" maxlength="20" class="easyui-validatebox" data-options="" missingMessage="请填写手机号码">

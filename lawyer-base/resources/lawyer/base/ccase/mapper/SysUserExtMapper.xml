@@ -7,6 +7,8 @@
 <!-- Result Map-->
 <resultMap id="BaseResultMap" type="lawyer.base.ccase.entity.SysUserExt" >
 	<result column="uid" property="uid" jdbcType="INTEGER"/>
+	<result column="name" property="name" jdbcType="VARCHAR"/>
+	<result column="sex" property="sex" jdbcType="VARCHAR"/>
 	<result column="phone" property="phone" jdbcType="VARCHAR"/>
 	<result column="tel" property="tel" jdbcType="VARCHAR"/>
 	<result column="qq" property="qq" jdbcType="VARCHAR"/>
@@ -26,7 +28,7 @@
        
 <!-- sys_user_ext table all fields -->
 <sql id="Base_Column_List" >
-	 id,email,uid,phone,tel,qq,position,birt,entrydate,create_by,create_date,update_by,update_date,remarks,del_flag
+	 id,email,uid,name,sex,phone,tel,qq,position,birt,entrydate,create_by,create_date,update_by,update_date,remarks,del_flag
 </sql>
 
 <!-- 查询条件 -->
@@ -35,6 +37,14 @@
 	<!--  -->
 		<if test="uid != null" >
 	    and uid =  #{uid}
+	</if>
+	<!--  -->
+		 	<if test="name != null and name != ''" >
+	    and name =  #{name}
+	</if>
+	<!--  -->
+		 	<if test="sex != null and sex != ''" >
+	    and sex =  #{sex}
 	</if>
 	<!--  -->
 		 	<if test="phone != null and phone != ''" >
@@ -89,19 +99,25 @@
 
 <!-- 插入记录 -->
 <insert id="add" parameterType="Object" >
-  insert into sys_user_ext(uid,phone,tel,qq,position,birt,entrydate,create_by,create_date,update_by,update_date,remarks,del_flag)
- values(#{uid,jdbcType=INTEGER},#{phone,jdbcType=VARCHAR},#{tel,jdbcType=VARCHAR},#{qq,jdbcType=VARCHAR},#{position,jdbcType=VARCHAR},#{birt,jdbcType=DATE},#{entrydate,jdbcType=DATE},#{createBy,jdbcType=VARCHAR},#{createDate,jdbcType=TIMESTAMP},#{updateBy,jdbcType=VARCHAR},#{updateDate,jdbcType=TIMESTAMP},#{remarks,jdbcType=VARCHAR},#{delFlag,jdbcType=CHAR})
+  insert into sys_user_ext(uid,name,sex,phone,tel,qq,position,birt,entrydate,create_by,create_date,update_by,update_date,remarks,del_flag)
+ values(#{uid,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{sex,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{tel,jdbcType=VARCHAR},#{qq,jdbcType=VARCHAR},#{position,jdbcType=VARCHAR},#{birt,jdbcType=DATE},#{entrydate,jdbcType=DATE},#{createBy,jdbcType=VARCHAR},#{createDate,jdbcType=TIMESTAMP},#{updateBy,jdbcType=VARCHAR},#{updateDate,jdbcType=TIMESTAMP},#{remarks,jdbcType=VARCHAR},#{delFlag,jdbcType=CHAR})
 </insert>
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update sys_user_ext set phone=#{phone,jdbcType=VARCHAR},tel=#{tel,jdbcType=VARCHAR},qq=#{qq,jdbcType=VARCHAR},position=#{position,jdbcType=VARCHAR},birt=#{birt,jdbcType=DATE},entrydate=#{entrydate,jdbcType=DATE},create_by=#{createBy,jdbcType=VARCHAR},create_date=#{createDate,jdbcType=TIMESTAMP},update_by=#{updateBy,jdbcType=VARCHAR},update_date=#{updateDate,jdbcType=TIMESTAMP},remarks=#{remarks,jdbcType=VARCHAR},del_flag=#{delFlag,jdbcType=CHAR} where uid=#{uid,jdbcType=INTEGER}
+  update sys_user_ext set name=#{name,jdbcType=VARCHAR},sex=#{sex,jdbcType=VARCHAR},phone=#{phone,jdbcType=VARCHAR},tel=#{tel,jdbcType=VARCHAR},qq=#{qq,jdbcType=VARCHAR},position=#{position,jdbcType=VARCHAR},birt=#{birt,jdbcType=DATE},entrydate=#{entrydate,jdbcType=DATE},create_by=#{createBy,jdbcType=VARCHAR},create_date=#{createDate,jdbcType=TIMESTAMP},update_by=#{updateBy,jdbcType=VARCHAR},update_date=#{updateDate,jdbcType=TIMESTAMP},remarks=#{remarks,jdbcType=VARCHAR},del_flag=#{delFlag,jdbcType=CHAR} where uid=#{uid,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="updateBySelective" parameterType="Object" >
 	update sys_user_ext set 
 	<trim  suffixOverrides="," >
+	<if test="name != null  ">
+		name=#{name,jdbcType=VARCHAR},
+	</if>
+	<if test="sex != null  ">
+		sex=#{sex,jdbcType=VARCHAR},
+	</if>
 	<if test="phone != null  ">
 		phone=#{phone,jdbcType=VARCHAR},
 	</if>
@@ -152,13 +168,13 @@
 	 from (select a.id,a.email,b.* from sys_user a left join sys_user_ext b on(a.id=b.uid)) c where c.id = #{id}
 </select>
 
-<!-- 用户信息维护 列表总数-->
+<!-- 用户设置 列表总数-->
 <select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
 	select count(1) from (select a.id,a.email,b.* from sys_user a left join sys_user_ext b on(a.id=b.uid)) c 
 	<include refid="Example_Where_Clause"/>
 </select>
   	
-<!-- 查询用户信息维护列表 -->
+<!-- 查询用户设置列表 -->
 <select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
 	select 
 	<include refid="Base_Column_List"/>
