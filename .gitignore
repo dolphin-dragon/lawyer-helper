@@ -2,6 +2,7 @@
 /build/
 /bin/
 /bak/
+/lawyer-base/gen/
 .settings/
 .gradle/
 .classpath
