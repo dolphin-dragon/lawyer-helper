@@ -68,11 +68,11 @@ otter.lawCaseSource = function(){
 								return row.status;
 							}
 						},
-					{field:'create_by',title:'创建者ID',align:'center',sortable:true,
+/*					{field:'create_by',title:'创建者ID',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.createBy;
 							}
-						},
+						},*/
 					{field:'create_name',title:'创建人',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.createName;
@@ -83,11 +83,11 @@ otter.lawCaseSource = function(){
 								return row.createDate;
 							}
 						},
-					{field:'update_by',title:'修改人ID',align:'center',sortable:true,
+/*					{field:'update_by',title:'修改人ID',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.updateBy;
 							}
-						},
+						},*/
 					{field:'update_name',title:'修改人',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.updateName;
@@ -105,7 +105,13 @@ otter.lawCaseSource = function(){
 						},
 					{field:'del_flag',title:'删除标记',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.delFlag;
+								if(value == 0){
+									return "有效";
+								}
+								if(value == 1){
+									return "删除";
+								}
+								return "有效";
 							}
 						},
 					]]

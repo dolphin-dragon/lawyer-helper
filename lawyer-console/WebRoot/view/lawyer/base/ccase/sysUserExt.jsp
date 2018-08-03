@@ -9,7 +9,7 @@
  	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">用户ID:</label><input name="uid" class="easyui-box ui-text" style="width:100px;">
+			<!-- <label class="ui-label">用户ID:</label><input name="uid" class="easyui-box ui-text" style="width:100px;"> -->
 			<label class="ui-label">姓名:</label><input name="name" class="easyui-box ui-text" style="width:100px;">
 			<label class="ui-label">手机号码:</label><input name="phone" class="easyui-box ui-text" style="width:100px;">
 			<label class="ui-label">联系电话:</label><input name="tel" class="easyui-box ui-text" style="width:100px;">

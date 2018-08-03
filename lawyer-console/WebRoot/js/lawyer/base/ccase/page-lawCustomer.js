@@ -35,7 +35,14 @@ otter.lawCustomer = function(){
 						},
 					{field:'ctype',title:'客户类别',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.ctype;
+								//return row.ctype;
+								if(value == 0){
+									return "个人";
+								}
+								if(value == 1){
+									return "企业";
+								}
+								return "";
 							}
 						},
 					{field:'id_card',title:'客户身份证信息',align:'center',sortable:true,
@@ -58,11 +65,11 @@ otter.lawCustomer = function(){
 								return row.linkman;
 							}
 						},
-					{field:'create_by',title:'创建者ID',align:'center',sortable:true,
+/*					{field:'create_by',title:'创建者ID',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.createBy;
 							}
-						},
+						},*/
 					{field:'create_name',title:'创建人',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.createName;
@@ -73,11 +80,11 @@ otter.lawCustomer = function(){
 								return row.createDate;
 							}
 						},
-					{field:'update_by',title:'修改人ID',align:'center',sortable:true,
+/*					{field:'update_by',title:'修改人ID',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.updateBy;
 							}
-						},
+						},*/
 					{field:'update_name',title:'修改人',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.updateName;
@@ -95,7 +102,13 @@ otter.lawCustomer = function(){
 						},
 					{field:'del_flag',title:'删除标记',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.delFlag;
+								if(value == 0){
+									return "有效";
+								}
+								if(value == 1){
+									return "删除";
+								}
+								return "有效";
 							}
 						},
 					]]

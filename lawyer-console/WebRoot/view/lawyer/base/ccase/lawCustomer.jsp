@@ -46,7 +46,11 @@
 					</div>
 					<div class="fitem">
 						<label>客户类别</label>
-						<input name="ctype" type="text" maxlength="2" class="easyui-validatebox" data-options="required:true" missingMessage="请填写客户类别">
+						<!-- <input name="ctype" type="text" maxlength="2" class="easyui-validatebox" data-options="required:true" missingMessage="请填写客户类别"> -->
+						<select class="easyui-combobox" name="ctype" data-options="required:true">
+                    		<option value="0" selected="selected">个人</option>
+                    		<option value="1">企业</option>
+                   		</select>
 					</div>
 					<div class="fitem">
 						<label>客户身份证信息</label>
