@@ -23,7 +23,7 @@
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="Basic window" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="结案统计数据表" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 
@@ -35,7 +35,7 @@
      		 <input class="hidden" name="updateDate">
      		 <input class="hidden" name="delFlag">
      		 <div class="ui-edit">
-		     	   <div class="ftitle">结案统计数据表</div>
+		     	  <!--  <div class="ftitle">结案统计数据表</div> -->
 					<div class="fitem">
 						<label>案件编号</label>
 						<input name="ccode" type="text" maxlength="64" class="easyui-validatebox" data-options="" missingMessage="请填写案件编号">
