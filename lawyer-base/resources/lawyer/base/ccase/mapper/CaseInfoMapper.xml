@@ -17,6 +17,7 @@
 	<result column="defendant_name" property="defendantName" jdbcType="VARCHAR"/>
 	<result column="defendant_reg_capital" property="defendantRegCapital" jdbcType="VARCHAR"/>
 	<result column="defendant_area" property="defendantArea" jdbcType="VARCHAR"/>
+	<result column="del_flag" property="delFlag" jdbcType="VARCHAR"/>
 </resultMap>
        
 <!-- case_info table all fields -->
@@ -126,9 +127,14 @@
 </update>
 
 <!-- 删除记录 -->
+<!--
 <delete id="delete" parameterType="Object">
 	delete 	 from case_info where status = #{status}
 </delete>
+-->
+<update id="delete" parameterType="Object">
+    update case_info set del_flag='1' where id=#{id,jdbcType=INTEGER}
+</update>
  
 <!-- 根据id查询 案件基础信息 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">

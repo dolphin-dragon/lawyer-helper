@@ -159,7 +159,7 @@
 
 <!-- 删除记录 -->
 <delete id="delete" parameterType="Object">
-	delete 	 from case_customer where status = #{status}
+	delete from case_customer where status = #{status}
 </delete>
  
 <!-- 根据id查询 客户信息 -->

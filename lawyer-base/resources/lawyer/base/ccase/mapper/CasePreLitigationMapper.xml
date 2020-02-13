@@ -142,9 +142,14 @@
 </update>
 
 <!-- 删除记录 -->
+<!-- 
 <delete id="delete" parameterType="Object">
 	delete 	 from case_pre_litigation where status = #{status}
 </delete>
+-->
+<update id="delete" parameterType="Object">
+    update case_info set del_flag='1' where id=#{caseId,jdbcType=INTEGER}
+</update>
  
 <!-- 根据id查询 案件诉前和解信息 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">

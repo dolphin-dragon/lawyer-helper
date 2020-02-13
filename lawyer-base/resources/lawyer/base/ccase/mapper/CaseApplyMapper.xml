@@ -22,6 +22,12 @@
 	<result column="violate_desc" property="violateDesc" jdbcType="VARCHAR"/>
 	<result column="action_date" property="actionDate" jdbcType="DATE"/>
 	<result column="litigant_ac_date" property="litigantAcDate" jdbcType="DATE"/>
+
+	<result column="litigant" property="litigant" jdbcType="VARCHAR"/>
+    <result column="defendant_name" property="defendantName" jdbcType="VARCHAR"/>
+    <result column="defendant_reg_capital" property="defendantRegCapital" jdbcType="VARCHAR"/>
+    <result column="defendant_area" property="defendantArea" jdbcType="VARCHAR"/>
+    <result column="del_flag" property="delFlag" jdbcType="VARCHAR"/>
 </resultMap>
        
 <!-- case_apply table all fields -->
@@ -101,16 +107,16 @@
 
 <!-- 插入记录 -->
 <insert id="add" parameterType="Object" >
-<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+<!--   <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
-  </selectKey>
+  </selectKey> -->
   insert into case_apply(status,org,created_by,created_time,updated_by,updated_time,case_id,src,supply,apply_date,applicant,forensics,violate_type,violate_desc,action_date,litigant_ac_date)
  values(#{status,jdbcType=INTEGER},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{caseId,jdbcType=INTEGER},#{src,jdbcType=VARCHAR},#{supply,jdbcType=VARCHAR},#{applyDate,jdbcType=DATE},#{applicant,jdbcType=VARCHAR},#{forensics,jdbcType=VARCHAR},#{violateType,jdbcType=VARCHAR},#{violateDesc,jdbcType=VARCHAR},#{actionDate,jdbcType=DATE},#{litigantAcDate,jdbcType=DATE})
 </insert>
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update case_apply set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},case_id=#{caseId,jdbcType=INTEGER},src=#{src,jdbcType=VARCHAR},supply=#{supply,jdbcType=VARCHAR},apply_date=#{applyDate,jdbcType=DATE},applicant=#{applicant,jdbcType=VARCHAR},forensics=#{forensics,jdbcType=VARCHAR},violate_type=#{violateType,jdbcType=VARCHAR},violate_desc=#{violateDesc,jdbcType=VARCHAR},action_date=#{actionDate,jdbcType=DATE},litigant_ac_date=#{litigantAcDate,jdbcType=DATE} where status=#{status,jdbcType=INTEGER}
+  update case_apply set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},src=#{src,jdbcType=VARCHAR},supply=#{supply,jdbcType=VARCHAR},apply_date=#{applyDate,jdbcType=DATE},applicant=#{applicant,jdbcType=VARCHAR},forensics=#{forensics,jdbcType=VARCHAR},violate_type=#{violateType,jdbcType=VARCHAR},violate_desc=#{violateDesc,jdbcType=VARCHAR},action_date=#{actionDate,jdbcType=DATE},litigant_ac_date=#{litigantAcDate,jdbcType=DATE} where case_id=#{caseId,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -162,18 +168,23 @@
 	<if test="litigantAcDate != null  ">
 		litigant_ac_date=#{litigantAcDate,jdbcType=DATE},
 	</if>
-	</trim> where status=#{status,jdbcType=INTEGER}
+	</trim> where case_id=#{caseId,jdbcType=INTEGER}
 </update>
 
 <!-- 删除记录 -->
+<!-- 
 <delete id="delete" parameterType="Object">
-	delete 	 from case_apply where status = #{status}
+	delete from case_apply where case_id=#{caseId,jdbcType=INTEGER}
 </delete>
+-->
+<update id="delete" parameterType="Object">
+    update case_info set del_flag='1' where id=#{caseId,jdbcType=INTEGER}
+</update>
  
 <!-- 根据id查询 案件确立阶段信息 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
 	select <include refid="Base_Column_List" /> 
-	 from case_apply where status = #{status}
+	 from case_apply where case_id=#{caseId,jdbcType=INTEGER}
 </select>
 
 <!-- 案件确立阶段信息 列表总数-->

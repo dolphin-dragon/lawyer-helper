@@ -95,7 +95,7 @@
 					</div>
 					<div class="fitem">
 						<label>删除标记</label>
-						<input name="delFlg" type="text" maxlength="1" class="easyui-validatebox" data-options="" missingMessage="请填写删除标记">
+						<input name="delFlag" type="text" maxlength="1" class="easyui-validatebox" data-options="" missingMessage="请填写删除标记">
 					</div>
   			</div>
      	</form>

@@ -103,9 +103,9 @@ otter.sysUserExt = function(){
 								return row.remark;
 							}
 						},
-					{field:'del_flg',title:'删除标记',align:'center',sortable:true,
+					{field:'del_flag',title:'删除标记',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.delFlg;
+								return row.delFlag;
 							}
 						},
 					]]

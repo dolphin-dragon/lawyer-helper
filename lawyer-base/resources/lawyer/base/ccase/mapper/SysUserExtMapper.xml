@@ -22,12 +22,12 @@
 	<result column="entry_date" property="entryDate" jdbcType="DATE"/>
 	<result column="birt" property="birt" jdbcType="DATE"/>
 	<result column="remark" property="remark" jdbcType="VARCHAR"/>
-	<result column="del_flg" property="delFlg" jdbcType="VARCHAR"/>
+	<result column="del_flag" property="delFlag" jdbcType="VARCHAR"/>
 </resultMap>
        
 <!-- sys_user_ext table all fields -->
 <sql id="Base_Column_List" >
-	 status,org,created_by,created_time,updated_by,updated_time,uid,name,sex,phone,tel,qq,position,entry_date,birt,remark,del_flg
+	 status,org,created_by,created_time,updated_by,updated_time,uid,name,sex,phone,tel,qq,position,entry_date,birt,remark,del_flag
 </sql>
 
 <!-- 查询条件 -->
@@ -98,8 +98,8 @@
 	    and remark =  #{remark}
 	</if>
 	<!--  -->
-		 	<if test="delFlg != null and delFlg != ''" >
-	    and del_flg =  #{delFlg}
+		 	<if test="delFlag != null and delFlag != ''" >
+	    and del_flag =  #{delFlag}
 	</if>
 </trim>
 </sql>
@@ -109,13 +109,13 @@
 <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey>
-  insert into sys_user_ext(status,org,created_by,created_time,updated_by,updated_time,uid,name,sex,phone,tel,qq,position,entry_date,birt,remark,del_flg)
- values(#{status,jdbcType=INTEGER},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{uid,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{sex,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{tel,jdbcType=VARCHAR},#{qq,jdbcType=VARCHAR},#{position,jdbcType=VARCHAR},#{entryDate,jdbcType=DATE},#{birt,jdbcType=DATE},#{remark,jdbcType=VARCHAR},#{delFlg,jdbcType=VARCHAR})
+  insert into sys_user_ext(status,org,created_by,created_time,updated_by,updated_time,uid,name,sex,phone,tel,qq,position,entry_date,birt,remark,del_flag)
+ values(#{status,jdbcType=INTEGER},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{uid,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{sex,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{tel,jdbcType=VARCHAR},#{qq,jdbcType=VARCHAR},#{position,jdbcType=VARCHAR},#{entryDate,jdbcType=DATE},#{birt,jdbcType=DATE},#{remark,jdbcType=VARCHAR},#{delFlag,jdbcType=VARCHAR})
 </insert>
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update sys_user_ext set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},uid=#{uid,jdbcType=INTEGER},name=#{name,jdbcType=VARCHAR},sex=#{sex,jdbcType=VARCHAR},phone=#{phone,jdbcType=VARCHAR},tel=#{tel,jdbcType=VARCHAR},qq=#{qq,jdbcType=VARCHAR},position=#{position,jdbcType=VARCHAR},entry_date=#{entryDate,jdbcType=DATE},birt=#{birt,jdbcType=DATE},remark=#{remark,jdbcType=VARCHAR},del_flg=#{delFlg,jdbcType=VARCHAR} where status=#{status,jdbcType=INTEGER}
+  update sys_user_ext set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},uid=#{uid,jdbcType=INTEGER},name=#{name,jdbcType=VARCHAR},sex=#{sex,jdbcType=VARCHAR},phone=#{phone,jdbcType=VARCHAR},tel=#{tel,jdbcType=VARCHAR},qq=#{qq,jdbcType=VARCHAR},position=#{position,jdbcType=VARCHAR},entry_date=#{entryDate,jdbcType=DATE},birt=#{birt,jdbcType=DATE},remark=#{remark,jdbcType=VARCHAR},del_flag=#{delFlag,jdbcType=VARCHAR} where status=#{status,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -167,15 +167,15 @@
 	<if test="remark != null  ">
 		remark=#{remark,jdbcType=VARCHAR},
 	</if>
-	<if test="delFlg != null  ">
-		del_flg=#{delFlg,jdbcType=VARCHAR},
+	<if test="delFlag != null  ">
+		del_flag=#{delFlag,jdbcType=VARCHAR},
 	</if>
 	</trim> where status=#{status,jdbcType=INTEGER}
 </update>
 
 <!-- 删除记录 -->
 <delete id="delete" parameterType="Object">
-	delete 	 from sys_user_ext where status = #{status}
+	delete from sys_user_ext where status = #{status}
 </delete>
  
 <!-- 根据id查询 用户信息设置 -->
