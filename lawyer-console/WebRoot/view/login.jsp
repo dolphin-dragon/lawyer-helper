@@ -89,10 +89,10 @@ label.iPhoneCheckLabelOn span {
     <div class="formLogin">
      <form name="formLogin" id="formLogin" action="loginController.do?login" check="toLogin.do" method="post">
       <div class="tip">
-       <input class="userName" name="email" type="text" id="email"  value='otter@qq.com' title="用户名" iscookie="true"  nullmsg="请输入用户名!"/>
+       <input class="userName" name="email" type="text" id="email"  title="用户名" iscookie="true"  nullmsg="请输入用户名!"/>
       </div>
       <div class="tip">
-       <input class="password" name="pwd" type="password"  value='otter%T^Y&U' id="pwd" title="密码" nullmsg="请输入密码!"/>
+       <input class="password" name="pwd" type="password" id="pwd" title="密码" nullmsg="请输入密码!"/>
       </div>
       <div class="tip">
  		<img class="vc-pic" id="vc-pic" src="ImageServlet" />

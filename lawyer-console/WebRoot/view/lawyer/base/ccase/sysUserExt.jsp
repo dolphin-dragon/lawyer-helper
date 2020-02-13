@@ -25,7 +25,7 @@
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="Basic window" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="用户信息设置" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <input class="hidden" name="uid">
@@ -38,7 +38,7 @@
      		 <input class="hidden" name="updateDate">
      		 <input class="hidden" name="delFlag">
      		 <div class="ui-edit">
-		     	   <div class="ftitle">用户设置</div>
+		     	   <!-- <div class="ftitle">用户设置</div> -->
 					<!-- <div class="fitem">
 						<label>用户ID</label>
 						<input name="uid" type="text" maxlength="11" class="easyui-numberbox" data-options="" missingMessage="请填写用户ID">

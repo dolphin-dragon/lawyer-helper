@@ -5,17 +5,16 @@ subprojects {
 	[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 ext {
-	//maven { url 'http://127.0.0.1:8081/nexus/content/groups/public/'} 
-	maven_rep = 'http://nexus.qudui.com/nexus/content/groups/public/'
-	maven_snapshots = 'http://nexus.qudui.com/nexus/content/repositories/snapshots/'
+	maven_rep = 'http://127.0.0.1:8081/nexus/content/groups/public/'
+	maven_snapshots = 'http://127.0.0.1:8081/nexus/content/repositories/snapshots/'
 	maven_user = 'dev'
-	maven_upwd = 'devqudui123'
+	maven_upwd = 'dev@123'
 }
 
 repositories {
 	maven { url maven_rep} 
-    mavenCentral()
-    jcenter()
+    //mavenCentral()
+    //jcenter()
 }
 
 configurations.all {

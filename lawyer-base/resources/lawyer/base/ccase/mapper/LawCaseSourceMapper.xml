@@ -9,11 +9,11 @@
 	<result column="id" property="id" jdbcType="INTEGER"/>
 	<result column="code" property="code" jdbcType="VARCHAR"/>
 	<result column="title" property="title" jdbcType="VARCHAR"/>
-	<result column="c_desc" property="cDesc" jdbcType="VARCHAR"/>
+	<result column="c_desc" property="caseDesc" jdbcType="VARCHAR"/>
 	<result column="record_date" property="recordDate" jdbcType="DATE"/>
 	<result column="close_date" property="closeDate" jdbcType="DATE"/>
 	<result column="receive_date" property="receiveDate" jdbcType="DATE"/>
-	<result column="m_lawyer" property="mLawyer" jdbcType="VARCHAR"/>
+	<result column="m_lawyer" property="masterLawyer" jdbcType="VARCHAR"/>
 	<result column="provider" property="provider" jdbcType="VARCHAR"/>
 	<result column="status" property="status" jdbcType="VARCHAR"/>
 	<result column="create_by" property="createBy" jdbcType="VARCHAR"/>

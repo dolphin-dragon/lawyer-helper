@@ -5,11 +5,11 @@ import code.generate.factory.GenerateCodeFactory;
 
 public class CodeUtil {
 	public static void main(String[] args) {
-		String tables[] = new String[] { "law_case_close_stat","law_case_legal","law_case_source","law_customer"};
-		String tableInfo[] = new String[]{"结案统计数据表","案件信息登记数据表","案源信息收集数据表","客户信息数据表"};
+		String tables[] = new String[] {"case_apply","case_carry_out","case_customer","case_first_instance","case_info","case_pre_litigation","case_second_instance","sys_user_ext"};
+		String tableInfo[] = new String[]{"案件确立阶段信息","案件执行阶段信息","客户信息","案件一审阶段信息","案件基础信息","案件诉前和解信息","案件二审阶段信息","用户信息设置"};
 		
-		tables = new String[] { "sys_user_ext"};
-		tableInfo = new String[]{"用户设置"};
+		//tables = new String[] { "sys_user_ext"};
+		//tableInfo = new String[]{"用户设置"};
 		
 		for (int i = 0; i < tables.length; i++) {
 			String tableName = tables[i];

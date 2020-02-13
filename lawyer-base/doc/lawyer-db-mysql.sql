@@ -1,279 +1,180 @@
 SET SESSION FOREIGN_KEY_CHECKS=0;
 
-/* Drop Tables */
-
-DROP TABLE IF EXISTS law_case_close_stat;
-DROP TABLE IF EXISTS law_case_legal;
-DROP TABLE IF EXISTS law_case_source;
-DROP TABLE IF EXISTS law_customer;
-DROP TABLE IF EXISTS sys_user_ext;
-
-
-
-
-/* Create Tables */
-
--- 结案统计数据表
-CREATE TABLE law_case_close_stat
-(
-	-- 结案ID标识
-	id int NOT NULL AUTO_INCREMENT COMMENT '结案ID标识',
-	-- 案件编号
-	ccode varchar(64) COMMENT '案件编号',
-	-- 原告信息
-	plaintiff varchar(90) COMMENT '原告',
-	-- 被告信息
-	defendant varchar(600) COMMENT '被告',
-	-- 结案文书明细:结案方式
-	close_type varchar(12) COMMENT '结案方式',
-	-- 结案文书明细:结案时间
-	close_date datetime COMMENT '结案时间',
-	-- 结案文书明细:赔偿金额信息
-	compensation_amont numeric(19,2) COMMENT '赔偿金额',
-	-- 结案文书明细:公证费用信息
-	fair_fee numeric(19,2) COMMENT '公证费用',
-	-- 结案文书明细:差旅费用信息
-	travel_expenses numeric(19,2) COMMENT '差旅费',
-	-- 结案文书明细:被告负担诉讼费用信息
-	defendant_legal_fare numeric(19,2) COMMENT '被告负担诉费',
-	-- 实际垫付:公证费用信息
-	advance_fair_fee numeric(19,2) COMMENT '实际垫付公证费',
-	-- 实际垫付:诉讼费/公告费信息
-	advance_legal_fare numeric(19,2) COMMENT '实际垫付诉讼费/公告费',
-	-- 法院尚欠应退诉费信息:应退诉费
-	refund_fee numeric(19,2) COMMENT '应退诉费',
-	-- 法院尚欠应退诉费信息:实退诉费
-	return_fee numeric(19,2) COMMENT '实退诉费',
-	-- 成本(除差旅):公证费信息
-	cost_fair_fee numeric(19,2) COMMENT '公证费',
-	-- 成本(除差旅):诉讼费信息
-	cost_legal_fare numeric(19,2) COMMENT '诉讼费',
-	-- 应收金额:应收总计信息
-	receive_due numeric(19,2) COMMENT '应收总计',
-	-- 到账时间
-	receive_date datetime COMMENT '到账时间',
-	-- 实收金额:实收总计信息
-	receive_account numeric(19,2) COMMENT '实收总计',
-	-- 律师费计算基数
-	lawyer_pay_base numeric(19,2) COMMENT '律师费计算基数',
-	-- 总律师费用信息
-	lawyer_pay numeric(19,2) COMMENT '总律师费',
-	-- 主办律师信息
-	master_lawyer varchar(16) COMMENT '主办律师',
-	-- 协办律师
-	slave_lawyer_one varchar(16) COMMENT '协办律师1',
-	-- 协办律师
-	slave_lawyer_two varchar(16) COMMENT '协办律师2',
-	-- 协办律师
-	slave_lawyer_three varchar(16) COMMENT '协办律师3',
-	-- 账户信息
-	account_info varchar(120) COMMENT '账户信息',
-	-- 案件绩效信息
-	achievement numeric(19,2) COMMENT '绩效',
-	-- 应支付给艺人信息
-	due numeric(19,2) COMMENT '应支付给艺人',
-	-- 成本回款
-	cost numeric(19,2) COMMENT '成本回款',
-	-- 案件分类：A/B/C/D
-	ctype varchar(1) COMMENT '案件分类',
-	-- 线索提供者
-	provider varchar(16) COMMENT '线索人',
-	-- 线索费
-	provider_fee numeric(19,2) COMMENT '线索费',
-	-- 创建者ID
-	create_by varchar(64) NOT NULL COMMENT '创建者ID',
-	-- 创建人
-	create_name varchar(32) COMMENT '创建人',
-	-- 创建时间
-	create_date datetime NOT NULL COMMENT '创建时间',
-	-- 修改人ID
-	update_by varchar(64) NOT NULL COMMENT '修改人ID',
-	-- 修改人
-	update_name varchar(32) COMMENT '修改人',
-	-- 修改时间
-	update_date datetime NOT NULL COMMENT '修改时间',
-	-- 备注信息
-	remarks varchar(255) COMMENT '备注信息',
-	-- 删除标记（0：正常；1：删除）
-	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
-	PRIMARY KEY (id),
-	UNIQUE (ccode)
-) ENGINE = InnoDB COMMENT = '结案统计数据表' DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
-
-
--- 案件信息登记数据表
-CREATE TABLE law_case_legal
-(
-	-- 案件ID
-	id int NOT NULL AUTO_INCREMENT COMMENT '案件ID',
-	-- 案源编号
-	scode varchar(64) COMMENT '案源编号',
-	-- 立案案号信息
-	code varchar(64) COMMENT '案件案号',
-	-- 案由信息
-	cause varchar(300) COMMENT '案由',
-	-- 案件原告信息
-	plaintiff varchar(64) COMMENT '原告',
-	-- 案件被告信息
-	defendant varchar(64) COMMENT '被告',
-	-- 案件适用程序
-	cprocedure varchar(30) COMMENT '适用程序',
-	-- 立案日期
-	case_date datetime COMMENT '立案日期',
-	-- 开庭日期
-	open_date datetime COMMENT '开庭日期',
-	-- 关联案源信息编号
-	case_source_id varchar(64) COMMENT '案源编号',
-	-- 承办法官信息
-	judge varchar(20) COMMENT '承办法官',
-	-- 承办律师信息
-	lawyer varchar(64) COMMENT '承办律师',
-	-- 案件情况简介说明
-	cdesc varchar(600) COMMENT '案件情况',
-	-- 创建者ID
-	create_by varchar(64) NOT NULL COMMENT '创建者ID',
-	-- 创建人
-	create_name varchar(32) COMMENT '创建人',
-	-- 创建时间
-	create_date datetime NOT NULL COMMENT '创建时间',
-	-- 修改人ID
-	update_by varchar(64) NOT NULL COMMENT '修改人ID',
-	-- 修改人
-	update_name varchar(32) COMMENT '修改人',
-	-- 修改时间
-	update_date datetime NOT NULL COMMENT '修改时间',
-	-- 备注信息
-	remarks varchar(255) COMMENT '备注信息',
-	-- 删除标记（0：正常；1：删除）
-	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
-	PRIMARY KEY (id),
-	UNIQUE (code)
-) ENGINE = InnoDB COMMENT = '案件信息登记数据表' DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
-
-
--- 案源信息收集数据表
-CREATE TABLE law_case_source
-(
-	-- 案源ID
-	id int NOT NULL AUTO_INCREMENT COMMENT '案源ID',
-	-- 案源编码
-	code varchar(64) COMMENT '案源编码',
-	-- 案源名称信息
-	title varchar(120) NOT NULL COMMENT '案源名称',
-	-- 案源描述
-	c_desc varchar(900) COMMENT '案源描述',
-	-- 案源接收日期
-	record_date date COMMENT '案源接收日期',
-	-- 结案日期
-	close_date date COMMENT '结案日期',
-	-- 案件回款接收日期
-	receive_date date COMMENT '回款日期',
-	-- 主办律师
-	m_lawyer varchar(64) COMMENT '主办律师',
-	-- 案源提供者信息
-	provider varchar(64) COMMENT '案源提供者',
-	-- 案源受理状态， 0案源登记 1案源受理 4案源不受理 6立案处理 9结案处理 
-	status varchar(2) DEFAULT '0' NOT NULL COMMENT '处理状态',
-	-- 创建者ID
-	create_by varchar(64) NOT NULL COMMENT '创建者ID',
-	-- 创建人
-	create_name varchar(32) COMMENT '创建人',
-	-- 创建时间
-	create_date datetime NOT NULL COMMENT '创建时间',
-	-- 修改人ID
-	update_by varchar(64) NOT NULL COMMENT '修改人ID',
-	-- 修改人
-	update_name varchar(32) COMMENT '修改人',
-	-- 修改时间
-	update_date datetime NOT NULL COMMENT '修改时间',
-	-- 备注信息
-	remarks varchar(255) COMMENT '备注信息',
-	-- 删除标记（0：正常；1：删除）
-	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
-	PRIMARY KEY (id),
-	UNIQUE (code)
-) ENGINE = InnoDB COMMENT = '案源信息收集数据表' DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
-
-
 -- 客户信息数据表
-CREATE TABLE law_customer
-(
-	-- 客户ID
-	id int NOT NULL AUTO_INCREMENT COMMENT '客户ID',
-	-- 客户编码
-	code varchar(64) COMMENT '客户编码',
-	-- 客户名称
-	name varchar(60) NOT NULL COMMENT '客户名称',
-	-- 客户类别信息 0个人 1企业
-	ctype varchar(2) DEFAULT '0' NOT NULL COMMENT '客户类别',
-	-- 客户身份证信息
-	id_card varchar(30) COMMENT '客户身份证信息',
-	-- 企业组织结构代码信息
-	e_code varchar(40) COMMENT '企业组织机构代码',
-	-- 联系电话信息
-	phone varchar(20) COMMENT '联系电话',
-	-- 联系人信息
-	linkman varchar(16) COMMENT '联系人',
-	-- 创建者ID
-	create_by varchar(64) NOT NULL COMMENT '创建者ID',
-	-- 创建人
-	create_name varchar(32) COMMENT '创建人',
-	-- 创建时间
-	create_date datetime NOT NULL COMMENT '创建时间',
-	-- 修改人ID
-	update_by varchar(64) NOT NULL COMMENT '修改人ID',
-	-- 修改人
-	update_name varchar(32) COMMENT '修改人',
-	-- 修改时间
-	update_date datetime NOT NULL COMMENT '修改时间',
-	-- 备注信息
-	remarks varchar(255) COMMENT '备注信息',
-	-- 删除标记（0：正常；1：删除）
-	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
-	PRIMARY KEY (id),
-	UNIQUE (code)
-) ENGINE = InnoDB COMMENT = '客户信息数据表' DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
-
+create table case_customer(
+    status int    comment '状态' ,
+    org varchar(32)    comment '机构编码' ,
+    created_by varchar(32)    comment '创建人' ,
+    created_time datetime    comment '创建时间' ,
+    updated_by varchar(32)    comment '更新人' ,
+    updated_time datetime    comment '更新时间' ,
+    id int not null auto_increment  comment '客户id' ,
+    code varchar(32)    comment '客户编码' ,
+    ctype varchar(32)    comment '客户类型' ,
+    id_card varchar(32)    comment '客户身份证信息' ,
+    e_code varchar(32)    comment '企业组织机构代码' ,
+    phone varchar(32)    comment '联系电话' ,
+    link_man varchar(32)    comment '联系人' ,
+    remark varchar(1024)    comment '备注' ,
+    del_flag varchar(1)    comment '删除标记' ,
+    primary key (id)
+) engine = innodb comment = '客户信息记录表' default character set utf8 collate utf8_bin;
 
 -- 用户信息表
-CREATE TABLE sys_user_ext
-(
-	-- 用户ID
-	uid int COMMENT '用户ID',
-	-- 姓名
-	name varchar(20) COMMENT '姓名',
-	-- 性别
-	sex varchar(1) COMMENT '性别',
-	-- 手机号码
-	phone varchar(20) COMMENT '手机号码',
-	-- 联系电话
-	tel varchar(20) COMMENT '联系电话',
-	-- QQ号码
-	QQ varchar(20) COMMENT 'QQ号码',
-	-- 职位类别
-	position varchar(5) COMMENT '职位类别',
-	-- 出生日期
-	birt date COMMENT '出生日期',
-	-- 入职时间
-	entryDate date COMMENT '入职时间',
-	-- 创建者ID
-	create_by varchar(64) NOT NULL COMMENT '创建者ID',
-	-- 创建人
-	create_name varchar(32) COMMENT '创建人',
-	-- 创建时间
-	create_date datetime NOT NULL COMMENT '创建时间',
-	-- 修改人ID
-	update_by varchar(64) NOT NULL COMMENT '修改人ID',
-	-- 修改人
-	update_name varchar(32) COMMENT '修改人',
-	-- 修改时间
-	update_date datetime NOT NULL COMMENT '修改时间',
-	-- 备注信息
-	remarks varchar(255) COMMENT '备注信息',
-	-- 删除标记（0：正常；1：删除）
-	del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记',
-	UNIQUE (uid)
-) ENGINE = InnoDB COMMENT = '用户信息表' DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+create table sys_user_ext(
+    status int    comment '状态' ,
+    org varchar(32)    comment '机构编码' ,
+    created_by varchar(32)    comment '创建人' ,
+    created_time datetime    comment '创建时间' ,
+    updated_by varchar(32)    comment '更新人' ,
+    updated_time datetime    comment '更新时间' ,
+    uid int not null auto_increment  comment '用户id' ,
+    name varchar(32)    comment '姓名' ,
+    sex varchar(1)    comment '性别' ,
+    phone varchar(32)    comment '手机号' ,
+    tel varchar(32)    comment '联系电话' ,
+    qq varchar(32)    comment 'qq号码' ,
+    position varchar(32)    comment '职位类别' ,
+    entry_date date    comment '入职时间' ,
+    birt date    comment '出生日期' ,
+    email varchar(128)    comment '电子邮箱' ,
+    remark varchar(1024)    comment '备注' ,
+    del_flg varchar(1)    comment '删除标记' ,
+    primary key (uid)
+) engine = innodb comment = '用户扩展信息表' default character set utf8 collate utf8_bin;
 
+-- 案件执行阶段信息 
+create table case_carry_out(
+    status int    comment '状态' ,
+    org varchar(32)    comment '机构编码' ,
+    created_by varchar(32)    comment '创建人' ,
+    created_time datetime    comment '创建时间' ,
+    updated_by varchar(32)    comment '更新人' ,
+    updated_time datetime    comment '更新时间' ,
+    case_id int not null   comment '案件序号' ,
+    lawyer varchar(32)    comment '执行主办律师' ,
+    app_date date    comment '执行申请日期' ,
+    app_total decimal(32,8)    comment '申请执行总额' ,
+    judge varchar(32)    comment '执行主办法官' ,
+    judge_contact varchar(128)    comment '联系方式' ,
+    actual_total decimal(32,8)    comment '实际执行总额' ,
+    f_collection_subject varchar(1024)    comment '首位收款主体' ,
+    remark varchar(1024)    comment '备注' ,
+    primary key (case_id)
+) engine = innodb comment = '案件执行阶段信息记录表' default character set utf8 collate utf8_bin;
+
+-- 案件二审阶段信息
+create table case_second_instance(
+    status int    comment '状态' ,
+    org varchar(32)    comment '机构编码' ,
+    created_by varchar(32)    comment '创建人' ,
+    created_time datetime    comment '创建时间' ,
+    updated_by varchar(32)    comment '更新人' ,
+    updated_time datetime    comment '更新时间' ,
+    case_id int not null   comment '案件序号' ,
+    lawyer varchar(32)    comment '二审主办律师' ,
+    s_court_date date    comment '二审开庭日期' ,
+    judge varchar(32)    comment '主办法官' ,
+    judge_contact varchar(128)    comment '联系方式' ,
+    s_judgment_effective_date varchar(32)    comment '二审判决生效日期' ,
+    is_apology varchar(1)    comment '是否致歉' ,
+    defendant_compensation_total varchar(32)    comment '一审被告赔偿总额' ,
+    defendant_expenses varchar(32)    comment '一审被告承担合理开支费用' ,
+    plaintiff_costs varchar(32)    comment '一审原告承担诉费' ,
+    defendant_costs decimal(32,8)    comment '一审被告承担诉费' ,
+    is_close varchar(1)    comment '是否结案' ,
+    execution_deadline date    comment '执行截止日期' ,
+    remark varchar(1024)    comment '备注' ,
+    primary key (case_id)
+) engine = innodb comment = '案件二审阶段信息记录表' default character set utf8 collate utf8_bin;
+
+-- 案件一审阶段信息
+create table case_first_instance(
+    status int    comment '状态' ,
+    org varchar(32)    comment '机构编码' ,
+    created_by varchar(32)    comment '创建人' ,
+    created_time datetime    comment '创建时间' ,
+    updated_by varchar(32)    comment '更新人' ,
+    updated_time datetime    comment '更新时间' ,
+    case_id int not null   comment '案件序号' ,
+    firstor varchar(32)    comment '第一责任人' ,
+    lawyer varchar(32)    comment '一审主办律师' ,
+    submit_date date    comment '提交立案材料日期' ,
+    establish_date date    comment '立案日期' ,
+    litigation_costs decimal(32,8)    comment '诉讼费用' ,
+    announcement_costs decimal(32,8)    comment '公告费用' ,
+    notary_costs decimal(32,8)    comment '公证费用' ,
+    other_costs decimal(32,8)    comment '其它费用' ,
+    adjudication_court varchar(1024)    comment '受理法院' ,
+    judge varchar(32)    comment '主办法官' ,
+    judge_contact varchar(128)    comment '联系方式' ,
+    f_court_date date    comment '一审开庭日期' ,
+    f_verdict_date date    comment '一审判决书落款日期' ,
+    f_verdict_receive_date date    comment '一审判决书收到日期' ,
+    is_apology varchar(1)    comment '是否致歉' ,
+    defendant_compensation_total decimal(32,8)    comment '被告赔偿总额' ,
+    defendant_expenses decimal(32,8)    comment '被告承担合理开支总额' ,
+    plaintiff_costs decimal(32,8)    comment '原告承担诉费' ,
+    defendant_costs decimal(32,8)    comment '被告承担诉费' ,
+    is_close varchar(1)    comment '是否结案' ,
+    appeal_date date    comment '上诉截止日期' ,
+    remark varchar(1024)    comment '备注' ,
+    primary key (case_id)
+) engine = innodb comment = '案件一审阶段信息记录表' default character set utf8 collate utf8_bin;
+
+-- 案件诉前和解信息
+create table case_pre_litigation(
+    status int    comment '状态' ,
+    org varchar(32)    comment '机构编码' ,
+    created_by varchar(32)    comment '创建人' ,
+    created_time datetime    comment '创建时间' ,
+    updated_by varchar(32)    comment '更新人' ,
+    updated_time datetime    comment '更新时间' ,
+    case_id int not null   comment '案件序号' ,
+    letter varchar(32)    comment '律师函编号' ,
+    letteror varchar(32)    comment '律师函主办人' ,
+    send_date date    comment '律师函发送日期' ,
+    delivery_date date    comment '律师函送达日期' ,
+    is_close varchar(1)    comment '是否结案' ,
+    remark varchar(1024)    comment '备注' ,
+    primary key (case_id)
+) engine = innodb comment = '案件诉前和解信息登记表' default character set utf8 collate utf8_bin;
+
+-- 案件确立阶段信息
+create table case_apply(
+    status int    comment '状态' ,
+    org varchar(32)    comment '机构编码' ,
+    created_by varchar(32)    comment '创建人' ,
+    created_time datetime    comment '创建时间' ,
+    updated_by varchar(32)    comment '更新人' ,
+    updated_time datetime    comment '更新时间' ,
+    case_id int not null   comment '案件序号' ,
+    src varchar(32)    comment '案件来源' ,
+    supply varchar(32)    comment '案源人' ,
+    apply_date date    comment '申请公证日期' ,
+    applicant varchar(32)    comment '公证书申请人' ,
+    forensics varchar(32)    comment '取证人' ,
+    violate_type varchar(32)    comment '侵权类型' ,
+    violate_desc varchar(3072)    comment '侵权概况' ,
+    action_date date    comment '案件可诉确认日期' ,
+    litigant_ac_date date    comment '当事人确认日期' ,
+    primary key (case_id)
+) engine = innodb comment = '案件确立阶段信息记录表' default character set utf8 collate utf8_bin;
+
+-- 案件基本信息
+create table case_info(
+    status int    comment '状态' ,
+    org varchar(32)    comment '机构编码' ,
+    created_by varchar(32)    comment '创建人' ,
+    created_time datetime    comment '创建时间' ,
+    updated_by varchar(32)    comment '更新人' ,
+    updated_time datetime    comment '更新时间' ,
+    id int not null auto_increment  comment '序号' ,
+    litigant varchar(128)    comment '当事人' ,
+    defendant_name varchar(1024)    comment '被告名称' ,
+    defendant_reg_capital varchar(32)    comment '被告注册资本' ,
+    defendant_area varchar(1024)    comment '被告所在地' ,
+    primary key (id)
+) engine = innodb comment = '案件基本信息登记表'  default character set utf8 collate utf8_bin;
 
 

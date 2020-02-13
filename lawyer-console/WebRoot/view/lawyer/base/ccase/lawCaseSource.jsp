@@ -23,7 +23,7 @@
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="Basic window" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="案源信息收集数据表" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 
@@ -35,7 +35,7 @@
      		 <input class="hidden" name="updateDate">
      		 <input class="hidden" name="delFlag">
      		 <div class="ui-edit">
-		     	   <div class="ftitle">案源信息收集数据表</div>
+		     	 <!--   <div class="ftitle">案源信息收集数据表</div> -->
 					<div class="fitem">
 						<label>案源编码</label>
 						<input name="code" type="text" maxlength="64" class="easyui-validatebox" data-options="" missingMessage="请填写案源编码">
@@ -46,7 +46,8 @@
 					</div>
 					<div class="fitem">
 						<label>案源描述</label>
-						<input name="cDesc" type="text" maxlength="900" class="easyui-validatebox" data-options="" missingMessage="请填写案源描述">
+						<!-- <input name="cDesc" type="textarea" maxlength="900" class="easyui-validatebox" data-options="" missingMessage="请填写案源描述"> -->
+						<textarea name="caseDesc" class="easyui-validatebox" data-options="" missingMessage="请填写案源描述"></textarea>
 					</div>
 					<div class="fitem">
 						<label>案源接收日期</label>
@@ -62,7 +63,7 @@
 					</div>
 					<div class="fitem">
 						<label>主办律师</label>
-						<input name="mLawyer" type="text" maxlength="64" class="easyui-validatebox" data-options="" missingMessage="请填写主办律师">
+						<input name="masterLawyer" type="text" maxlength="64" class="easyui-validatebox" data-options="" missingMessage="请填写主办律师">
 					</div>
 					<div class="fitem">
 						<label>案源提供者</label>

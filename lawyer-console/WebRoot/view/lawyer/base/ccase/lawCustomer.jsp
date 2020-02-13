@@ -23,7 +23,7 @@
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="Basic window" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="客户信息数据表" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 
@@ -35,14 +35,14 @@
      		 <input class="hidden" name="updateDate">
      		 <input class="hidden" name="delFlag">
      		 <div class="ui-edit">
-		     	   <div class="ftitle">客户信息数据表</div>
+		     	  <!--  <div class="ftitle">客户信息数据表</div> -->
 					<div class="fitem">
 						<label>客户编码</label>
-						<input name="code" type="text" maxlength="64" class="easyui-validatebox" data-options="" missingMessage="请填写客户编码">
+						<input name="code" type="text" maxlength="64" class="easyui-validatebox" data-options="required:true" missingMessage="请填写客户编码">
 					</div>
 					<div class="fitem">
 						<label>客户名称</label>
-						<input name="name" type="text" maxlength="60" class="easyui-validatebox" data-options="required:true" missingMessage="请填写客户名称">
+						<input name="name" type="text" maxlength="120" class="easyui-validatebox" data-options="required:true" missingMessage="请填写客户名称">
 					</div>
 					<div class="fitem">
 						<label>客户类别</label>

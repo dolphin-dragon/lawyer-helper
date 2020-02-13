@@ -92,20 +92,17 @@ public class SysUserExtController extends BaseAction{
 		//Map<String,Object>  context = new HashMap<String,Object>();
 		SysUser user = SessionUtilsExt.getUser(request);
 		if(entity.getUid()==null||StringUtils.isBlank(entity.getUid().toString())){
-			entity.setUid(entity.getId());
+			entity.setUid(user.getId());
 			
-			entity.setCreateBy(null!=user?user.getId()+"":"");
-			entity.setCreateName(null!=user?user.getNickName():"");
-			entity.setCreateDate(new Date());
-			entity.setUpdateBy(null!=user?user.getId()+"":"");
-			entity.setUpdateName(null!=user?user.getNickName():"");
-			entity.setUpdateDate(new Date());
+			entity.setCreatedBy(null!=user?user.getId()+"":"");
+			entity.setCreatedTime(new Date());
+			entity.setUpdatedBy(null!=user?user.getId()+"":"");
+			entity.setUpdatedTime(new Date());
 			
 			sysUserExtService.add(entity);
 		}else{
-			entity.setUpdateBy(null!=user?user.getId()+"":"");
-			entity.setUpdateName(null!=user?user.getNickName():"");
-			entity.setUpdateDate(new Date());
+			entity.setUpdatedBy(null!=user?user.getId()+"":"");
+			entity.setUpdatedTime(new Date());
 			sysUserExtService.update(entity);
 		}
 		
@@ -145,9 +142,7 @@ public class SysUserExtController extends BaseAction{
 	@RequestMapping("/delete")
 	public void delete(String[] id,HttpServletResponse response) throws Exception{
 		log.info("/sysUserExt/delete id :"+Arrays.toString(id)+" response:"+response);
-		
 		sysUserExtService.delete(id);
-		
 		log.info("/sysUserExt/delete sendSuccessMessage 删除成功~");
 		sendSuccessMessage(response, "删除成功");
 	}

@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import org.apache.commons.lang.StringUtils;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +24,7 @@ import lawyer.base.ccase.service.SysUserExtService;
 /**
  * <b>功能：</b>SysUserExtController<br>
  * <b>作者：</b>dragon<br>
- * <b>日期：</b> 2018-07-16 <br>
+ * <b>日期：</b> 2020-02-12 <br>
  * <b>版权所有：<b>lawyer-helper版权所有(C) 2018，www.lawyer-helper.com<br>
  */ 
 @Controller
@@ -88,7 +87,6 @@ public class SysUserExtController extends BaseAction{
 		
 		//Map<String,Object>  context = new HashMap<String,Object>();
 		if(entity.getUid()==null||StringUtils.isBlank(entity.getUid().toString())){
-				entity.setUid(entity.getId());
 				sysUserExtService.add(entity);
 		}else{
 			sysUserExtService.update(entity);

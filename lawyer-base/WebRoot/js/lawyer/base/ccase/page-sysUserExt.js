@@ -14,7 +14,7 @@ otter.sysUserExt = function(){
 				}
 			},
   			dataGrid:{
-  				title:'用户设置',
+  				title:'用户信息设置',
 	   			url:'dataList.do',
 	   			toolbar:[
 					{id:'btnadd',text:'添加',btnType:'add'},
@@ -23,11 +23,41 @@ otter.sysUserExt = function(){
 				],
 	   			columns:[[
 					{field:'id',checkbox:true},
-/*					{field:'uid',title:'用户ID',align:'center',sortable:true,
+					{field:'status',title:'状态',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.status;
+							}
+						},
+					{field:'org',title:'机构编码',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.org;
+							}
+						},
+					{field:'created_by',title:'创建人',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.createdBy;
+							}
+						},
+					{field:'created_time',title:'创建时间',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.createdTime;
+							}
+						},
+					{field:'updated_by',title:'更新人',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.updatedBy;
+							}
+						},
+					{field:'updated_time',title:'更新时间',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.updatedTime;
+							}
+						},
+					{field:'uid',title:'用户id',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.uid;
 							}
-						},*/
+						},
 					{field:'name',title:'姓名',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.name;
@@ -38,12 +68,7 @@ otter.sysUserExt = function(){
 								return row.sex;
 							}
 						},
-					{field:'email',title:'注册邮箱',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.email;
-							}
-					},	
-					{field:'phone',title:'手机号码',align:'center',sortable:true,
+					{field:'phone',title:'手机号',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.phone;
 							}
@@ -53,7 +78,7 @@ otter.sysUserExt = function(){
 								return row.tel;
 							}
 						},
-					{field:'qq',title:'QQ号码',align:'center',sortable:true,
+					{field:'qq',title:'qq号码',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.qq;
 							}
@@ -63,54 +88,24 @@ otter.sysUserExt = function(){
 								return row.position;
 							}
 						},
+					{field:'entry_date',title:'入职时间',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.entryDate;
+							}
+						},
 					{field:'birt',title:'出生日期',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.birt;
 							}
 						},
-					{field:'entrydate',title:'入职时间',align:'center',sortable:true,
+					{field:'remark',title:'备注',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.entrydate;
+								return row.remark;
 							}
 						},
-					{field:'create_by',title:'创建者ID',align:'center',sortable:true,
+					{field:'del_flg',title:'删除标记',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.createBy;
-							}
-						},
-					{field:'create_name',title:'创建人',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.createName;
-							}
-						},
-					{field:'create_date',title:'创建时间',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.createDate;
-							}
-						},
-					{field:'update_by',title:'修改人ID',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.updateBy;
-							}
-						},
-					{field:'update_name',title:'修改人',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.updateName;
-							}
-						},
-					{field:'update_date',title:'修改时间',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.updateDate;
-							}
-						},
-					{field:'remarks',title:'备注信息',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.remarks;
-							}
-						},
-					{field:'del_flag',title:'删除标记',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.delFlag;
+								return row.delFlg;
 							}
 						},
 					]]

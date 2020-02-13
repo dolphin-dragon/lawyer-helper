@@ -35,7 +35,7 @@ otter.lawCaseSource = function(){
 						},
 					{field:'c_desc',title:'案源描述',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.cDesc;
+								return row.caseDesc;
 							}
 						},
 					{field:'record_date',title:'案源接收日期',align:'center',sortable:true,
@@ -55,7 +55,7 @@ otter.lawCaseSource = function(){
 						},
 					{field:'m_lawyer',title:'主办律师',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.mLawyer;
+								return row.masterLawyer;
 							}
 						},
 					{field:'provider',title:'案源提供者',align:'center',sortable:true,
