@@ -58,6 +58,22 @@
 						<input name="caseId" type="text" maxlength="11" class="easyui-numberbox" data-options="required:true" missingMessage="请填写案件序号">
 					</div> -->
 					<div class="fitem">
+						<label>当事人</label>
+						<input name="litigant" type="text" maxlength="128" class="easyui-validatebox" data-options="" missingMessage="请填写当事人">
+					</div>
+					<div class="fitem">
+						<label>被告名称</label>
+						<input name="defendantName" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写被告名称">
+					</div>
+					<div class="fitem">
+						<label>被告注册资本</label>
+						<input name="defendantRegCapital" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写被告注册资本">
+					</div>
+					<div class="fitem">
+						<label>被告所在地</label>
+						<textarea name="defendantArea" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写被告所在地"></textarea>
+					</div>
+					<div class="fitem">
 						<label>案件来源</label>
 						<input name="src" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写案件来源">
 					</div>

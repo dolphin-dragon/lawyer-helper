@@ -22,17 +22,17 @@ otter.caseApply = function(){
 					{id:'btndelete',text:'删除',btnType:'remove'}
 				],
 	   			columns:[[
-					{field:'id',checkbox:true},
+					{field:'case_id',checkbox:true},
 					{field:'status',title:'状态',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.status;
 							}
 						},
-					{field:'org',title:'机构编码',align:'center',sortable:true,
+/*					{field:'org',title:'机构编码',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.org;
 							}
-						},
+						},*/
 					{field:'created_by',title:'创建人',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.createdBy;
@@ -53,11 +53,11 @@ otter.caseApply = function(){
 								return row.updatedTime;
 							}
 						},
-					{field:'case_id',title:'案件序号',align:'center',sortable:true,
+/*					{field:'case_id',title:'案件序号',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.caseId;
 							}
-						},
+						},*/
 					{field:'src',title:'案件来源',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.src;
