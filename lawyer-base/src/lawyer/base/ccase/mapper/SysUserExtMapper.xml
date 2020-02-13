@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lawyer.base.ccase.dao.SysUserExtDao" > 
+<!--*********************************** generation code  start ***********************************-->
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="lawyer.base.ccase.entity.SysUserExt" >
+	<result column="status" property="status" jdbcType="INTEGER"/>
+	<result column="org" property="org" jdbcType="VARCHAR"/>
+	<result column="created_by" property="createdBy" jdbcType="VARCHAR"/>
+	<result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
+	<result column="updated_by" property="updatedBy" jdbcType="VARCHAR"/>
+	<result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
+	<result column="uid" property="uid" jdbcType="INTEGER"/>
+	<result column="name" property="name" jdbcType="VARCHAR"/>
+	<result column="sex" property="sex" jdbcType="VARCHAR"/>
+	<result column="phone" property="phone" jdbcType="VARCHAR"/>
+	<result column="tel" property="tel" jdbcType="VARCHAR"/>
+	<result column="qq" property="qq" jdbcType="VARCHAR"/>
+	<result column="position" property="position" jdbcType="VARCHAR"/>
+	<result column="entry_date" property="entryDate" jdbcType="DATE"/>
+	<result column="birt" property="birt" jdbcType="DATE"/>
+	<result column="remark" property="remark" jdbcType="VARCHAR"/>
+	<result column="del_flg" property="delFlg" jdbcType="VARCHAR"/>
+</resultMap>
+       
+<!-- sys_user_ext table all fields -->
+<sql id="Base_Column_List" >
+	 status,org,created_by,created_time,updated_by,updated_time,uid,name,sex,phone,tel,qq,position,entry_date,birt,remark,del_flg
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+<trim prefix = "where" prefixOverrides="and|or">
+	<!--  -->
+		<if test="status != null" >
+	    and status =  #{status}
+	</if>
+	<!--  -->
+		 	<if test="org != null and org != ''" >
+	    and org =  #{org}
+	</if>
+	<!--  -->
+		 	<if test="createdBy != null and createdBy != ''" >
+	    and created_by =  #{createdBy}
+	</if>
+	<!--  -->
+		<if test="createdTime != null" >
+	    and created_time =  #{createdTime}
+	</if>
+	<!--  -->
+		 	<if test="updatedBy != null and updatedBy != ''" >
+	    and updated_by =  #{updatedBy}
+	</if>
+	<!--  -->
+		<if test="updatedTime != null" >
+	    and updated_time =  #{updatedTime}
+	</if>
+	<!--  -->
+		<if test="uid != null" >
+	    and uid =  #{uid}
+	</if>
+	<!--  -->
+		 	<if test="name != null and name != ''" >
+	    and name =  #{name}
+	</if>
+	<!--  -->
+		 	<if test="sex != null and sex != ''" >
+	    and sex =  #{sex}
+	</if>
+	<!--  -->
+		 	<if test="phone != null and phone != ''" >
+	    and phone =  #{phone}
+	</if>
+	<!--  -->
+		 	<if test="tel != null and tel != ''" >
+	    and tel =  #{tel}
+	</if>
+	<!--  -->
+		 	<if test="qq != null and qq != ''" >
+	    and qq =  #{qq}
+	</if>
+	<!--  -->
+		 	<if test="position != null and position != ''" >
+	    and position =  #{position}
+	</if>
+	<!--  -->
+		<if test="entryDate != null" >
+	    and entry_date =  #{entryDate}
+	</if>
+	<!--  -->
+		<if test="birt != null" >
+	    and birt =  #{birt}
+	</if>
+	<!--  -->
+		 	<if test="remark != null and remark != ''" >
+	    and remark =  #{remark}
+	</if>
+	<!--  -->
+		 	<if test="delFlg != null and delFlg != ''" >
+	    and del_flg =  #{delFlg}
+	</if>
+</trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into sys_user_ext(status,org,created_by,created_time,updated_by,updated_time,uid,name,sex,phone,tel,qq,position,entry_date,birt,remark,del_flg)
+ values(#{status,jdbcType=INTEGER},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{uid,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{sex,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{tel,jdbcType=VARCHAR},#{qq,jdbcType=VARCHAR},#{position,jdbcType=VARCHAR},#{entryDate,jdbcType=DATE},#{birt,jdbcType=DATE},#{remark,jdbcType=VARCHAR},#{delFlg,jdbcType=VARCHAR})
+</insert>
+
+<!-- 根据id，修改记录-->
+ <update id="update" parameterType="Object" >
+  update sys_user_ext set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},uid=#{uid,jdbcType=INTEGER},name=#{name,jdbcType=VARCHAR},sex=#{sex,jdbcType=VARCHAR},phone=#{phone,jdbcType=VARCHAR},tel=#{tel,jdbcType=VARCHAR},qq=#{qq,jdbcType=VARCHAR},position=#{position,jdbcType=VARCHAR},entry_date=#{entryDate,jdbcType=DATE},birt=#{birt,jdbcType=DATE},remark=#{remark,jdbcType=VARCHAR},del_flg=#{delFlg,jdbcType=VARCHAR} where status=#{status,jdbcType=INTEGER}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update sys_user_ext set 
+	<trim  suffixOverrides="," >
+	<if test="org != null  ">
+		org=#{org,jdbcType=VARCHAR},
+	</if>
+	<if test="createdBy != null  ">
+		created_by=#{createdBy,jdbcType=VARCHAR},
+	</if>
+	<if test="createdTime != null  ">
+		created_time=#{createdTime,jdbcType=TIMESTAMP},
+	</if>
+	<if test="updatedBy != null  ">
+		updated_by=#{updatedBy,jdbcType=VARCHAR},
+	</if>
+	<if test="updatedTime != null  ">
+		updated_time=#{updatedTime,jdbcType=TIMESTAMP},
+	</if>
+	<if test="uid != null  ">
+		uid=#{uid,jdbcType=INTEGER},
+	</if>
+	<if test="name != null  ">
+		name=#{name,jdbcType=VARCHAR},
+	</if>
+	<if test="sex != null  ">
+		sex=#{sex,jdbcType=VARCHAR},
+	</if>
+	<if test="phone != null  ">
+		phone=#{phone,jdbcType=VARCHAR},
+	</if>
+	<if test="tel != null  ">
+		tel=#{tel,jdbcType=VARCHAR},
+	</if>
+	<if test="qq != null  ">
+		qq=#{qq,jdbcType=VARCHAR},
+	</if>
+	<if test="position != null  ">
+		position=#{position,jdbcType=VARCHAR},
+	</if>
+	<if test="entryDate != null  ">
+		entry_date=#{entryDate,jdbcType=DATE},
+	</if>
+	<if test="birt != null  ">
+		birt=#{birt,jdbcType=DATE},
+	</if>
+	<if test="remark != null  ">
+		remark=#{remark,jdbcType=VARCHAR},
+	</if>
+	<if test="delFlg != null  ">
+		del_flg=#{delFlg,jdbcType=VARCHAR},
+	</if>
+	</trim> where status=#{status,jdbcType=INTEGER}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from sys_user_ext where status = #{status}
+</delete>
+ 
+<!-- 根据id查询 用户信息设置 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from sys_user_ext where status = #{status}
+</select>
+
+<!-- 用户信息设置 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from sys_user_ext 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询用户信息设置列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+
+	select 
+	<include refid="Base_Column_List"/>
+	from sys_user_ext 
+	<include refid="Example_Where_Clause"/>
+	
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+
+	<if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+
+</select>
+<!--*********************************** generation code  end ***********************************-->
+
+	
+</mapper>

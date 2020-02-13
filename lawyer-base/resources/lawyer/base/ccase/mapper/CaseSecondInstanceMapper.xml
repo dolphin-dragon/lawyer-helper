@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lawyer.base.ccase.dao.CaseSecondInstanceDao" > 
+<!--*********************************** generation code  start ***********************************-->
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="lawyer.base.ccase.entity.CaseSecondInstance" >
+	<result column="status" property="status" jdbcType="INTEGER"/>
+	<result column="org" property="org" jdbcType="VARCHAR"/>
+	<result column="created_by" property="createdBy" jdbcType="VARCHAR"/>
+	<result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
+	<result column="updated_by" property="updatedBy" jdbcType="VARCHAR"/>
+	<result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
+	<result column="case_id" property="caseId" jdbcType="INTEGER"/>
+	<result column="lawyer" property="lawyer" jdbcType="VARCHAR"/>
+	<result column="s_court_date" property="sCourtDate" jdbcType="DATE"/>
+	<result column="judge" property="judge" jdbcType="VARCHAR"/>
+	<result column="judge_contact" property="judgeContact" jdbcType="VARCHAR"/>
+	<result column="s_judgment_effective_date" property="sJudgmentEffectiveDate" jdbcType="VARCHAR"/>
+	<result column="is_apology" property="isApology" jdbcType="VARCHAR"/>
+	<result column="defendant_compensation_total" property="defendantCompensationTotal" jdbcType="VARCHAR"/>
+	<result column="defendant_expenses" property="defendantExpenses" jdbcType="VARCHAR"/>
+	<result column="plaintiff_costs" property="plaintiffCosts" jdbcType="VARCHAR"/>
+	<result column="defendant_costs" property="defendantCosts" jdbcType="DECIMAL"/>
+	<result column="is_close" property="isClose" jdbcType="VARCHAR"/>
+	<result column="execution_deadline" property="executionDeadline" jdbcType="DATE"/>
+	<result column="remark" property="remark" jdbcType="VARCHAR"/>
+</resultMap>
+       
+<!-- case_second_instance table all fields -->
+<sql id="Base_Column_List" >
+	 status,org,created_by,created_time,updated_by,updated_time,case_id,lawyer,s_court_date,judge,judge_contact,s_judgment_effective_date,is_apology,defendant_compensation_total,defendant_expenses,plaintiff_costs,defendant_costs,is_close,execution_deadline,remark
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+<trim prefix = "where" prefixOverrides="and|or">
+	<!--  -->
+		<if test="status != null" >
+	    and status =  #{status}
+	</if>
+	<!--  -->
+		 	<if test="org != null and org != ''" >
+	    and org =  #{org}
+	</if>
+	<!--  -->
+		 	<if test="createdBy != null and createdBy != ''" >
+	    and created_by =  #{createdBy}
+	</if>
+	<!--  -->
+		<if test="createdTime != null" >
+	    and created_time =  #{createdTime}
+	</if>
+	<!--  -->
+		 	<if test="updatedBy != null and updatedBy != ''" >
+	    and updated_by =  #{updatedBy}
+	</if>
+	<!--  -->
+		<if test="updatedTime != null" >
+	    and updated_time =  #{updatedTime}
+	</if>
+	<!--  -->
+		<if test="caseId != null" >
+	    and case_id =  #{caseId}
+	</if>
+	<!--  -->
+		 	<if test="lawyer != null and lawyer != ''" >
+	    and lawyer =  #{lawyer}
+	</if>
+	<!--  -->
+		<if test="sCourtDate != null" >
+	    and s_court_date =  #{sCourtDate}
+	</if>
+	<!--  -->
+		 	<if test="judge != null and judge != ''" >
+	    and judge =  #{judge}
+	</if>
+	<!--  -->
+		 	<if test="judgeContact != null and judgeContact != ''" >
+	    and judge_contact =  #{judgeContact}
+	</if>
+	<!--  -->
+		 	<if test="sJudgmentEffectiveDate != null and sJudgmentEffectiveDate != ''" >
+	    and s_judgment_effective_date =  #{sJudgmentEffectiveDate}
+	</if>
+	<!--  -->
+		 	<if test="isApology != null and isApology != ''" >
+	    and is_apology =  #{isApology}
+	</if>
+	<!--  -->
+		 	<if test="defendantCompensationTotal != null and defendantCompensationTotal != ''" >
+	    and defendant_compensation_total =  #{defendantCompensationTotal}
+	</if>
+	<!--  -->
+		 	<if test="defendantExpenses != null and defendantExpenses != ''" >
+	    and defendant_expenses =  #{defendantExpenses}
+	</if>
+	<!--  -->
+		 	<if test="plaintiffCosts != null and plaintiffCosts != ''" >
+	    and plaintiff_costs =  #{plaintiffCosts}
+	</if>
+	<!--  -->
+		<if test="defendantCosts != null" >
+	    and defendant_costs =  #{defendantCosts}
+	</if>
+	<!--  -->
+		 	<if test="isClose != null and isClose != ''" >
+	    and is_close =  #{isClose}
+	</if>
+	<!--  -->
+		<if test="executionDeadline != null" >
+	    and execution_deadline =  #{executionDeadline}
+	</if>
+	<!--  -->
+		 	<if test="remark != null and remark != ''" >
+	    and remark =  #{remark}
+	</if>
+</trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into case_second_instance(status,org,created_by,created_time,updated_by,updated_time,case_id,lawyer,s_court_date,judge,judge_contact,s_judgment_effective_date,is_apology,defendant_compensation_total,defendant_expenses,plaintiff_costs,defendant_costs,is_close,execution_deadline,remark)
+ values(#{status,jdbcType=INTEGER},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{caseId,jdbcType=INTEGER},#{lawyer,jdbcType=VARCHAR},#{sCourtDate,jdbcType=DATE},#{judge,jdbcType=VARCHAR},#{judgeContact,jdbcType=VARCHAR},#{sJudgmentEffectiveDate,jdbcType=VARCHAR},#{isApology,jdbcType=VARCHAR},#{defendantCompensationTotal,jdbcType=VARCHAR},#{defendantExpenses,jdbcType=VARCHAR},#{plaintiffCosts,jdbcType=VARCHAR},#{defendantCosts,jdbcType=DECIMAL},#{isClose,jdbcType=VARCHAR},#{executionDeadline,jdbcType=DATE},#{remark,jdbcType=VARCHAR})
+</insert>
+
+<!-- 根据id，修改记录-->
+ <update id="update" parameterType="Object" >
+  update case_second_instance set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},case_id=#{caseId,jdbcType=INTEGER},lawyer=#{lawyer,jdbcType=VARCHAR},s_court_date=#{sCourtDate,jdbcType=DATE},judge=#{judge,jdbcType=VARCHAR},judge_contact=#{judgeContact,jdbcType=VARCHAR},s_judgment_effective_date=#{sJudgmentEffectiveDate,jdbcType=VARCHAR},is_apology=#{isApology,jdbcType=VARCHAR},defendant_compensation_total=#{defendantCompensationTotal,jdbcType=VARCHAR},defendant_expenses=#{defendantExpenses,jdbcType=VARCHAR},plaintiff_costs=#{plaintiffCosts,jdbcType=VARCHAR},defendant_costs=#{defendantCosts,jdbcType=DECIMAL},is_close=#{isClose,jdbcType=VARCHAR},execution_deadline=#{executionDeadline,jdbcType=DATE},remark=#{remark,jdbcType=VARCHAR} where status=#{status,jdbcType=INTEGER}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update case_second_instance set 
+	<trim  suffixOverrides="," >
+	<if test="org != null  ">
+		org=#{org,jdbcType=VARCHAR},
+	</if>
+	<if test="createdBy != null  ">
+		created_by=#{createdBy,jdbcType=VARCHAR},
+	</if>
+	<if test="createdTime != null  ">
+		created_time=#{createdTime,jdbcType=TIMESTAMP},
+	</if>
+	<if test="updatedBy != null  ">
+		updated_by=#{updatedBy,jdbcType=VARCHAR},
+	</if>
+	<if test="updatedTime != null  ">
+		updated_time=#{updatedTime,jdbcType=TIMESTAMP},
+	</if>
+	<if test="caseId != null  ">
+		case_id=#{caseId,jdbcType=INTEGER},
+	</if>
+	<if test="lawyer != null  ">
+		lawyer=#{lawyer,jdbcType=VARCHAR},
+	</if>
+	<if test="sCourtDate != null  ">
+		s_court_date=#{sCourtDate,jdbcType=DATE},
+	</if>
+	<if test="judge != null  ">
+		judge=#{judge,jdbcType=VARCHAR},
+	</if>
+	<if test="judgeContact != null  ">
+		judge_contact=#{judgeContact,jdbcType=VARCHAR},
+	</if>
+	<if test="sJudgmentEffectiveDate != null  ">
+		s_judgment_effective_date=#{sJudgmentEffectiveDate,jdbcType=VARCHAR},
+	</if>
+	<if test="isApology != null  ">
+		is_apology=#{isApology,jdbcType=VARCHAR},
+	</if>
+	<if test="defendantCompensationTotal != null  ">
+		defendant_compensation_total=#{defendantCompensationTotal,jdbcType=VARCHAR},
+	</if>
+	<if test="defendantExpenses != null  ">
+		defendant_expenses=#{defendantExpenses,jdbcType=VARCHAR},
+	</if>
+	<if test="plaintiffCosts != null  ">
+		plaintiff_costs=#{plaintiffCosts,jdbcType=VARCHAR},
+	</if>
+	<if test="defendantCosts != null  ">
+		defendant_costs=#{defendantCosts,jdbcType=DECIMAL},
+	</if>
+	<if test="isClose != null  ">
+		is_close=#{isClose,jdbcType=VARCHAR},
+	</if>
+	<if test="executionDeadline != null  ">
+		execution_deadline=#{executionDeadline,jdbcType=DATE},
+	</if>
+	<if test="remark != null  ">
+		remark=#{remark,jdbcType=VARCHAR},
+	</if>
+	</trim> where status=#{status,jdbcType=INTEGER}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from case_second_instance where status = #{status}
+</delete>
+ 
+<!-- 根据id查询 案件二审阶段信息 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from case_second_instance where status = #{status}
+</select>
+
+<!-- 案件二审阶段信息 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from case_second_instance 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询案件二审阶段信息列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+
+	select 
+	<include refid="Base_Column_List"/>
+	from case_second_instance 
+	<include refid="Example_Where_Clause"/>
+	
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+
+	<if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+
+</select>
+<!--*********************************** generation code  end ***********************************-->
+
+	
+</mapper>
