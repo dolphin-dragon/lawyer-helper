@@ -14,6 +14,13 @@
               "chnname": "状态"
             },
             {
+              "name": "DEL_FLAG",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "删除标记",
+              "defaultValue": "0"
+            },
+            {
               "name": "ORG",
               "type": "DefaultString",
               "remark": "",
@@ -1058,10 +1065,11 @@
               "chnname": "备注"
             },
             {
-              "name": "DEL_FLG",
+              "name": "DEL_FLAG",
               "type": "YesNo",
               "remark": "",
-              "chnname": "删除标记"
+              "chnname": "删除标记",
+              "defaultValue": "0"
             }
           ],
           "indexs": [],
@@ -1204,7 +1212,8 @@
               "name": "DEL_FLAG",
               "type": "YesNo",
               "remark": "",
-              "chnname": "删除标记"
+              "chnname": "删除标记",
+              "defaultValue": "0"
             }
           ],
           "indexs": [],

@@ -16,7 +16,7 @@ create table case_customer(
     phone varchar(32)    comment '联系电话' ,
     link_man varchar(32)    comment '联系人' ,
     remark varchar(1024)    comment '备注' ,
-    del_flag varchar(1)    comment '删除标记' ,
+    del_flag varchar(1)     default 0 comment '删除标记' ,
     primary key (id)
 ) engine = innodb comment = '客户信息记录表' default character set utf8 collate utf8_bin;
 
@@ -39,7 +39,7 @@ create table sys_user_ext(
     birt date    comment '出生日期' ,
     email varchar(128)    comment '电子邮箱' ,
     remark varchar(1024)    comment '备注' ,
-    del_flg varchar(1)    comment '删除标记' ,
+    del_flag varchar(1)    default 0 comment '删除标记' ,
     primary key (uid)
 ) engine = innodb comment = '用户扩展信息表' default character set utf8 collate utf8_bin;
 
@@ -164,6 +164,7 @@ create table case_apply(
 -- 案件基本信息
 create table case_info(
     status int    comment '状态' ,
+    del_flag varchar(1)   default 0 comment '删除标记' ,
     org varchar(32)    comment '机构编码' ,
     created_by varchar(32)    comment '创建人' ,
     created_time datetime    comment '创建时间' ,
