@@ -21,11 +21,17 @@
 	<result column="actual_total" property="actualTotal" jdbcType="DECIMAL"/>
 	<result column="f_collection_subject" property="fCollectionSubject" jdbcType="VARCHAR"/>
 	<result column="remark" property="remark" jdbcType="VARCHAR"/>
+	
+	<result column="litigant" property="litigant" jdbcType="VARCHAR"/>
+    <result column="defendant_name" property="defendantName" jdbcType="VARCHAR"/>
+    <result column="defendant_reg_capital" property="defendantRegCapital" jdbcType="VARCHAR"/>
+    <result column="defendant_area" property="defendantArea" jdbcType="VARCHAR"/>
+    <result column="del_flag" property="delFlag" jdbcType="VARCHAR"/>
 </resultMap>
        
 <!-- case_carry_out table all fields -->
 <sql id="Base_Column_List" >
-	 status,org,created_by,created_time,updated_by,updated_time,case_id,lawyer,app_date,app_total,judge,judge_contact,actual_total,f_collection_subject,remark
+	 status,org,created_by,created_time,updated_by,updated_time,case_id,lawyer,app_date,app_total,judge,judge_contact,actual_total,f_collection_subject,remark,litigant,defendant_name,defendant_reg_capital,defendant_area,del_flag
 </sql>
 
 <!-- 查询条件 -->
@@ -96,16 +102,16 @@
 
 <!-- 插入记录 -->
 <insert id="add" parameterType="Object" >
-<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+<!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
-  </selectKey>
+  </selectKey> -->
   insert into case_carry_out(status,org,created_by,created_time,updated_by,updated_time,case_id,lawyer,app_date,app_total,judge,judge_contact,actual_total,f_collection_subject,remark)
  values(#{status,jdbcType=INTEGER},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{caseId,jdbcType=INTEGER},#{lawyer,jdbcType=VARCHAR},#{appDate,jdbcType=DATE},#{appTotal,jdbcType=DECIMAL},#{judge,jdbcType=VARCHAR},#{judgeContact,jdbcType=VARCHAR},#{actualTotal,jdbcType=DECIMAL},#{fCollectionSubject,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR})
 </insert>
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update case_carry_out set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},case_id=#{caseId,jdbcType=INTEGER},lawyer=#{lawyer,jdbcType=VARCHAR},app_date=#{appDate,jdbcType=DATE},app_total=#{appTotal,jdbcType=DECIMAL},judge=#{judge,jdbcType=VARCHAR},judge_contact=#{judgeContact,jdbcType=VARCHAR},actual_total=#{actualTotal,jdbcType=DECIMAL},f_collection_subject=#{fCollectionSubject,jdbcType=VARCHAR},remark=#{remark,jdbcType=VARCHAR} where status=#{status,jdbcType=INTEGER}
+  update case_carry_out set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},case_id=#{caseId,jdbcType=INTEGER},lawyer=#{lawyer,jdbcType=VARCHAR},app_date=#{appDate,jdbcType=DATE},app_total=#{appTotal,jdbcType=DECIMAL},judge=#{judge,jdbcType=VARCHAR},judge_contact=#{judgeContact,jdbcType=VARCHAR},actual_total=#{actualTotal,jdbcType=DECIMAL},f_collection_subject=#{fCollectionSubject,jdbcType=VARCHAR},remark=#{remark,jdbcType=VARCHAR} where case_id=#{caseId,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -126,9 +132,6 @@
 	</if>
 	<if test="updatedTime != null  ">
 		updated_time=#{updatedTime,jdbcType=TIMESTAMP},
-	</if>
-	<if test="caseId != null  ">
-		case_id=#{caseId,jdbcType=INTEGER},
 	</if>
 	<if test="lawyer != null  ">
 		lawyer=#{lawyer,jdbcType=VARCHAR},
@@ -154,7 +157,7 @@
 	<if test="remark != null  ">
 		remark=#{remark,jdbcType=VARCHAR},
 	</if>
-	</trim> where status=#{status,jdbcType=INTEGER}
+	</trim> where case_id=#{caseId,jdbcType=INTEGER}
 </update>
 
 <!-- 删除记录 -->
@@ -170,7 +173,7 @@
 <!-- 根据id查询 案件执行阶段信息 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
 	select <include refid="Base_Column_List" /> 
-	 from case_carry_out where status = #{status}
+	 from (select ap.*,inf.litigant,inf.defendant_name,inf.defendant_reg_capital,inf.defendant_area,inf.del_flag from case_carry_out ap, case_info inf where ap.case_id=inf.id) as case_carry_out where case_id=#{caseId,jdbcType=INTEGER}
 </select>
 
 <!-- 案件执行阶段信息 列表总数-->
@@ -184,7 +187,7 @@
 
 	select 
 	<include refid="Base_Column_List"/>
-	from case_carry_out 
+	from (select ap.*,inf.litigant,inf.defendant_name,inf.defendant_reg_capital,inf.defendant_area,inf.del_flag from case_carry_out ap, case_info inf where ap.case_id=inf.id) as case_carry_out 
 	<include refid="Example_Where_Clause"/>
 	
 	<if test="pager.orderCondition != null and pager.orderCondition != ''" >

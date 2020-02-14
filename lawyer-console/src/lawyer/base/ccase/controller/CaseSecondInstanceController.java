@@ -1,6 +1,7 @@
 package lawyer.base.ccase.controller;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,9 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.base.web.BaseAction;
+import com.otter.entity.SysUser;
 import com.base.util.HtmlUtil;
+import com.base.util.SessionUtilsExt;
+
+import lawyer.base.ccase.entity.CaseInfo;
 import lawyer.base.ccase.entity.CaseSecondInstance;
 import lawyer.base.ccase.page.CaseSecondInstancePage;
+import lawyer.base.ccase.service.CaseInfoService;
 import lawyer.base.ccase.service.CaseSecondInstanceService;
  
 /**
@@ -35,7 +41,9 @@ public class CaseSecondInstanceController extends BaseAction{
 	/*********************************** generation code  start ***********************************/
 	// Servrice start
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
-	private CaseSecondInstanceService<CaseSecondInstance> caseSecondInstanceService; 
+	private CaseSecondInstanceService<CaseSecondInstance> caseSecondInstanceService;
+	@Autowired(required=false)
+	private CaseInfoService<CaseInfo> caseInfoService;
 	
 	/**
 	 * 说明：
@@ -85,10 +93,18 @@ public class CaseSecondInstanceController extends BaseAction{
 	public void save(CaseSecondInstance entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
 		log.info("/caseSecondInstance/save entity :"+entity+" typeIds:"+Arrays.toString(typeIds)+" response:"+response);
 		
-		//Map<String,Object>  context = new HashMap<String,Object>();
+		SysUser user = SessionUtilsExt.getUser(request);
 		if(entity.getCaseId()==null||StringUtils.isBlank(entity.getCaseId().toString())){
-				caseSecondInstanceService.add(entity);
+			sendFailureMessage(response, "没有找到对应的案件登记信息!");
+			return;
 		}else{
+			CaseInfo caseInfo = caseInfoService.queryById(entity.getCaseId());
+			caseInfo.setUpdatedBy(null!=user?user.getId()+"":"");
+			caseInfo.setUpdatedTime(new Date());
+			caseInfoService.update(caseInfo);
+			
+			entity.setUpdatedBy(null!=user?user.getId()+"":"");
+			entity.setUpdatedTime(new Date());
 			caseSecondInstanceService.update(entity);
 		}
 		
@@ -98,16 +114,16 @@ public class CaseSecondInstanceController extends BaseAction{
 	
 	/**
 	 * 说明：
-	 * @param id
+	 * @param caseId
 	 * @param response
 	 * @throws Exception 
 	 */
 	@RequestMapping("/getId")
-	public void getId(String id,HttpServletResponse response) throws Exception{
-		log.info("/caseSecondInstance/getId id :"+id+" response:"+response);
+	public void getId(String caseId,HttpServletResponse response) throws Exception{
+		log.info("/caseSecondInstance/getId id :"+caseId+" response:"+response);
 		
 		Map<String,Object>  context = new HashMap<String,Object>();
-		CaseSecondInstance entity  = caseSecondInstanceService.queryById(id);
+		CaseSecondInstance entity  = caseSecondInstanceService.queryById(caseId);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
 			return;

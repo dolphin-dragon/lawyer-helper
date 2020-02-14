@@ -48,7 +48,7 @@ ext {
 
 sourceSets {
         main.java.srcDirs = ['src']
-        main.resources.srcDirs = ['resources',cfg_env]
+        main.resources.srcDirs = ['resources','../lawyer-base/resources',cfg_env]
 }
 
 // 设置依赖

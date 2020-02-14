@@ -24,7 +24,7 @@
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="案件确立阶段信息" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="案件确立阶段信息" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:460px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="caseId">
      		 <div class="ui-edit">
@@ -99,7 +99,7 @@
 					</div>
 					<div class="fitem">
 						<label>侵权概况</label>
-						<input name="violateDesc" type="text" maxlength="3072" class="easyui-validatebox" data-options="" missingMessage="请填写侵权概况">
+						<textarea name="violateDesc" type="text" maxlength="3072" class="easyui-validatebox" data-options="" missingMessage="请填写侵权概况"></textarea>
 					</div>
 					<div class="fitem">
 						<label>案件可诉确认日期</label>

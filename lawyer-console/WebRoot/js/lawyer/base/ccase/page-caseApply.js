@@ -21,18 +21,19 @@ otter.caseApply = function(){
 					{id:'btnedit',text:'修改',btnType:'edit'},
 					{id:'btndelete',text:'删除',btnType:'remove'}
 				],
+				idField:'caseId',
 	   			columns:[[
 					{field:'case_id',checkbox:true},
-					{field:'status',title:'状态',align:'center',sortable:true,
+					/*{field:'status',title:'状态',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.status;
 							}
 						},
-/*					{field:'org',title:'机构编码',align:'center',sortable:true,
+					{field:'org',title:'机构编码',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.org;
 							}
-						},*/
+						},
 					{field:'created_by',title:'创建人',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.createdBy;
@@ -53,11 +54,32 @@ otter.caseApply = function(){
 								return row.updatedTime;
 							}
 						},
-/*					{field:'case_id',title:'案件序号',align:'center',sortable:true,
+					{field:'case_id',title:'案件序号',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.caseId;
 							}
 						},*/
+					{field:'litigant',title:'当事人',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.litigant;
+						}
+					},
+				{field:'defendant_name',title:'被告名称',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.defendantName;
+						}
+					},
+				{field:'defendant_reg_capital',title:'被告注册资本',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.defendantRegCapital;
+						}
+					},
+				{field:'defendant_area',title:'被告所在地',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.defendantArea;
+						}
+					},
+					
 					{field:'src',title:'案件来源',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.src;

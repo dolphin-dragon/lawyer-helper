@@ -21,9 +21,10 @@ otter.caseCarryOut = function(){
 					{id:'btnedit',text:'修改',btnType:'edit'},
 					{id:'btndelete',text:'删除',btnType:'remove'}
 				],
+				idField:'caseId',
 	   			columns:[[
-					{field:'id',checkbox:true},
-					{field:'status',title:'状态',align:'center',sortable:true,
+					{field:'case_id',checkbox:true},
+/*					{field:'status',title:'状态',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.status;
 							}
@@ -57,7 +58,7 @@ otter.caseCarryOut = function(){
 							formatter:function(value,row,index){
 								return row.caseId;
 							}
-						},
+						},*/
 					{field:'lawyer',title:'执行主办律师',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.lawyer;

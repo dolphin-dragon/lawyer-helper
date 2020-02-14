@@ -26,11 +26,17 @@
 	<result column="is_close" property="isClose" jdbcType="VARCHAR"/>
 	<result column="execution_deadline" property="executionDeadline" jdbcType="DATE"/>
 	<result column="remark" property="remark" jdbcType="VARCHAR"/>
+	
+	<result column="litigant" property="litigant" jdbcType="VARCHAR"/>
+    <result column="defendant_name" property="defendantName" jdbcType="VARCHAR"/>
+    <result column="defendant_reg_capital" property="defendantRegCapital" jdbcType="VARCHAR"/>
+    <result column="defendant_area" property="defendantArea" jdbcType="VARCHAR"/>
+    <result column="del_flag" property="delFlag" jdbcType="VARCHAR"/>
 </resultMap>
        
 <!-- case_second_instance table all fields -->
 <sql id="Base_Column_List" >
-	 status,org,created_by,created_time,updated_by,updated_time,case_id,lawyer,s_court_date,judge,judge_contact,s_judgment_effective_date,is_apology,defendant_compensation_total,defendant_expenses,plaintiff_costs,defendant_costs,is_close,execution_deadline,remark
+	 status,org,created_by,created_time,updated_by,updated_time,case_id,lawyer,s_court_date,judge,judge_contact,s_judgment_effective_date,is_apology,defendant_compensation_total,defendant_expenses,plaintiff_costs,defendant_costs,is_close,execution_deadline,remark,litigant,defendant_name,defendant_reg_capital,defendant_area,del_flag
 </sql>
 
 <!-- 查询条件 -->
@@ -121,16 +127,16 @@
 
 <!-- 插入记录 -->
 <insert id="add" parameterType="Object" >
-<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+<!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
-  </selectKey>
+  </selectKey> -->
   insert into case_second_instance(status,org,created_by,created_time,updated_by,updated_time,case_id,lawyer,s_court_date,judge,judge_contact,s_judgment_effective_date,is_apology,defendant_compensation_total,defendant_expenses,plaintiff_costs,defendant_costs,is_close,execution_deadline,remark)
  values(#{status,jdbcType=INTEGER},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{caseId,jdbcType=INTEGER},#{lawyer,jdbcType=VARCHAR},#{sCourtDate,jdbcType=DATE},#{judge,jdbcType=VARCHAR},#{judgeContact,jdbcType=VARCHAR},#{sJudgmentEffectiveDate,jdbcType=VARCHAR},#{isApology,jdbcType=VARCHAR},#{defendantCompensationTotal,jdbcType=VARCHAR},#{defendantExpenses,jdbcType=VARCHAR},#{plaintiffCosts,jdbcType=VARCHAR},#{defendantCosts,jdbcType=DECIMAL},#{isClose,jdbcType=VARCHAR},#{executionDeadline,jdbcType=DATE},#{remark,jdbcType=VARCHAR})
 </insert>
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update case_second_instance set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},case_id=#{caseId,jdbcType=INTEGER},lawyer=#{lawyer,jdbcType=VARCHAR},s_court_date=#{sCourtDate,jdbcType=DATE},judge=#{judge,jdbcType=VARCHAR},judge_contact=#{judgeContact,jdbcType=VARCHAR},s_judgment_effective_date=#{sJudgmentEffectiveDate,jdbcType=VARCHAR},is_apology=#{isApology,jdbcType=VARCHAR},defendant_compensation_total=#{defendantCompensationTotal,jdbcType=VARCHAR},defendant_expenses=#{defendantExpenses,jdbcType=VARCHAR},plaintiff_costs=#{plaintiffCosts,jdbcType=VARCHAR},defendant_costs=#{defendantCosts,jdbcType=DECIMAL},is_close=#{isClose,jdbcType=VARCHAR},execution_deadline=#{executionDeadline,jdbcType=DATE},remark=#{remark,jdbcType=VARCHAR} where status=#{status,jdbcType=INTEGER}
+  update case_second_instance set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},case_id=#{caseId,jdbcType=INTEGER},lawyer=#{lawyer,jdbcType=VARCHAR},s_court_date=#{sCourtDate,jdbcType=DATE},judge=#{judge,jdbcType=VARCHAR},judge_contact=#{judgeContact,jdbcType=VARCHAR},s_judgment_effective_date=#{sJudgmentEffectiveDate,jdbcType=VARCHAR},is_apology=#{isApology,jdbcType=VARCHAR},defendant_compensation_total=#{defendantCompensationTotal,jdbcType=VARCHAR},defendant_expenses=#{defendantExpenses,jdbcType=VARCHAR},plaintiff_costs=#{plaintiffCosts,jdbcType=VARCHAR},defendant_costs=#{defendantCosts,jdbcType=DECIMAL},is_close=#{isClose,jdbcType=VARCHAR},execution_deadline=#{executionDeadline,jdbcType=DATE},remark=#{remark,jdbcType=VARCHAR} where case_id=#{caseId,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -198,14 +204,19 @@
 </update>
 
 <!-- 删除记录 -->
+<!-- 
 <delete id="delete" parameterType="Object">
 	delete 	 from case_second_instance where status = #{status}
 </delete>
+ -->
+<update id="delete" parameterType="Object">
+    update case_info set del_flag='1' where id=#{caseId,jdbcType=INTEGER}
+</update>
  
 <!-- 根据id查询 案件二审阶段信息 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
 	select <include refid="Base_Column_List" /> 
-	 from case_second_instance where status = #{status}
+	 from (select ap.*,inf.litigant,inf.defendant_name,inf.defendant_reg_capital,inf.defendant_area,inf.del_flag from case_second_instance ap, case_info inf where ap.case_id=inf.id) as case_second_instance where case_id=#{caseId,jdbcType=INTEGER}
 </select>
 
 <!-- 案件二审阶段信息 列表总数-->
@@ -219,7 +230,7 @@
 
 	select 
 	<include refid="Base_Column_List"/>
-	from case_second_instance 
+	from (select ap.*,inf.litigant,inf.defendant_name,inf.defendant_reg_capital,inf.defendant_area,inf.del_flag from case_second_instance ap, case_info inf where ap.case_id=inf.id) as case_second_instance  
 	<include refid="Example_Where_Clause"/>
 	
 	<if test="pager.orderCondition != null and pager.orderCondition != ''" >

@@ -86,7 +86,7 @@
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update case_info set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},id=#{id,jdbcType=INTEGER},litigant=#{litigant,jdbcType=VARCHAR},defendant_name=#{defendantName,jdbcType=VARCHAR},defendant_reg_capital=#{defendantRegCapital,jdbcType=VARCHAR},defendant_area=#{defendantArea,jdbcType=VARCHAR} where status=#{status,jdbcType=INTEGER}
+  update case_info set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},litigant=#{litigant,jdbcType=VARCHAR},defendant_name=#{defendantName,jdbcType=VARCHAR},defendant_reg_capital=#{defendantRegCapital,jdbcType=VARCHAR},defendant_area=#{defendantArea,jdbcType=VARCHAR} where id=#{id,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -108,9 +108,6 @@
 	<if test="updatedTime != null  ">
 		updated_time=#{updatedTime,jdbcType=TIMESTAMP},
 	</if>
-	<if test="id != null  ">
-		id=#{id,jdbcType=INTEGER},
-	</if>
 	<if test="litigant != null  ">
 		litigant=#{litigant,jdbcType=VARCHAR},
 	</if>
@@ -123,7 +120,7 @@
 	<if test="defendantArea != null  ">
 		defendant_area=#{defendantArea,jdbcType=VARCHAR},
 	</if>
-	</trim> where status=#{status,jdbcType=INTEGER}
+	</trim> where id=#{id,jdbcType=INTEGER}
 </update>
 
 <!-- 删除记录 -->
@@ -139,7 +136,7 @@
 <!-- 根据id查询 案件基础信息 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
 	select <include refid="Base_Column_List" /> 
-	 from case_info where status = #{status}
+	 from case_info where id = #{id}
 </select>
 
 <!-- 案件基础信息 列表总数-->

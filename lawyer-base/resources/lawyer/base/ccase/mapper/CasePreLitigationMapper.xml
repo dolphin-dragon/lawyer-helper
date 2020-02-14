@@ -19,11 +19,17 @@
 	<result column="delivery_date" property="deliveryDate" jdbcType="DATE"/>
 	<result column="is_close" property="isClose" jdbcType="VARCHAR"/>
 	<result column="remark" property="remark" jdbcType="VARCHAR"/>
+	
+	<result column="litigant" property="litigant" jdbcType="VARCHAR"/>
+    <result column="defendant_name" property="defendantName" jdbcType="VARCHAR"/>
+    <result column="defendant_reg_capital" property="defendantRegCapital" jdbcType="VARCHAR"/>
+    <result column="defendant_area" property="defendantArea" jdbcType="VARCHAR"/>
+    <result column="del_flag" property="delFlag" jdbcType="VARCHAR"/>
 </resultMap>
        
 <!-- case_pre_litigation table all fields -->
 <sql id="Base_Column_List" >
-	 status,org,created_by,created_time,updated_by,updated_time,case_id,letter,letteror,send_date,delivery_date,is_close,remark
+	 status,org,created_by,created_time,updated_by,updated_time,case_id,letter,letteror,send_date,delivery_date,is_close,remark,litigant,defendant_name,defendant_reg_capital,defendant_area,del_flag
 </sql>
 
 <!-- 查询条件 -->
@@ -86,16 +92,16 @@
 
 <!-- 插入记录 -->
 <insert id="add" parameterType="Object" >
-<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+<!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
-  </selectKey>
+  </selectKey> -->
   insert into case_pre_litigation(status,org,created_by,created_time,updated_by,updated_time,case_id,letter,letteror,send_date,delivery_date,is_close,remark)
  values(#{status,jdbcType=INTEGER},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{caseId,jdbcType=INTEGER},#{letter,jdbcType=VARCHAR},#{letteror,jdbcType=VARCHAR},#{sendDate,jdbcType=DATE},#{deliveryDate,jdbcType=DATE},#{isClose,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR})
 </insert>
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update case_pre_litigation set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},case_id=#{caseId,jdbcType=INTEGER},letter=#{letter,jdbcType=VARCHAR},letteror=#{letteror,jdbcType=VARCHAR},send_date=#{sendDate,jdbcType=DATE},delivery_date=#{deliveryDate,jdbcType=DATE},is_close=#{isClose,jdbcType=VARCHAR},remark=#{remark,jdbcType=VARCHAR} where status=#{status,jdbcType=INTEGER}
+  update case_pre_litigation set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},case_id=#{caseId,jdbcType=INTEGER},letter=#{letter,jdbcType=VARCHAR},letteror=#{letteror,jdbcType=VARCHAR},send_date=#{sendDate,jdbcType=DATE},delivery_date=#{deliveryDate,jdbcType=DATE},is_close=#{isClose,jdbcType=VARCHAR},remark=#{remark,jdbcType=VARCHAR} where case_id=#{caseId,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -154,7 +160,7 @@
 <!-- 根据id查询 案件诉前和解信息 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
 	select <include refid="Base_Column_List" /> 
-	 from case_pre_litigation where status = #{status}
+	 from (select ap.*,inf.litigant,inf.defendant_name,inf.defendant_reg_capital,inf.defendant_area,inf.del_flag from case_pre_litigation ap, case_info inf where ap.case_id=inf.id) as case_pre_litigation where case_id=#{caseId,jdbcType=INTEGER}
 </select>
 
 <!-- 案件诉前和解信息 列表总数-->
@@ -168,7 +174,7 @@
 
 	select 
 	<include refid="Base_Column_List"/>
-	from case_pre_litigation 
+	from (select ap.*,inf.litigant,inf.defendant_name,inf.defendant_reg_capital,inf.defendant_area,inf.del_flag from case_pre_litigation ap, case_info inf where ap.case_id=inf.id) as case_pre_litigation 
 	<include refid="Example_Where_Clause"/>
 	
 	<if test="pager.orderCondition != null and pager.orderCondition != ''" >

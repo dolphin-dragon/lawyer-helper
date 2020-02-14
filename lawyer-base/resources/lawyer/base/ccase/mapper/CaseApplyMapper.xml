@@ -32,7 +32,7 @@
        
 <!-- case_apply table all fields -->
 <sql id="Base_Column_List" >
-	 status,org,created_by,created_time,updated_by,updated_time,case_id,src,supply,apply_date,applicant,forensics,violate_type,violate_desc,action_date,litigant_ac_date
+	 status,org,created_by,created_time,updated_by,updated_time,case_id,src,supply,apply_date,applicant,forensics,violate_type,violate_desc,action_date,litigant_ac_date,litigant,defendant_name,defendant_reg_capital,defendant_area,del_flag
 </sql>
 
 <!-- 查询条件 -->
@@ -138,9 +138,6 @@
 	<if test="updatedTime != null  ">
 		updated_time=#{updatedTime,jdbcType=TIMESTAMP},
 	</if>
-	<if test="caseId != null  ">
-		case_id=#{caseId,jdbcType=INTEGER},
-	</if>
 	<if test="src != null  ">
 		src=#{src,jdbcType=VARCHAR},
 	</if>
@@ -184,7 +181,7 @@
 <!-- 根据id查询 案件确立阶段信息 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
 	select <include refid="Base_Column_List" /> 
-	 from case_apply where case_id=#{caseId,jdbcType=INTEGER}
+	 from (select ap.*,inf.litigant,inf.defendant_name,inf.defendant_reg_capital,inf.defendant_area,inf.del_flag from case_apply ap, case_info inf where ap.case_id=inf.id) as case_apply where case_id=#{caseId,jdbcType=INTEGER}
 </select>
 
 <!-- 案件确立阶段信息 列表总数-->
@@ -198,7 +195,7 @@
 
 	select 
 	<include refid="Base_Column_List"/>
-	from case_apply 
+	from (select ap.*,inf.litigant,inf.defendant_name,inf.defendant_reg_capital,inf.defendant_area,inf.del_flag from case_apply ap, case_info inf where ap.case_id=inf.id) as case_apply  
 	<include refid="Example_Where_Clause"/>
 	
 	<if test="pager.orderCondition != null and pager.orderCondition != ''" >

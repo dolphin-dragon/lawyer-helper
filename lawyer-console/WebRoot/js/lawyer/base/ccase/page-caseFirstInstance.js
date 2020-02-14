@@ -21,9 +21,10 @@ otter.caseFirstInstance = function(){
 					{id:'btnedit',text:'修改',btnType:'edit'},
 					{id:'btndelete',text:'删除',btnType:'remove'}
 				],
+				idField:'caseId',
 	   			columns:[[
-					{field:'id',checkbox:true},
-					{field:'status',title:'状态',align:'center',sortable:true,
+					{field:'case_id',checkbox:true},
+					/*{field:'status',title:'状态',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.status;
 							}
@@ -57,7 +58,7 @@ otter.caseFirstInstance = function(){
 							formatter:function(value,row,index){
 								return row.caseId;
 							}
-						},
+						},*/
 					{field:'firstor',title:'第一责任人',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.firstor;
