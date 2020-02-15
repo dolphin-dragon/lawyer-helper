@@ -15,7 +15,11 @@ public class CaseApplyPage extends BasePage {
 	private java.lang.String defendantName;//   被告名称
 	private java.lang.String defendantRegCapital;//   被告注册资本
 	private java.lang.String defendantArea;//   被告所在地
-	private java.lang.String delFlag;//   删除标记	public java.lang.Integer getStatus() {	    return this.status;	}	public void setStatus(java.lang.Integer status) {	    this.status=status;	}	public java.lang.String getOrg() {	    return this.org;	}	public void setOrg(java.lang.String org) {	    this.org=org;	}	public java.lang.String getCreatedBy() {	    return this.createdBy;	}	public void setCreatedBy(java.lang.String createdBy) {	    this.createdBy=createdBy;	}	public java.util.Date getCreatedTime() {	    return this.createdTime;	}	public void setCreatedTime(java.util.Date createdTime) {	    this.createdTime=createdTime;	}	public java.lang.String getUpdatedBy() {	    return this.updatedBy;	}	public void setUpdatedBy(java.lang.String updatedBy) {	    this.updatedBy=updatedBy;	}	public java.util.Date getUpdatedTime() {	    return this.updatedTime;	}	public void setUpdatedTime(java.util.Date updatedTime) {	    this.updatedTime=updatedTime;	}	public java.lang.Integer getCaseId() {	    return this.caseId;	}	public void setCaseId(java.lang.Integer caseId) {	    this.caseId=caseId;	}	public java.lang.String getSrc() {	    return this.src;	}	public void setSrc(java.lang.String src) {	    this.src=src;	}	public java.lang.String getSupply() {	    return this.supply;	}	public void setSupply(java.lang.String supply) {	    this.supply=supply;	}	public java.util.Date getApplyDate() {	    return this.applyDate;	}	public void setApplyDate(java.util.Date applyDate) {	    this.applyDate=applyDate;	}	public java.lang.String getApplicant() {	    return this.applicant;	}	public void setApplicant(java.lang.String applicant) {	    this.applicant=applicant;	}	public java.lang.String getForensics() {	    return this.forensics;	}	public void setForensics(java.lang.String forensics) {	    this.forensics=forensics;	}	public java.lang.String getViolateType() {	    return this.violateType;	}	public void setViolateType(java.lang.String violateType) {	    this.violateType=violateType;	}	public java.lang.String getViolateDesc() {	    return this.violateDesc;	}	public void setViolateDesc(java.lang.String violateDesc) {	    this.violateDesc=violateDesc;	}	public java.util.Date getActionDate() {	    return this.actionDate;	}	public void setActionDate(java.util.Date actionDate) {	    this.actionDate=actionDate;	}	public java.util.Date getLitigantAcDate() {	    return this.litigantAcDate;	}	public void setLitigantAcDate(java.util.Date litigantAcDate) {	    this.litigantAcDate=litigantAcDate;	}
+	private java.lang.String delFlag;//   删除标记
+	
+	private java.lang.String supplyName;
+	private java.lang.String applicantName;
+	private java.lang.String forensicsName;	public java.lang.Integer getStatus() {	    return this.status;	}	public void setStatus(java.lang.Integer status) {	    this.status=status;	}	public java.lang.String getOrg() {	    return this.org;	}	public void setOrg(java.lang.String org) {	    this.org=org;	}	public java.lang.String getCreatedBy() {	    return this.createdBy;	}	public void setCreatedBy(java.lang.String createdBy) {	    this.createdBy=createdBy;	}	public java.util.Date getCreatedTime() {	    return this.createdTime;	}	public void setCreatedTime(java.util.Date createdTime) {	    this.createdTime=createdTime;	}	public java.lang.String getUpdatedBy() {	    return this.updatedBy;	}	public void setUpdatedBy(java.lang.String updatedBy) {	    this.updatedBy=updatedBy;	}	public java.util.Date getUpdatedTime() {	    return this.updatedTime;	}	public void setUpdatedTime(java.util.Date updatedTime) {	    this.updatedTime=updatedTime;	}	public java.lang.Integer getCaseId() {	    return this.caseId;	}	public void setCaseId(java.lang.Integer caseId) {	    this.caseId=caseId;	}	public java.lang.String getSrc() {	    return this.src;	}	public void setSrc(java.lang.String src) {	    this.src=src;	}	public java.lang.String getSupply() {	    return this.supply;	}	public void setSupply(java.lang.String supply) {	    this.supply=supply;	}	public java.util.Date getApplyDate() {	    return this.applyDate;	}	public void setApplyDate(java.util.Date applyDate) {	    this.applyDate=applyDate;	}	public java.lang.String getApplicant() {	    return this.applicant;	}	public void setApplicant(java.lang.String applicant) {	    this.applicant=applicant;	}	public java.lang.String getForensics() {	    return this.forensics;	}	public void setForensics(java.lang.String forensics) {	    this.forensics=forensics;	}	public java.lang.String getViolateType() {	    return this.violateType;	}	public void setViolateType(java.lang.String violateType) {	    this.violateType=violateType;	}	public java.lang.String getViolateDesc() {	    return this.violateDesc;	}	public void setViolateDesc(java.lang.String violateDesc) {	    this.violateDesc=violateDesc;	}	public java.util.Date getActionDate() {	    return this.actionDate;	}	public void setActionDate(java.util.Date actionDate) {	    this.actionDate=actionDate;	}	public java.util.Date getLitigantAcDate() {	    return this.litigantAcDate;	}	public void setLitigantAcDate(java.util.Date litigantAcDate) {	    this.litigantAcDate=litigantAcDate;	}
 	public java.lang.String getLitigant() {
 		return litigant;
 	}
@@ -45,5 +49,23 @@ public class CaseApplyPage extends BasePage {
 	}
 	public void setDelFlag(java.lang.String delFlag) {
 		this.delFlag = delFlag;
+	}
+	public java.lang.String getSupplyName() {
+		return supplyName;
+	}
+	public void setSupplyName(java.lang.String supplyName) {
+		this.supplyName = supplyName;
+	}
+	public java.lang.String getApplicantName() {
+		return applicantName;
+	}
+	public void setApplicantName(java.lang.String applicantName) {
+		this.applicantName = applicantName;
+	}
+	public java.lang.String getForensicsName() {
+		return forensicsName;
+	}
+	public void setForensicsName(java.lang.String forensicsName) {
+		this.forensicsName = forensicsName;
 	}
 }

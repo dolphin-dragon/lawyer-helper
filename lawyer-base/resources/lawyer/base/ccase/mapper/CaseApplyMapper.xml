@@ -28,6 +28,10 @@
     <result column="defendant_reg_capital" property="defendantRegCapital" jdbcType="VARCHAR"/>
     <result column="defendant_area" property="defendantArea" jdbcType="VARCHAR"/>
     <result column="del_flag" property="delFlag" jdbcType="VARCHAR"/>
+    
+    <result column="supply_name" property="supplyName" jdbcType="VARCHAR"/>
+    <result column="applicant_name" property="applicantName" jdbcType="VARCHAR"/>
+    <result column="forensics_name" property="forensicsName" jdbcType="VARCHAR"/>
 </resultMap>
        
 <!-- case_apply table all fields -->
@@ -181,6 +185,9 @@
 <!-- 根据id查询 案件确立阶段信息 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
 	select <include refid="Base_Column_List" /> 
+	,(select name from sys_user_ext sut where sut.uid=case_apply.supply) as supply_name 
+	,(select name from sys_user_ext sut where sut.uid=case_apply.applicant) as applicant_name 
+	,(select name from sys_user_ext sut where sut.uid=case_apply.forensics) as forensics_name 
 	 from (select ap.*,inf.litigant,inf.defendant_name,inf.defendant_reg_capital,inf.defendant_area,inf.del_flag from case_apply ap, case_info inf where ap.case_id=inf.id) as case_apply where case_id=#{caseId,jdbcType=INTEGER}
 </select>
 
@@ -192,20 +199,18 @@
   	
 <!-- 查询案件确立阶段信息列表 -->
 <select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
-
-	select 
-	<include refid="Base_Column_List"/>
+	select 	<include refid="Base_Column_List"/>
+	,(select name from sys_user_ext sut where sut.uid=case_apply.supply) as supply_name 
+	,(select name from sys_user_ext sut where sut.uid=case_apply.applicant) as applicant_name 
+	,(select name from sys_user_ext sut where sut.uid=case_apply.forensics) as forensics_name 
 	from (select ap.*,inf.litigant,inf.defendant_name,inf.defendant_reg_capital,inf.defendant_area,inf.del_flag from case_apply ap, case_info inf where ap.case_id=inf.id) as case_apply  
 	<include refid="Example_Where_Clause"/>
-	
 	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
       ${pager.orderCondition}
     </if>
-
 	<if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
        ${pager.mysqlQueryCondition}
     </if>
-
 </select>
 <!--*********************************** generation code  end ***********************************-->
 

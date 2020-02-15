@@ -9,6 +9,8 @@ otter.sysUserExt = function(){
 					_box.handler.add();
 				},
 				edit:function(){
+					$('input[name=email]',$('#editForm')).attr('readonly',true);
+					$('input[name=name]',$('#editForm')).attr('readonly',true);
 					$('#typeIds_combobox').combobox('reload');
 					_box.handler.edit();
 				}
@@ -17,10 +19,11 @@ otter.sysUserExt = function(){
   				title:'用户设置',
 	   			url:'dataList.do',
 	   			toolbar:[
-					/*{id:'btnadd',text:'添加',btnType:'add'},*/
-					{id:'btnedit',text:'修改',btnType:'edit'}
-					/*{id:'btndelete',text:'删除',btnType:'remove'}*/
+					{id:'btnadd',text:'添加',btnType:'add'},
+					{id:'btnedit',text:'修改',btnType:'edit'},
+					{id:'btndelete',text:'删除',btnType:'remove'}
 				],
+				idField:'uid',
 	   			columns:[[
 					{field:'uid',checkbox:true},
 /*					{field:'uid',title:'用户ID',align:'center',sortable:true,
@@ -71,13 +74,28 @@ otter.sysUserExt = function(){
 									return "管理员";
 								}
 								if(value == 2){
-									return "普通职员";
+									return "律师";
 								}
 								if(value == 3){
-									return "实习律师";
+									return "律师助理";
+								}
+								if(value == 4){
+									return "行政";
+								}
+								if(value == 5){
+									return "办公室主任";
+								}
+								if(value == 6){
+									return "财务助理";
+								}
+								if(value == 7){
+									return "实习生";
+								}
+								if(value == 8){
+									return "财务总监";
 								}
 								if(value == 9){
-									return "执业律师";
+									return "律所主任";
 								}
 								return "";
 							}
@@ -87,16 +105,16 @@ otter.sysUserExt = function(){
 								return row.birt;
 							}
 						},
-					{field:'entrydate',title:'入职时间',align:'center',sortable:true,
+					{field:'entry_date',title:'入职时间',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.entrydate;
+								return row.entryDate;
 							}
 						},
 					/*{field:'create_by',title:'创建者ID',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.createBy;
 							}
-						},*/
+						},
 					{field:'create_name',title:'创建人',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.createName;
@@ -107,11 +125,11 @@ otter.sysUserExt = function(){
 								return row.createDate;
 							}
 						},
-					/*{field:'update_by',title:'修改人ID',align:'center',sortable:true,
+					{field:'update_by',title:'修改人ID',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.updateBy;
 							}
-						},*/
+						},
 					{field:'update_name',title:'修改人',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.updateName;
@@ -121,13 +139,13 @@ otter.sysUserExt = function(){
 							formatter:function(value,row,index){
 								return row.updateDate;
 							}
-						},
+						},*/
 					{field:'remarks',title:'备注信息',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.remarks;
 							}
 						},
-					{field:'del_flag',title:'删除标记',align:'center',sortable:true,
+/*					{field:'del_flag',title:'删除标记',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								if(value == 0){
 									return "有效";
@@ -137,7 +155,7 @@ otter.sysUserExt = function(){
 								}
 								return "有效";
 							}
-						},
+						},*/
 					]]
 			}
 		},

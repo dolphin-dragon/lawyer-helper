@@ -163,9 +163,7 @@ public class CaseApplyController extends BaseAction{
 	@RequestMapping("/delete")
 	public void delete(String[] id,HttpServletResponse response) throws Exception{
 		log.info("/caseApply/delete id :"+Arrays.toString(id)+" response:"+response);
-		
 		caseApplyService.delete(id);
-		
 		log.info("/caseApply/delete sendSuccessMessage 删除成功~");
 		sendSuccessMessage(response, "删除成功");
 	}

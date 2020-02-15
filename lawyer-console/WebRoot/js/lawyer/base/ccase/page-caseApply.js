@@ -82,12 +82,21 @@ otter.caseApply = function(){
 					
 					{field:'src',title:'案件来源',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.src;
+	                    		if(value == 1){
+									return "当事人提供";
+								}
+								if(value == 2){
+									return "所内自行搜证";
+								}
+								if(value == 3){
+									return "律师个人案源";
+								}
+								return "";
 							}
 						},
 					{field:'supply',title:'案源人',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.supply;
+								return row.supplyName;
 							}
 						},
 					{field:'apply_date',title:'申请公证日期',align:'center',sortable:true,
@@ -97,17 +106,32 @@ otter.caseApply = function(){
 						},
 					{field:'applicant',title:'公证书申请人',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.applicant;
+								return row.applicantName;
 							}
 						},
 					{field:'forensics',title:'取证人',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.forensics;
+								return row.forensicsName;
 							}
 						},
-					{field:'violate_type',title:'侵权类型',align:'center',sortable:true,
+					{field:'violateType',title:'侵权类型',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.violateType;
+	                    		if(value == 1){
+									return "肖像权";
+								}
+								if(value == 2){
+									return "肖像权(含名誉权)";
+								}
+								if(value == 3){
+									return "肖像权(含姓名权)";
+								}
+								if(value == 4){
+									return "肖像权(含姓名权、名誉权)";
+								}
+								if(value == 5){
+									return "名誉权";
+								}
+								return "";
 							}
 						},
 					{field:'violate_desc',title:'侵权概况',align:'center',sortable:true,

@@ -16,10 +16,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.base.entity.BaseEntity.DELETED;
 import com.base.util.HtmlUtil;
 import com.base.util.SessionUtilsExt;
 import com.base.web.BaseAction;
 import com.otter.entity.SysUser;
+import com.otter.service.SysUserService;
 
 import lawyer.base.ccase.entity.SysUserExt;
 import lawyer.base.ccase.page.SysUserExtPage;
@@ -40,6 +42,8 @@ public class SysUserExtController extends BaseAction{
 	// Servrice start
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private SysUserExtService<SysUserExt> sysUserExtService; 
+	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
+	private SysUserService<SysUser> sysUserService; 
 	
 	/**
 	 * 说明：
@@ -89,11 +93,22 @@ public class SysUserExtController extends BaseAction{
 	public void save(SysUserExt entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		log.info("/sysUserExt/save entity :"+entity+" typeIds:"+Arrays.toString(typeIds)+" response:"+response);
 		
-		//Map<String,Object>  context = new HashMap<String,Object>();
 		SysUser user = SessionUtilsExt.getUser(request);
 		if(entity.getUid()==null||StringUtils.isBlank(entity.getUid().toString())){
-			entity.setUid(user.getId());
+			int count = sysUserService.getUserCountByEmail(entity.getEmail());
+			if(count>0) {
+				sendFailureMessage(response, "当前邮箱已经被使用，请更换邮箱地址!");
+				return;
+			}
+			SysUser n_user = new SysUser();
+			n_user.setEmail(entity.getEmail());
+			n_user.setNickName(entity.getName());
+			n_user.setCreateBy(null!=user?user.getId():null);
+			n_user.setState(0);
+			n_user.setDeleted(DELETED.NO.key);
+			sysUserService.add(n_user);
 			
+			entity.setUid(n_user.getId());
 			entity.setCreatedBy(null!=user?user.getId()+"":"");
 			entity.setCreatedTime(new Date());
 			entity.setUpdatedBy(null!=user?user.getId()+"":"");
@@ -101,6 +116,18 @@ public class SysUserExtController extends BaseAction{
 			
 			sysUserExtService.add(entity);
 		}else{
+//			int count = sysUserService.getUserCountByEmail(entity.getEmail());
+//			if(count>0) {
+//				sendFailureMessage(response, "当前邮箱已经被使用，请更换邮箱地址!");
+//				return;
+//			}
+//			
+//			SysUser n_user = sysUserService.queryById(entity.getUid());
+//			n_user.setEmail(entity.getEmail());
+//			n_user.setNickName(entity.getName());
+//			n_user.setUpdateBy(null!=user?user.getId():null);
+//			sysUserService.updateBySelective(n_user);
+			
 			entity.setUpdatedBy(null!=user?user.getId()+"":"");
 			entity.setUpdatedTime(new Date());
 			sysUserExtService.update(entity);
@@ -112,16 +139,16 @@ public class SysUserExtController extends BaseAction{
 	
 	/**
 	 * 说明：
-	 * @param id
+	 * @param uid
 	 * @param response
 	 * @throws Exception 
 	 */
 	@RequestMapping("/getId")
-	public void getId(String id,HttpServletResponse response) throws Exception{
-		log.info("/sysUserExt/getId id :"+id+" response:"+response);
+	public void getId(String uid,HttpServletResponse response) throws Exception{
+		log.info("/sysUserExt/getId id :"+uid+" response:"+response);
 		
 		Map<String,Object>  context = new HashMap<String,Object>();
-		SysUserExt entity  = sysUserExtService.queryById(id);
+		SysUserExt entity  = sysUserExtService.queryById(uid);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
 			return;
@@ -140,11 +167,18 @@ public class SysUserExtController extends BaseAction{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/delete")
-	public void delete(String[] id,HttpServletResponse response) throws Exception{
+	public void delete(Integer[] id,HttpServletResponse response) throws Exception{
 		log.info("/sysUserExt/delete id :"+Arrays.toString(id)+" response:"+response);
+		sysUserService.delete(id);
 		sysUserExtService.delete(id);
 		log.info("/sysUserExt/delete sendSuccessMessage 删除成功~");
 		sendSuccessMessage(response, "删除成功");
 	}
 	/*********************************** generation code  end ***********************************/
+	
+	@RequestMapping("/listDatas")
+	public void dataListByStatus(HttpServletResponse response) throws Exception {
+		List<SysUserExt> dataList = sysUserExtService.queryByList(new SysUserExtPage());
+		HtmlUtil.writerJson(response, dataList);
+	}
 }
