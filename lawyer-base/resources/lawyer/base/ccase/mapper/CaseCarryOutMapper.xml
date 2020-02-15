@@ -19,7 +19,7 @@
 	<result column="judge" property="judge" jdbcType="VARCHAR"/>
 	<result column="judge_contact" property="judgeContact" jdbcType="VARCHAR"/>
 	<result column="actual_total" property="actualTotal" jdbcType="DECIMAL"/>
-	<result column="f_collection_subject" property="fCollectionSubject" jdbcType="VARCHAR"/>
+	<result column="f_collection_subject" property="fcollectionSubject" jdbcType="VARCHAR"/>
 	<result column="remark" property="remark" jdbcType="VARCHAR"/>
 	
 	<result column="litigant" property="litigant" jdbcType="VARCHAR"/>
@@ -27,6 +27,8 @@
     <result column="defendant_reg_capital" property="defendantRegCapital" jdbcType="VARCHAR"/>
     <result column="defendant_area" property="defendantArea" jdbcType="VARCHAR"/>
     <result column="del_flag" property="delFlag" jdbcType="VARCHAR"/>
+    
+     <result column="lawyer_name" property="lawyerName" jdbcType="VARCHAR"/>
 </resultMap>
        
 <!-- case_carry_out table all fields -->
@@ -90,8 +92,8 @@
 	    and actual_total =  #{actualTotal}
 	</if>
 	<!--  -->
-		 	<if test="fCollectionSubject != null and fCollectionSubject != ''" >
-	    and f_collection_subject =  #{fCollectionSubject}
+		 	<if test="fcollectionSubject != null and fcollectionSubject != ''" >
+	    and f_collection_subject =  #{fcollectionSubject}
 	</if>
 	<!--  -->
 		 	<if test="remark != null and remark != ''" >
@@ -106,12 +108,12 @@
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
   insert into case_carry_out(status,org,created_by,created_time,updated_by,updated_time,case_id,lawyer,app_date,app_total,judge,judge_contact,actual_total,f_collection_subject,remark)
- values(#{status,jdbcType=INTEGER},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{caseId,jdbcType=INTEGER},#{lawyer,jdbcType=VARCHAR},#{appDate,jdbcType=DATE},#{appTotal,jdbcType=DECIMAL},#{judge,jdbcType=VARCHAR},#{judgeContact,jdbcType=VARCHAR},#{actualTotal,jdbcType=DECIMAL},#{fCollectionSubject,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR})
+ values(#{status,jdbcType=INTEGER},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{caseId,jdbcType=INTEGER},#{lawyer,jdbcType=VARCHAR},#{appDate,jdbcType=DATE},#{appTotal,jdbcType=DECIMAL},#{judge,jdbcType=VARCHAR},#{judgeContact,jdbcType=VARCHAR},#{actualTotal,jdbcType=DECIMAL},#{fcollectionSubject,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR})
 </insert>
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update case_carry_out set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},case_id=#{caseId,jdbcType=INTEGER},lawyer=#{lawyer,jdbcType=VARCHAR},app_date=#{appDate,jdbcType=DATE},app_total=#{appTotal,jdbcType=DECIMAL},judge=#{judge,jdbcType=VARCHAR},judge_contact=#{judgeContact,jdbcType=VARCHAR},actual_total=#{actualTotal,jdbcType=DECIMAL},f_collection_subject=#{fCollectionSubject,jdbcType=VARCHAR},remark=#{remark,jdbcType=VARCHAR} where case_id=#{caseId,jdbcType=INTEGER}
+  update case_carry_out set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},case_id=#{caseId,jdbcType=INTEGER},lawyer=#{lawyer,jdbcType=VARCHAR},app_date=#{appDate,jdbcType=DATE},app_total=#{appTotal,jdbcType=DECIMAL},judge=#{judge,jdbcType=VARCHAR},judge_contact=#{judgeContact,jdbcType=VARCHAR},actual_total=#{actualTotal,jdbcType=DECIMAL},f_collection_subject=#{fcollectionSubject,jdbcType=VARCHAR},remark=#{remark,jdbcType=VARCHAR} where case_id=#{caseId,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -151,8 +153,8 @@
 	<if test="actualTotal != null  ">
 		actual_total=#{actualTotal,jdbcType=DECIMAL},
 	</if>
-	<if test="fCollectionSubject != null  ">
-		f_collection_subject=#{fCollectionSubject,jdbcType=VARCHAR},
+	<if test="fcollectionSubject != null  ">
+		f_collection_subject=#{fcollectionSubject,jdbcType=VARCHAR},
 	</if>
 	<if test="remark != null  ">
 		remark=#{remark,jdbcType=VARCHAR},
@@ -173,6 +175,7 @@
 <!-- 根据id查询 案件执行阶段信息 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
 	select <include refid="Base_Column_List" /> 
+	,(select name from sys_user_ext sut where sut.uid=case_carry_out.lawyer) as lawyer_name 
 	 from (select ap.*,inf.litigant,inf.defendant_name,inf.defendant_reg_capital,inf.defendant_area,inf.del_flag from case_carry_out ap, case_info inf where ap.case_id=inf.id) as case_carry_out where case_id=#{caseId,jdbcType=INTEGER}
 </select>
 
@@ -184,9 +187,8 @@
   	
 <!-- 查询案件执行阶段信息列表 -->
 <select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
-
-	select 
-	<include refid="Base_Column_List"/>
+	select <include refid="Base_Column_List"/>
+	,(select name from sys_user_ext sut where sut.uid=case_carry_out.lawyer) as lawyer_name 
 	from (select ap.*,inf.litigant,inf.defendant_name,inf.defendant_reg_capital,inf.defendant_area,inf.del_flag from case_carry_out ap, case_info inf where ap.case_id=inf.id) as case_carry_out 
 	<include refid="Example_Where_Clause"/>
 	

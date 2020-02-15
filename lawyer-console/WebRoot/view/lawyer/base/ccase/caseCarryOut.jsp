@@ -24,11 +24,11 @@
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="Basic window" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="执行信息记录表" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
      	<form id="editForm" class="ui-form" method="post">  
-     		 <input class="hidden" name="id">
+     		 <input class="hidden" name="caseId">
      		 <div class="ui-edit">
-		     	   <div class="ftitle">案件执行阶段信息</div>
+		     	   <!-- <div class="ftitle">案件执行阶段信息</div>
 					<div class="fitem">
 						<label>状态</label>
 						<input name="status" type="text" maxlength="11" class="easyui-numberbox" data-options="" missingMessage="请填写状态">
@@ -56,10 +56,28 @@
 					<div class="fitem">
 						<label>案件序号</label>
 						<input name="caseId" type="text" maxlength="11" class="easyui-numberbox" data-options="required:true" missingMessage="请填写案件序号">
+					</div> -->
+					<div class="fitem">
+						<label>当事人</label>
+						<input name="litigant" type="text" maxlength="128" class="easyui-validatebox" readonly="true" data-options="" missingMessage="请填写当事人">
 					</div>
 					<div class="fitem">
+						<label>被告名称(全程)</label>
+						<input name="defendantName" type="text" maxlength="1024" class="easyui-validatebox" readonly="true" data-options="" missingMessage="请填写被告名称">
+					</div>
+					<div class="fitem">
+						<label>被告注册资本</label>
+						<input name="defendantRegCapital" type="text" maxlength="32" class="easyui-validatebox" readonly="true" data-options="" missingMessage="请填写被告注册资本">
+					</div>
+					<div class="fitem">
+						<label>被告所在地</label>
+						<textarea name="defendantArea" type="text" maxlength="1024" class="easyui-validatebox" readonly="true" data-options="" missingMessage="请填写被告所在地"></textarea>
+					</div>
+					
+					<div class="fitem">
 						<label>执行主办律师</label>
-						<input name="lawyer" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写执行主办律师">
+						<!-- <input name="lawyer" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写执行主办律师"> -->
+						<input class="easyui-combobox" name="lawyer" data-options="required:true,valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写执行主办律师">
 					</div>
 					<div class="fitem">
 						<label>执行申请日期</label>
@@ -83,11 +101,11 @@
 					</div>
 					<div class="fitem">
 						<label>首位收款主体</label>
-						<input name="fCollectionSubject" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写首位收款主体">
+						<textarea name="fcollectionSubject" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写首位收款主体"></textarea>
 					</div>
 					<div class="fitem">
 						<label>备注</label>
-						<input name="remark" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写备注">
+						<textarea name="remark" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写备注"></textarea>
 					</div>
   			</div>
      	</form>

@@ -132,7 +132,6 @@ otter.sysMenu = function(){
 					{field:'rank',title:'序号',align:'right',width:80,sortable:true},
 					{field:'url',title:'URL',width:220,sortable:true},
 					{field:'createTime',title:'创建时间',width:120,sortable:true,formatter:function(value,row,index){
-						console.log(row.createTime);
 						return row.createTime;
 					}},
 					{field:'updateTime',title:'修改时间',width:120,sortable:true},

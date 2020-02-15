@@ -59,14 +59,35 @@ otter.caseSecondInstance = function(){
 								return row.caseId;
 							}
 						},*/
+					{field:'litigant',title:'当事人',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.litigant;
+						}
+					},
+				{field:'defendant_name',title:'被告名称',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.defendantName;
+						}
+					},
+				{field:'defendant_reg_capital',title:'被告注册资本',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.defendantRegCapital;
+						}
+					},
+				{field:'defendant_area',title:'被告所在地',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.defendantArea;
+						}
+					},
+					
 					{field:'lawyer',title:'二审主办律师',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.lawyer;
+								return row.lawyerName;
 							}
 						},
 					{field:'s_court_date',title:'二审开庭日期',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.sCourtDate;
+								return row.scourtDate;
 							}
 						},
 					{field:'judge',title:'主办法官',align:'center',sortable:true,
@@ -81,12 +102,18 @@ otter.caseSecondInstance = function(){
 						},
 					{field:'s_judgment_effective_date',title:'二审判决生效日期',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.sJudgmentEffectiveDate;
+								return row.sjudgmentEffectiveDate;
 							}
 						},
-					{field:'is_apology',title:'是否致歉',align:'center',sortable:true,
+					{field:'isApology',title:'是否致歉',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.isApology;
+				          		if(value == 1){
+									return "已致歉";
+								}
+								if(value == 2){
+									return "未致歉";
+								}
+								return "";
 							}
 						},
 					{field:'defendant_compensation_total',title:'一审被告赔偿总额',align:'center',sortable:true,
@@ -109,9 +136,15 @@ otter.caseSecondInstance = function(){
 								return row.defendantCosts;
 							}
 						},
-					{field:'is_close',title:'是否结案',align:'center',sortable:true,
+					{field:'isClose',title:'是否结案',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.isClose;
+						   		if(value == 1){
+									return "已结案";
+								}
+								if(value == 2){
+									return "未结案";
+								}
+								return "";
 							}
 						},
 					{field:'execution_deadline',title:'执行截止日期',align:'center',sortable:true,

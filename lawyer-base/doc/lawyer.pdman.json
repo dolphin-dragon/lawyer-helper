@@ -712,7 +712,7 @@
             },
             {
               "name": "S_JUDGMENT_EFFECTIVE_DATE",
-              "type": "DefaultString",
+              "type": "Date",
               "remark": "",
               "chnname": "二审判决生效日期"
             },

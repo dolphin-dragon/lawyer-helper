@@ -59,9 +59,30 @@ otter.caseCarryOut = function(){
 								return row.caseId;
 							}
 						},*/
+					{field:'litigant',title:'当事人',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.litigant;
+						}
+					},
+				{field:'defendant_name',title:'被告名称',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.defendantName;
+						}
+					},
+				{field:'defendant_reg_capital',title:'被告注册资本',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.defendantRegCapital;
+						}
+					},
+				{field:'defendant_area',title:'被告所在地',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.defendantArea;
+						}
+					},
+					
 					{field:'lawyer',title:'执行主办律师',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.lawyer;
+								return row.lawyerName;
 							}
 						},
 					{field:'app_date',title:'执行申请日期',align:'center',sortable:true,
@@ -91,7 +112,7 @@ otter.caseCarryOut = function(){
 						},
 					{field:'f_collection_subject',title:'首位收款主体',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.fCollectionSubject;
+								return row.fcollectionSubject;
 							}
 						},
 					{field:'remark',title:'备注',align:'center',sortable:true,

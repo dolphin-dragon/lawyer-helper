@@ -59,6 +59,27 @@ otter.caseFirstInstance = function(){
 								return row.caseId;
 							}
 						},*/
+					{field:'litigant',title:'当事人',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.litigant;
+						}
+					},
+				{field:'defendant_name',title:'被告名称',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.defendantName;
+						}
+					},
+				{field:'defendant_reg_capital',title:'被告注册资本',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.defendantRegCapital;
+						}
+					},
+				{field:'defendant_area',title:'被告所在地',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.defendantArea;
+						}
+					},
+					
 					{field:'firstor',title:'第一责任人',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.firstor;
@@ -66,7 +87,7 @@ otter.caseFirstInstance = function(){
 						},
 					{field:'lawyer',title:'一审主办律师',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.lawyer;
+								return row.lawyerName;
 							}
 						},
 					{field:'submit_date',title:'提交立案材料日期',align:'center',sortable:true,
@@ -116,22 +137,28 @@ otter.caseFirstInstance = function(){
 						},
 					{field:'f_court_date',title:'一审开庭日期',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.fCourtDate;
+								return row.fcourtDate;
 							}
 						},
 					{field:'f_verdict_date',title:'一审判决书落款日期',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.fVerdictDate;
+								return row.fverdictDate;
 							}
 						},
 					{field:'f_verdict_receive_date',title:'一审判决书收到日期',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.fVerdictReceiveDate;
+								return row.fverdictReceiveDate;
 							}
 						},
-					{field:'is_apology',title:'是否致歉',align:'center',sortable:true,
+					{field:'isApology',title:'是否致歉',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.isApology;
+	                       		if(value == 1){
+									return "已致歉";
+								}
+								if(value == 2){
+									return "未致歉";
+								}
+								return "";
 							}
 						},
 					{field:'defendant_compensation_total',title:'被告赔偿总额',align:'center',sortable:true,
@@ -154,9 +181,15 @@ otter.caseFirstInstance = function(){
 								return row.defendantCosts;
 							}
 						},
-					{field:'is_close',title:'是否结案',align:'center',sortable:true,
+					{field:'isClose',title:'是否结案',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.isClose;
+						   		if(value == 1){
+									return "已结案";
+								}
+								if(value == 2){
+									return "未结案";
+								}
+								return "";
 							}
 						},
 					{field:'appeal_date',title:'上诉截止日期',align:'center',sortable:true,

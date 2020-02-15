@@ -1,13 +1,12 @@
 package lawyer.base.ccase.entity;
 
-import com.base.entity.BaseEntity;
 /**
  * <b>功能：</b>CaseApplyEntity<br>
  * <b>作者：</b>dragon<br>
  * <b>日期：</b> 2020-02-12 <br>
  * <b>版权所有：<b>lawyer-helper版权所有(C) 2018，www.lawyer-helper.com<br>
  */
-public class CaseApply extends BaseEntity {
+public class CaseApply extends CaseInfo {
 	private java.lang.Integer status;//   状态	private java.lang.String org;//   机构编码	private java.lang.String createdBy;//   创建人	private java.util.Date createdTime;//   创建时间	private java.lang.String updatedBy;//   更新人	private java.util.Date updatedTime;//   更新时间	private java.lang.Integer caseId;//   案件序号	private java.lang.String src;//   案件来源	private java.lang.String supply;//   案源人	private java.util.Date applyDate;//   申请公证日期	private java.lang.String applicant;//   公证书申请人	private java.lang.String forensics;//   取证人	private java.lang.String violateType;//   侵权类型	private java.lang.String violateDesc;//   侵权概况	private java.util.Date actionDate;//   案件可诉确认日期	private java.util.Date litigantAcDate;//   当事人确认日期
 	
 	private java.lang.String litigant;//   当事人

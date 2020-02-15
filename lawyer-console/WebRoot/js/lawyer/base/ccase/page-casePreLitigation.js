@@ -59,6 +59,27 @@ otter.casePreLitigation = function(){
 								return row.caseId;
 							}
 						},*/
+					{field:'litigant',title:'当事人',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.litigant;
+						}
+					},
+				{field:'defendant_name',title:'被告名称',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.defendantName;
+						}
+					},
+				{field:'defendant_reg_capital',title:'被告注册资本',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.defendantRegCapital;
+						}
+					},
+				{field:'defendant_area',title:'被告所在地',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.defendantArea;
+						}
+					},
+					
 					{field:'letter',title:'律师函编号',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.letter;
@@ -66,7 +87,7 @@ otter.casePreLitigation = function(){
 						},
 					{field:'letteror',title:'律师函主办人',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.letteror;
+								return row.letterorName;
 							}
 						},
 					{field:'send_date',title:'律师函发送日期',align:'center',sortable:true,
@@ -79,9 +100,15 @@ otter.casePreLitigation = function(){
 								return row.deliveryDate;
 							}
 						},
-					{field:'is_close',title:'是否结案',align:'center',sortable:true,
+					{field:'isClose',title:'是否结案',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.isClose;
+						   		if(value == 1){
+									return "已结案";
+								}
+								if(value == 2){
+									return "未结案";
+								}
+								return "";
 							}
 						},
 					{field:'remark',title:'备注',align:'center',sortable:true,

@@ -24,9 +24,9 @@
 	<result column="adjudication_court" property="adjudicationCourt" jdbcType="VARCHAR"/>
 	<result column="judge" property="judge" jdbcType="VARCHAR"/>
 	<result column="judge_contact" property="judgeContact" jdbcType="VARCHAR"/>
-	<result column="f_court_date" property="fCourtDate" jdbcType="DATE"/>
-	<result column="f_verdict_date" property="fVerdictDate" jdbcType="DATE"/>
-	<result column="f_verdict_receive_date" property="fVerdictReceiveDate" jdbcType="DATE"/>
+	<result column="f_court_date" property="fcourtDate" jdbcType="DATE"/>
+	<result column="f_verdict_date" property="fverdictDate" jdbcType="DATE"/>
+	<result column="f_verdict_receive_date" property="fverdictReceiveDate" jdbcType="DATE"/>
 	<result column="is_apology" property="isApology" jdbcType="VARCHAR"/>
 	<result column="defendant_compensation_total" property="defendantCompensationTotal" jdbcType="DECIMAL"/>
 	<result column="defendant_expenses" property="defendantExpenses" jdbcType="DECIMAL"/>
@@ -41,6 +41,8 @@
     <result column="defendant_reg_capital" property="defendantRegCapital" jdbcType="VARCHAR"/>
     <result column="defendant_area" property="defendantArea" jdbcType="VARCHAR"/>
     <result column="del_flag" property="delFlag" jdbcType="VARCHAR"/>
+    
+    <result column="lawyer_name" property="lawyerName" jdbcType="VARCHAR"/>
 </resultMap>
        
 <!-- case_first_instance table all fields -->
@@ -124,16 +126,16 @@
 	    and judge_contact =  #{judgeContact}
 	</if>
 	<!--  -->
-		<if test="fCourtDate != null" >
-	    and f_court_date =  #{fCourtDate}
+		<if test="fcourtDate != null" >
+	    and f_court_date =  #{fcourtDate}
 	</if>
 	<!--  -->
-		<if test="fVerdictDate != null" >
-	    and f_verdict_date =  #{fVerdictDate}
+		<if test="fverdictDate != null" >
+	    and f_verdict_date =  #{fverdictDate}
 	</if>
 	<!--  -->
-		<if test="fVerdictReceiveDate != null" >
-	    and f_verdict_receive_date =  #{fVerdictReceiveDate}
+		<if test="fverdictReceiveDate != null" >
+	    and f_verdict_receive_date =  #{fverdictReceiveDate}
 	</if>
 	<!--  -->
 		 	<if test="isApology != null and isApology != ''" >
@@ -176,12 +178,12 @@
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
   insert into case_first_instance(status,org,created_by,created_time,updated_by,updated_time,case_id,firstor,lawyer,submit_date,establish_date,litigation_costs,announcement_costs,notary_costs,other_costs,adjudication_court,judge,judge_contact,f_court_date,f_verdict_date,f_verdict_receive_date,is_apology,defendant_compensation_total,defendant_expenses,plaintiff_costs,defendant_costs,is_close,appeal_date,remark)
- values(#{status,jdbcType=INTEGER},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{caseId,jdbcType=INTEGER},#{firstor,jdbcType=VARCHAR},#{lawyer,jdbcType=VARCHAR},#{submitDate,jdbcType=DATE},#{establishDate,jdbcType=DATE},#{litigationCosts,jdbcType=DECIMAL},#{announcementCosts,jdbcType=DECIMAL},#{notaryCosts,jdbcType=DECIMAL},#{otherCosts,jdbcType=DECIMAL},#{adjudicationCourt,jdbcType=VARCHAR},#{judge,jdbcType=VARCHAR},#{judgeContact,jdbcType=VARCHAR},#{fCourtDate,jdbcType=DATE},#{fVerdictDate,jdbcType=DATE},#{fVerdictReceiveDate,jdbcType=DATE},#{isApology,jdbcType=VARCHAR},#{defendantCompensationTotal,jdbcType=DECIMAL},#{defendantExpenses,jdbcType=DECIMAL},#{plaintiffCosts,jdbcType=DECIMAL},#{defendantCosts,jdbcType=DECIMAL},#{isClose,jdbcType=VARCHAR},#{appealDate,jdbcType=DATE},#{remark,jdbcType=VARCHAR})
+ values(#{status,jdbcType=INTEGER},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{caseId,jdbcType=INTEGER},#{firstor,jdbcType=VARCHAR},#{lawyer,jdbcType=VARCHAR},#{submitDate,jdbcType=DATE},#{establishDate,jdbcType=DATE},#{litigationCosts,jdbcType=DECIMAL},#{announcementCosts,jdbcType=DECIMAL},#{notaryCosts,jdbcType=DECIMAL},#{otherCosts,jdbcType=DECIMAL},#{adjudicationCourt,jdbcType=VARCHAR},#{judge,jdbcType=VARCHAR},#{judgeContact,jdbcType=VARCHAR},#{fcourtDate,jdbcType=DATE},#{fverdictDate,jdbcType=DATE},#{fverdictReceiveDate,jdbcType=DATE},#{isApology,jdbcType=VARCHAR},#{defendantCompensationTotal,jdbcType=DECIMAL},#{defendantExpenses,jdbcType=DECIMAL},#{plaintiffCosts,jdbcType=DECIMAL},#{defendantCosts,jdbcType=DECIMAL},#{isClose,jdbcType=VARCHAR},#{appealDate,jdbcType=DATE},#{remark,jdbcType=VARCHAR})
 </insert>
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update case_first_instance set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},case_id=#{caseId,jdbcType=INTEGER},firstor=#{firstor,jdbcType=VARCHAR},lawyer=#{lawyer,jdbcType=VARCHAR},submit_date=#{submitDate,jdbcType=DATE},establish_date=#{establishDate,jdbcType=DATE},litigation_costs=#{litigationCosts,jdbcType=DECIMAL},announcement_costs=#{announcementCosts,jdbcType=DECIMAL},notary_costs=#{notaryCosts,jdbcType=DECIMAL},other_costs=#{otherCosts,jdbcType=DECIMAL},adjudication_court=#{adjudicationCourt,jdbcType=VARCHAR},judge=#{judge,jdbcType=VARCHAR},judge_contact=#{judgeContact,jdbcType=VARCHAR},f_court_date=#{fCourtDate,jdbcType=DATE},f_verdict_date=#{fVerdictDate,jdbcType=DATE},f_verdict_receive_date=#{fVerdictReceiveDate,jdbcType=DATE},is_apology=#{isApology,jdbcType=VARCHAR},defendant_compensation_total=#{defendantCompensationTotal,jdbcType=DECIMAL},defendant_expenses=#{defendantExpenses,jdbcType=DECIMAL},plaintiff_costs=#{plaintiffCosts,jdbcType=DECIMAL},defendant_costs=#{defendantCosts,jdbcType=DECIMAL},is_close=#{isClose,jdbcType=VARCHAR},appeal_date=#{appealDate,jdbcType=DATE},remark=#{remark,jdbcType=VARCHAR} where case_id=#{caseId,jdbcType=INTEGER}
+  update case_first_instance set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},case_id=#{caseId,jdbcType=INTEGER},firstor=#{firstor,jdbcType=VARCHAR},lawyer=#{lawyer,jdbcType=VARCHAR},submit_date=#{submitDate,jdbcType=DATE},establish_date=#{establishDate,jdbcType=DATE},litigation_costs=#{litigationCosts,jdbcType=DECIMAL},announcement_costs=#{announcementCosts,jdbcType=DECIMAL},notary_costs=#{notaryCosts,jdbcType=DECIMAL},other_costs=#{otherCosts,jdbcType=DECIMAL},adjudication_court=#{adjudicationCourt,jdbcType=VARCHAR},judge=#{judge,jdbcType=VARCHAR},judge_contact=#{judgeContact,jdbcType=VARCHAR},f_court_date=#{fcourtDate,jdbcType=DATE},f_verdict_date=#{fverdictDate,jdbcType=DATE},f_verdict_receive_date=#{fverdictReceiveDate,jdbcType=DATE},is_apology=#{isApology,jdbcType=VARCHAR},defendant_compensation_total=#{defendantCompensationTotal,jdbcType=DECIMAL},defendant_expenses=#{defendantExpenses,jdbcType=DECIMAL},plaintiff_costs=#{plaintiffCosts,jdbcType=DECIMAL},defendant_costs=#{defendantCosts,jdbcType=DECIMAL},is_close=#{isClose,jdbcType=VARCHAR},appeal_date=#{appealDate,jdbcType=DATE},remark=#{remark,jdbcType=VARCHAR} where case_id=#{caseId,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -236,14 +238,14 @@
 	<if test="judgeContact != null  ">
 		judge_contact=#{judgeContact,jdbcType=VARCHAR},
 	</if>
-	<if test="fCourtDate != null  ">
-		f_court_date=#{fCourtDate,jdbcType=DATE},
+	<if test="fcourtDate != null  ">
+		f_court_date=#{fcourtDate,jdbcType=DATE},
 	</if>
-	<if test="fVerdictDate != null  ">
-		f_verdict_date=#{fVerdictDate,jdbcType=DATE},
+	<if test="fverdictDate != null  ">
+		f_verdict_date=#{fverdictDate,jdbcType=DATE},
 	</if>
-	<if test="fVerdictReceiveDate != null  ">
-		f_verdict_receive_date=#{fVerdictReceiveDate,jdbcType=DATE},
+	<if test="fverdictReceiveDate != null  ">
+		f_verdict_receive_date=#{fverdictReceiveDate,jdbcType=DATE},
 	</if>
 	<if test="isApology != null  ">
 		is_apology=#{isApology,jdbcType=VARCHAR},
@@ -285,6 +287,7 @@
 <!-- 根据id查询 案件一审阶段信息 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
 	select <include refid="Base_Column_List" /> 
+	,(select name from sys_user_ext sut where sut.uid=case_first_instance.lawyer) as lawyer_name 
 	 from (select ap.*,inf.litigant,inf.defendant_name,inf.defendant_reg_capital,inf.defendant_area,inf.del_flag from case_first_instance ap, case_info inf where ap.case_id=inf.id) as case_first_instance where case_id=#{caseId,jdbcType=INTEGER}
 </select>
 
@@ -296,9 +299,8 @@
   	
 <!-- 查询案件一审阶段信息列表 -->
 <select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
-
-	select 
-	<include refid="Base_Column_List"/>
+	select <include refid="Base_Column_List"/>
+	,(select name from sys_user_ext sut where sut.uid=case_first_instance.lawyer) as lawyer_name 
 	from (select ap.*,inf.litigant,inf.defendant_name,inf.defendant_reg_capital,inf.defendant_area,inf.del_flag from case_first_instance ap, case_info inf where ap.case_id=inf.id) as case_first_instance 
 	<include refid="Example_Where_Clause"/>
 	
