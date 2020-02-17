@@ -62,7 +62,7 @@
 						<input name="litigant" type="text" maxlength="128" class="easyui-validatebox" data-options="" missingMessage="请填写当事人">
 					</div>
 					<div class="fitem">
-						<label>被告名称(全程)</label>
+						<label>被告名称(全称)</label>
 						<input name="defendantName" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写被告名称">
 					</div>
 					<div class="fitem">
@@ -114,7 +114,7 @@
 					</div>
 					<div class="fitem">
 						<label>侵权概况</label>
-						<textarea name="violateDesc" type="text" maxlength="3072" class="easyui-validatebox" data-options="" missingMessage="请填写侵权概况"></textarea>
+						<textarea name="violateDesc" type="text" maxlength="3072" placeholder="请填写线上侵权链接数量、图片数量及线下侵权图片数量、载体。" class="easyui-validatebox" data-options="" missingMessage="请填写侵权概况"></textarea>
 					</div>
 					<div class="fitem">
 						<label>案件可诉确认日期</label>

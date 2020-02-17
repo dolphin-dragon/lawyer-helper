@@ -62,7 +62,7 @@
 						<input name="litigant" type="text" maxlength="128" class="easyui-validatebox" readonly="true" data-options="" missingMessage="请填写当事人">
 					</div>
 					<div class="fitem">
-						<label>被告名称(全程)</label>
+						<label>被告名称(全称)</label>
 						<input name="defendantName" type="text" maxlength="1024" class="easyui-validatebox" readonly="true" data-options="" missingMessage="请填写被告名称">
 					</div>
 					<div class="fitem">
