@@ -122,9 +122,9 @@
 					</div>
 					<div class="fitem">
 						<div>
-							<label>上传案件可诉确认截图</label> 
+							<label>案件可诉确认截图</label> 
 							<input name="actionImg" type="text" id="actionImg" style="width: 150px;" readonly=true /> 
-							<input type="button" id="uploadActionImgButton" value="上传案件可诉确认截图" />
+							<input type="button" id="uploadActionImgButton" value="上传截图" />
 						</div>
 					</div>
 				    <div class="fitem">
@@ -133,9 +133,9 @@
 					</div>
 					<div class="fitem">
                         <div>
-                            <label>上传当事人确认截图</label> 
+                            <label>当事人确认截图</label> 
                             <input name="litigantAcImg" type="text" id="litigantAcImg" style="width: 150px;" readonly=true /> 
-                            <input type="button" id="uploadLitigantAcImgButton" value="上传当事人确认截图" />
+                            <input type="button" id="uploadLitigantAcImgButton" value="上传截图" />
                         </div>
                     </div>
   			</div>
