@@ -24,7 +24,7 @@
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="案件确立阶段信息" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:460px;">  
+     <div id="edit-win" class="easyui-dialog" title="案件确立信息登记表" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:460px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="caseId">
      		 <div class="ui-edit">
@@ -71,7 +71,7 @@
 					</div>
 					<div class="fitem">
 						<label>被告所在地</label>
-						<textarea name="defendantArea" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写被告所在地"></textarea>
+						<textarea name="defendantArea" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写被告所在地" style="margin: 0px; width: 150px; height: 60px;"></textarea>
 					</div>
 					<div class="fitem">
 						<label>案件来源</label>
@@ -114,19 +114,56 @@
 					</div>
 					<div class="fitem">
 						<label>侵权概况</label>
-						<textarea name="violateDesc" type="text" maxlength="3072" placeholder="请填写线上侵权链接数量、图片数量及线下侵权图片数量、载体。" class="easyui-validatebox" data-options="" missingMessage="请填写侵权概况"></textarea>
+						<textarea name="violateDesc" type="text" maxlength="3072" placeholder="请填写线上侵权链接数量、图片数量及线下侵权图片数量、载体。" class="easyui-validatebox" data-options="" missingMessage="请填写侵权概况" style="margin: 0px; width: 150px; height: 60px;"></textarea>
 					</div>
 					<div class="fitem">
 						<label>案件可诉确认日期</label>
 						<input name="actionDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写案件可诉确认日期">
 					</div>
 					<div class="fitem">
+						<div>
+							<label>上传案件可诉确认截图</label> 
+							<input name="actionImg" type="text" id="actionImg" style="width: 150px;" readonly=true /> 
+							<input type="button" id="uploadActionImgButton" value="上传案件可诉确认截图" />
+						</div>
+					</div>
+				    <div class="fitem">
 						<label>当事人确认日期</label>
 						<input name="litigantAcDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写当事人确认日期">
 					</div>
+					<div class="fitem">
+                        <div>
+                            <label>上传当事人确认截图</label> 
+                            <input name="litigantAcImg" type="text" id="litigantAcImg" style="width: 150px;" readonly=true /> 
+                            <input type="button" id="uploadLitigantAcImgButton" value="上传当事人确认截图" />
+                        </div>
+                    </div>
   			</div>
      	</form>
   	 </div>
   	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-caseApply.js"></script>
-  </body>
+
+  	 <script type="text/javascript" src="<%=basePath%>/js/commons/upload/ajaxfileupload.js"></script>
+     <script type="text/javascript" src="<%=basePath%>/js/commons/upload/commonfileupload.js"></script> 
+     <script type="text/javascript" src="<%=basePath%>/js/commons/upload/dgfileupload.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("#uploadActionImgButton").click(function() {
+				commonAjaxFileUploadDG(function(data) {
+					//data.url data.path
+					console.log(data)
+					$("#actionImg").val(data.url)
+				})
+			});
+
+			$("#uploadLitigantAcImgButton").click(function() {
+				commonAjaxFileUploadDG(function(data) {
+					//data.url data.path
+					console.log(data)
+					$("#litigantAcImg").val(data.url)
+				})
+			});
+		})
+	</script>
+</body>
 </html>

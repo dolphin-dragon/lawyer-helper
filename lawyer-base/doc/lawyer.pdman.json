@@ -228,10 +228,22 @@
               "chnname": "案件可诉确认日期"
             },
             {
+              "name": "ACTION_IMG",
+              "type": "MiddleString",
+              "remark": "",
+              "chnname": "案件可诉确认截图"
+            },
+            {
               "name": "LITIGANT_AC_DATE",
               "type": "Date",
               "remark": "",
               "chnname": "当事人确认日期"
+            },
+            {
+              "name": "LITIGANT_AC_IMG",
+              "type": "MiddleString",
+              "remark": "",
+              "chnname": "当事人确认截图"
             }
           ],
           "indexs": [],
@@ -274,6 +286,10 @@
             },
             {
               "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
               "relationNoShow": true
             }
           ],

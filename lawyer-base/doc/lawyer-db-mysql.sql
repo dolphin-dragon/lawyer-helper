@@ -157,7 +157,9 @@ create table case_apply(
     violate_type varchar(32)    comment '侵权类型' ,
     violate_desc varchar(3072)    comment '侵权概况' ,
     action_date date    comment '案件可诉确认日期' ,
+    action_img varchar(1024)    comment '案件可诉确认截图' ,
     litigant_ac_date date    comment '当事人确认日期' ,
+    litigant_ac_img varchar(1024)    comment '当事人确认截图' ,
     primary key (case_id)
 ) engine = innodb comment = '案件确立阶段信息记录表' default character set utf8 collate utf8_bin;
 
