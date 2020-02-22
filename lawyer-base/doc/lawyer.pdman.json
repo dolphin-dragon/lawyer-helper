@@ -244,6 +244,12 @@
               "type": "MiddleString",
               "remark": "",
               "chnname": "当事人确认截图"
+            },
+            {
+              "name": "IS_DIRECT_ACTION",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "当事人是否要求直接诉讼"
             }
           ],
           "indexs": [],
@@ -286,10 +292,6 @@
             },
             {
               "fieldName": "relationNoShow",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "uiHint",
               "relationNoShow": true
             }
           ],
@@ -373,6 +375,12 @@
               "type": "YesNo",
               "remark": "",
               "chnname": "是否结案"
+            },
+            {
+              "name": "IS_DIRECT_ACTION",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "是否诉讼"
             },
             {
               "name": "REMARK",
@@ -494,10 +502,28 @@
               "chnname": "提交立案材料日期"
             },
             {
+              "name": "IS_PRE_MEDIATION",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "是否诉前调解"
+            },
+            {
               "name": "ESTABLISH_DATE",
               "type": "Date",
               "remark": "",
               "chnname": "立案日期"
+            },
+            {
+              "name": "IS_ACTION_MEDIATION",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "是否诉中调解"
+            },
+            {
+              "name": "MEDIATION_DATE",
+              "type": "Date",
+              "remark": "",
+              "chnname": "调解书日期"
             },
             {
               "name": "LITIGATION_COSTS",
@@ -600,6 +626,24 @@
               "type": "Date",
               "remark": "",
               "chnname": "上诉截止日期"
+            },
+            {
+              "name": "IS_APPEAL",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "是否上诉"
+            },
+            {
+              "name": "APPELLANT",
+              "type": "MiddleString",
+              "remark": "",
+              "chnname": "上诉人"
+            },
+            {
+              "name": "IS_CARRY_OUT",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "是否需要执行"
             },
             {
               "name": "REMARK",
@@ -775,6 +819,12 @@
               "chnname": "执行截止日期"
             },
             {
+              "name": "IS_CARRY_OUT",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "是否需要执行"
+            },
+            {
               "name": "REMARK",
               "type": "MiddleString",
               "remark": "",
@@ -907,6 +957,12 @@
               "chnname": "联系方式"
             },
             {
+              "name": "IS_RECONCILE",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "是否执行和解"
+            },
+            {
               "name": "ACTUAL_TOTAL",
               "type": "Money",
               "remark": "",
@@ -917,6 +973,12 @@
               "type": "MiddleString",
               "remark": "",
               "chnname": "首位收款主体"
+            },
+            {
+              "name": "IS_CLOSE",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "是否结案"
             },
             {
               "name": "REMARK",

@@ -138,6 +138,13 @@
                             <input type="button" id="uploadLitigantAcImgButton" value="上传截图" />
                         </div>
                     </div>
+                    <div class="fitem">
+						<label>当事人是否要求直接诉讼</label>
+						<select class="easyui-combobox" name="isDirectAction" data-options="" missingMessage="当事人是否要求直接诉讼">
+                    		<option value="1">直接诉讼</option>
+                    		<option value="2" selected="selected">不直接诉讼</option>
+                   		</select>
+					</div>
   			</div>
      	</form>
   	 </div>

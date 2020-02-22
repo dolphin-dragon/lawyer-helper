@@ -88,8 +88,26 @@
 						<input name="submitDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写提交立案材料日期">
 					</div>
 					<div class="fitem">
+						<label>是否诉前调解</label>
+						<select class="easyui-combobox" name="isPreMediation" data-options="required:true" missingMessage="请填写是否诉前调解">
+                    		<option value="1">诉前调解</option>
+                    		<option value="2" selected="selected">不调解</option>
+                   		</select>
+					</div>
+					<div class="fitem">
 						<label>立案日期</label>
 						<input name="establishDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写立案日期">
+					</div>
+					<div class="fitem">
+						<label>是否诉中调解</label>
+						<select class="easyui-combobox" name="isActionMediation" data-options="required:true" missingMessage="请填写是否诉中调解">
+                    		<option value="1">诉中调解</option>
+                    		<option value="2" selected="selected">不调解</option>
+                   		</select>
+					</div>
+					<div class="fitem">
+						<label>调解书日期</label>
+						<input name="mediationDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写调解书日期">
 					</div>
 					<div class="fitem">
 						<label>诉讼费用</label>
@@ -166,6 +184,24 @@
 					<div class="fitem">
 						<label>上诉截止日期</label>
 						<input name="appealDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写上诉截止日期">
+					</div>
+					<div class="fitem">
+						<label>是否上诉</label>
+						<select class="easyui-combobox" name="isAppeal" data-options="required:true" missingMessage="请填写是否上诉">
+                    		<option value="1">要上诉</option>
+                    		<option value="2" selected="selected">不上诉</option>
+                   		</select>
+					</div>
+					<div class="fitem">
+						<label>上诉人</label>
+						<input name="appellant" type="text" maxlength="1024" class="easyui-validatebox" readonly="true" data-options="" missingMessage="请填写上诉人">
+					</div>
+					<div class="fitem">
+						<label>是否需要执行</label>
+						<select class="easyui-combobox" name="isCarryOut" data-options="required:true" missingMessage="请填写是否需要执行">
+                    		<option value="1">需要执行</option>
+                    		<option value="2" selected="selected">不需要执行</option>
+                   		</select>
 					</div>
 					<div class="fitem">
 						<label>备注</label>

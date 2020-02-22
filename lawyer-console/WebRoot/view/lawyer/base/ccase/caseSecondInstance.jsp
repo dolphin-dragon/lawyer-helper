@@ -132,6 +132,13 @@
 						<input name="executionDeadline" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写执行截止日期">
 					</div>
 					<div class="fitem">
+						<label>是否需要执行</label>
+						<select class="easyui-combobox" name="isCarryOut" data-options="required:true" missingMessage="是否需要执行">
+                    		<option value="1">需要</option>
+                    		<option value="2" selected="selected">不需要</option>
+                   		</select>
+					</div>
+					<div class="fitem">
 						<label>备注</label>
 						<textarea name="remark" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写备注"></textarea>
 					</div>

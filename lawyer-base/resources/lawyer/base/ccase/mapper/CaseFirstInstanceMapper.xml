@@ -35,6 +35,12 @@
 	<result column="is_close" property="isClose" jdbcType="VARCHAR"/>
 	<result column="appeal_date" property="appealDate" jdbcType="DATE"/>
 	<result column="remark" property="remark" jdbcType="VARCHAR"/>
+	<result column="is_pre_mediation" property="isPreMediation" jdbcType="VARCHAR"/>
+	<result column="is_action_mediation" property="isActionMediation" jdbcType="VARCHAR"/>
+	<result column="mediation_date" property="mediationDate" jdbcType="DATE"/>
+	<result column="is_appeal" property="isAppeal" jdbcType="VARCHAR"/>
+	<result column="appellant" property="appellant" jdbcType="VARCHAR"/>
+	<result column="is_carry_out" property="isCarryOut" jdbcType="VARCHAR"/>
 	
 	<result column="litigant" property="litigant" jdbcType="VARCHAR"/>
     <result column="defendant_name" property="defendantName" jdbcType="VARCHAR"/>
@@ -47,7 +53,7 @@
        
 <!-- case_first_instance table all fields -->
 <sql id="Base_Column_List" >
-	 status,org,created_by,created_time,updated_by,updated_time,case_id,firstor,lawyer,submit_date,establish_date,litigation_costs,announcement_costs,notary_costs,other_costs,adjudication_court,judge,judge_contact,f_court_date,f_verdict_date,f_verdict_receive_date,is_apology,defendant_compensation_total,defendant_expenses,plaintiff_costs,defendant_costs,is_close,appeal_date,remark,litigant,defendant_name,defendant_reg_capital,defendant_area,del_flag
+	 status,org,created_by,created_time,updated_by,updated_time,case_id,firstor,lawyer,submit_date,establish_date,litigation_costs,announcement_costs,notary_costs,other_costs,adjudication_court,judge,judge_contact,f_court_date,f_verdict_date,f_verdict_receive_date,is_apology,defendant_compensation_total,defendant_expenses,plaintiff_costs,defendant_costs,is_close,appeal_date,remark,is_pre_mediation,is_action_mediation,mediation_date,is_appeal,appellant,is_carry_out,litigant,defendant_name,defendant_reg_capital,defendant_area,del_flag
 </sql>
 
 <!-- 查询条件 -->
@@ -169,6 +175,30 @@
 		 	<if test="remark != null and remark != ''" >
 	    and remark =  #{remark}
 	</if>
+	<!--  -->
+		 	<if test="isPreMediation != null and isPreMediation != ''" >
+	    and is_pre_mediation =  #{isPreMediation}
+	</if>
+		<!--  -->
+		 	<if test="isActionMediation != null and isActionMediation != ''" >
+	    and is_action_mediation =  #{isActionMediation}
+	</if>
+		<!--  -->
+		 	<if test="mediationDate != null and mediationDate != ''" >
+	    and mediation_date =  #{mediationDate}
+	</if>
+		<!--  -->
+		 	<if test="isAppeal != null and isAppeal != ''" >
+	    and is_appeal =  #{isAppeal}
+	</if>
+		<!--  -->
+		 	<if test="appellant != null and appellant != ''" >
+	    and appellant =  #{appellant}
+	</if>
+		<!--  -->
+		 	<if test="isCarryOut != null and isCarryOut != ''" >
+	    and is_carry_out =  #{isCarryOut}
+	</if>
 </trim>
 </sql>
 
@@ -177,13 +207,13 @@
 <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into case_first_instance(status,org,created_by,created_time,updated_by,updated_time,case_id,firstor,lawyer,submit_date,establish_date,litigation_costs,announcement_costs,notary_costs,other_costs,adjudication_court,judge,judge_contact,f_court_date,f_verdict_date,f_verdict_receive_date,is_apology,defendant_compensation_total,defendant_expenses,plaintiff_costs,defendant_costs,is_close,appeal_date,remark)
- values(#{status,jdbcType=INTEGER},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{caseId,jdbcType=INTEGER},#{firstor,jdbcType=VARCHAR},#{lawyer,jdbcType=VARCHAR},#{submitDate,jdbcType=DATE},#{establishDate,jdbcType=DATE},#{litigationCosts,jdbcType=DECIMAL},#{announcementCosts,jdbcType=DECIMAL},#{notaryCosts,jdbcType=DECIMAL},#{otherCosts,jdbcType=DECIMAL},#{adjudicationCourt,jdbcType=VARCHAR},#{judge,jdbcType=VARCHAR},#{judgeContact,jdbcType=VARCHAR},#{fcourtDate,jdbcType=DATE},#{fverdictDate,jdbcType=DATE},#{fverdictReceiveDate,jdbcType=DATE},#{isApology,jdbcType=VARCHAR},#{defendantCompensationTotal,jdbcType=DECIMAL},#{defendantExpenses,jdbcType=DECIMAL},#{plaintiffCosts,jdbcType=DECIMAL},#{defendantCosts,jdbcType=DECIMAL},#{isClose,jdbcType=VARCHAR},#{appealDate,jdbcType=DATE},#{remark,jdbcType=VARCHAR})
+  insert into case_first_instance(status,org,created_by,created_time,updated_by,updated_time,case_id,firstor,lawyer,submit_date,establish_date,litigation_costs,announcement_costs,notary_costs,other_costs,adjudication_court,judge,judge_contact,f_court_date,f_verdict_date,f_verdict_receive_date,is_apology,defendant_compensation_total,defendant_expenses,plaintiff_costs,defendant_costs,is_close,appeal_date,remark,is_pre_mediation,is_action_mediation,mediation_date,is_appeal,appellant,is_carry_out)
+ values(#{status,jdbcType=INTEGER},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{caseId,jdbcType=INTEGER},#{firstor,jdbcType=VARCHAR},#{lawyer,jdbcType=VARCHAR},#{submitDate,jdbcType=DATE},#{establishDate,jdbcType=DATE},#{litigationCosts,jdbcType=DECIMAL},#{announcementCosts,jdbcType=DECIMAL},#{notaryCosts,jdbcType=DECIMAL},#{otherCosts,jdbcType=DECIMAL},#{adjudicationCourt,jdbcType=VARCHAR},#{judge,jdbcType=VARCHAR},#{judgeContact,jdbcType=VARCHAR},#{fcourtDate,jdbcType=DATE},#{fverdictDate,jdbcType=DATE},#{fverdictReceiveDate,jdbcType=DATE},#{isApology,jdbcType=VARCHAR},#{defendantCompensationTotal,jdbcType=DECIMAL},#{defendantExpenses,jdbcType=DECIMAL},#{plaintiffCosts,jdbcType=DECIMAL},#{defendantCosts,jdbcType=DECIMAL},#{isClose,jdbcType=VARCHAR},#{appealDate,jdbcType=DATE},#{remark,jdbcType=VARCHAR},#{isPreMediation,jdbcType=VARCHAR},#{isActionMediation,jdbcType=VARCHAR},#{mediationDate,jdbcType=DATE},#{isAppeal,jdbcType=VARCHAR},#{appellant,jdbcType=VARCHAR},#{isCarryOut,jdbcType=VARCHAR})
 </insert>
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update case_first_instance set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},case_id=#{caseId,jdbcType=INTEGER},firstor=#{firstor,jdbcType=VARCHAR},lawyer=#{lawyer,jdbcType=VARCHAR},submit_date=#{submitDate,jdbcType=DATE},establish_date=#{establishDate,jdbcType=DATE},litigation_costs=#{litigationCosts,jdbcType=DECIMAL},announcement_costs=#{announcementCosts,jdbcType=DECIMAL},notary_costs=#{notaryCosts,jdbcType=DECIMAL},other_costs=#{otherCosts,jdbcType=DECIMAL},adjudication_court=#{adjudicationCourt,jdbcType=VARCHAR},judge=#{judge,jdbcType=VARCHAR},judge_contact=#{judgeContact,jdbcType=VARCHAR},f_court_date=#{fcourtDate,jdbcType=DATE},f_verdict_date=#{fverdictDate,jdbcType=DATE},f_verdict_receive_date=#{fverdictReceiveDate,jdbcType=DATE},is_apology=#{isApology,jdbcType=VARCHAR},defendant_compensation_total=#{defendantCompensationTotal,jdbcType=DECIMAL},defendant_expenses=#{defendantExpenses,jdbcType=DECIMAL},plaintiff_costs=#{plaintiffCosts,jdbcType=DECIMAL},defendant_costs=#{defendantCosts,jdbcType=DECIMAL},is_close=#{isClose,jdbcType=VARCHAR},appeal_date=#{appealDate,jdbcType=DATE},remark=#{remark,jdbcType=VARCHAR} where case_id=#{caseId,jdbcType=INTEGER}
+  update case_first_instance set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},case_id=#{caseId,jdbcType=INTEGER},firstor=#{firstor,jdbcType=VARCHAR},lawyer=#{lawyer,jdbcType=VARCHAR},submit_date=#{submitDate,jdbcType=DATE},establish_date=#{establishDate,jdbcType=DATE},litigation_costs=#{litigationCosts,jdbcType=DECIMAL},announcement_costs=#{announcementCosts,jdbcType=DECIMAL},notary_costs=#{notaryCosts,jdbcType=DECIMAL},other_costs=#{otherCosts,jdbcType=DECIMAL},adjudication_court=#{adjudicationCourt,jdbcType=VARCHAR},judge=#{judge,jdbcType=VARCHAR},judge_contact=#{judgeContact,jdbcType=VARCHAR},f_court_date=#{fcourtDate,jdbcType=DATE},f_verdict_date=#{fverdictDate,jdbcType=DATE},f_verdict_receive_date=#{fverdictReceiveDate,jdbcType=DATE},is_apology=#{isApology,jdbcType=VARCHAR},defendant_compensation_total=#{defendantCompensationTotal,jdbcType=DECIMAL},defendant_expenses=#{defendantExpenses,jdbcType=DECIMAL},plaintiff_costs=#{plaintiffCosts,jdbcType=DECIMAL},defendant_costs=#{defendantCosts,jdbcType=DECIMAL},is_close=#{isClose,jdbcType=VARCHAR},appeal_date=#{appealDate,jdbcType=DATE},remark=#{remark,jdbcType=VARCHAR},is_pre_mediation=#{isPreMediation,jdbcType=VARCHAR},is_action_mediation=#{isActionMediation,jdbcType=VARCHAR},mediation_date=#{mediationDate,jdbcType=DATE},is_appeal=#{isAppeal,jdbcType=VARCHAR},appellant=#{appellant,jdbcType=VARCHAR},is_carry_out=#{isCarryOut,jdbcType=VARCHAR} where case_id=#{caseId,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -271,6 +301,25 @@
 	<if test="remark != null  ">
 		remark=#{remark,jdbcType=VARCHAR},
 	</if>
+	<if test="isPreMediation != null  ">
+		is_pre_mediation=#{isPreMediation,jdbcType=VARCHAR},
+	</if>
+	<if test="isActionMediation != null  ">
+		is_action_mediation=#{isActionMediation,jdbcType=VARCHAR},
+	</if>
+	<if test="mediationDate != null  ">
+		mediation_date=#{mediationDate,jdbcType=DATE},
+	</if>
+	<if test="isAppeal != null  ">
+		is_appeal=#{isAppeal,jdbcType=VARCHAR},
+	</if>
+	<if test="appellant != null  ">
+		appellant=#{appellant,jdbcType=VARCHAR},
+	</if>
+	<if test="isCarryOut != null  ">
+		is_carry_out=#{isCarryOut,jdbcType=VARCHAR} ,
+	</if>	
+	
 	</trim> where case_id=#{caseId,jdbcType=INTEGER}
 </update>
 

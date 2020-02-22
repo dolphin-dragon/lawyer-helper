@@ -152,6 +152,17 @@ otter.caseSecondInstance = function(){
 								return row.executionDeadline;
 							}
 						},
+					{field:'isCarryOut',title:'是否需要执行',align:'center',sortable:true,
+							formatter:function(value,row,index){
+						   		if(value == 1){
+									return "需要";
+								}
+								if(value == 2){
+									return "不需要";
+								}
+								return "";
+							}
+						},
 					{field:'remark',title:'备注',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.remark;

@@ -104,6 +104,20 @@
 						<textarea name="fcollectionSubject" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写首位收款主体"></textarea>
 					</div>
 					<div class="fitem">
+						<label>是否执行和解</label>
+						<select class="easyui-combobox" name="isReconcile" data-options="" missingMessage="是否执行和解">
+                    		<option value="1">执行和解</option>
+                    		<option value="2" selected="selected">不执行和解</option>
+                   		</select>
+					</div>
+					<div class="fitem">
+						<label>是否结案</label>
+						<select class="easyui-combobox" name="isClose" data-options="" missingMessage="是否结案">
+                    		<option value="1">已结案</option>
+                    		<option value="2" selected="selected">未结案</option>
+                   		</select>
+					</div>
+					<div class="fitem">
 						<label>备注</label>
 						<textarea name="remark" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写备注"></textarea>
 					</div>

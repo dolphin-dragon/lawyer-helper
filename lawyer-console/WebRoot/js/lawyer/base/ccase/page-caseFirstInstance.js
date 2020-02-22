@@ -95,9 +95,36 @@ otter.caseFirstInstance = function(){
 								return row.submitDate;
 							}
 						},
+					{field:'isPreMediation',title:'是否诉前调解',align:'center',sortable:true,
+							formatter:function(value,row,index){
+	                       		if(value == 1){
+									return "诉前调解";
+								}
+								if(value == 2){
+									return "不调解";
+								}
+								return "";
+							}
+						},
 					{field:'establish_date',title:'立案日期',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.establishDate;
+							}
+						},
+					{field:'isActionMediation',title:'是否诉中调解',align:'center',sortable:true,
+							formatter:function(value,row,index){
+	                       		if(value == 1){
+									return "诉中调解";
+								}
+								if(value == 2){
+									return "不调解";
+								}
+								return "";
+							}
+						},
+					{field:'mediationDate',title:'调解书日期',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.mediationDate;
 							}
 						},
 					{field:'litigation_costs',title:'诉讼费用',align:'center',sortable:true,
@@ -195,6 +222,33 @@ otter.caseFirstInstance = function(){
 					{field:'appeal_date',title:'上诉截止日期',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.appealDate;
+							}
+						},
+						{field:'isAppeal',title:'是否上诉',align:'center',sortable:true,
+							formatter:function(value,row,index){
+	                       		if(value == 1){
+									return "要上诉";
+								}
+								if(value == 2){
+									return "不上诉";
+								}
+								return "";
+							}
+						},
+						{field:'appellant',title:'上诉人',align:'left',sortable:true,
+							formatter:function(value,row,index){
+								return value;
+							}
+						},
+						{field:'isCarryOut',title:'是否需要执行',align:'center',sortable:true,
+							formatter:function(value,row,index){
+	                       		if(value == 1){
+									return "需要执行";
+								}
+								if(value == 2){
+									return "不需要执行";
+								}
+								return "";
 							}
 						},
 					{field:'remark',title:'备注',align:'center',sortable:true,
