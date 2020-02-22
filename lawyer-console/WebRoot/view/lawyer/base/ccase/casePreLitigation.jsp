@@ -98,6 +98,13 @@
                    		</select>
 					</div>
 					<div class="fitem">
+						<label>是否诉讼</label>
+						<select class="easyui-combobox" name="isDirectAction" data-options="required:true" missingMessage="请填写是否诉讼">
+                    		<option value="1" selected="selected">诉讼</option>
+                    		<option value="2">不诉讼</option>
+                   		</select>
+					</div>
+					<div class="fitem">
 						<label>备注</label>
 						<textarea name="remark" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写备注"></textarea>
 					</div>

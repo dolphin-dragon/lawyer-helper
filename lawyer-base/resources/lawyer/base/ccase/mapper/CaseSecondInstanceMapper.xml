@@ -26,6 +26,7 @@
 	<result column="is_close" property="isClose" jdbcType="VARCHAR"/>
 	<result column="execution_deadline" property="executionDeadline" jdbcType="DATE"/>
 	<result column="remark" property="remark" jdbcType="VARCHAR"/>
+	<result column="is_carry_out" property="isCarryOut" jdbcType="VARCHAR"/>
 	
 	<result column="litigant" property="litigant" jdbcType="VARCHAR"/>
     <result column="defendant_name" property="defendantName" jdbcType="VARCHAR"/>
@@ -38,7 +39,7 @@
        
 <!-- case_second_instance table all fields -->
 <sql id="Base_Column_List" >
-	 status,org,created_by,created_time,updated_by,updated_time,case_id,lawyer,s_court_date,judge,judge_contact,s_judgment_effective_date,is_apology,defendant_compensation_total,defendant_expenses,plaintiff_costs,defendant_costs,is_close,execution_deadline,remark,litigant,defendant_name,defendant_reg_capital,defendant_area,del_flag
+	 status,org,created_by,created_time,updated_by,updated_time,case_id,lawyer,s_court_date,judge,judge_contact,s_judgment_effective_date,is_apology,defendant_compensation_total,defendant_expenses,plaintiff_costs,defendant_costs,is_close,execution_deadline,remark,is_carry_out,litigant,defendant_name,defendant_reg_capital,defendant_area,del_flag
 </sql>
 
 <!-- 查询条件 -->
@@ -124,6 +125,11 @@
 		 	<if test="remark != null and remark != ''" >
 	    and remark =  #{remark}
 	</if>
+	<!--  -->
+		 	<if test="isCarryOut != null and isCarryOut != ''" >
+	    and is_carry_out =  #{isCarryOut}
+	</if>	
+	
 </trim>
 </sql>
 
@@ -132,13 +138,13 @@
 <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into case_second_instance(status,org,created_by,created_time,updated_by,updated_time,case_id,lawyer,s_court_date,judge,judge_contact,s_judgment_effective_date,is_apology,defendant_compensation_total,defendant_expenses,plaintiff_costs,defendant_costs,is_close,execution_deadline,remark)
- values(#{status,jdbcType=INTEGER},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{caseId,jdbcType=INTEGER},#{lawyer,jdbcType=VARCHAR},#{scourtDate,jdbcType=DATE},#{judge,jdbcType=VARCHAR},#{judgeContact,jdbcType=VARCHAR},#{sjudgmentEffectiveDate,jdbcType=DATE},#{isApology,jdbcType=VARCHAR},#{defendantCompensationTotal,jdbcType=VARCHAR},#{defendantExpenses,jdbcType=VARCHAR},#{plaintiffCosts,jdbcType=VARCHAR},#{defendantCosts,jdbcType=DECIMAL},#{isClose,jdbcType=VARCHAR},#{executionDeadline,jdbcType=DATE},#{remark,jdbcType=VARCHAR})
+  insert into case_second_instance(status,org,created_by,created_time,updated_by,updated_time,case_id,lawyer,s_court_date,judge,judge_contact,s_judgment_effective_date,is_apology,defendant_compensation_total,defendant_expenses,plaintiff_costs,defendant_costs,is_close,execution_deadline,remark,is_carry_out)
+ values(#{status,jdbcType=INTEGER},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{caseId,jdbcType=INTEGER},#{lawyer,jdbcType=VARCHAR},#{scourtDate,jdbcType=DATE},#{judge,jdbcType=VARCHAR},#{judgeContact,jdbcType=VARCHAR},#{sjudgmentEffectiveDate,jdbcType=DATE},#{isApology,jdbcType=VARCHAR},#{defendantCompensationTotal,jdbcType=VARCHAR},#{defendantExpenses,jdbcType=VARCHAR},#{plaintiffCosts,jdbcType=VARCHAR},#{defendantCosts,jdbcType=DECIMAL},#{isClose,jdbcType=VARCHAR},#{executionDeadline,jdbcType=DATE},#{remark,jdbcType=VARCHAR},#{isCarryOut,jdbcType=VARCHAR})
 </insert>
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update case_second_instance set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},case_id=#{caseId,jdbcType=INTEGER},lawyer=#{lawyer,jdbcType=VARCHAR},s_court_date=#{scourtDate,jdbcType=DATE},judge=#{judge,jdbcType=VARCHAR},judge_contact=#{judgeContact,jdbcType=VARCHAR},s_judgment_effective_date=#{sjudgmentEffectiveDate,jdbcType=DATE},is_apology=#{isApology,jdbcType=VARCHAR},defendant_compensation_total=#{defendantCompensationTotal,jdbcType=VARCHAR},defendant_expenses=#{defendantExpenses,jdbcType=VARCHAR},plaintiff_costs=#{plaintiffCosts,jdbcType=VARCHAR},defendant_costs=#{defendantCosts,jdbcType=DECIMAL},is_close=#{isClose,jdbcType=VARCHAR},execution_deadline=#{executionDeadline,jdbcType=DATE},remark=#{remark,jdbcType=VARCHAR} where case_id=#{caseId,jdbcType=INTEGER}
+  update case_second_instance set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},case_id=#{caseId,jdbcType=INTEGER},lawyer=#{lawyer,jdbcType=VARCHAR},s_court_date=#{scourtDate,jdbcType=DATE},judge=#{judge,jdbcType=VARCHAR},judge_contact=#{judgeContact,jdbcType=VARCHAR},s_judgment_effective_date=#{sjudgmentEffectiveDate,jdbcType=DATE},is_apology=#{isApology,jdbcType=VARCHAR},defendant_compensation_total=#{defendantCompensationTotal,jdbcType=VARCHAR},defendant_expenses=#{defendantExpenses,jdbcType=VARCHAR},plaintiff_costs=#{plaintiffCosts,jdbcType=VARCHAR},defendant_costs=#{defendantCosts,jdbcType=DECIMAL},is_close=#{isClose,jdbcType=VARCHAR},execution_deadline=#{executionDeadline,jdbcType=DATE},remark=#{remark,jdbcType=VARCHAR},is_carry_out=#{isCarryOut,jdbcType=VARCHAR} where case_id=#{caseId,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -201,6 +207,9 @@
 	</if>
 	<if test="remark != null  ">
 		remark=#{remark,jdbcType=VARCHAR},
+	</if>
+	<if test="isCarryOut != null  ">
+		is_carry_out=#{isCarryOut,jdbcType=VARCHAR},
 	</if>
 	</trim> where case_id=#{caseId,jdbcType=INTEGER}
 </update>

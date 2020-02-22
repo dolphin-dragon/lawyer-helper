@@ -24,6 +24,7 @@
 	<result column="litigant_ac_date" property="litigantAcDate" jdbcType="DATE"/>
 	<result column="action_img" property="actionImg" jdbcType="VARCHAR"/>
     <result column="litigant_ac_img" property="litigantAcImg" jdbcType="VARCHAR"/>
+    <result column="is_direct_action" property="isDirectAction" jdbcType="VARCHAR"/>
 
 	<result column="litigant" property="litigant" jdbcType="VARCHAR"/>
     <result column="defendant_name" property="defendantName" jdbcType="VARCHAR"/>
@@ -38,7 +39,7 @@
        
 <!-- case_apply table all fields -->
 <sql id="Base_Column_List" >
-	 status,org,created_by,created_time,updated_by,updated_time,case_id,src,supply,apply_date,applicant,forensics,violate_type,violate_desc,action_date,litigant_ac_date,action_img,litigant_ac_img,litigant,defendant_name,defendant_reg_capital,defendant_area,del_flag
+	 status,org,created_by,created_time,updated_by,updated_time,case_id,src,supply,apply_date,applicant,forensics,violate_type,violate_desc,action_date,litigant_ac_date,action_img,litigant_ac_img,is_direct_action,litigant,defendant_name,defendant_reg_capital,defendant_area,del_flag
 </sql>
 
 <!-- 查询条件 -->
@@ -114,6 +115,9 @@
     <if test="litigantAcImg != null and litigantAcImg != ''" >
         and litigant_ac_img =  #{litigantAcImg}
     </if>
+     <if test="isDirectAction != null and isDirectAction != ''" >
+        and is_direct_action =  #{isDirectAction}
+    </if>
 </trim>
 </sql>
 
@@ -122,13 +126,13 @@
 <!--   <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into case_apply(status,org,created_by,created_time,updated_by,updated_time,case_id,src,supply,apply_date,applicant,forensics,violate_type,violate_desc,action_date,litigant_ac_date,action_img,litigant_ac_img)
- values(#{status,jdbcType=INTEGER},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{caseId,jdbcType=INTEGER},#{src,jdbcType=VARCHAR},#{supply,jdbcType=VARCHAR},#{applyDate,jdbcType=DATE},#{applicant,jdbcType=VARCHAR},#{forensics,jdbcType=VARCHAR},#{violateType,jdbcType=VARCHAR},#{violateDesc,jdbcType=VARCHAR},#{actionDate,jdbcType=DATE},#{litigantAcDate,jdbcType=DATE},#{actionImg,jdbcType=VARCHAR},#{litigantAcImg,jdbcType=VARCHAR})
+  insert into case_apply(status,org,created_by,created_time,updated_by,updated_time,case_id,src,supply,apply_date,applicant,forensics,violate_type,violate_desc,action_date,litigant_ac_date,action_img,litigant_ac_img,is_direct_action)
+ values(#{status,jdbcType=INTEGER},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{caseId,jdbcType=INTEGER},#{src,jdbcType=VARCHAR},#{supply,jdbcType=VARCHAR},#{applyDate,jdbcType=DATE},#{applicant,jdbcType=VARCHAR},#{forensics,jdbcType=VARCHAR},#{violateType,jdbcType=VARCHAR},#{violateDesc,jdbcType=VARCHAR},#{actionDate,jdbcType=DATE},#{litigantAcDate,jdbcType=DATE},#{actionImg,jdbcType=VARCHAR},#{litigantAcImg,jdbcType=VARCHAR},#{isDirectAction,jdbcType=VARCHAR})
 </insert>
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update case_apply set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},src=#{src,jdbcType=VARCHAR},supply=#{supply,jdbcType=VARCHAR},apply_date=#{applyDate,jdbcType=DATE},applicant=#{applicant,jdbcType=VARCHAR},forensics=#{forensics,jdbcType=VARCHAR},violate_type=#{violateType,jdbcType=VARCHAR},violate_desc=#{violateDesc,jdbcType=VARCHAR},action_date=#{actionDate,jdbcType=DATE},litigant_ac_date=#{litigantAcDate,jdbcType=DATE},action_img=#{actionImg,jdbcType=VARCHAR},litigant_ac_img=#{litigantAcImg,jdbcType=VARCHAR} where case_id=#{caseId,jdbcType=INTEGER}
+  update case_apply set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},src=#{src,jdbcType=VARCHAR},supply=#{supply,jdbcType=VARCHAR},apply_date=#{applyDate,jdbcType=DATE},applicant=#{applicant,jdbcType=VARCHAR},forensics=#{forensics,jdbcType=VARCHAR},violate_type=#{violateType,jdbcType=VARCHAR},violate_desc=#{violateDesc,jdbcType=VARCHAR},action_date=#{actionDate,jdbcType=DATE},litigant_ac_date=#{litigantAcDate,jdbcType=DATE},action_img=#{actionImg,jdbcType=VARCHAR},litigant_ac_img=#{litigantAcImg,jdbcType=VARCHAR},is_direct_action=#{isDirectAction,jdbcType=VARCHAR} where case_id=#{caseId,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -178,10 +182,13 @@
 		litigant_ac_date=#{litigantAcDate,jdbcType=DATE},
 	</if>
 	<if test="actionImg != null and actionImg != ''" >
-        action_img=#{actionImg,jdbcType=VARCHAR}
+        action_img=#{actionImg,jdbcType=VARCHAR},
     </if>
     <if test="litigantAcImg != null and litigantAcImg != ''" >
-        litigant_ac_img=#{litigantAcImg,jdbcType=VARCHAR}
+        litigant_ac_img=#{litigantAcImg,jdbcType=VARCHAR},
+    </if>
+    <if test="isDirectAction != null and isDirectAction != ''" >
+        is_direct_action=#{isDirectAction,jdbcType=VARCHAR},
     </if>
 	</trim> where case_id=#{caseId,jdbcType=INTEGER}
 </update>

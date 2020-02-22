@@ -115,6 +115,28 @@ otter.caseCarryOut = function(){
 								return row.fcollectionSubject;
 							}
 						},
+					{field:'isReconcile',title:'是否执行和解',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								if(value == 1){
+									return "执行和解";
+								}
+								if(value == 2){
+									return "不执行和解";
+								}
+								return "";
+							}
+						},
+					{field:'isClose',title:'是否结案',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								if(value == 1){
+									return "已结案";
+								}
+								if(value == 2){
+									return "未结案";
+								}
+								return "";
+							}
+						},
 					{field:'remark',title:'备注',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.remark;

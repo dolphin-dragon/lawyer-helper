@@ -149,6 +149,17 @@ otter.caseApply = function(){
 								return row.litigantAcDate;
 							}
 						},
+					{field:'isDirectAction',title:'是否直接诉讼',align:'center',sortable:true,
+							formatter:function(value,row,index){
+	                    		if(value == 1){
+									return "是";
+								}
+								if(value == 2){
+									return "否";
+								}
+								return "";
+							}
+						},
 					]]
 			}
 		},
