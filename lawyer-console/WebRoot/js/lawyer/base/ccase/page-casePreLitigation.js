@@ -103,10 +103,10 @@ otter.casePreLitigation = function(){
 					{field:'isClose',title:'是否结案',align:'center',sortable:true,
 							formatter:function(value,row,index){
 						   		if(value == 1){
-									return "已结案";
+									return "是";//"已结案";
 								}
 								if(value == 2){
-									return "未结案";
+									return "否";//"未结案";
 								}
 								return "";
 							}
@@ -114,10 +114,10 @@ otter.casePreLitigation = function(){
 					{field:'isDirectAction',title:'是否诉讼',align:'center',sortable:true,
 							formatter:function(value,row,index){
 						   		if(value == 1){
-									return "诉讼";
+									return "是";//"诉讼";
 								}
 								if(value == 2){
-									return "不诉讼";
+									return "否";//"不诉讼";
 								}
 								return "";
 							}

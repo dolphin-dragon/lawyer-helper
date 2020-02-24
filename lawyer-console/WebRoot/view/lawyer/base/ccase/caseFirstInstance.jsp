@@ -81,7 +81,7 @@
 					<div class="fitem">
 						<label>一审主办律师</label>
 						<!-- <input name="lawyer" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写一审主办律师"> -->
-						<input class="easyui-combobox" name="lawyer" data-options="required:true,valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写一审主办律师">
+						<input class="easyui-combobox" name="lawyer" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写一审主办律师">
 					</div>
 					<div class="fitem">
 						<label>提交立案材料日期</label>
@@ -89,9 +89,9 @@
 					</div>
 					<div class="fitem">
 						<label>是否诉前调解</label>
-						<select class="easyui-combobox" name="isPreMediation" data-options="required:true" missingMessage="请填写是否诉前调解">
-                    		<option value="1">诉前调解</option>
-                    		<option value="2" selected="selected">不调解</option>
+						<select class="easyui-combobox" name="isPreMediation" data-options="" missingMessage="请填写是否诉前调解">
+                    		<option value="1">&ensp;&ensp;是&ensp;&ensp;</option>
+                    		<option value="2" selected="selected">&ensp;&ensp;否&ensp;&ensp;</option>
                    		</select>
 					</div>
 					<div class="fitem">
@@ -100,9 +100,9 @@
 					</div>
 					<div class="fitem">
 						<label>是否诉中调解</label>
-						<select class="easyui-combobox" name="isActionMediation" data-options="required:true" missingMessage="请填写是否诉中调解">
-                    		<option value="1">诉中调解</option>
-                    		<option value="2" selected="selected">不调解</option>
+						<select class="easyui-combobox" name="isActionMediation" data-options="" missingMessage="请填写是否诉中调解">
+                    		<option value="1">&ensp;&ensp;是&ensp;&ensp;</option>
+                    		<option value="2" selected="selected">&ensp;&ensp;否&ensp;&ensp;</option>
                    		</select>
 					</div>
 					<div class="fitem">
@@ -152,9 +152,9 @@
 					<div class="fitem">
 						<label>是否致歉</label>
 						<!-- <input name="isApology" type="text" maxlength="1" class="easyui-validatebox" data-options="" missingMessage="请填写是否致歉"> -->
-						<select class="easyui-combobox" name="isApology" data-options="required:true" missingMessage="请填写是否致歉">
-                    		<option value="1">已致歉</option>
-                    		<option value="2" selected="selected">未致歉</option>
+						<select class="easyui-combobox" name="isApology" data-options="" missingMessage="请填写是否致歉">
+                    		<option value="1">&ensp;&ensp;是&ensp;&ensp;</option>
+                    		<option value="2" selected="selected">&ensp;&ensp;否&ensp;&ensp;</option>
                    		</select>
 					</div>
 					<div class="fitem">
@@ -176,9 +176,9 @@
 					<div class="fitem">
 						<label>是否结案</label>
 						<!-- <input name="isClose" type="text" maxlength="1" class="easyui-validatebox" data-options="" missingMessage="请填写是否结案"> -->
-						<select class="easyui-combobox" name="isClose" data-options="required:true" missingMessage="请填写是否结案">
-                    		<option value="1" selected="selected">已结案</option>
-                    		<option value="2">未结案</option>
+						<select class="easyui-combobox" name="isClose" data-options="" missingMessage="请填写是否结案">
+                    		<option value="1" selected="selected">&ensp;&ensp;是&ensp;&ensp;</option>
+                    		<option value="2">&ensp;&ensp;否&ensp;&ensp;</option>
                    		</select>
 					</div>
 					<div class="fitem">
@@ -187,9 +187,9 @@
 					</div>
 					<div class="fitem">
 						<label>是否上诉</label>
-						<select class="easyui-combobox" name="isAppeal" data-options="required:true" missingMessage="请填写是否上诉">
-                    		<option value="1">要上诉</option>
-                    		<option value="2" selected="selected">不上诉</option>
+						<select class="easyui-combobox" name="isAppeal" data-options="" missingMessage="请填写是否上诉">
+                    		<option value="1">&ensp;&ensp;是&ensp;&ensp;</option>
+                    		<option value="2" selected="selected">&ensp;&ensp;否&ensp;&ensp;</option>
                    		</select>
 					</div>
 					<div class="fitem">
@@ -198,9 +198,9 @@
 					</div>
 					<div class="fitem">
 						<label>是否需要执行</label>
-						<select class="easyui-combobox" name="isCarryOut" data-options="required:true" missingMessage="请填写是否需要执行">
-                    		<option value="1">需要执行</option>
-                    		<option value="2" selected="selected">不需要执行</option>
+						<select class="easyui-combobox" name="isCarryOut" data-options="" missingMessage="请填写是否需要执行">
+                    		<option value="1">&ensp;&ensp;是&ensp;&ensp;</option>
+                    		<option value="2" selected="selected">&ensp;&ensp;否&ensp;&ensp;</option>
                    		</select>
 					</div>
 					<div class="fitem">

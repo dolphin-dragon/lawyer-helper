@@ -98,10 +98,10 @@ otter.caseFirstInstance = function(){
 					{field:'isPreMediation',title:'是否诉前调解',align:'center',sortable:true,
 							formatter:function(value,row,index){
 	                       		if(value == 1){
-									return "诉前调解";
+									return "是";//"诉前调解";
 								}
 								if(value == 2){
-									return "不调解";
+									return "否";//"不调解";
 								}
 								return "";
 							}
@@ -114,10 +114,10 @@ otter.caseFirstInstance = function(){
 					{field:'isActionMediation',title:'是否诉中调解',align:'center',sortable:true,
 							formatter:function(value,row,index){
 	                       		if(value == 1){
-									return "诉中调解";
+									return "是";//"诉中调解";
 								}
 								if(value == 2){
-									return "不调解";
+									return "否";//"不调解";
 								}
 								return "";
 							}
@@ -180,10 +180,10 @@ otter.caseFirstInstance = function(){
 					{field:'isApology',title:'是否致歉',align:'center',sortable:true,
 							formatter:function(value,row,index){
 	                       		if(value == 1){
-									return "已致歉";
+									return "是";//"已致歉";
 								}
 								if(value == 2){
-									return "未致歉";
+									return "否";//"未致歉";
 								}
 								return "";
 							}
@@ -211,10 +211,10 @@ otter.caseFirstInstance = function(){
 					{field:'isClose',title:'是否结案',align:'center',sortable:true,
 							formatter:function(value,row,index){
 						   		if(value == 1){
-									return "已结案";
+									return "是";//"已结案";
 								}
 								if(value == 2){
-									return "未结案";
+									return "否";//"未结案";
 								}
 								return "";
 							}
@@ -227,10 +227,10 @@ otter.caseFirstInstance = function(){
 						{field:'isAppeal',title:'是否上诉',align:'center',sortable:true,
 							formatter:function(value,row,index){
 	                       		if(value == 1){
-									return "要上诉";
+									return "是";//"要上诉";
 								}
 								if(value == 2){
-									return "不上诉";
+									return "否";//"不上诉";
 								}
 								return "";
 							}
@@ -243,10 +243,10 @@ otter.caseFirstInstance = function(){
 						{field:'isCarryOut',title:'是否需要执行',align:'center',sortable:true,
 							formatter:function(value,row,index){
 	                       		if(value == 1){
-									return "需要执行";
+									return "是";//"需要执行";
 								}
 								if(value == 2){
-									return "不需要执行";
+									return "否";//"不需要执行";
 								}
 								return "";
 							}

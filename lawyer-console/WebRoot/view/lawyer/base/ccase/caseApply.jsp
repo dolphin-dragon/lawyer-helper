@@ -59,11 +59,11 @@
 					</div> -->
 					<div class="fitem">
 						<label>当事人</label>
-						<input name="litigant" type="text" maxlength="128" class="easyui-validatebox" data-options="" missingMessage="请填写当事人">
+						<input name="litigant" type="text" maxlength="128" class="easyui-validatebox" data-options="required:true" missingMessage="请填写当事人">
 					</div>
 					<div class="fitem">
 						<label>被告名称(全称)</label>
-						<input name="defendantName" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写被告名称">
+						<input name="defendantName" type="text" maxlength="1024" class="easyui-validatebox" data-options="required:true" missingMessage="请填写被告名称">
 					</div>
 					<div class="fitem">
 						<label>被告注册资本</label>
@@ -71,12 +71,12 @@
 					</div>
 					<div class="fitem">
 						<label>被告所在地</label>
-						<textarea name="defendantArea" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写被告所在地" style="margin: 0px; width: 150px; height: 60px;"></textarea>
+						<textarea name="defendantArea" type="text" maxlength="1024" class="easyui-validatebox" data-options="required:true" missingMessage="请填写被告所在地" style="margin: 0px; width: 150px; height: 60px;"></textarea>
 					</div>
 					<div class="fitem">
 						<label>案件来源</label>
 						<!-- <input name="src" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写案件来源"> -->
-						<select class="easyui-combobox" name="src" data-options="required:true" missingMessage="请填写案件来源">
+						<select class="easyui-combobox" name="src" data-options="" missingMessage="请填写案件来源">
                     		<option value="1" selected="selected">当事人提供</option>
                     		<option value="2">所内自行搜证</option>
                     		<option value="3">律师个人案源</option>
@@ -85,7 +85,7 @@
 					<div class="fitem">
 						<label>案源人</label>
 						<!-- <input name="supply" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写案源人"> -->
-						<input class="easyui-combobox" name="supply" data-options="required:true,valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请选择案源人">
+						<input class="easyui-combobox" name="supply" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请选择案源人">
 					</div>
 					<div class="fitem">
 						<label>申请公证日期</label>
@@ -94,17 +94,17 @@
 					<div class="fitem">
 						<label>公证书申请人</label>
 						<!-- <input name="applicant" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写公证书申请人"> -->
-						<input class="easyui-combobox" name="applicant" data-options="required:true,valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写公证书申请人">
+						<input class="easyui-combobox" name="applicant" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写公证书申请人">
 					</div>
 					<div class="fitem">
 						<label>取证人</label>
 						<!-- <input name="forensics" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写取证人"> -->
-						<input class="easyui-combobox" name="forensics" data-options="required:true,valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写取证人">
+						<input class="easyui-combobox" name="forensics" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写取证人">
 					</div>
 					<div class="fitem">
 						<label>侵权类型</label>
 						<!-- <input name="violateType" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写侵权类型"> -->
-						<select class="easyui-combobox" name="violateType" data-options="required:true" missingMessage="请填写侵权类型">
+						<select class="easyui-combobox" name="violateType" data-options="" missingMessage="请填写侵权类型">
                     		<option value="1" selected="selected">肖像权</option>
                     		<option value="2">肖像权(含名誉权)</option>
                     		<option value="3">肖像权(含姓名权)</option>
@@ -141,8 +141,8 @@
                     <div class="fitem">
 						<label>当事人是否要求直接诉讼</label>
 						<select class="easyui-combobox" name="isDirectAction" data-options="" missingMessage="当事人是否要求直接诉讼">
-                    		<option value="1">直接诉讼</option>
-                    		<option value="2" selected="selected">不直接诉讼</option>
+                    		<option value="1">&ensp;&ensp;是&ensp;&ensp;</option>
+                    		<option value="2" selected="selected">&ensp;&ensp;否&ensp;&ensp;</option>
                    		</select>
 					</div>
   			</div>

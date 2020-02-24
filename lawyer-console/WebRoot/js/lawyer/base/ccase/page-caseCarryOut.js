@@ -118,10 +118,10 @@ otter.caseCarryOut = function(){
 					{field:'isReconcile',title:'是否执行和解',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								if(value == 1){
-									return "执行和解";
+									return "是";//"执行和解";
 								}
 								if(value == 2){
-									return "不执行和解";
+									return "否";//"不执行和解";
 								}
 								return "";
 							}
@@ -129,10 +129,10 @@ otter.caseCarryOut = function(){
 					{field:'isClose',title:'是否结案',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								if(value == 1){
-									return "已结案";
+									return "是";//"已结案";
 								}
 								if(value == 2){
-									return "未结案";
+									return "否";//"未结案";
 								}
 								return "";
 							}

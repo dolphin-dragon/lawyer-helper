@@ -68,7 +68,7 @@
 					<div class="fitem">
 						<label>性别</label>
 						<!-- <input name="sex" type="text" maxlength="1" class="easyui-validatebox" data-options="" missingMessage="请填写性别"> -->
-						<select class="easyui-combobox" name="sex" data-options="required:true" missingMessage="请填写性别">
+						<select class="easyui-combobox" name="sex" data-options="" missingMessage="请填写性别">
                     		<option value="0" selected="selected">&ensp;&ensp;女&ensp;&ensp;</option>
                     		<option value="1">&ensp;&ensp;男&ensp;&ensp;</option>
                    		</select>

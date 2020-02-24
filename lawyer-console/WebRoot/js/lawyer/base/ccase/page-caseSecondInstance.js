@@ -108,10 +108,10 @@ otter.caseSecondInstance = function(){
 					{field:'isApology',title:'是否致歉',align:'center',sortable:true,
 							formatter:function(value,row,index){
 				          		if(value == 1){
-									return "已致歉";
+									return "是";//"已致歉";
 								}
 								if(value == 2){
-									return "未致歉";
+									return "否";//"未致歉";
 								}
 								return "";
 							}
@@ -139,10 +139,10 @@ otter.caseSecondInstance = function(){
 					{field:'isClose',title:'是否结案',align:'center',sortable:true,
 							formatter:function(value,row,index){
 						   		if(value == 1){
-									return "已结案";
+									return "是";//"已结案";
 								}
 								if(value == 2){
-									return "未结案";
+									return "否";//"未结案";
 								}
 								return "";
 							}
@@ -155,10 +155,10 @@ otter.caseSecondInstance = function(){
 					{field:'isCarryOut',title:'是否需要执行',align:'center',sortable:true,
 							formatter:function(value,row,index){
 						   		if(value == 1){
-									return "需要";
+									return "是";//"需要";
 								}
 								if(value == 2){
-									return "不需要";
+									return "否";//"不需要";
 								}
 								return "";
 							}
