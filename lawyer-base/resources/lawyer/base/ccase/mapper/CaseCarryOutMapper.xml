@@ -124,13 +124,16 @@
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update case_carry_out set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},case_id=#{caseId,jdbcType=INTEGER},lawyer=#{lawyer,jdbcType=VARCHAR},app_date=#{appDate,jdbcType=DATE},app_total=#{appTotal,jdbcType=DECIMAL},judge=#{judge,jdbcType=VARCHAR},judge_contact=#{judgeContact,jdbcType=VARCHAR},actual_total=#{actualTotal,jdbcType=DECIMAL},f_collection_subject=#{fcollectionSubject,jdbcType=VARCHAR},remark=#{remark,jdbcType=VARCHAR},is_reconcile=#{isReconcile,jdbcType=VARCHAR},is_close=#{isClose,jdbcType=VARCHAR} where case_id=#{caseId,jdbcType=INTEGER}
+  update case_carry_out set status=#{status,jdbcType=INTEGER},org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},case_id=#{caseId,jdbcType=INTEGER},lawyer=#{lawyer,jdbcType=VARCHAR},app_date=#{appDate,jdbcType=DATE},app_total=#{appTotal,jdbcType=DECIMAL},judge=#{judge,jdbcType=VARCHAR},judge_contact=#{judgeContact,jdbcType=VARCHAR},actual_total=#{actualTotal,jdbcType=DECIMAL},f_collection_subject=#{fcollectionSubject,jdbcType=VARCHAR},remark=#{remark,jdbcType=VARCHAR},is_reconcile=#{isReconcile,jdbcType=VARCHAR},is_close=#{isClose,jdbcType=VARCHAR} where case_id=#{caseId,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="updateBySelective" parameterType="Object" >
 	update case_carry_out set 
 	<trim  suffixOverrides="," >
+	<if test="status != null" >
+	    status = #{status,jdbcType=INTEGER},
+	</if>
 	<if test="org != null  ">
 		org=#{org,jdbcType=VARCHAR},
 	</if>

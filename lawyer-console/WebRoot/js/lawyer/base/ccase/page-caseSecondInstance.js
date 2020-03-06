@@ -20,7 +20,15 @@ otter.caseSecondInstance = function(){
 					$('input,textarea',$('#editForm')).removeAttr('readonly');
 					$('.easyui-combobox , .easyui-datebox',$('#editForm')).combobox('enable');
 					$('input[type="button"]',$('#editForm')).removeAttr('disabled');
-					
+
+					var selected = _box.utils.getCheckedRows();
+					if ( _box.utils.checkSelectOne(selected)){
+						if(!(null==selected[0]['status'] || 0 == selected[0]['status'])) {
+							otter.alert('提示','案件已推送下阶段处理不能进行编辑！');
+							return false;
+						}
+					}
+
 					_box.handler.edit();
 				}
 			},
@@ -34,6 +42,12 @@ otter.caseSecondInstance = function(){
 					{id:'btnedit',text:'案件推进',btnType:'edit',iconCls:'icon-tip',handler:function(){
 						var selected = _box.utils.getCheckedRows();
 						if ( _box.utils.checkSelectOne(selected)){
+							
+							if(!(null==selected[0]['status'] || 0 == selected[0]['status'])) {
+								otter.alert('提示','案件已推送下阶段处理不能操作处理！');
+								return false;
+							}
+							
 							_box.win.edit.dialog({
 								buttons:[
 									{
@@ -68,6 +82,7 @@ otter.caseSecondInstance = function(){
 				idField:'caseId',
 	   			columns:[[
 					{field:'case_id',checkbox:true},
+					{field:'status',title:'status',width:150,hidden:'true'},
 					/*{field:'status',title:'状态',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.status;

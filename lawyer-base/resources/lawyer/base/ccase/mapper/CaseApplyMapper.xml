@@ -132,13 +132,16 @@
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update case_apply set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},src=#{src,jdbcType=VARCHAR},supply=#{supply,jdbcType=VARCHAR},apply_date=#{applyDate,jdbcType=DATE},applicant=#{applicant,jdbcType=VARCHAR},forensics=#{forensics,jdbcType=VARCHAR},violate_type=#{violateType,jdbcType=VARCHAR},violate_desc=#{violateDesc,jdbcType=VARCHAR},action_date=#{actionDate,jdbcType=DATE},litigant_ac_date=#{litigantAcDate,jdbcType=DATE},action_img=#{actionImg,jdbcType=VARCHAR},litigant_ac_img=#{litigantAcImg,jdbcType=VARCHAR},is_direct_action=#{isDirectAction,jdbcType=VARCHAR} where case_id=#{caseId,jdbcType=INTEGER}
+  update case_apply set status=#{status,jdbcType=INTEGER},org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},src=#{src,jdbcType=VARCHAR},supply=#{supply,jdbcType=VARCHAR},apply_date=#{applyDate,jdbcType=DATE},applicant=#{applicant,jdbcType=VARCHAR},forensics=#{forensics,jdbcType=VARCHAR},violate_type=#{violateType,jdbcType=VARCHAR},violate_desc=#{violateDesc,jdbcType=VARCHAR},action_date=#{actionDate,jdbcType=DATE},litigant_ac_date=#{litigantAcDate,jdbcType=DATE},action_img=#{actionImg,jdbcType=VARCHAR},litigant_ac_img=#{litigantAcImg,jdbcType=VARCHAR},is_direct_action=#{isDirectAction,jdbcType=VARCHAR} where case_id=#{caseId,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="updateBySelective" parameterType="Object" >
 	update case_apply set 
 	<trim  suffixOverrides="," >
+	<if test="status != null" >
+	    status = #{status,jdbcType=INTEGER},
+	</if>
 	<if test="org != null  ">
 		org=#{org,jdbcType=VARCHAR},
 	</if>

@@ -113,8 +113,9 @@ var YDataGrid = function(config){
 			//关闭按钮事件
 			close : function (callback){
 				$.messager.confirm('确认','你确认关闭窗口?',function(r){  
-				    if (r){  
+				    if (r){
 				     	Win.edit.dialog('close');
+				     	Events.refresh();
 				     	//回调函数
 						if(jQuery.isFunction(callback)){
 							callback(data);
