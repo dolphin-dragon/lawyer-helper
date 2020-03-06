@@ -2,13 +2,13 @@ $package('otter.caseCarryOut');
 otter.caseCarryOut = function(){
 	var _box = null;
 	var _this = {
-			pushNext:function(){
+			/*pushNext:function(){
 				_box.form.edit.attr('action','pushNext.do');
 				otter.saveForm(_box.form.edit,function(data){
 					otter.closeProgress();//关闭缓冲条
 					_box.win.edit.dialog('close');
 				});
-			},
+			},*/
 		config:{
 			event:{
 /*				add:function(){
@@ -30,7 +30,8 @@ otter.caseCarryOut = function(){
 	   			toolbar:[
 //					{id:'btnadd',text:'添加',btnType:'add'},
 					{id:'btnedit',text:'修改',btnType:'edit'},
-					{id:'btndelete',text:'删除',btnType:'remove'},
+					{id:'btndelete',text:'删除',btnType:'remove'}
+					/*,
 					{id:'btnedit',text:'案件推进',btnType:'edit',iconCls:'icon-tip',handler:function(){
 						var selected = _box.utils.getCheckedRows();
 						if ( _box.utils.checkSelectOne(selected)){
@@ -63,7 +64,8 @@ otter.caseCarryOut = function(){
 								$('input[type="button"]',$('#editForm')).attr('disabled',true);
 							});
 						}
-					}}
+					}*/
+					}
 				],
 				idField:'caseId',
 	   			columns:[[

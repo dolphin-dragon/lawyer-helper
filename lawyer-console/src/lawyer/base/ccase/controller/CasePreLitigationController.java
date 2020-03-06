@@ -21,9 +21,11 @@ import com.base.util.SessionUtilsExt;
 import com.base.web.BaseAction;
 import com.otter.entity.SysUser;
 
+import lawyer.base.ccase.entity.CaseFirstInstance;
 import lawyer.base.ccase.entity.CaseInfo;
 import lawyer.base.ccase.entity.CasePreLitigation;
 import lawyer.base.ccase.page.CasePreLitigationPage;
+import lawyer.base.ccase.service.CaseFirstInstanceService;
 import lawyer.base.ccase.service.CaseInfoService;
 import lawyer.base.ccase.service.CasePreLitigationService;
  
@@ -152,20 +154,51 @@ public class CasePreLitigationController extends BaseAction{
 	}
 	/*********************************** generation code  end ***********************************/
 
+	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
+	private CaseFirstInstanceService<CaseFirstInstance> caseFirstInstanceService;
 	@RequestMapping("/pushNext")
 	public void pushNext(CasePreLitigation entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
 		log.info("/casePreLitigation/pushNext entity :"+entity+" typeIds:"+Arrays.toString(typeIds)+" response:"+response);
-		//查询当前案件信息
-		CasePreLitigation dbentity  = casePreLitigationService.queryById(entity.getCaseId());
-		//进行案件信息检查
-		boolean checkstatus =false;
-		
-		//信息检查未通过
-		if(checkstatus) {
-			sendFailureMessage(response, "案件推进异常，请检查案件信息是否完整!");
-			return;			
-		}
-		log.info("/casePreLitigation/pushNext sendSuccessMessage 推进成功~");
-		sendSuccessMessage(response, "推进成功~");
+		SysUser user = SessionUtilsExt.getUser(request);
+		if(null != user) {
+			//查询当前案件信息
+			CasePreLitigation dbentity  = casePreLitigationService.queryById(entity.getCaseId());
+			//进行案件信息检查
+			boolean checkstatus =false;
+			if(!(null == dbentity || null == dbentity.getStatus() || dbentity.getStatus() == 0)) checkstatus = true;
+			
+			if(!(StringUtils.equals("2", dbentity.getIsClose()) && StringUtils.equals("1", dbentity.getIsDirectAction()))) checkstatus = true;
+			
+			//信息检查未通过
+			if(checkstatus) {
+				sendFailureMessage(response, "案件推进异常，请检查案件信息是否完整!");
+				return;			
+			}
+			
+			CaseFirstInstance caseFirstInstance = caseFirstInstanceService.queryById(entity.getCaseId());
+			if(null == caseFirstInstance) {
+				caseFirstInstance = new CaseFirstInstance();
+				caseFirstInstance.setCaseId(entity.getCaseId());
+				
+				caseFirstInstance.setCreatedBy(null!=user?user.getId()+"":"");
+				caseFirstInstance.setCreatedTime(new Date());
+				caseFirstInstance.setUpdatedBy(null!=user?user.getId()+"":"");
+				caseFirstInstance.setUpdatedTime(new Date());
+				
+				caseFirstInstanceService.add(caseFirstInstance);
+			}else {
+				sendFailureMessage(response, "案件推进异常，已经推进到下阶段!");
+				return;
+			}
+			
+			dbentity.setStatus(1);
+			dbentity.setUpdatedBy(null!=user?user.getId()+"":"");
+			dbentity.setUpdatedTime(new Date());
+			casePreLitigationService.update(dbentity);
+			
+			log.info("/casePreLitigation/pushNext sendSuccessMessage 推进成功~");
+			sendSuccessMessage(response, "推进成功~");
+		}else
+			sendFailureMessage(response, "无权进行案件推进处理!");
 	}
 }

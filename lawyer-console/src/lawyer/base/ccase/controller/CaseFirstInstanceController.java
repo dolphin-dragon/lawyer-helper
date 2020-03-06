@@ -21,11 +21,16 @@ import com.base.util.SessionUtilsExt;
 import com.base.web.BaseAction;
 import com.otter.entity.SysUser;
 
+import lawyer.base.ccase.entity.CaseCarryOut;
 import lawyer.base.ccase.entity.CaseFirstInstance;
 import lawyer.base.ccase.entity.CaseInfo;
+import lawyer.base.ccase.entity.CasePreLitigation;
+import lawyer.base.ccase.entity.CaseSecondInstance;
 import lawyer.base.ccase.page.CaseFirstInstancePage;
+import lawyer.base.ccase.service.CaseCarryOutService;
 import lawyer.base.ccase.service.CaseFirstInstanceService;
 import lawyer.base.ccase.service.CaseInfoService;
+import lawyer.base.ccase.service.CaseSecondInstanceService;
  
 /**
  * <b>功能：</b>CaseFirstInstanceController<br>
@@ -152,20 +157,76 @@ public class CaseFirstInstanceController extends BaseAction{
 	}
 	/*********************************** generation code  end ***********************************/
 	
+	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
+	private CaseSecondInstanceService<CaseSecondInstance> caseSecondInstanceService;
+	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
+	private CaseCarryOutService<CaseCarryOut> caseCarryOutService;
+	
 	@RequestMapping("/pushNext")
 	public void pushNext(CaseFirstInstance entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
 		log.info("/caseFirstInstance/pushNext entity :"+entity+" typeIds:"+Arrays.toString(typeIds)+" response:"+response);
-		//查询当前案件信息
-		CaseFirstInstance dbentity  = caseFirstInstanceService.queryById(entity.getCaseId());
-		//进行案件信息检查
-		boolean checkstatus =false;
-		
-		//信息检查未通过
-		if(checkstatus) {
-			sendFailureMessage(response, "案件推进异常，请检查案件信息是否完整!");
-			return;			
-		}
-		log.info("/caseFirstInstance/pushNext sendSuccessMessage 推进成功~");
-		sendSuccessMessage(response, "推进成功~");
+		SysUser user = SessionUtilsExt.getUser(request);
+		if(null != user) {
+			//查询当前案件信息
+			CaseFirstInstance dbentity  = caseFirstInstanceService.queryById(entity.getCaseId());
+			//进行案件信息检查
+			boolean checkstatus =false;
+			if(!(null == dbentity || null == dbentity.getStatus() || dbentity.getStatus() == 0)) checkstatus = true;
+			if(!StringUtils.equals("2", dbentity.getIsClose())) checkstatus = true;
+			
+			//信息检查未通过
+			if(checkstatus) {
+				sendFailureMessage(response, "案件推进异常，请检查案件信息是否完整!");
+				return;			
+			}
+			
+			if(StringUtils.equals("1",dbentity.getIsAppeal())) {//二审流转处理
+				CaseSecondInstance caseSecondInstance = caseSecondInstanceService.queryById(entity.getCaseId());
+				if(null == caseSecondInstance) {
+					caseSecondInstance = new CaseSecondInstance();
+					caseSecondInstance.setCaseId(entity.getCaseId());
+					
+					caseSecondInstance.setCreatedBy(null!=user?user.getId()+"":"");
+					caseSecondInstance.setCreatedTime(new Date());
+					caseSecondInstance.setUpdatedBy(null!=user?user.getId()+"":"");
+					caseSecondInstance.setUpdatedTime(new Date());
+
+					caseSecondInstanceService.add(caseSecondInstance);
+				}else {
+					sendFailureMessage(response, "案件推进异常，已经推进到下阶段!");
+					return;
+				}
+				dbentity.setStatus(1);
+				dbentity.setUpdatedBy(null!=user?user.getId()+"":"");
+				dbentity.setUpdatedTime(new Date());
+				caseFirstInstanceService.update(dbentity);
+				
+			}else if(StringUtils.equals("2",dbentity.getIsAppeal()) && StringUtils.equals("1",dbentity.getIsCarryOut())) {//执行流转处理
+				CaseCarryOut caseCarryOut = caseCarryOutService.queryById(entity.getCaseId());
+				if(null == caseCarryOut) {
+					caseCarryOut = new CaseCarryOut();
+					caseCarryOut.setCaseId(entity.getCaseId());
+					
+					caseCarryOut.setCreatedBy(null!=user?user.getId()+"":"");
+					caseCarryOut.setCreatedTime(new Date());
+					caseCarryOut.setUpdatedBy(null!=user?user.getId()+"":"");
+					caseCarryOut.setUpdatedTime(new Date());
+
+					caseCarryOutService.add(caseCarryOut);
+				}else {
+					sendFailureMessage(response, "案件推进异常，已经推进到下阶段!");
+					return;
+				}
+				
+				dbentity.setStatus(1);
+				dbentity.setUpdatedBy(null!=user?user.getId()+"":"");
+				dbentity.setUpdatedTime(new Date());
+				caseFirstInstanceService.update(dbentity);
+			}
+			
+			log.info("/caseFirstInstance/pushNext sendSuccessMessage 推进成功~");
+			sendSuccessMessage(response, "推进成功~");
+		}else
+			sendFailureMessage(response, "无权进行案件推进处理!");
 	}
 }

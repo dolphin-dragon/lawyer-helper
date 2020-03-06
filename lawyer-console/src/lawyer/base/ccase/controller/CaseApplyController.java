@@ -22,10 +22,14 @@ import com.base.web.BaseAction;
 import com.otter.entity.SysUser;
 
 import lawyer.base.ccase.entity.CaseApply;
+import lawyer.base.ccase.entity.CaseFirstInstance;
 import lawyer.base.ccase.entity.CaseInfo;
+import lawyer.base.ccase.entity.CasePreLitigation;
 import lawyer.base.ccase.page.CaseApplyPage;
 import lawyer.base.ccase.service.CaseApplyService;
+import lawyer.base.ccase.service.CaseFirstInstanceService;
 import lawyer.base.ccase.service.CaseInfoService;
+import lawyer.base.ccase.service.CasePreLitigationService;
  
 /**
  * <b>功能：</b>CaseApplyController<br>
@@ -168,21 +172,76 @@ public class CaseApplyController extends BaseAction{
 		sendSuccessMessage(response, "删除成功");
 	}
 	/*********************************** generation code  end ***********************************/
+
+	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
+	private CaseFirstInstanceService<CaseFirstInstance> caseFirstInstanceService;
+	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
+	private CasePreLitigationService<CasePreLitigation> casePreLitigationService;
 	
 	@RequestMapping("/pushNext")
 	public void pushNext(CaseApply entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
 		log.info("/caseApply/pushNext entity :"+entity+" typeIds:"+Arrays.toString(typeIds)+" response:"+response);
-		//查询当前案件信息
-		CaseApply dbentity  = caseApplyService.queryById(entity.getCaseId());
-		//进行案件信息检查
-		boolean checkstatus =false;
-		
-		//信息检查未通过
-		if(checkstatus) {
-			sendFailureMessage(response, "案件推进异常，请检查案件信息是否完整!");
-			return;			
-		}
-		log.info("/caseApply/pushNext sendSuccessMessage 推进成功~");
-		sendSuccessMessage(response, "推进成功~");
+		SysUser user = SessionUtilsExt.getUser(request);
+		if(null != user) {
+			//查询当前案件信息
+			CaseApply dbentity  = caseApplyService.queryById(entity.getCaseId());
+			//进行案件信息检查
+			boolean checkstatus =false;
+			if(!(null == dbentity || null == dbentity.getStatus() || dbentity.getStatus() == 0)) checkstatus = true;
+			//信息检查处理
+			String acImg = dbentity.getActionImg();
+			String litigantImg = dbentity.getLitigantAcImg();
+			if(StringUtils.isBlank(acImg) || StringUtils.isBlank(litigantImg)) checkstatus = true;
+			
+			//信息检查未通过
+			if(checkstatus) {
+				sendFailureMessage(response, "案件推进异常，请检查案件信息是否完整!");
+				return;			
+			}
+
+			//判断是否直接诉讼
+			if(StringUtils.equals("1", dbentity.getIsDirectAction())) {
+				CaseFirstInstance caseFirstInstance = caseFirstInstanceService.queryById(entity.getCaseId());
+				if(null == caseFirstInstance) {
+					caseFirstInstance = new CaseFirstInstance();
+					caseFirstInstance.setCaseId(entity.getCaseId());
+					
+					caseFirstInstance.setCreatedBy(null!=user?user.getId()+"":"");
+					caseFirstInstance.setCreatedTime(new Date());
+					caseFirstInstance.setUpdatedBy(null!=user?user.getId()+"":"");
+					caseFirstInstance.setUpdatedTime(new Date());
+
+					caseFirstInstanceService.add(caseFirstInstance);
+				}else {
+					sendFailureMessage(response, "案件推进异常，已经推进到下阶段!");
+					return;
+				}
+			}else {
+				CasePreLitigation casePreLitigation = casePreLitigationService.queryById(entity.getCaseId());
+				if(null == casePreLitigation) {
+					casePreLitigation = new CasePreLitigation();
+					casePreLitigation.setCaseId(entity.getCaseId());
+					
+					casePreLitigation.setCreatedBy(null!=user?user.getId()+"":"");
+					casePreLitigation.setCreatedTime(new Date());
+					casePreLitigation.setUpdatedBy(null!=user?user.getId()+"":"");
+					casePreLitigation.setUpdatedTime(new Date());
+
+					casePreLitigationService.add(casePreLitigation);
+				}else {
+					sendFailureMessage(response, "案件推进异常，已经推进到下阶段!");
+					return;
+				}
+			}
+			
+			dbentity.setStatus(1);
+			dbentity.setUpdatedBy(null!=user?user.getId()+"":"");
+			dbentity.setUpdatedTime(new Date());
+			
+			caseApplyService.update(dbentity);
+			log.info("/caseApply/pushNext sendSuccessMessage 推进成功~");
+			sendSuccessMessage(response, "推进成功~");
+		}else
+			sendFailureMessage(response, "无权进行案件推进处理!");
 	}
 }
