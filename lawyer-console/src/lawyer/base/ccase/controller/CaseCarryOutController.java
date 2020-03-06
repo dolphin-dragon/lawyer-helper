@@ -6,20 +6,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.base.web.BaseAction;
-import com.otter.entity.SysUser;
 import com.base.util.HtmlUtil;
 import com.base.util.SessionUtilsExt;
+import com.base.web.BaseAction;
+import com.otter.entity.SysUser;
 
 import lawyer.base.ccase.entity.CaseCarryOut;
 import lawyer.base.ccase.entity.CaseInfo;
@@ -150,4 +150,21 @@ public class CaseCarryOutController extends BaseAction{
 		sendSuccessMessage(response, "删除成功");
 	}
 	/*********************************** generation code  end ***********************************/
+	
+	@RequestMapping("/pushNext")
+	public void pushNext(CaseCarryOut entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
+		log.info("/caseCarryOut/pushNext entity :"+entity+" typeIds:"+Arrays.toString(typeIds)+" response:"+response);
+		//查询当前案件信息
+		CaseCarryOut dbentity  = caseCarryOutService.queryById(entity.getCaseId());
+		//进行案件信息检查
+		boolean checkstatus =false;
+		
+		//信息检查未通过
+		if(checkstatus) {
+			sendFailureMessage(response, "案件推进异常，请检查案件信息是否完整!");
+			return;			
+		}
+		log.info("/caseCarryOut/pushNext sendSuccessMessage 推进成功~");
+		sendSuccessMessage(response, "推进成功~");
+	}
 }

@@ -2,6 +2,13 @@ $package('otter.caseSecondInstance');
 otter.caseSecondInstance = function(){
 	var _box = null;
 	var _this = {
+			pushNext:function(){
+				_box.form.edit.attr('action','pushNext.do');
+				otter.saveForm(_box.form.edit,function(data){
+					otter.closeProgress();//关闭缓冲条
+					_box.win.edit.dialog('close');
+				});
+			},
 		config:{
 			event:{
 /*				add:function(){
@@ -9,7 +16,11 @@ otter.caseSecondInstance = function(){
 					_box.handler.add();
 				},*/
 				edit:function(){
-					$('#typeIds_combobox').combobox('reload');
+//					$('#typeIds_combobox').combobox('reload');
+					$('input,textarea',$('#editForm')).removeAttr('readonly');
+					$('.easyui-combobox , .easyui-datebox',$('#editForm')).combobox('enable');
+					$('input[type="button"]',$('#editForm')).removeAttr('disabled');
+					
 					_box.handler.edit();
 				}
 			},
@@ -19,7 +30,40 @@ otter.caseSecondInstance = function(){
 	   			toolbar:[
 //					{id:'btnadd',text:'添加',btnType:'add'},
 					{id:'btnedit',text:'修改',btnType:'edit'},
-					{id:'btndelete',text:'删除',btnType:'remove'}
+					{id:'btndelete',text:'删除',btnType:'remove'},
+					{id:'btnedit',text:'案件推进',btnType:'edit',iconCls:'icon-tip',handler:function(){
+						var selected = _box.utils.getCheckedRows();
+						if ( _box.utils.checkSelectOne(selected)){
+							_box.win.edit.dialog({
+								buttons:[
+									{
+										text:'案件推进',
+										handler:_this.pushNext
+									}
+								],
+							onClose : function(){
+									_box.win.edit.dialog({
+										buttons:[
+											{
+												text:'保存',
+												handler:_box.events.save
+											},{
+												text:'关闭',
+												handler:_box.events.close
+											}
+										]
+									});
+								}
+							});
+							
+							_box.handler.edit(new function(){
+								//控制界面原始不可用
+								$('input,textarea',$('#editForm')).attr('readonly',true);
+								$('.easyui-combobox , .easyui-datebox',$('#editForm')).combobox('disable');
+								$('input[type="button"]',$('#editForm')).attr('disabled',true);
+							});
+						}
+					}}
 				],
 				idField:'caseId',
 	   			columns:[[

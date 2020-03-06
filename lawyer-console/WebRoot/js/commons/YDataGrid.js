@@ -337,6 +337,7 @@ var YDataGrid = function(config){
 		this.grid = Grid;
 		this.utils = Utils;
 		this.handler = Handler;
+		this.events = Events;
 		
 		
 		//初始化方法

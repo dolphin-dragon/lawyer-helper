@@ -24,7 +24,7 @@
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="案件确立信息登记表" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:460px;">  
+     <div id="edit-win" class="easyui-dialog" title="案件确立信息登记表" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:600px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="caseId">
      		 <div class="ui-edit">
@@ -104,7 +104,7 @@
 					<div class="fitem">
 						<label>侵权类型</label>
 						<!-- <input name="violateType" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写侵权类型"> -->
-						<select class="easyui-combobox" name="violateType" data-options="" missingMessage="请填写侵权类型">
+						<select class="easyui-combobox" name="violateType" id="violateType" data-options="" missingMessage="请填写侵权类型">
                     		<option value="1" selected="selected">肖像权</option>
                     		<option value="2">肖像权(含名誉权)</option>
                     		<option value="3">肖像权(含姓名权)</option>

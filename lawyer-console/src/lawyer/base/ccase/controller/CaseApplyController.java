@@ -168,4 +168,21 @@ public class CaseApplyController extends BaseAction{
 		sendSuccessMessage(response, "删除成功");
 	}
 	/*********************************** generation code  end ***********************************/
+	
+	@RequestMapping("/pushNext")
+	public void pushNext(CaseApply entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
+		log.info("/caseApply/pushNext entity :"+entity+" typeIds:"+Arrays.toString(typeIds)+" response:"+response);
+		//查询当前案件信息
+		CaseApply dbentity  = caseApplyService.queryById(entity.getCaseId());
+		//进行案件信息检查
+		boolean checkstatus =false;
+		
+		//信息检查未通过
+		if(checkstatus) {
+			sendFailureMessage(response, "案件推进异常，请检查案件信息是否完整!");
+			return;			
+		}
+		log.info("/caseApply/pushNext sendSuccessMessage 推进成功~");
+		sendSuccessMessage(response, "推进成功~");
+	}
 }
