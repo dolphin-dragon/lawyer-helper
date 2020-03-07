@@ -75,6 +75,9 @@ public class CaseApplyController extends BaseAction{
 	@RequestMapping("/dataList") 
 	public void  datalist(CaseApplyPage page,HttpServletResponse response) throws Exception{
 		log.info("/caseApply/dataList page :"+page+" response:"+response);
+		SysUser user = SessionUtilsExt.getUser(request);
+		if(!SessionUtilsExt.isAdmin(request))
+			page.setCreatedBy(user.getId()+"");
 		
 		List<CaseApply> dataList = caseApplyService.queryByList(page);
 		//设置页面数据
@@ -199,6 +202,7 @@ public class CaseApplyController extends BaseAction{
 				return;			
 			}
 
+			int status = 0;
 			//判断是否直接诉讼
 			if(StringUtils.equals("1", dbentity.getIsDirectAction())) {
 				CaseFirstInstance caseFirstInstance = caseFirstInstanceService.queryById(entity.getCaseId());
@@ -212,6 +216,7 @@ public class CaseApplyController extends BaseAction{
 					caseFirstInstance.setUpdatedTime(new Date());
 
 					caseFirstInstanceService.add(caseFirstInstance);
+					status=31;
 				}else {
 					sendFailureMessage(response, "案件推进异常，已经推进到下阶段!");
 					return;
@@ -228,11 +233,16 @@ public class CaseApplyController extends BaseAction{
 					casePreLitigation.setUpdatedTime(new Date());
 
 					casePreLitigationService.add(casePreLitigation);
+					status=21;
 				}else {
 					sendFailureMessage(response, "案件推进异常，已经推进到下阶段!");
 					return;
 				}
 			}
+			
+			CaseInfo caseInfo = caseInfoService.queryById(entity.getCaseId());
+			caseInfo.setStatus(status);
+			caseInfoService.update(caseInfo);
 			
 			dbentity.setStatus(1);
 			dbentity.setUpdatedBy(null!=user?user.getId()+"":"");

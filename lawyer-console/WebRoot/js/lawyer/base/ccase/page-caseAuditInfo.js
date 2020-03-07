@@ -1,16 +1,28 @@
-$package('otter.caseInfo');
+$package('otter.caseAuditInfo');
 otter.caseInfo = function(){
 	var _box = null;
 	var _this = {
-			audit:function(){
+			auditY:function(){
 				otter.confirm("提示","请仔细检查案件信息，确认审核?",function(r){
 					if(r){
-//						_box.form.edit.attr('action','pushNext.do');
-//						otter.saveForm(_box.form.edit,function(data){
-//							otter.closeProgress();//关闭缓冲条
-//							_box.win.edit.dialog('close');
-//						});
-						$('#sp-edit-win').dialog('close');
+						$('#typeIds').val(1);
+						$('#base_Form').attr('action','audit.do');
+						otter.saveForm($('#base_Form'),function(data){
+							otter.closeProgress();//关闭缓冲条
+							$('#sp-edit-win').dialog('close');
+						});
+					}
+				});
+			},
+			auditN:function(){
+				otter.confirm("提示","请仔细检查案件信息，确认驳回?",function(r){
+					if(r){
+						$('#typeIds').val(2);
+						$('#base_Form').attr('action','audit.do');
+						otter.saveForm($('#base_Form'),function(data){
+							otter.closeProgress();//关闭缓冲条
+							$('#sp-edit-win').dialog('close');
+						});
 					}
 				});
 			},
@@ -27,23 +39,28 @@ otter.caseInfo = function(){
 			},
   			dataGrid:{
   				title:'案件基础信息',
-	   			url:'dataList.do',
+	   			url:'auditData.do',
 	   			toolbar:[
 					{id:'btnadd',text:'添加',btnType:'add'},
 					{id:'btnedit',text:'修改',btnType:'edit'},
 					{id:'btndelete',text:'删除',btnType:'remove'},
-					{id:'btnedit',text:'案件审核',btnType:'edit',iconCls:'icon-tip',handler:function(){
+					{id:'btnaudit',text:'案件审核',btnType:'audit',iconCls:'icon-tip',handler:function(){
 						var record = _box.utils.getCheckedRows();
 						if ( _box.utils.checkSelectOne(record)){
+							if(null == record[0]['status'] || 'null' == record[0]['status'] || 0 > record[0]['status'] ||record[0]['status'] >10 ) {
+								otter.alert('提示','案件未发起审批，请重新选择待审批案件！');
+								return false;
+							}
+							
 							$('#sp-edit-win').dialog({
 								buttons:[
 									{
 										text:'通过',
-										handler:_this.audit
+										handler:_this.auditY
 									},
 									{
 										text:'驳回',
-										handler:_this.audit
+										handler:_this.auditN
 									}
 								],
 								onClose : function(){
@@ -56,6 +73,16 @@ otter.caseInfo = function(){
 							var idKey = _this.config.dataGrid.idField || 'id'; // 主键名称
 							data[idKey] = (record[0][idKey]);
 							otter.getById('getAuditId.do', data, function(result) {
+								
+								//TODO:
+//								visibility:hidden/visible 设置为隐藏/显示(始终占位)
+//								display:none/block 设置为隐藏(不占位)/显示(不占位)
+//								$('#divMain').css("visibility", "hidden"); 
+//								$('#divMain').css("visibility", "visible"); 
+								
+								//$('#sp-edit-win').css("visibility", "visible"); 
+								$('div',$('#sp-edit-win')).css("visibility", "visible");
+								
 								$('#base_Form').form('load', result.data);
 								$('#app_Form').form('load', result.app);
 								$('#pre_Form').form('load', result.pre);
@@ -94,7 +121,8 @@ otter.caseInfo = function(){
 								$('input,textarea',$('#out_Form')).attr('readonly',true);
 								$('.easyui-combobox , .easyui-datebox',$('#out_Form')).combobox('disable');
 								$('input[type="button"]',$('#out_Form')).attr('disabled',true);
-								
+
+								$("#sp-tabs").tabs('select',0);
 								$('#sp-edit-win').dialog('open');
 							});
 						}
@@ -102,19 +130,46 @@ otter.caseInfo = function(){
 				],
 	   			columns:[[
 					{field:'id',checkbox:true},
-					{field:'status',title:'状态',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.status;
+//					{field:'status',title:'状态',align:'center',sortable:true,
+//							formatter:function(value,row,index){
+//								return row.status;
+//							}
+//						},
+//					{field:'org',title:'机构编码',align:'center',sortable:true,
+//							formatter:function(value,row,index){
+//								return row.org;
+//							}
+//						},
+					{field:'status',title:'案件状态',align:'center',sortable:true,
+						styler:function(value,row,index){
+							if(null != value){
+								if(0< value && value < 10){
+									return 'color:green;';
+								}
+								if(value < 0){
+									return 'color:red;';
+								}if(value > 90){
+									return 'color:blue;';
+								}
 							}
 						},
-					{field:'org',title:'机构编码',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.org;
+						formatter:function(value,row,index){
+							if(null != value){
+								if(0<value && value< 10){
+									return "结案申请";
+								}
+								if(value < 0){
+									return "结案驳回";
+								}if(value > 90){
+									return "结案通过";
+								}								
 							}
-						},
+							return "进行中";
+						}
+					},
 					{field:'created_by',title:'创建人',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.createdBy;
+								return row.createName;
 							}
 						},
 					{field:'created_time',title:'创建时间',align:'center',sortable:true,
@@ -124,7 +179,7 @@ otter.caseInfo = function(){
 						},
 					{field:'updated_by',title:'更新人',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.updatedBy;
+								return row.updateName;
 							}
 						},
 					{field:'updated_time',title:'更新时间',align:'center',sortable:true,

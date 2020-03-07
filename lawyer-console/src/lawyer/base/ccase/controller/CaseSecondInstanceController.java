@@ -174,6 +174,7 @@ public class CaseSecondInstanceController extends BaseAction{
 				return;			
 			}
 			
+			int status = 0;
 			if(StringUtils.equals("1",dbentity.getIsCarryOut())) {
 				CaseCarryOut caseCarryOut = caseCarryOutService.queryById(entity.getCaseId());
 				if(null == caseCarryOut) {
@@ -186,10 +187,15 @@ public class CaseSecondInstanceController extends BaseAction{
 					caseCarryOut.setUpdatedTime(new Date());
 					
 					caseCarryOutService.add(caseCarryOut);
+					status = 54;
 				}else {
 					sendFailureMessage(response, "案件推进异常，已经推进到下阶段!");
 					return;
 				}
+				
+				CaseInfo caseInfo = caseInfoService.queryById(entity.getCaseId());
+				caseInfo.setStatus(status);
+				caseInfoService.update(caseInfo);
 				
 				dbentity.setStatus(1);
 				dbentity.setUpdatedBy(null!=user?user.getId()+"":"");

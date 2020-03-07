@@ -24,7 +24,6 @@ import com.otter.entity.SysUser;
 import lawyer.base.ccase.entity.CaseCarryOut;
 import lawyer.base.ccase.entity.CaseFirstInstance;
 import lawyer.base.ccase.entity.CaseInfo;
-import lawyer.base.ccase.entity.CasePreLitigation;
 import lawyer.base.ccase.entity.CaseSecondInstance;
 import lawyer.base.ccase.page.CaseFirstInstancePage;
 import lawyer.base.ccase.service.CaseCarryOutService;
@@ -76,6 +75,9 @@ public class CaseFirstInstanceController extends BaseAction{
 	@RequestMapping("/dataList") 
 	public void  datalist(CaseFirstInstancePage page,HttpServletResponse response) throws Exception{
 		log.info("/caseFirstInstance/dataList page :"+page+" response:"+response);
+		SysUser user = SessionUtilsExt.getUser(request);
+		if(!SessionUtilsExt.isAdmin(request))
+			page.setCreatedBy(user.getId()+"");
 		
 		List<CaseFirstInstance> dataList = caseFirstInstanceService.queryByList(page);
 		//设置页面数据
@@ -179,7 +181,7 @@ public class CaseFirstInstanceController extends BaseAction{
 				sendFailureMessage(response, "案件推进异常，请检查案件信息是否完整!");
 				return;			
 			}
-			
+			int status = 0;
 			if(StringUtils.equals("1",dbentity.getIsAppeal())) {//二审流转处理
 				CaseSecondInstance caseSecondInstance = caseSecondInstanceService.queryById(entity.getCaseId());
 				if(null == caseSecondInstance) {
@@ -192,10 +194,16 @@ public class CaseFirstInstanceController extends BaseAction{
 					caseSecondInstance.setUpdatedTime(new Date());
 
 					caseSecondInstanceService.add(caseSecondInstance);
+					status = 43;
 				}else {
 					sendFailureMessage(response, "案件推进异常，已经推进到下阶段!");
 					return;
 				}
+				
+				CaseInfo caseInfo = caseInfoService.queryById(entity.getCaseId());
+				caseInfo.setStatus(status);
+				caseInfoService.update(caseInfo);
+				
 				dbentity.setStatus(1);
 				dbentity.setUpdatedBy(null!=user?user.getId()+"":"");
 				dbentity.setUpdatedTime(new Date());
@@ -213,10 +221,15 @@ public class CaseFirstInstanceController extends BaseAction{
 					caseCarryOut.setUpdatedTime(new Date());
 
 					caseCarryOutService.add(caseCarryOut);
+					status = 53;
 				}else {
 					sendFailureMessage(response, "案件推进异常，已经推进到下阶段!");
 					return;
 				}
+				
+				CaseInfo caseInfo = caseInfoService.queryById(entity.getCaseId());
+				caseInfo.setStatus(status);
+				caseInfoService.update(caseInfo);
 				
 				dbentity.setStatus(1);
 				dbentity.setUpdatedBy(null!=user?user.getId()+"":"");

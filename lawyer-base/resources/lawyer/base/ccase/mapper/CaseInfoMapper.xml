@@ -18,6 +18,9 @@
 	<result column="defendant_reg_capital" property="defendantRegCapital" jdbcType="VARCHAR"/>
 	<result column="defendant_area" property="defendantArea" jdbcType="VARCHAR"/>
 	<result column="del_flag" property="delFlag" jdbcType="VARCHAR"/>
+	
+	<result column="created_name" property="createName" jdbcType="VARCHAR"/>
+    <result column="updated_name" property="updateName" jdbcType="VARCHAR"/>
 </resultMap>
        
 <!-- case_info table all fields -->
@@ -86,13 +89,16 @@
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update case_info set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},litigant=#{litigant,jdbcType=VARCHAR},defendant_name=#{defendantName,jdbcType=VARCHAR},defendant_reg_capital=#{defendantRegCapital,jdbcType=VARCHAR},defendant_area=#{defendantArea,jdbcType=VARCHAR} where id=#{id,jdbcType=INTEGER}
+  update case_info set status=#{status,jdbcType=INTEGER},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},litigant=#{litigant,jdbcType=VARCHAR},defendant_name=#{defendantName,jdbcType=VARCHAR},defendant_reg_capital=#{defendantRegCapital,jdbcType=VARCHAR},defendant_area=#{defendantArea,jdbcType=VARCHAR} where id=#{id,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="updateBySelective" parameterType="Object" >
 	update case_info set 
 	<trim  suffixOverrides="," >
+	<if test="status != null" >
+	    status = #{status,jdbcType=INTEGER},
+	</if>
 	<if test="org != null  ">
 		org=#{org,jdbcType=VARCHAR},
 	</if>
@@ -102,7 +108,7 @@
 	<if test="createdTime != null  ">
 		created_time=#{createdTime,jdbcType=TIMESTAMP},
 	</if>
-	<if test="updatedBy != null  ">
+	<if test="updatedBy != null and createdBy !='' ">
 		updated_by=#{updatedBy,jdbcType=VARCHAR},
 	</if>
 	<if test="updatedTime != null  ">
@@ -136,6 +142,8 @@
 <!-- 根据id查询 案件基础信息 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
 	select <include refid="Base_Column_List" /> 
+	,(select nickName from sys_user sut where sut.id=case_info.created_by) as created_name
+	,(select nickName from sys_user sut where sut.id=case_info.updated_by) as updated_name  
 	 from case_info where id = #{id}
 </select>
 
@@ -147,22 +155,18 @@
   	
 <!-- 查询案件基础信息列表 -->
 <select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
-
-	select 
-	<include refid="Base_Column_List"/>
+	select <include refid="Base_Column_List"/>
+	,(select nickName from sys_user sut where sut.id=case_info.created_by) as created_name
+	,(select nickName from sys_user sut where sut.id=case_info.updated_by) as updated_name   
 	from case_info 
 	<include refid="Example_Where_Clause"/>
-	
 	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
       ${pager.orderCondition}
     </if>
-
 	<if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
        ${pager.mysqlQueryCondition}
     </if>
-
 </select>
 <!--*********************************** generation code  end ***********************************-->
-
 	
 </mapper>

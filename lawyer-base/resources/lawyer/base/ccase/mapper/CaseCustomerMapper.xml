@@ -105,7 +105,7 @@
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update case_customer set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},id=#{id,jdbcType=INTEGER},code=#{code,jdbcType=VARCHAR},ctype=#{ctype,jdbcType=VARCHAR},id_card=#{idCard,jdbcType=VARCHAR},e_code=#{eCode,jdbcType=VARCHAR},phone=#{phone,jdbcType=VARCHAR},link_man=#{linkMan,jdbcType=VARCHAR},remark=#{remark,jdbcType=VARCHAR},del_flag=#{delFlag,jdbcType=VARCHAR} where status=#{status,jdbcType=INTEGER}
+  update case_customer set updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},id=#{id,jdbcType=INTEGER},code=#{code,jdbcType=VARCHAR},ctype=#{ctype,jdbcType=VARCHAR},id_card=#{idCard,jdbcType=VARCHAR},e_code=#{eCode,jdbcType=VARCHAR},phone=#{phone,jdbcType=VARCHAR},link_man=#{linkMan,jdbcType=VARCHAR},remark=#{remark,jdbcType=VARCHAR},del_flag=#{delFlag,jdbcType=VARCHAR} where status=#{status,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->

@@ -105,6 +105,7 @@ function Login() {
 				loginsuccess();
 				setTimeout("window.location.href='main.shtml'", 100);
 			} else {
+				$("#vc-pic").click();
 				showError(data.msg);
 			}
 		}

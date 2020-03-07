@@ -144,7 +144,7 @@
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update case_second_instance set status=#{status,jdbcType=INTEGER},org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},case_id=#{caseId,jdbcType=INTEGER},lawyer=#{lawyer,jdbcType=VARCHAR},s_court_date=#{scourtDate,jdbcType=DATE},judge=#{judge,jdbcType=VARCHAR},judge_contact=#{judgeContact,jdbcType=VARCHAR},s_judgment_effective_date=#{sjudgmentEffectiveDate,jdbcType=DATE},is_apology=#{isApology,jdbcType=VARCHAR},defendant_compensation_total=#{defendantCompensationTotal,jdbcType=VARCHAR},defendant_expenses=#{defendantExpenses,jdbcType=VARCHAR},plaintiff_costs=#{plaintiffCosts,jdbcType=VARCHAR},defendant_costs=#{defendantCosts,jdbcType=DECIMAL},is_close=#{isClose,jdbcType=VARCHAR},execution_deadline=#{executionDeadline,jdbcType=DATE},remark=#{remark,jdbcType=VARCHAR},is_carry_out=#{isCarryOut,jdbcType=VARCHAR} where case_id=#{caseId,jdbcType=INTEGER}
+  update case_second_instance set status=#{status,jdbcType=INTEGER},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},case_id=#{caseId,jdbcType=INTEGER},lawyer=#{lawyer,jdbcType=VARCHAR},s_court_date=#{scourtDate,jdbcType=DATE},judge=#{judge,jdbcType=VARCHAR},judge_contact=#{judgeContact,jdbcType=VARCHAR},s_judgment_effective_date=#{sjudgmentEffectiveDate,jdbcType=DATE},is_apology=#{isApology,jdbcType=VARCHAR},defendant_compensation_total=#{defendantCompensationTotal,jdbcType=VARCHAR},defendant_expenses=#{defendantExpenses,jdbcType=VARCHAR},plaintiff_costs=#{plaintiffCosts,jdbcType=VARCHAR},defendant_costs=#{defendantCosts,jdbcType=DECIMAL},is_close=#{isClose,jdbcType=VARCHAR},execution_deadline=#{executionDeadline,jdbcType=DATE},remark=#{remark,jdbcType=VARCHAR},is_carry_out=#{isCarryOut,jdbcType=VARCHAR} where case_id=#{caseId,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -157,7 +157,7 @@
 	<if test="org != null  ">
 		org=#{org,jdbcType=VARCHAR},
 	</if>
-	<if test="createdBy != null  ">
+	<if test="createdBy != null and createdBy !='' ">
 		created_by=#{createdBy,jdbcType=VARCHAR},
 	</if>
 	<if test="createdTime != null  ">
@@ -230,7 +230,7 @@
 <!-- 根据id查询 案件二审阶段信息 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
 	select <include refid="Base_Column_List" /> 
-	,(select name from sys_user_ext sut where sut.uid=case_second_instance.lawyer) as lawyer_name 
+	,(select nickName from sys_user sut where sut.id=case_second_instance.lawyer) as lawyer_name 
 	 from (select ap.*,inf.litigant,inf.defendant_name,inf.defendant_reg_capital,inf.defendant_area,inf.del_flag from case_second_instance ap, case_info inf where ap.case_id=inf.id) as case_second_instance where case_id=#{caseId,jdbcType=INTEGER}
 </select>
 
@@ -243,7 +243,7 @@
 <!-- 查询案件二审阶段信息列表 -->
 <select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
 	select <include refid="Base_Column_List"/>
-	,(select name from sys_user_ext sut where sut.uid=case_second_instance.lawyer) as lawyer_name 
+	,(select nickName from sys_user sut where sut.id=case_second_instance.lawyer) as lawyer_name 
 	from (select ap.*,inf.litigant,inf.defendant_name,inf.defendant_reg_capital,inf.defendant_area,inf.del_flag from case_second_instance ap, case_info inf where ap.case_id=inf.id) as case_second_instance  
 	<include refid="Example_Where_Clause"/>
 	

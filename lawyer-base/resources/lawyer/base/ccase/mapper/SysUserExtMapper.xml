@@ -120,7 +120,7 @@
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update sys_user_ext set org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},uid=#{uid,jdbcType=INTEGER},name=#{name,jdbcType=VARCHAR},sex=#{sex,jdbcType=VARCHAR},phone=#{phone,jdbcType=VARCHAR},tel=#{tel,jdbcType=VARCHAR},qq=#{qq,jdbcType=VARCHAR},position=#{position,jdbcType=VARCHAR},entry_date=#{entryDate,jdbcType=DATE},birt=#{birt,jdbcType=DATE},remark=#{remark,jdbcType=VARCHAR},del_flag=#{delFlag,jdbcType=VARCHAR},email=#{email,jdbcType=VARCHAR} where uid=#{uid,jdbcType=INTEGER}
+  update sys_user_ext set updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},uid=#{uid,jdbcType=INTEGER},name=#{name,jdbcType=VARCHAR},sex=#{sex,jdbcType=VARCHAR},phone=#{phone,jdbcType=VARCHAR},tel=#{tel,jdbcType=VARCHAR},qq=#{qq,jdbcType=VARCHAR},position=#{position,jdbcType=VARCHAR},entry_date=#{entryDate,jdbcType=DATE},birt=#{birt,jdbcType=DATE},remark=#{remark,jdbcType=VARCHAR},del_flag=#{delFlag,jdbcType=VARCHAR},email=#{email,jdbcType=VARCHAR} where uid=#{uid,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->

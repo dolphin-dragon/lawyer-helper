@@ -73,6 +73,9 @@ public class CasePreLitigationController extends BaseAction{
 	@RequestMapping("/dataList") 
 	public void  datalist(CasePreLitigationPage page,HttpServletResponse response) throws Exception{
 		log.info("/casePreLitigation/dataList page :"+page+" response:"+response);
+		SysUser user = SessionUtilsExt.getUser(request);
+		if(!SessionUtilsExt.isAdmin(request))
+			page.setCreatedBy(user.getId()+"");
 		
 		List<CasePreLitigation> dataList = casePreLitigationService.queryByList(page);
 		//设置页面数据
@@ -175,6 +178,7 @@ public class CasePreLitigationController extends BaseAction{
 				return;			
 			}
 			
+			int status = 0;
 			CaseFirstInstance caseFirstInstance = caseFirstInstanceService.queryById(entity.getCaseId());
 			if(null == caseFirstInstance) {
 				caseFirstInstance = new CaseFirstInstance();
@@ -186,10 +190,16 @@ public class CasePreLitigationController extends BaseAction{
 				caseFirstInstance.setUpdatedTime(new Date());
 				
 				caseFirstInstanceService.add(caseFirstInstance);
+				status=32;
 			}else {
 				sendFailureMessage(response, "案件推进异常，已经推进到下阶段!");
 				return;
 			}
+
+			CaseInfo caseInfo = caseInfoService.queryById(entity.getCaseId());
+			caseInfo.setStatus(status);
+			caseInfoService.update(caseInfo);
+			
 			
 			dbentity.setStatus(1);
 			dbentity.setUpdatedBy(null!=user?user.getId()+"":"");

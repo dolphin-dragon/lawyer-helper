@@ -24,7 +24,7 @@
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="Basic window" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="Basic window" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;visibility:hidden">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
@@ -74,11 +74,12 @@
   	 </div>
   	 
   	 <!-- 审核窗口 -->
-  	  <div id="sp-edit-win" class="easyui-dialog" title="案件审批" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:500px;height:600px;"> 
-  	  	<div class="easyui-tabs" style="width:480px;height:500px">
+  	  <div id="sp-edit-win" class="easyui-dialog" title="案件审批" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:500px;height:600px;visibility:hidden"> 
+  	  	<div id="sp-tabs" class="easyui-tabs" style="fit:true;">
   	  		<div title="基本信息">
   	  		     <form id="base_Form" class="ui-form" method="post">  
 		     		 <input class="hidden" name="id">
+		     		 <input class="hidden" name="typeIds" id="typeIds">
 		     		 <div class="ui-edit">
 							<div class="fitem">
 								<label>当事人</label>
@@ -590,6 +591,6 @@
 		</div>
   	 </div>
 
-  	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-caseInfo.js"></script>
+  	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-caseAuditInfo.js"></script>
   </body>
 </html>

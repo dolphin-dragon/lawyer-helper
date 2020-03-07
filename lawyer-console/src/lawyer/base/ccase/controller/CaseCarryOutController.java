@@ -71,6 +71,9 @@ public class CaseCarryOutController extends BaseAction{
 	@RequestMapping("/dataList") 
 	public void  datalist(CaseCarryOutPage page,HttpServletResponse response) throws Exception{
 		log.info("/caseCarryOut/dataList page :"+page+" response:"+response);
+		SysUser user = SessionUtilsExt.getUser(request);
+		if(!SessionUtilsExt.isAdmin(request))
+			page.setCreatedBy(user.getId()+"");
 		
 		List<CaseCarryOut> dataList = caseCarryOutService.queryByList(page);
 		//设置页面数据
