@@ -45,7 +45,7 @@ otter.caseSecondInstance = function(){
 						if(1==selected[0]['isClose']){
 							otter.confirm("提示","案件结案将不能更改任何信息,是否确定?",function(r){
 								if(r){
-									//_box.handler.save();
+									_box.handler.save();
 									otter.closeProgress();//关闭缓冲条
 									_box.win.edit.dialog('close');
 								}

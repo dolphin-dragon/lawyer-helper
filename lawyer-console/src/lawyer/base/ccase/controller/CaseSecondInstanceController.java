@@ -210,7 +210,8 @@ public class CaseSecondInstanceController extends BaseAction{
 
 				log.info("/caseSecondInstance/pushNext sendSuccessMessage 推进成功~");
 				sendSuccessMessage(response, "推进成功~");
-			}
+			}else
+				sendFailureMessage(response, "案件推进异常，已经推进到下阶段!");
 		}else
 			sendFailureMessage(response, "无权进行案件推进处理!");
 	}
