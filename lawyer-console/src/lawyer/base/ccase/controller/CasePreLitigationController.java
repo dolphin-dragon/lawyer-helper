@@ -103,9 +103,16 @@ public class CasePreLitigationController extends BaseAction{
 			sendFailureMessage(response, "没有找到对应的案件登记信息!");
 			return;
 		}else{
+			
 			CaseInfo caseInfo = caseInfoService.queryById(entity.getCaseId());
 			caseInfo.setUpdatedBy(null!=user?user.getId()+"":"");
 			caseInfo.setUpdatedTime(new Date());
+			
+			if(StringUtils.equals("1", entity.getIsClose())) {
+				caseInfo.setStatus(2);
+				entity.setStatus(1);
+			}
+			
 			caseInfoService.update(caseInfo);
 			
 			entity.setUpdatedBy(null!=user?user.getId()+"":"");

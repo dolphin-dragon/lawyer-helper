@@ -103,6 +103,12 @@ public class CaseSecondInstanceController extends BaseAction{
 			CaseInfo caseInfo = caseInfoService.queryById(entity.getCaseId());
 			caseInfo.setUpdatedBy(null!=user?user.getId()+"":"");
 			caseInfo.setUpdatedTime(new Date());
+			
+			if(StringUtils.equals("1", entity.getIsClose())) {
+				caseInfo.setStatus(4);
+				entity.setStatus(1);
+			}
+			
 			caseInfoService.update(caseInfo);
 			
 			entity.setUpdatedBy(null!=user?user.getId()+"":"");
