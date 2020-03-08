@@ -24,7 +24,7 @@
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="执行信息记录表" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:600px;">  
+     <div id="edit-win" class="easyui-dialog" title="执行信息记录表" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:450px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="caseId">
      		 <div class="ui-edit">

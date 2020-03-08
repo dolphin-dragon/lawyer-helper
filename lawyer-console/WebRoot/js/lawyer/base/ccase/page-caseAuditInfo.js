@@ -38,7 +38,7 @@ otter.caseInfo = function(){
 				}
 			},
   			dataGrid:{
-  				title:'案件基础信息',
+  				title:'案件列表信息',
 	   			url:'auditData.do',
 	   			toolbar:[
 					{id:'btnadd',text:'添加',btnType:'add'},
