@@ -59,14 +59,14 @@ label.iPhoneCheckLabelOn span {
 }
 
 #login .vc-text {
-	width: 220px;
+	width: 120px;
 	height: 36px;
 	background-image: url(plug-in/login/images/vcode.png);
 }
 #login .vc-pic {
 	vertical-align: middle;
 	cursor: pointer;
-	width: 240px;
+	width: 120px;
 	height: 36px;
 	padding-bottom: 10px;
 }
@@ -122,7 +122,7 @@ label.iPhoneCheckLabelOn span {
   <div class="clear"></div>
   <div id="versionBar">
    <div class="copyright">&copy; 版权所有
-    <span class="tip"><a href="http://www.otter.org" title="演示系统">otter</a> (推荐使用IE8+,谷歌浏览器可以获得更快,更安全的页面响应速度)<a href="#" title="演示系统">otter</a></span>
+    <span class="tip"><a href="https://github.com/dolphin-dragon" title="开发主站">dolphin-dragon</a> (推荐使用IE8+,谷歌浏览器可以获得更快,更安全的页面响应速度)<a href="#" title="演示系统"></a></span>
    </div>
   </div>
   <!-- Link JScript-->

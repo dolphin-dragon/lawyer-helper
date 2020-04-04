@@ -34,7 +34,7 @@
 		</div>
 	</div>
 	<div data-options="region:'south',split:true,border:false" style="height: 30px;overflow:hidden;">
-		<div class="panel-header" style="border: none;text-align: center;" >CopyRight &copy; 2018 OTTER 版权所有. &nbsp;&nbsp;官方网址: www.otter.org</div>
+		<div class="panel-header" style="border: none;text-align: center;" >CopyRight &copy; 2020 dolphin-dragon 版权所有. &nbsp;&nbsp;官方网址: https://github.com/dolphin-dragon</div>
 	</div>
 	<!-- 中间内容页面 -->
 	<div data-options="region:'center'" >
@@ -43,9 +43,9 @@
 				<div style="margin-top:20px;">
 					<h3>简要说明</h3>
 					<ul>
-					    <li>OTTER是一款基于代码生成器的J2EE智能开发框架,借助该框架可以节省50%的工作量,实现代码生成+手工merge的半智能开发</li>
+					    <li>一款基于代码生成器的J2EE智能开发框架,借助该框架可以节省50%的工作量,实现代码生成+手工merge的半智能开发</li>
 					    <li>代码生成：根据表生成对应的Bean,Service,Dao,Action,XML,JSP等,增删改查功能直接使用,实现了快速开发</li> 
-						<li>otter-framework,采用SpringMVC+Mybatis等主流框架</li> 
+						<li>采用SpringMVC+Mybatis等主流框架</li> 
 						<li>支持数据库: Mysql,Oracle10g</li> 
 						<li>前端:使用Jquery和Easyui技术.JS封装简洁,操作简单.</li> 
 						<li>权限:对菜单,按钮控制.根据登陆用户权限展示拥有的菜单和按钮.</li> 
@@ -55,12 +55,12 @@
 				
 				<div style="margin-top:20px;">
 					<h3>技术交流</h3>
-					<p>  &nbsp;&nbsp;本系统由OTTER开发提供,如需个性化定制,外包项目,可与本人联系.</p>
+					<p>  &nbsp;&nbsp;本系统由dolphin-dragon开发提供,如需个性化定制,外包项目,可与本人联系.</p>
 					<ul>
 						<li>交流:19352530</li> 
-						<li>开发者：otter</li>
-						<li>邮箱：otter@163.com</li> 
-						<li>官网：<a href="http://www.otter.org">http://www.otter.org</a></li>
+						<li>开发者：dolphin-dragon</li>
+						<li>邮箱：19352530@qq.com</li> 
+						<li>官网：<a href="https://github.com/dolphin-dragon">https://github.com/dolphin-dragon</a></li>
 					</ul>
 				</div>
 				
