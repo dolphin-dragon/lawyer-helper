@@ -46,52 +46,31 @@ public class SmtpSendMailService implements MailService{
     @Value("${mail.template.findPwd}")
     private String findPwdTemplate;
     
+    @Value("${smtp.mail.send.port}")
+    private int mailSendPort;
+    @Value("${smtp.mail.send.timeout}")
+    private int sendTimeOut;
+    @Value("${smtp.mail.send.auth}")
+    private Boolean auth;
+    @Value("${smtp.mail.send.isSSL}")
+    private Boolean isSll;
+    
     @Autowired
     private VelocityEngine velocityEngine;
-	
-//    public static void sendMail(String fromEmail, String toEmail, String emailName, String emailPassword, String title,
-//            String centent) throws Exception
-//    {
-//        Properties prop=new Properties();  
-//        prop.put("mail.host","smtp.mxhichina.com" );  
-//        prop.put("mail.transport.protocol", "smtp");  
-//        prop.put("mail.smtp.auth", "true");  
-//        Session session=Session.getInstance(prop);  
-//        session.setDebug(true);
-//        Transport ts=session.getTransport();  
-//        ts.connect(emailName, emailPassword);  
-//        Message message=new MimeMessage(session);  
-//        message.setFrom(new InternetAddress(fromEmail));  
-//        message.setRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));  
-//        message.setSubject(title);  
-//        message.setContent(centent, "text/html;charset=utf-8");    
-//        ts.sendMessage(message, message.getAllRecipients()); 
-//    }
-//    
-//    public static void main(String[] rags) {
-//    	String fromEmail = "bgxt@xingquanlaw.com";
-//    	String toEmail = "19352530@qq.com";
-//    	String emailName = "bgxt@xingquanlaw.com";
-//    	String emailPassword = "Bangong@123";
-//    	String title = "发送一个邮件";
-//    	String centent = "看看收到邮件了吗？";
-//    	
-//    	toEmail = "lixi114311@163.com";
-//    	
-//    	try {
-//			SmtpSendMailService.sendMail(fromEmail, toEmail, emailName, emailPassword, title, centent);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//    }
 
 	@Override
 	public boolean sendMail(String to, String title, String content) {
 		try {
 			Properties prop = new Properties();
-			prop.put("mail.host", mailSendServer);
+			prop.put("mail.smtp.host", mailSendServer);
+			prop.put("mail.smtp.port", mailSendPort);
 			prop.put("mail.transport.protocol", mailSendProtocol);
-			prop.put("mail.smtp.auth", "true");
+			prop.put("mail.smtp.timeout",sendTimeOut);//时间延迟
+			prop.put("mail.smtp.auth", auth);
+			
+			if(isSll)
+				prop.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
+			
 			Session session = Session.getInstance(prop);
 			session.setDebug(true);
 			Transport ts = session.getTransport();
