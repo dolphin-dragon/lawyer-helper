@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.base.entity.BaseEntity.DELETED;
 import com.base.util.HtmlUtil;
+import com.base.util.MethodUtil;
 import com.base.util.SessionUtilsExt;
 import com.base.web.BaseAction;
 import com.otter.entity.SysUser;
@@ -25,6 +27,7 @@ import com.otter.service.SysUserService;
 
 import lawyer.base.ccase.entity.SysUserExt;
 import lawyer.base.ccase.page.SysUserExtPage;
+import lawyer.base.ccase.plugins.email.MailService;
 import lawyer.base.ccase.service.SysUserExtService;
  
 /**
@@ -44,6 +47,9 @@ public class SysUserExtController extends BaseAction{
 	private SysUserExtService<SysUserExt> sysUserExtService; 
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private SysUserService<SysUser> sysUserService; 
+	
+	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
+	private MailService mailService; 
 	
 	/**
 	 * 说明：
@@ -106,6 +112,8 @@ public class SysUserExtController extends BaseAction{
 			n_user.setCreateBy(null!=user?user.getId():null);
 			n_user.setState(0);
 			n_user.setDeleted(DELETED.NO.key);
+			String pwd = RandomStringUtils.randomAlphanumeric(8);
+			n_user.setPwd(MethodUtil.MD5(pwd));//TODO 进行默认密码配置，并进行邮件推送
 			sysUserService.add(n_user);
 			
 			entity.setUid(n_user.getId());
@@ -113,8 +121,11 @@ public class SysUserExtController extends BaseAction{
 			entity.setCreatedTime(new Date());
 			entity.setUpdatedBy(null!=user?user.getId()+"":"");
 			entity.setUpdatedTime(new Date());
+			entity.setPwd(pwd);
 			
 			sysUserExtService.add(entity);
+			
+			mailService.sendRegisterMailByAsync(entity);
 		}else{
 //			int count = sysUserService.getUserCountByEmail(entity.getEmail());
 //			if(count>0) {

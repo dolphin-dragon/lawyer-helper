@@ -22,6 +22,7 @@
 		<property name="locations">
 			<list>
 		     	<value>classpath:dbconfig.properties</value>
+		     	<value>classpath:system.properties</value>
 		    </list>
 		</property>
 		<property name="ignoreUnresolvablePlaceholders" value="true" />
@@ -112,4 +113,6 @@
 
 	<!-- Spring 工具类 -->
 	<bean id="springContextUtil" class="com.base.util.SpringContextUtil" />
+	
+	<import resource="spring-email.xml" />
 </beans>
