@@ -20,6 +20,7 @@
 		<property name="locations">
 			<list>
 		     	<value>classpath:sysconfig.properties</value>
+		     	<value>classpath:system.properties</value>
 		    </list>
 		</property>
 		<property name="ignoreUnresolvablePlaceholders" value="true" />

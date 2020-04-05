@@ -1,5 +1,6 @@
 package lawyer.base.ccase.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -13,6 +14,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -49,7 +51,10 @@ public class SysUserExtController extends BaseAction{
 	private SysUserService<SysUser> sysUserService; 
 	
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
-	private MailService mailService; 
+	private MailService mailService;
+	
+	@Value("${xq.user.default.roles}")
+	private String defaultRoles;
 	
 	/**
 	 * 说明：
@@ -115,6 +120,17 @@ public class SysUserExtController extends BaseAction{
 			String pwd = RandomStringUtils.randomAlphanumeric(8);
 			n_user.setPwd(MethodUtil.MD5(pwd));//TODO 进行默认密码配置，并进行邮件推送
 			sysUserService.add(n_user);
+			
+			String[] droles = StringUtils.split(defaultRoles, "|");
+			List<Integer> roleids = new ArrayList<Integer>(droles.length);
+			for (String rdi : droles) {
+				try {
+					roleids.add(Integer.valueOf(rdi));
+				} catch (Exception e) {
+					log.error(e + "", e);
+				}
+			}
+			sysUserService.addUserRole(n_user.getId(), roleids.toArray(new Integer[] {}));
 			
 			entity.setUid(n_user.getId());
 			entity.setCreatedBy(null!=user?user.getId()+"":"");
