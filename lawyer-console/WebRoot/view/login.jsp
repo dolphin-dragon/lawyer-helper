@@ -4,7 +4,7 @@
 <html>
  <head>
   <title></title>
-  <link rel="shortcut icon" href="resources/fc/images/icon/favicon.ico">
+  <link rel="shortcut icon" href="favicon.ico">
   <!--[if lt IE 9]>
    <script src="plug-in/login/js/html5.js"></script>
   <![endif]-->
@@ -73,7 +73,7 @@ label.iPhoneCheckLabelOn span {
 
 </style>
  </head>
- <body>
+ <body style="background-image: none">
   <div id="alertMessage"></div>
   <div id="successLogin"></div>
   <div class="text_success">
