@@ -33,7 +33,7 @@ ext {
 	if (!project.hasProperty('envInfo'))
 		envInfo = 'dev'
 
- 	//println "project property envInfo :" + project.getProperty('envInfo')
+ 	println "project property envInfo :" + project.getProperty('envInfo')
     if ('dev' == project.getProperty('envInfo')) {
        cfg_env = 'configs/env_dev'
     } else if('pro' == project.getProperty('envInfo')) {
