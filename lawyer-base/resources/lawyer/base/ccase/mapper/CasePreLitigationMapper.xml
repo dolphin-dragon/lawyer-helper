@@ -91,9 +91,15 @@
 	    and remark =  #{remark}
 	</if>
 	<!--  -->
-		 	<if test="isDirectAction != null and isDirectAction != ''" >
+	<if test="isDirectAction != null and isDirectAction != ''" >
 	    and is_direct_action =  #{isDirectAction}
-	</if>	
+	</if>
+	<if test="litigant != null and litigant != ''" >
+        and (litigant =  #{litigant} OR litigant like CONCAT('%', #{litigant},'%'))
+    </if>
+    <if test="defendantName != null and defendantName != ''" >
+        and (defendant_name =  #{defendantName} OR defendant_name like CONCAT('%', #{defendantName},'%'))
+    </if>
 </trim>
 </sql>
 
@@ -176,7 +182,7 @@
 
 <!-- 案件诉前和解信息 列表总数-->
 <select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
-	select count(1) from case_pre_litigation 
+	select count(1) from (select ap.*,inf.litigant,inf.defendant_name,inf.defendant_reg_capital,inf.defendant_area,inf.del_flag from case_pre_litigation ap, case_info inf where ap.case_id=inf.id) as case_pre_litigation  
 	<include refid="Example_Where_Clause"/>
 </select>
   	

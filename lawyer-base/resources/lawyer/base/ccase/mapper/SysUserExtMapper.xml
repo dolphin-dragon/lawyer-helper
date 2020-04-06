@@ -63,31 +63,31 @@
 	    and uid =  #{uid}
 	</if>
 	<!--  -->
-		 	<if test="name != null and name != ''" >
-	    and name =  #{name}
+	<if test="name != null and name != ''" >
+	     and (name =  #{name} OR name like CONCAT('%', #{name},'%'))
 	</if>
 	<!--  -->
-		 	<if test="sex != null and sex != ''" >
+	<if test="sex != null and sex != ''" >
 	    and sex =  #{sex}
 	</if>
 	<!--  -->
-		 	<if test="phone != null and phone != ''" >
-	    and phone =  #{phone}
+	<if test="phone != null and phone != ''" >
+	    and (phone =  #{phone} OR phone like CONCAT('%', #{phone},'%'))
 	</if>
 	<!--  -->
-		 	<if test="tel != null and tel != ''" >
+	<if test="tel != null and tel != ''" >
 	    and tel =  #{tel}
 	</if>
 	<!--  -->
-		 	<if test="qq != null and qq != ''" >
+	<if test="qq != null and qq != ''" >
 	    and qq =  #{qq}
 	</if>
 	<!--  -->
-		 	<if test="position != null and position != ''" >
+	<if test="position != null and position != ''" >
 	    and position =  #{position}
 	</if>
 	<!--  -->
-		<if test="entryDate != null" >
+	<if test="entryDate != null" >
 	    and entry_date =  #{entryDate}
 	</if>
 	<!--  -->
@@ -95,16 +95,16 @@
 	    and birt =  #{birt}
 	</if>
 	<!--  -->
-		 	<if test="remark != null and remark != ''" >
+	<if test="remark != null and remark != ''" >
 	    and remark =  #{remark}
 	</if>
 	<!--  -->
-		 	<if test="delFlag != null and delFlag != ''" >
+	<if test="delFlag != null and delFlag != ''" >
 	    and del_flag =  #{delFlag}
 	</if>
 	<!--  -->
-		 	<if test="email != null and email != ''" >
-	    and email =  #{email}
+	<if test="email != null and email != ''" >
+	    and (email =  #{email} OR email like CONCAT('%', #{email},'%'))
 	</if>
 </trim>
 </sql>

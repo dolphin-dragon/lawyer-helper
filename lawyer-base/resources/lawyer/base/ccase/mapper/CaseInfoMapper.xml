@@ -59,20 +59,16 @@
 		<if test="id != null" >
 	    and id =  #{id}
 	</if>
-	<!--  -->
-		 	<if test="litigant != null and litigant != ''" >
-	    and litigant =  #{litigant}
-	</if>
-	<!--  -->
-		 	<if test="defendantName != null and defendantName != ''" >
-	    and defendant_name =  #{defendantName}
-	</if>
-	<!--  -->
-		 	<if test="defendantRegCapital != null and defendantRegCapital != ''" >
+	<if test="litigant != null and litigant != ''" >
+        and (litigant =  #{litigant} OR litigant like CONCAT('%', #{litigant},'%'))
+    </if>
+    <if test="defendantName != null and defendantName != ''" >
+        and (defendant_name =  #{defendantName} OR defendant_name like CONCAT('%', #{defendantName},'%'))
+    </if>
+	<if test="defendantRegCapital != null and defendantRegCapital != ''" >
 	    and defendant_reg_capital =  #{defendantRegCapital}
 	</if>
-	<!--  -->
-		 	<if test="defendantArea != null and defendantArea != ''" >
+	<if test="defendantArea != null and defendantArea != ''" >
 	    and defendant_area =  #{defendantArea}
 	</if>
 </trim>

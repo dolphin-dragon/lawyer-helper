@@ -27,6 +27,19 @@ label.iPhoneCheckLabelOn span {
 	padding-left: 0px
 }
 
+input::-webkit-input-placeholder { /* WebKit browsers*/
+　　color:#aaa;font-size:14px;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18*/
+　　color:#aaa;font-size:14px;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+*/
+　　color:#aaa;font-size:14px;
+}
+input:-ms-input-placeholder { /* Internet Explorer 10+*/
+　　color:#aaa;font-size:14px;
+}
+      
 #versionBar {
 	background-color: #212121;
 	position: fixed;
@@ -89,14 +102,14 @@ label.iPhoneCheckLabelOn span {
     <div class="formLogin">
      <form name="formLogin" id="formLogin" action="loginController.do?login" check="toLogin.do" method="post">
       <div class="tip">
-       <input class="userName" name="email" type="text" id="email"  title="用户名" iscookie="true"  nullmsg="请输入用户名!"/>
+       <input class="userName" name="email" type="text" id="email" placeholder="登录邮箱地址" title="用户名" iscookie="true"  nullmsg="请输入用户名!"/>
       </div>
       <div class="tip">
-       <input class="password" name="pwd" type="password" id="pwd" title="密码" nullmsg="请输入密码!"/>
+       <input class="password" name="pwd" type="password" id="pwd" placeholder="登录密码" title="密码" nullmsg="请输入密码!"/>
       </div>
       <div class="tip">
  		<img class="vc-pic" id="vc-pic" src="ImageServlet" />
-		<input class="vc-text" name="verifyCode" type="text" id="verifyCode" title="验证码" nullmsg="请输入验证码!"/>
+		<input class="vc-text" name="verifyCode" type="text" id="verifyCode" placeholder="验证码" title="验证码" nullmsg="请输入验证码!"/>
       </div>
       <div class="loginButton">
        <div style="float: right; padding: 3px 0; margin-right: -12px;">
