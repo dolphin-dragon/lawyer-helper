@@ -59,7 +59,7 @@
 					</div> -->
 					<div class="fitem">
 						<label>登录邮箱</label>
-						<input name="email" type="text" maxlength="20" class="easyui-validatebox" data-options="required:true" missingMessage="注册Email"  >
+						<input name="email" type="text" maxlength="40" class="easyui-validatebox" data-options="required:true,validType:'email'" missingMessage="注册Email"  >
 					</div>
 					<div class="fitem">
 						<label>姓名</label>
