@@ -63,7 +63,7 @@ otter.casePreLitigation = function(){
 					//{id:'btnadd',text:'添加',btnType:'add'},
 					{id:'btnedit',text:'修改',btnType:'edit'},
 					{id:'btndelete',text:'删除',btnType:'remove'},
-					{id:'btnedit',text:'案件推进',btnType:'edit',iconCls:'icon-tip',handler:function(){
+					{id:'btnedit',text:'案件推进',btnType:'push',iconCls:'icon-tip',handler:function(){
 						var selected = _box.utils.getCheckedRows();
 						if ( _box.utils.checkSelectOne(selected)){
 							if(!(null==selected[0]['status'] || 0 == selected[0]['status'] || 3 == selected[0]['status'])) {

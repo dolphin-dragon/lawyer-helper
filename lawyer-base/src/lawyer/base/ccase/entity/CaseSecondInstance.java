@@ -14,11 +14,11 @@ public class CaseSecondInstance extends CaseInfo {
 	
 		private java.lang.Integer status;//   状态	private java.lang.String org;//   机构编码	private java.lang.String createdBy;//   创建人	private java.util.Date createdTime;//   创建时间	private java.lang.String updatedBy;//   更新人	private java.util.Date updatedTime;//   更新时间	private java.lang.Integer caseId;//   案件序号	private java.lang.String lawyer;//   二审主办律师
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")	private java.util.Date scourtDate;//   二审开庭日期	private java.lang.String judge;//   主办法官	private java.lang.String judgeContact;//   联系方式
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date scourtDate;//   二审开庭日期	private java.lang.String judge;//   主办法官	private java.lang.String judgeContact;//   联系方式
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")	private java.util.Date sjudgmentEffectiveDate;//   二审判决生效日期	private java.lang.String isApology;//   是否致歉	private java.lang.String defendantCompensationTotal;//   一审被告赔偿总额	private java.lang.String defendantExpenses;//   一审被告承担合理开支费用	private java.lang.String plaintiffCosts;//   一审原告承担诉费	private java.math.BigDecimal defendantCosts;//   一审被告承担诉费	private java.lang.String isClose;//   是否结案
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date sjudgmentEffectiveDate;//   二审判决生效日期	private java.lang.String isApology;//   是否致歉	private java.lang.String defendantCompensationTotal;//   一审被告赔偿总额	private java.lang.String defendantExpenses;//   一审被告承担合理开支费用	private java.lang.String plaintiffCosts;//   一审原告承担诉费	private java.math.BigDecimal defendantCosts;//   一审被告承担诉费	private java.lang.String isClose;//   是否结案
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")	private java.util.Date executionDeadline;//   执行截止日期	private java.lang.String remark;//   备注
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date executionDeadline;//   执行截止日期	private java.lang.String remark;//   备注
 	
 	private java.lang.String isCarryOut;//是否需要执行
 	

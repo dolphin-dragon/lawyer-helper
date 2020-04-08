@@ -15,22 +15,22 @@ public class CaseFirstInstance extends CaseInfo {
 		private java.lang.Integer status;//   状态	private java.lang.String org;//   机构编码	private java.lang.String createdBy;//   创建人	private java.util.Date createdTime;//   创建时间	private java.lang.String updatedBy;//   更新人	private java.util.Date updatedTime;//   更新时间	private java.lang.Integer caseId;//   案件序号	private java.lang.String firstor;//   第一责任人	private java.lang.String lawyer;//   一审主办律师
 
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")	private java.util.Date submitDate;//   提交立案材料日期
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date submitDate;//   提交立案材料日期
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")	private java.util.Date establishDate;//   立案日期	private java.math.BigDecimal litigationCosts;//   诉讼费用	private java.math.BigDecimal announcementCosts;//   公告费用	private java.math.BigDecimal notaryCosts;//   公证费用	private java.math.BigDecimal otherCosts;//   其它费用	private java.lang.String adjudicationCourt;//   受理法院	private java.lang.String judge;//   主办法官	private java.lang.String judgeContact;//   联系方式
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date establishDate;//   立案日期	private java.math.BigDecimal litigationCosts;//   诉讼费用	private java.math.BigDecimal announcementCosts;//   公告费用	private java.math.BigDecimal notaryCosts;//   公证费用	private java.math.BigDecimal otherCosts;//   其它费用	private java.lang.String adjudicationCourt;//   受理法院	private java.lang.String judge;//   主办法官	private java.lang.String judgeContact;//   联系方式
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")	private java.util.Date fcourtDate;//   一审开庭日期
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date fcourtDate;//   一审开庭日期
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")	private java.util.Date fverdictDate;//   一审判决书落款日期
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date fverdictDate;//   一审判决书落款日期
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")	private java.util.Date fverdictReceiveDate;//   一审判决书收到日期	private java.lang.String isApology;//   是否致歉	private java.math.BigDecimal defendantCompensationTotal;//   被告赔偿总额	private java.math.BigDecimal defendantExpenses;//   被告承担合理开支总额	private java.math.BigDecimal plaintiffCosts;//   原告承担诉费	private java.math.BigDecimal defendantCosts;//   被告承担诉费	private java.lang.String isClose;//   是否结案
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date fverdictReceiveDate;//   一审判决书收到日期	private java.lang.String isApology;//   是否致歉	private java.math.BigDecimal defendantCompensationTotal;//   被告赔偿总额	private java.math.BigDecimal defendantExpenses;//   被告承担合理开支总额	private java.math.BigDecimal plaintiffCosts;//   原告承担诉费	private java.math.BigDecimal defendantCosts;//   被告承担诉费	private java.lang.String isClose;//   是否结案
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")	private java.util.Date appealDate;//   上诉截止日期	private java.lang.String remark;//   备注
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date appealDate;//   上诉截止日期	private java.lang.String remark;//   备注
 	
 	private java.lang.String isPreMediation;//是否诉前调解
 	private java.lang.String isActionMediation;//是否诉中调解
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	private java.util.Date mediationDate;//调解书日期
 	private java.lang.String isAppeal;//是否上诉
 	private java.lang.String appellant;//上诉人

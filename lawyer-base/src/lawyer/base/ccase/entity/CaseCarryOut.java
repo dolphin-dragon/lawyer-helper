@@ -15,7 +15,7 @@ public class CaseCarryOut extends CaseInfo {
 		private java.lang.Integer status;//   状态	private java.lang.String org;//   机构编码	private java.lang.String createdBy;//   创建人	private java.util.Date createdTime;//   创建时间	private java.lang.String updatedBy;//   更新人	private java.util.Date updatedTime;//   更新时间	private java.lang.Integer caseId;//   案件序号	private java.lang.String lawyer;//   执行主办律师
 
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")	private java.util.Date appDate;//   执行申请日期	private java.math.BigDecimal appTotal;//   申请执行总额	private java.lang.String judge;//   执行主办法官	private java.lang.String judgeContact;//   联系方式	private java.math.BigDecimal actualTotal;//   实际执行总额	private java.lang.String fcollectionSubject;//   首位收款主体	private java.lang.String remark;//   备注
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date appDate;//   执行申请日期	private java.math.BigDecimal appTotal;//   申请执行总额	private java.lang.String judge;//   执行主办法官	private java.lang.String judgeContact;//   联系方式	private java.math.BigDecimal actualTotal;//   实际执行总额	private java.lang.String fcollectionSubject;//   首位收款主体	private java.lang.String remark;//   备注
 	
 	private java.lang.String isReconcile;//是否执行和解
 	private java.lang.String isClose;//是否结案

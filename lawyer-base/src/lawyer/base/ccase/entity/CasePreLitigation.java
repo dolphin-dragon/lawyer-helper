@@ -13,9 +13,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class CasePreLitigation extends CaseInfo {
 	private java.lang.Integer status;//   状态	private java.lang.String org;//   机构编码	private java.lang.String createdBy;//   创建人	private java.util.Date createdTime;//   创建时间	private java.lang.String updatedBy;//   更新人	private java.util.Date updatedTime;//   更新时间	private java.lang.Integer caseId;//   案件序号	private java.lang.String letter;//   律师函编号	private java.lang.String letteror;//   律师函主办人
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")	private java.util.Date sendDate;//   律师函发送日期
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date sendDate;//   律师函发送日期
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")	private java.util.Date deliveryDate;//   律师函送达日期	private java.lang.String isClose;//   是否结案	private java.lang.String remark;//   备注
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date deliveryDate;//   律师函送达日期	private java.lang.String isClose;//   是否结案	private java.lang.String remark;//   备注
 	
 	private java.lang.String isDirectAction;//是否诉讼
 

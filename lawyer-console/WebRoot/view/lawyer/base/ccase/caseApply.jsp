@@ -92,8 +92,7 @@
 					</div>
 					<div class="fitem">
 						<label>公证书申请人</label>
-						<!-- <input name="applicant" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写公证书申请人"> -->
-						<input class="easyui-combobox" name="applicant" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写公证书申请人">
+						<input name="applicant" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写公证书申请人">
 					</div>
 					<div class="fitem">
 						<label>取证人</label>

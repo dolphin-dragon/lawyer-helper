@@ -32,7 +32,7 @@ otter.caseInfo = function(){
 					{id:'btnadd',text:'添加',btnType:'add'},
 					{id:'btnedit',text:'修改',btnType:'edit'},
 					{id:'btndelete',text:'删除',btnType:'remove'},
-					{id:'btnedit',text:'案件审核',btnType:'edit',iconCls:'icon-tip',handler:function(){
+					{id:'btnedit',text:'案件审核',btnType:'audit',iconCls:'icon-tip',handler:function(){
 						var record = _box.utils.getCheckedRows();
 						if ( _box.utils.checkSelectOne(record)){
 							$('#sp-edit-win').dialog({

@@ -13,9 +13,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class SysUserExt extends BaseEntity {
 	private java.lang.Integer status;//   状态	private java.lang.String org;//   机构编码	private java.lang.String createdBy;//   创建人	private java.util.Date createdTime;//   创建时间	private java.lang.String updatedBy;//   更新人	private java.util.Date updatedTime;//   更新时间	private java.lang.Integer uid;//   用户id	private java.lang.String name;//   姓名	private java.lang.String sex;//   性别	private java.lang.String phone;//   手机号	private java.lang.String tel;//   联系电话	private java.lang.String qq;//   qq号码	private java.lang.String position;//   职位类别
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")	private java.util.Date entryDate;//   入职时间
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date entryDate;//   入职时间
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")	private java.util.Date birt;//   出生日期	private java.lang.String remark;//   备注	private java.lang.String delFlag;//   删除标记
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date birt;//   出生日期	private java.lang.String remark;//   备注	private java.lang.String delFlag;//   删除标记
 	
 	private java.lang.String email;
 	private java.lang.String findPwdUrl;

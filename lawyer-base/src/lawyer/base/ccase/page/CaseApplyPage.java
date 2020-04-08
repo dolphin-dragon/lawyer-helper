@@ -14,11 +14,11 @@ public class CaseApplyPage extends CaseInfoPage {
 		private java.lang.Integer status;//   状态	private java.lang.String org;//   机构编码	private java.lang.String createdBy;//   创建人	private java.util.Date createdTime;//   创建时间	private java.lang.String updatedBy;//   更新人	private java.util.Date updatedTime;//   更新时间	private java.lang.Integer caseId;//   案件序号	private java.lang.String src;//   案件来源	private java.lang.String supply;//   案源人
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")	private java.util.Date applyDate;//   申请公证日期	private java.lang.String applicant;//   公证书申请人	private java.lang.String forensics;//   取证人	private java.lang.String violateType;//   侵权类型	private java.lang.String violateDesc;//   侵权概况	
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date applyDate;//   申请公证日期	private java.lang.String applicant;//   公证书申请人	private java.lang.String forensics;//   取证人	private java.lang.String violateType;//   侵权类型	private java.lang.String violateDesc;//   侵权概况	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	private java.util.Date actionDate;//   案件可诉确认日期	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	private java.util.Date litigantAcDate;//   当事人确认日期
 	
 	private java.lang.String litigant;//   当事人
