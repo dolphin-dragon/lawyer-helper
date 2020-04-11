@@ -45,6 +45,8 @@ public class SmtpSendMailService implements MailService{
     private String registerTemplate;
     @Value("${mail.template.findPwd}")
     private String findPwdTemplate;
+    @Value("${mail.template.reSetPwd}")
+    private String reSetPwdTemplate;
     
     @Value("${smtp.mail.send.port}")
     private int mailSendPort;
@@ -90,6 +92,36 @@ public class SmtpSendMailService implements MailService{
 
 	@Async
 	@Override
+	public boolean sendReSetPwdMailByAsync(SysUserExt user) {
+		String subject = "星权-账号信息";
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("userName", user.getName());
+		model.put("loginName", user.getEmail());
+		model.put("webSite", user.getEmail());
+		model.put("loginPwd", user.getPwd());
+		model.put("date",  new SimpleDateFormat("yyyy年MM月dd号 HH时mm分").format(user.getCreatedTime()));
+		StringWriter result = new StringWriter();
+		velocityEngine.mergeTemplate(reSetPwdTemplate, contentCode, new VelocityContext(model), result);
+		return sendMail(user.getEmail(), subject, result.toString());
+	}
+
+	@Async
+	@Override
+	public boolean sendFindPwdMailByAsync(SysUserExt user) {
+		String subject = "星权-账号信息";
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("userName", user.getName());
+		model.put("loginName", user.getEmail());
+		model.put("webSite", user.getEmail());
+		model.put("loginPwd", user.getPwd());
+		model.put("date",  new SimpleDateFormat("yyyy年MM月dd号 HH时mm分").format(user.getCreatedTime()));
+		StringWriter result = new StringWriter();
+		velocityEngine.mergeTemplate(findPwdTemplate, contentCode, new VelocityContext(model), result);
+		return sendMail(user.getEmail(), subject, result.toString());
+	}
+
+	@Async
+	@Override
 	public boolean sendRegisterMailByAsync(SysUserExt user) {
 		String subject = "星权-账号信息";
 		Map<String, Object> model = new HashMap<String, Object>();
@@ -101,11 +133,5 @@ public class SmtpSendMailService implements MailService{
 		StringWriter result = new StringWriter();
 		velocityEngine.mergeTemplate(registerTemplate, contentCode, new VelocityContext(model), result);
 		return sendMail(user.getEmail(), subject, result.toString());
-	}
-
-	@Async
-	@Override
-	public boolean sendFindPwdMailByAsync(SysUserExt user) {
-		return false;
 	}
 }

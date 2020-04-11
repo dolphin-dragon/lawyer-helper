@@ -16,14 +16,37 @@ otter.sysUserExt = function(){
 				}
 			},
   			dataGrid:{
+  				idField:'uid',
   				title:'用户设置',
 	   			url:'dataList.do',
 	   			toolbar:[
 					{id:'btnadd',text:'添加',btnType:'add'},
 					{id:'btnedit',text:'修改',btnType:'edit'},
-					{id:'btndelete',text:'删除',btnType:'remove'}
+					{id:'btndelete',text:'删除',btnType:'remove'},
+					{id:'btnedit',text:'重置密码',btnType:'reSetPwd',iconCls:'icon-tip',handler:function(){
+						var selected = _box.utils.getCheckedRows();
+						if ( _box.utils.checkSelectOne(selected)){
+							var name = (selected[0]['name'])
+							otter.confirm("提示","对账户【"+name+"】进行密码重置，请确认?",function(r){
+								if(r){
+									var url = "reSetPwd.do";
+									var option ={};
+									var idKey = 'uid'; //主键名称
+									option[idKey] = (selected[0][idKey]);
+
+									otter.ajaxJson(url,option,function(data){
+										otter.closeProgress();
+										if(data.success){
+											otter.alert('提示',data.msg); 
+										}else{
+											otter.alert('提示',data.msg,'error');  
+										}
+									});
+								}
+							});
+						}
+					}}
 				],
-				idField:'uid',
 	   			columns:[[
 					{field:'uid',checkbox:true},
 /*					{field:'uid',title:'用户ID',align:'center',sortable:true,
@@ -31,7 +54,7 @@ otter.sysUserExt = function(){
 								return row.uid;
 							}
 						},*/
-					{field:'name',title:'姓名',align:'center',sortable:true,
+					{field:'name',title:'姓名',align:'left',sortable:true,
 							formatter:function(value,row,index){
 								return row.name;
 							}
@@ -68,7 +91,7 @@ otter.sysUserExt = function(){
 								return row.qq;
 							}
 						},
-					{field:'position',title:'职位类别',align:'center',sortable:true,
+					{field:'position',title:'职位类别',align:'left',sortable:true,
 							formatter:function(value,row,index){
 	                    		if(value == 1){
 									return "管理员";

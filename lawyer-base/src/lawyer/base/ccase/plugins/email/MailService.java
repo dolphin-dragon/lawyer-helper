@@ -9,4 +9,6 @@ public interface MailService {
     public boolean sendRegisterMailByAsync(SysUserExt user);
     //发送找回密码邮件
     public boolean sendFindPwdMailByAsync(SysUserExt user);
+    //发送重置密码邮件
+    public boolean sendReSetPwdMailByAsync(SysUserExt user);
 }

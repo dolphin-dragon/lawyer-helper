@@ -160,12 +160,12 @@ otter.caseApply = function(){
 								return row.caseId;
 							}
 						},*/
-					{field:'litigant',title:'当事人',align:'center',sortable:true,
+					{field:'litigant',title:'当事人',align:'left',sortable:true,
 						formatter:function(value,row,index){
 							return row.litigant;
 						}
 					},
-				{field:'defendant_name',title:'被告名称',align:'center',sortable:true,
+				{field:'defendant_name',title:'被告名称',align:'left',sortable:true,
 						formatter:function(value,row,index){
 							return row.defendantName;
 						}
@@ -175,7 +175,7 @@ otter.caseApply = function(){
 							return row.defendantRegCapital;
 						}
 					},
-				{field:'defendant_area',title:'被告所在地',align:'center',sortable:true,
+				{field:'defendant_area',title:'被告所在地',align:'left',sortable:true,
 						formatter:function(value,row,index){
 							return row.defendantArea;
 						}

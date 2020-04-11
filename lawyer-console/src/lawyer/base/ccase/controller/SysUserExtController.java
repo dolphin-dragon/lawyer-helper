@@ -208,4 +208,28 @@ public class SysUserExtController extends BaseAction{
 		List<SysUserExt> dataList = sysUserExtService.queryByList(new SysUserExtPage());
 		HtmlUtil.writerJson(response, dataList);
 	}
+	
+	@RequestMapping("/reSetPwd")
+	public void reSetPwd(Integer uid,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		
+		SysUserExt entity  = sysUserExtService.queryById(uid);
+		if(entity  == null){
+			sendFailureMessage(response, "账户信息异常，请联系管理员!");
+			return;
+		}
+
+		SysUser bean  = sysUserService.queryById(uid);
+		if(bean.getId() == null || DELETED.YES.key == bean.getDeleted()){
+			sendFailureMessage(response, "账户已停用，请联系管理员");
+			return;
+		}
+		String newPwd = RandomStringUtils.randomAlphanumeric(8);
+		//设置新密码
+		bean.setPwd(MethodUtil.MD5(newPwd));
+		sysUserService.update(bean);
+		entity.setPwd(newPwd);
+
+		mailService.sendReSetPwdMailByAsync(entity);
+		sendSuccessMessage(response, "密码重置成功，请查看注册邮箱~");
+	}
 }
