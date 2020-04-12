@@ -1,0 +1,29 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>调问网-找回密码</title>
+</head>
+<body>
+<div style="border:solid 1px #CBCBCB; margin:15px;">
+<div style="background-color:#05406F;padding: 18px;padding-left:30px;">
+<img src="http://www.diaowen.net/images/logo/LOGO.png">
+</div>
+<div style="padding:20px; font-size:15px; color:#515253;">
+<h4 style="font-size:15px; font-weight:bold;line-height:45px;">尊敬的用户：$userName</h4>
+<p style="text-indent:2em;">您好！</p>
+<p style="text-indent:2em;line-height:25px;">您在$date申请重置调问网密码，请点击下面链接完成密码重置：</p>
+<p style="text-indent:2em;line-height:25px;"><a href="http://www.dwsurvey.net/zw/pwd/resetpwd.jsp?code=$code" style="color: rgb(31, 137, 25); font-family: Arial, Verdana, sans-serif; font-size: 18px; line-height: 21px; text-decoration: none;">http://www.dwsurvey.net/zw/pwd/resetpwd.jsp?code=$code</a></p>
+<p style="text-indent:2em;line-height:25px;">为了保证您帐号的安全性，该链接有效期为24小时，并且点击一次后将失效!&nbsp;
+如以上链接不能点击，您可以将链接地址复制到浏览器地址栏中打开。</p>
+<p style="text-indent:2em;line-height:15px;">&nbsp;</p>
+<p style="text-indent:2em;">调问网产品团队</p>
+<p style="text-indent:2em;font-family:arial;">$curDate</p>
+<hr color="#CBCBCB" size="1">
+<p style="line-height:25px;">系统发信，请勿回复<br>
+官方网站：<a href="http://www.diaowen.net" style="color:#264EB7;text-decoration:none;font-family:arial;" target="_blank">http://www.diaowen.net</a><br>
+客服邮箱：<a href="mailto:service@diaowen.net" style="color:#264EB7;text-decoration:none;font-family:arial;" target="_blank">service@diaowen.net</a>
+</p>
+</div>
+</div>
+</body>
+</html>

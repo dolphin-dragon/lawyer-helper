@@ -46,6 +46,10 @@
 		<servlet-name>Spring-Servlet</servlet-name>
 		<url-pattern>*.shtml</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Spring-Servlet</servlet-name>
+		<url-pattern>/service/*</url-pattern>
+	</servlet-mapping>
 	
 	<!-- 图片验证码配置开始 -->
 	<servlet>

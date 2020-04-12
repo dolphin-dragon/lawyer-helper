@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lawyer.base.ccase.dao.CaseMInfoDao" > 
+<!--*********************************** generation code  start ***********************************-->
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="lawyer.base.ccase.entity.CaseMInfo" >
+	<result column="cp_src" property="cpSrc" jdbcType="VARCHAR"/>
+	<result column="cp_supply" property="cpSupply" jdbcType="VARCHAR"/>
+	<result column="cp_apply_date" property="cpApplyDate" jdbcType="DATE"/>
+	<result column="cp_applicant" property="cpApplicant" jdbcType="VARCHAR"/>
+	<result column="cp_forensics" property="cpForensics" jdbcType="VARCHAR"/>
+	<result column="cp_violate_type" property="cpViolateType" jdbcType="VARCHAR"/>
+	<result column="cp_violate_desc" property="cpViolateDesc" jdbcType="VARCHAR"/>
+	<result column="cp_action_date" property="cpActionDate" jdbcType="DATE"/>
+	<result column="cp_litigant_ac_date" property="cpLitigantAcDate" jdbcType="DATE"/>
+	<result column="cp_action_img" property="cpActionImg" jdbcType="VARCHAR"/>
+	<result column="cp_litigant_ac_img" property="cpLitigantAcImg" jdbcType="VARCHAR"/>
+	<result column="cp_is_direct_action" property="cpIsDirectAction" jdbcType="VARCHAR"/>
+	<result column="case_status" property="caseStatus" jdbcType="INTEGER"/>
+	<result column="case_del_flag" property="caseDelFlag" jdbcType="VARCHAR"/>
+	<result column="case_org" property="caseOrg" jdbcType="VARCHAR"/>
+	<result column="case_created_by" property="caseCreatedBy" jdbcType="VARCHAR"/>
+	<result column="case_created_time" property="caseCreatedTime" jdbcType="TIMESTAMP"/>
+	<result column="case_updated_by" property="caseUpdatedBy" jdbcType="VARCHAR"/>
+	<result column="case_updated_time" property="caseUpdatedTime" jdbcType="TIMESTAMP"/>
+	<result column="id" property="id" jdbcType="INTEGER"/>
+	<result column="case_litigant" property="caseLitigant" jdbcType="VARCHAR"/>
+	<result column="case_defendant_name" property="caseDefendantName" jdbcType="VARCHAR"/>
+	<result column="case_defendant_reg_capital" property="caseDefendantRegCapital" jdbcType="VARCHAR"/>
+	<result column="case_defendant_area" property="caseDefendantArea" jdbcType="VARCHAR"/>
+	<result column="pr_letter" property="prLetter" jdbcType="VARCHAR"/>
+	<result column="pr_letteror" property="prLetteror" jdbcType="VARCHAR"/>
+	<result column="pr_send_date" property="prSendDate" jdbcType="DATE"/>
+	<result column="pr_delivery_date" property="prDeliveryDate" jdbcType="DATE"/>
+	<result column="pr_is_close" property="prIsClose" jdbcType="VARCHAR"/>
+	<result column="pr_is_direct_action" property="prIsDirectAction" jdbcType="VARCHAR"/>
+	<result column="fir_firstor" property="firFirstor" jdbcType="VARCHAR"/>
+	<result column="fir_lawyer" property="firLawyer" jdbcType="VARCHAR"/>
+	<result column="fir_submit_date" property="firSubmitDate" jdbcType="DATE"/>
+	<result column="fir_establish_date" property="firEstablishDate" jdbcType="DATE"/>
+	<result column="fir_litigation_costs" property="firLitigationCosts" jdbcType="DECIMAL"/>
+	<result column="fir_announcement_costs" property="firAnnouncementCosts" jdbcType="DECIMAL"/>
+	<result column="fir_notary_costs" property="firNotaryCosts" jdbcType="DECIMAL"/>
+	<result column="fir_other_costs" property="firOtherCosts" jdbcType="DECIMAL"/>
+	<result column="fir_adjudication_court" property="firAdjudicationCourt" jdbcType="VARCHAR"/>
+	<result column="fir_judge" property="firJudge" jdbcType="VARCHAR"/>
+	<result column="fir_judge_contact" property="firJudgeContact" jdbcType="VARCHAR"/>
+	<result column="fir_f_court_date" property="firFCourtDate" jdbcType="DATE"/>
+	<result column="fir_f_verdict_date" property="firFVerdictDate" jdbcType="DATE"/>
+	<result column="fir_f_verdict_receive_date" property="firFVerdictReceiveDate" jdbcType="DATE"/>
+	<result column="fir_is_apology" property="firIsApology" jdbcType="VARCHAR"/>
+	<result column="fir_defendant_compensation_total" property="firDefendantCompensationTotal" jdbcType="DECIMAL"/>
+	<result column="fir_defendant_expenses" property="firDefendantExpenses" jdbcType="DECIMAL"/>
+	<result column="fir_plaintiff_costs" property="firPlaintiffCosts" jdbcType="DECIMAL"/>
+	<result column="fir_defendant_costs" property="firDefendantCosts" jdbcType="DECIMAL"/>
+	<result column="fir_is_close" property="firIsClose" jdbcType="VARCHAR"/>
+	<result column="fir_appeal_date" property="firAppealDate" jdbcType="DATE"/>
+	<result column="fir_is_pre_mediation" property="firIsPreMediation" jdbcType="VARCHAR"/>
+	<result column="fir_is_action_mediation" property="firIsActionMediation" jdbcType="VARCHAR"/>
+	<result column="fir_mediation_date" property="firMediationDate" jdbcType="DATE"/>
+	<result column="fir_is_appeal" property="firIsAppeal" jdbcType="VARCHAR"/>
+	<result column="fir_appellant" property="firAppellant" jdbcType="VARCHAR"/>
+	<result column="fir_is_carry_out" property="firIsCarryOut" jdbcType="VARCHAR"/>
+	<result column="two_lawyer" property="twoLawyer" jdbcType="VARCHAR"/>
+	<result column="two_s_court_date" property="twoSCourtDate" jdbcType="DATE"/>
+	<result column="two_judge" property="twoJudge" jdbcType="VARCHAR"/>
+	<result column="two_judge_contact" property="twoJudgeContact" jdbcType="VARCHAR"/>
+	<result column="two_s_judgment_effective_date" property="twoSJudgmentEffectiveDate" jdbcType="DATE"/>
+	<result column="two_is_apology" property="twoIsApology" jdbcType="VARCHAR"/>
+	<result column="two_defendant_compensation_total" property="twoDefendantCompensationTotal" jdbcType="VARCHAR"/>
+	<result column="two_defendant_expenses" property="twoDefendantExpenses" jdbcType="VARCHAR"/>
+	<result column="two_plaintiff_costs" property="twoPlaintiffCosts" jdbcType="VARCHAR"/>
+	<result column="two_defendant_costs" property="twoDefendantCosts" jdbcType="DECIMAL"/>
+	<result column="two_is_close" property="twoIsClose" jdbcType="VARCHAR"/>
+	<result column="two_execution_deadline" property="twoExecutionDeadline" jdbcType="DATE"/>
+	<result column="two_is_carry_out" property="twoIsCarryOut" jdbcType="VARCHAR"/>
+	<result column="out_lawyer" property="outLawyer" jdbcType="VARCHAR"/>
+	<result column="out_app_date" property="outAppDate" jdbcType="DATE"/>
+	<result column="out_app_total" property="outAppTotal" jdbcType="DECIMAL"/>
+	<result column="out_judge" property="outJudge" jdbcType="VARCHAR"/>
+	<result column="out_judge_contact" property="outJudgeContact" jdbcType="VARCHAR"/>
+	<result column="out_actual_total" property="outActualTotal" jdbcType="DECIMAL"/>
+	<result column="out_f_collection_subject" property="outFCollectionSubject" jdbcType="VARCHAR"/>
+	<result column="out_is_reconcile" property="outIsReconcile" jdbcType="VARCHAR"/>
+	<result column="out_is_close" property="outIsClose" jdbcType="VARCHAR"/>
+	
+	<result column="supply_name" property="supplyName" jdbcType="VARCHAR"/>
+    <result column="applicant_name" property="applicantName" jdbcType="VARCHAR"/>
+    <result column="forensics_name" property="forensicsName" jdbcType="VARCHAR"/>
+    <result column="letteror_name" property="letterorName" jdbcType="VARCHAR"/>
+    <result column="fir_lawyer_name" property="firLawyerName" jdbcType="VARCHAR"/>
+    <result column="two_lawyer_name" property="twoLawyerName" jdbcType="VARCHAR"/>
+    <result column="out_lawyer_name" property="outLawyerName" jdbcType="VARCHAR"/>
+    <result column="created_name" property="createName" jdbcType="VARCHAR"/>
+    <result column="updated_name" property="updateName" jdbcType="VARCHAR"/>
+</resultMap>
+       
+<!-- case_m_info table all fields -->
+<sql id="Base_Column_List" >
+	 cp_src,cp_supply,cp_apply_date,cp_applicant,cp_forensics,cp_violate_type,cp_violate_desc,cp_action_date,cp_litigant_ac_date,cp_action_img,cp_litigant_ac_img,cp_is_direct_action,case_status,case_del_flag,case_org,case_created_by,case_created_time,case_updated_by,case_updated_time,id,case_litigant,case_defendant_name,case_defendant_reg_capital,case_defendant_area,pr_letter,pr_letteror,pr_send_date,pr_delivery_date,pr_is_close,pr_is_direct_action,fir_firstor,fir_lawyer,fir_submit_date,fir_establish_date,fir_litigation_costs,fir_announcement_costs,fir_notary_costs,fir_other_costs,fir_adjudication_court,fir_judge,fir_judge_contact,fir_f_court_date,fir_f_verdict_date,fir_f_verdict_receive_date,fir_is_apology,fir_defendant_compensation_total,fir_defendant_expenses,fir_plaintiff_costs,fir_defendant_costs,fir_is_close,fir_appeal_date,fir_is_pre_mediation,fir_is_action_mediation,fir_mediation_date,fir_is_appeal,fir_appellant,fir_is_carry_out,two_lawyer,two_s_court_date,two_judge,two_judge_contact,two_s_judgment_effective_date,two_is_apology,two_defendant_compensation_total,two_defendant_expenses,two_plaintiff_costs,two_defendant_costs,two_is_close,two_execution_deadline,two_is_carry_out,out_lawyer,out_app_date,out_app_total,out_judge,out_judge_contact,out_actual_total,out_f_collection_subject,out_is_reconcile,out_is_close
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+<trim prefix = "where" prefixOverrides="and|or">
+	<!--  -->
+		 	<if test="cpSrc != null and cpSrc != ''" >
+	    and cp_src =  #{cpSrc}
+	</if>
+	<!--  -->
+		 	<if test="cpSupply != null and cpSupply != ''" >
+	    and cp_supply =  #{cpSupply}
+	</if>
+	<!--  -->
+		<if test="cpApplyDate != null" >
+	    and cp_apply_date =  #{cpApplyDate}
+	</if>
+	<!--  -->
+		 	<if test="cpApplicant != null and cpApplicant != ''" >
+	    and cp_applicant =  #{cpApplicant}
+	</if>
+	<!--  -->
+		 	<if test="cpForensics != null and cpForensics != ''" >
+	    and cp_forensics =  #{cpForensics}
+	</if>
+	<!--  -->
+		 	<if test="cpViolateType != null and cpViolateType != ''" >
+	    and cp_violate_type =  #{cpViolateType}
+	</if>
+	<!--  -->
+		 	<if test="cpViolateDesc != null and cpViolateDesc != ''" >
+	    and cp_violate_desc =  #{cpViolateDesc}
+	</if>
+	<!--  -->
+		<if test="cpActionDate != null" >
+	    and cp_action_date =  #{cpActionDate}
+	</if>
+	<!--  -->
+		<if test="cpLitigantAcDate != null" >
+	    and cp_litigant_ac_date =  #{cpLitigantAcDate}
+	</if>
+	<!--  -->
+		 	<if test="cpActionImg != null and cpActionImg != ''" >
+	    and cp_action_img =  #{cpActionImg}
+	</if>
+	<!--  -->
+		 	<if test="cpLitigantAcImg != null and cpLitigantAcImg != ''" >
+	    and cp_litigant_ac_img =  #{cpLitigantAcImg}
+	</if>
+	<!--  -->
+		 	<if test="cpIsDirectAction != null and cpIsDirectAction != ''" >
+	    and cp_is_direct_action =  #{cpIsDirectAction}
+	</if>
+	<!--  -->
+		<if test="caseStatus != null" >
+	    and case_status =  #{caseStatus}
+	</if>
+	<!--  -->
+		 	<if test="caseDelFlag != null and caseDelFlag != ''" >
+	    and case_del_flag =  #{caseDelFlag}
+	</if>
+	<!--  -->
+		 	<if test="caseOrg != null and caseOrg != ''" >
+	    and case_org =  #{caseOrg}
+	</if>
+	<!--  -->
+		 	<if test="caseCreatedBy != null and caseCreatedBy != ''" >
+	    and case_created_by =  #{caseCreatedBy}
+	</if>
+	<!--  -->
+		<if test="caseCreatedTime != null" >
+	    and case_created_time =  #{caseCreatedTime}
+	</if>
+	<!--  -->
+		 	<if test="caseUpdatedBy != null and caseUpdatedBy != ''" >
+	    and case_updated_by =  #{caseUpdatedBy}
+	</if>
+	<!--  -->
+		<if test="caseUpdatedTime != null" >
+	    and case_updated_time =  #{caseUpdatedTime}
+	</if>
+	<!--  -->
+		<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	<!--  -->
+		 	<if test="caseLitigant != null and caseLitigant != ''" >
+	    and (case_litigant =  #{caseLitigant} OR case_litigant like CONCAT('%', #{caseLitigant},'%'))
+	</if>
+	<!--  -->
+		 	<if test="caseDefendantName != null and caseDefendantName != ''" >
+	      and (case_defendant_name =  #{caseDefendantName} OR case_defendant_name like CONCAT('%', #{caseDefendantName},'%'))
+	</if>
+	
+	<!--  -->
+		 	<if test="caseDefendantRegCapital != null and caseDefendantRegCapital != ''" >
+	    and case_defendant_reg_capital =  #{caseDefendantRegCapital}
+	</if>
+	<!--  -->
+		 	<if test="caseDefendantArea != null and caseDefendantArea != ''" >
+	    and case_defendant_area =  #{caseDefendantArea}
+	</if>
+	<!--  -->
+		 	<if test="prLetter != null and prLetter != ''" >
+	    and pr_letter =  #{prLetter}
+	</if>
+	<!--  -->
+		 	<if test="prLetteror != null and prLetteror != ''" >
+	    and pr_letteror =  #{prLetteror}
+	</if>
+	<!--  -->
+		<if test="prSendDate != null" >
+	    and pr_send_date =  #{prSendDate}
+	</if>
+	<!--  -->
+		<if test="prDeliveryDate != null" >
+	    and pr_delivery_date =  #{prDeliveryDate}
+	</if>
+	<!--  -->
+		 	<if test="prIsClose != null and prIsClose != ''" >
+	    and pr_is_close =  #{prIsClose}
+	</if>
+	<!--  -->
+		 	<if test="prIsDirectAction != null and prIsDirectAction != ''" >
+	    and pr_is_direct_action =  #{prIsDirectAction}
+	</if>
+	<!--  -->
+		 	<if test="firFirstor != null and firFirstor != ''" >
+	    and fir_firstor =  #{firFirstor}
+	</if>
+	<!--  -->
+		 	<if test="firLawyer != null and firLawyer != ''" >
+	    and fir_lawyer =  #{firLawyer}
+	</if>
+	<!--  -->
+		<if test="firSubmitDate != null" >
+	    and fir_submit_date =  #{firSubmitDate}
+	</if>
+	<!--  -->
+		<if test="firEstablishDate != null" >
+	    and fir_establish_date =  #{firEstablishDate}
+	</if>
+	<!--  -->
+		<if test="firLitigationCosts != null" >
+	    and fir_litigation_costs =  #{firLitigationCosts}
+	</if>
+	<!--  -->
+		<if test="firAnnouncementCosts != null" >
+	    and fir_announcement_costs =  #{firAnnouncementCosts}
+	</if>
+	<!--  -->
+		<if test="firNotaryCosts != null" >
+	    and fir_notary_costs =  #{firNotaryCosts}
+	</if>
+	<!--  -->
+		<if test="firOtherCosts != null" >
+	    and fir_other_costs =  #{firOtherCosts}
+	</if>
+	<!--  -->
+		 	<if test="firAdjudicationCourt != null and firAdjudicationCourt != ''" >
+	    and fir_adjudication_court =  #{firAdjudicationCourt}
+	</if>
+	<!--  -->
+		 	<if test="firJudge != null and firJudge != ''" >
+	    and fir_judge =  #{firJudge}
+	</if>
+	<!--  -->
+		 	<if test="firJudgeContact != null and firJudgeContact != ''" >
+	    and fir_judge_contact =  #{firJudgeContact}
+	</if>
+	<!--  -->
+		<if test="firFCourtDate != null" >
+	    and fir_f_court_date =  #{firFCourtDate}
+	</if>
+	<!--  -->
+		<if test="firFVerdictDate != null" >
+	    and fir_f_verdict_date =  #{firFVerdictDate}
+	</if>
+	<!--  -->
+		<if test="firFVerdictReceiveDate != null" >
+	    and fir_f_verdict_receive_date =  #{firFVerdictReceiveDate}
+	</if>
+	<!--  -->
+		 	<if test="firIsApology != null and firIsApology != ''" >
+	    and fir_is_apology =  #{firIsApology}
+	</if>
+	<!--  -->
+		<if test="firDefendantCompensationTotal != null" >
+	    and fir_defendant_compensation_total =  #{firDefendantCompensationTotal}
+	</if>
+	<!--  -->
+		<if test="firDefendantExpenses != null" >
+	    and fir_defendant_expenses =  #{firDefendantExpenses}
+	</if>
+	<!--  -->
+		<if test="firPlaintiffCosts != null" >
+	    and fir_plaintiff_costs =  #{firPlaintiffCosts}
+	</if>
+	<!--  -->
+		<if test="firDefendantCosts != null" >
+	    and fir_defendant_costs =  #{firDefendantCosts}
+	</if>
+	<!--  -->
+		 	<if test="firIsClose != null and firIsClose != ''" >
+	    and fir_is_close =  #{firIsClose}
+	</if>
+	<!--  -->
+		<if test="firAppealDate != null" >
+	    and fir_appeal_date =  #{firAppealDate}
+	</if>
+	<!--  -->
+		 	<if test="firIsPreMediation != null and firIsPreMediation != ''" >
+	    and fir_is_pre_mediation =  #{firIsPreMediation}
+	</if>
+	<!--  -->
+		 	<if test="firIsActionMediation != null and firIsActionMediation != ''" >
+	    and fir_is_action_mediation =  #{firIsActionMediation}
+	</if>
+	<!--  -->
+		<if test="firMediationDate != null" >
+	    and fir_mediation_date =  #{firMediationDate}
+	</if>
+	<!--  -->
+		 	<if test="firIsAppeal != null and firIsAppeal != ''" >
+	    and fir_is_appeal =  #{firIsAppeal}
+	</if>
+	<!--  -->
+		 	<if test="firAppellant != null and firAppellant != ''" >
+	    and fir_appellant =  #{firAppellant}
+	</if>
+	<!--  -->
+		 	<if test="firIsCarryOut != null and firIsCarryOut != ''" >
+	    and fir_is_carry_out =  #{firIsCarryOut}
+	</if>
+	<!--  -->
+		 	<if test="twoLawyer != null and twoLawyer != ''" >
+	    and two_lawyer =  #{twoLawyer}
+	</if>
+	<!--  -->
+		<if test="twoSCourtDate != null" >
+	    and two_s_court_date =  #{twoSCourtDate}
+	</if>
+	<!--  -->
+		 	<if test="twoJudge != null and twoJudge != ''" >
+	    and two_judge =  #{twoJudge}
+	</if>
+	<!--  -->
+		 	<if test="twoJudgeContact != null and twoJudgeContact != ''" >
+	    and two_judge_contact =  #{twoJudgeContact}
+	</if>
+	<!--  -->
+		<if test="twoSJudgmentEffectiveDate != null" >
+	    and two_s_judgment_effective_date =  #{twoSJudgmentEffectiveDate}
+	</if>
+	<!--  -->
+		 	<if test="twoIsApology != null and twoIsApology != ''" >
+	    and two_is_apology =  #{twoIsApology}
+	</if>
+	<!--  -->
+		 	<if test="twoDefendantCompensationTotal != null and twoDefendantCompensationTotal != ''" >
+	    and two_defendant_compensation_total =  #{twoDefendantCompensationTotal}
+	</if>
+	<!--  -->
+		 	<if test="twoDefendantExpenses != null and twoDefendantExpenses != ''" >
+	    and two_defendant_expenses =  #{twoDefendantExpenses}
+	</if>
+	<!--  -->
+		 	<if test="twoPlaintiffCosts != null and twoPlaintiffCosts != ''" >
+	    and two_plaintiff_costs =  #{twoPlaintiffCosts}
+	</if>
+	<!--  -->
+		<if test="twoDefendantCosts != null" >
+	    and two_defendant_costs =  #{twoDefendantCosts}
+	</if>
+	<!--  -->
+		 	<if test="twoIsClose != null and twoIsClose != ''" >
+	    and two_is_close =  #{twoIsClose}
+	</if>
+	<!--  -->
+		<if test="twoExecutionDeadline != null" >
+	    and two_execution_deadline =  #{twoExecutionDeadline}
+	</if>
+	<!--  -->
+		 	<if test="twoIsCarryOut != null and twoIsCarryOut != ''" >
+	    and two_is_carry_out =  #{twoIsCarryOut}
+	</if>
+	<!--  -->
+		 	<if test="outLawyer != null and outLawyer != ''" >
+	    and out_lawyer =  #{outLawyer}
+	</if>
+	<!--  -->
+		<if test="outAppDate != null" >
+	    and out_app_date =  #{outAppDate}
+	</if>
+	<!--  -->
+		<if test="outAppTotal != null" >
+	    and out_app_total =  #{outAppTotal}
+	</if>
+	<!--  -->
+		 	<if test="outJudge != null and outJudge != ''" >
+	    and out_judge =  #{outJudge}
+	</if>
+	<!--  -->
+		 	<if test="outJudgeContact != null and outJudgeContact != ''" >
+	    and out_judge_contact =  #{outJudgeContact}
+	</if>
+	<!--  -->
+		<if test="outActualTotal != null" >
+	    and out_actual_total =  #{outActualTotal}
+	</if>
+	<!--  -->
+		 	<if test="outFCollectionSubject != null and outFCollectionSubject != ''" >
+	    and out_f_collection_subject =  #{outFCollectionSubject}
+	</if>
+	<!--  -->
+		 	<if test="outIsReconcile != null and outIsReconcile != ''" >
+	    and out_is_reconcile =  #{outIsReconcile}
+	</if>
+	<!--  -->
+		 	<if test="outIsClose != null and outIsClose != ''" >
+	    and out_is_close =  #{outIsClose}
+	</if>
+</trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into case_m_info(cp_src,cp_supply,cp_apply_date,cp_applicant,cp_forensics,cp_violate_type,cp_violate_desc,cp_action_date,cp_litigant_ac_date,cp_action_img,cp_litigant_ac_img,cp_is_direct_action,case_status,case_del_flag,case_org,case_created_by,case_created_time,case_updated_by,case_updated_time,id,case_litigant,case_defendant_name,case_defendant_reg_capital,case_defendant_area,pr_letter,pr_letteror,pr_send_date,pr_delivery_date,pr_is_close,pr_is_direct_action,fir_firstor,fir_lawyer,fir_submit_date,fir_establish_date,fir_litigation_costs,fir_announcement_costs,fir_notary_costs,fir_other_costs,fir_adjudication_court,fir_judge,fir_judge_contact,fir_f_court_date,fir_f_verdict_date,fir_f_verdict_receive_date,fir_is_apology,fir_defendant_compensation_total,fir_defendant_expenses,fir_plaintiff_costs,fir_defendant_costs,fir_is_close,fir_appeal_date,fir_is_pre_mediation,fir_is_action_mediation,fir_mediation_date,fir_is_appeal,fir_appellant,fir_is_carry_out,two_lawyer,two_s_court_date,two_judge,two_judge_contact,two_s_judgment_effective_date,two_is_apology,two_defendant_compensation_total,two_defendant_expenses,two_plaintiff_costs,two_defendant_costs,two_is_close,two_execution_deadline,two_is_carry_out,out_lawyer,out_app_date,out_app_total,out_judge,out_judge_contact,out_actual_total,out_f_collection_subject,out_is_reconcile,out_is_close)
+ values(#{cpSrc,jdbcType=VARCHAR},#{cpSupply,jdbcType=VARCHAR},#{cpApplyDate,jdbcType=DATE},#{cpApplicant,jdbcType=VARCHAR},#{cpForensics,jdbcType=VARCHAR},#{cpViolateType,jdbcType=VARCHAR},#{cpViolateDesc,jdbcType=VARCHAR},#{cpActionDate,jdbcType=DATE},#{cpLitigantAcDate,jdbcType=DATE},#{cpActionImg,jdbcType=VARCHAR},#{cpLitigantAcImg,jdbcType=VARCHAR},#{cpIsDirectAction,jdbcType=VARCHAR},#{caseStatus,jdbcType=INTEGER},#{caseDelFlag,jdbcType=VARCHAR},#{caseOrg,jdbcType=VARCHAR},#{caseCreatedBy,jdbcType=VARCHAR},#{caseCreatedTime,jdbcType=TIMESTAMP},#{caseUpdatedBy,jdbcType=VARCHAR},#{caseUpdatedTime,jdbcType=TIMESTAMP},#{id,jdbcType=INTEGER},#{caseLitigant,jdbcType=VARCHAR},#{caseDefendantName,jdbcType=VARCHAR},#{caseDefendantRegCapital,jdbcType=VARCHAR},#{caseDefendantArea,jdbcType=VARCHAR},#{prLetter,jdbcType=VARCHAR},#{prLetteror,jdbcType=VARCHAR},#{prSendDate,jdbcType=DATE},#{prDeliveryDate,jdbcType=DATE},#{prIsClose,jdbcType=VARCHAR},#{prIsDirectAction,jdbcType=VARCHAR},#{firFirstor,jdbcType=VARCHAR},#{firLawyer,jdbcType=VARCHAR},#{firSubmitDate,jdbcType=DATE},#{firEstablishDate,jdbcType=DATE},#{firLitigationCosts,jdbcType=DECIMAL},#{firAnnouncementCosts,jdbcType=DECIMAL},#{firNotaryCosts,jdbcType=DECIMAL},#{firOtherCosts,jdbcType=DECIMAL},#{firAdjudicationCourt,jdbcType=VARCHAR},#{firJudge,jdbcType=VARCHAR},#{firJudgeContact,jdbcType=VARCHAR},#{firFCourtDate,jdbcType=DATE},#{firFVerdictDate,jdbcType=DATE},#{firFVerdictReceiveDate,jdbcType=DATE},#{firIsApology,jdbcType=VARCHAR},#{firDefendantCompensationTotal,jdbcType=DECIMAL},#{firDefendantExpenses,jdbcType=DECIMAL},#{firPlaintiffCosts,jdbcType=DECIMAL},#{firDefendantCosts,jdbcType=DECIMAL},#{firIsClose,jdbcType=VARCHAR},#{firAppealDate,jdbcType=DATE},#{firIsPreMediation,jdbcType=VARCHAR},#{firIsActionMediation,jdbcType=VARCHAR},#{firMediationDate,jdbcType=DATE},#{firIsAppeal,jdbcType=VARCHAR},#{firAppellant,jdbcType=VARCHAR},#{firIsCarryOut,jdbcType=VARCHAR},#{twoLawyer,jdbcType=VARCHAR},#{twoSCourtDate,jdbcType=DATE},#{twoJudge,jdbcType=VARCHAR},#{twoJudgeContact,jdbcType=VARCHAR},#{twoSJudgmentEffectiveDate,jdbcType=DATE},#{twoIsApology,jdbcType=VARCHAR},#{twoDefendantCompensationTotal,jdbcType=VARCHAR},#{twoDefendantExpenses,jdbcType=VARCHAR},#{twoPlaintiffCosts,jdbcType=VARCHAR},#{twoDefendantCosts,jdbcType=DECIMAL},#{twoIsClose,jdbcType=VARCHAR},#{twoExecutionDeadline,jdbcType=DATE},#{twoIsCarryOut,jdbcType=VARCHAR},#{outLawyer,jdbcType=VARCHAR},#{outAppDate,jdbcType=DATE},#{outAppTotal,jdbcType=DECIMAL},#{outJudge,jdbcType=VARCHAR},#{outJudgeContact,jdbcType=VARCHAR},#{outActualTotal,jdbcType=DECIMAL},#{outFCollectionSubject,jdbcType=VARCHAR},#{outIsReconcile,jdbcType=VARCHAR},#{outIsClose,jdbcType=VARCHAR})
+</insert>
+
+<!-- 根据id，修改记录-->
+ <update id="update" parameterType="Object" >
+  update case_m_info set cp_supply=#{cpSupply,jdbcType=VARCHAR},cp_apply_date=#{cpApplyDate,jdbcType=DATE},cp_applicant=#{cpApplicant,jdbcType=VARCHAR},cp_forensics=#{cpForensics,jdbcType=VARCHAR},cp_violate_type=#{cpViolateType,jdbcType=VARCHAR},cp_violate_desc=#{cpViolateDesc,jdbcType=VARCHAR},cp_action_date=#{cpActionDate,jdbcType=DATE},cp_litigant_ac_date=#{cpLitigantAcDate,jdbcType=DATE},cp_action_img=#{cpActionImg,jdbcType=VARCHAR},cp_litigant_ac_img=#{cpLitigantAcImg,jdbcType=VARCHAR},cp_is_direct_action=#{cpIsDirectAction,jdbcType=VARCHAR},case_status=#{caseStatus,jdbcType=INTEGER},case_del_flag=#{caseDelFlag,jdbcType=VARCHAR},case_org=#{caseOrg,jdbcType=VARCHAR},case_created_by=#{caseCreatedBy,jdbcType=VARCHAR},case_created_time=#{caseCreatedTime,jdbcType=TIMESTAMP},case_updated_by=#{caseUpdatedBy,jdbcType=VARCHAR},case_updated_time=#{caseUpdatedTime,jdbcType=TIMESTAMP},id=#{id,jdbcType=INTEGER},case_litigant=#{caseLitigant,jdbcType=VARCHAR},case_defendant_name=#{caseDefendantName,jdbcType=VARCHAR},case_defendant_reg_capital=#{caseDefendantRegCapital,jdbcType=VARCHAR},case_defendant_area=#{caseDefendantArea,jdbcType=VARCHAR},pr_letter=#{prLetter,jdbcType=VARCHAR},pr_letteror=#{prLetteror,jdbcType=VARCHAR},pr_send_date=#{prSendDate,jdbcType=DATE},pr_delivery_date=#{prDeliveryDate,jdbcType=DATE},pr_is_close=#{prIsClose,jdbcType=VARCHAR},pr_is_direct_action=#{prIsDirectAction,jdbcType=VARCHAR},fir_firstor=#{firFirstor,jdbcType=VARCHAR},fir_lawyer=#{firLawyer,jdbcType=VARCHAR},fir_submit_date=#{firSubmitDate,jdbcType=DATE},fir_establish_date=#{firEstablishDate,jdbcType=DATE},fir_litigation_costs=#{firLitigationCosts,jdbcType=DECIMAL},fir_announcement_costs=#{firAnnouncementCosts,jdbcType=DECIMAL},fir_notary_costs=#{firNotaryCosts,jdbcType=DECIMAL},fir_other_costs=#{firOtherCosts,jdbcType=DECIMAL},fir_adjudication_court=#{firAdjudicationCourt,jdbcType=VARCHAR},fir_judge=#{firJudge,jdbcType=VARCHAR},fir_judge_contact=#{firJudgeContact,jdbcType=VARCHAR},fir_f_court_date=#{firFCourtDate,jdbcType=DATE},fir_f_verdict_date=#{firFVerdictDate,jdbcType=DATE},fir_f_verdict_receive_date=#{firFVerdictReceiveDate,jdbcType=DATE},fir_is_apology=#{firIsApology,jdbcType=VARCHAR},fir_defendant_compensation_total=#{firDefendantCompensationTotal,jdbcType=DECIMAL},fir_defendant_expenses=#{firDefendantExpenses,jdbcType=DECIMAL},fir_plaintiff_costs=#{firPlaintiffCosts,jdbcType=DECIMAL},fir_defendant_costs=#{firDefendantCosts,jdbcType=DECIMAL},fir_is_close=#{firIsClose,jdbcType=VARCHAR},fir_appeal_date=#{firAppealDate,jdbcType=DATE},fir_is_pre_mediation=#{firIsPreMediation,jdbcType=VARCHAR},fir_is_action_mediation=#{firIsActionMediation,jdbcType=VARCHAR},fir_mediation_date=#{firMediationDate,jdbcType=DATE},fir_is_appeal=#{firIsAppeal,jdbcType=VARCHAR},fir_appellant=#{firAppellant,jdbcType=VARCHAR},fir_is_carry_out=#{firIsCarryOut,jdbcType=VARCHAR},two_lawyer=#{twoLawyer,jdbcType=VARCHAR},two_s_court_date=#{twoSCourtDate,jdbcType=DATE},two_judge=#{twoJudge,jdbcType=VARCHAR},two_judge_contact=#{twoJudgeContact,jdbcType=VARCHAR},two_s_judgment_effective_date=#{twoSJudgmentEffectiveDate,jdbcType=DATE},two_is_apology=#{twoIsApology,jdbcType=VARCHAR},two_defendant_compensation_total=#{twoDefendantCompensationTotal,jdbcType=VARCHAR},two_defendant_expenses=#{twoDefendantExpenses,jdbcType=VARCHAR},two_plaintiff_costs=#{twoPlaintiffCosts,jdbcType=VARCHAR},two_defendant_costs=#{twoDefendantCosts,jdbcType=DECIMAL},two_is_close=#{twoIsClose,jdbcType=VARCHAR},two_execution_deadline=#{twoExecutionDeadline,jdbcType=DATE},two_is_carry_out=#{twoIsCarryOut,jdbcType=VARCHAR},out_lawyer=#{outLawyer,jdbcType=VARCHAR},out_app_date=#{outAppDate,jdbcType=DATE},out_app_total=#{outAppTotal,jdbcType=DECIMAL},out_judge=#{outJudge,jdbcType=VARCHAR},out_judge_contact=#{outJudgeContact,jdbcType=VARCHAR},out_actual_total=#{outActualTotal,jdbcType=DECIMAL},out_f_collection_subject=#{outFCollectionSubject,jdbcType=VARCHAR},out_is_reconcile=#{outIsReconcile,jdbcType=VARCHAR},out_is_close=#{outIsClose,jdbcType=VARCHAR} where cp_src=#{cpSrc,jdbcType=VARCHAR}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update case_m_info set 
+	<trim  suffixOverrides="," >
+	<if test="cpSupply != null  ">
+		cp_supply=#{cpSupply,jdbcType=VARCHAR},
+	</if>
+	<if test="cpApplyDate != null  ">
+		cp_apply_date=#{cpApplyDate,jdbcType=DATE},
+	</if>
+	<if test="cpApplicant != null  ">
+		cp_applicant=#{cpApplicant,jdbcType=VARCHAR},
+	</if>
+	<if test="cpForensics != null  ">
+		cp_forensics=#{cpForensics,jdbcType=VARCHAR},
+	</if>
+	<if test="cpViolateType != null  ">
+		cp_violate_type=#{cpViolateType,jdbcType=VARCHAR},
+	</if>
+	<if test="cpViolateDesc != null  ">
+		cp_violate_desc=#{cpViolateDesc,jdbcType=VARCHAR},
+	</if>
+	<if test="cpActionDate != null  ">
+		cp_action_date=#{cpActionDate,jdbcType=DATE},
+	</if>
+	<if test="cpLitigantAcDate != null  ">
+		cp_litigant_ac_date=#{cpLitigantAcDate,jdbcType=DATE},
+	</if>
+	<if test="cpActionImg != null  ">
+		cp_action_img=#{cpActionImg,jdbcType=VARCHAR},
+	</if>
+	<if test="cpLitigantAcImg != null  ">
+		cp_litigant_ac_img=#{cpLitigantAcImg,jdbcType=VARCHAR},
+	</if>
+	<if test="cpIsDirectAction != null  ">
+		cp_is_direct_action=#{cpIsDirectAction,jdbcType=VARCHAR},
+	</if>
+	<if test="caseStatus != null  ">
+		case_status=#{caseStatus,jdbcType=INTEGER},
+	</if>
+	<if test="caseDelFlag != null  ">
+		case_del_flag=#{caseDelFlag,jdbcType=VARCHAR},
+	</if>
+	<if test="caseOrg != null  ">
+		case_org=#{caseOrg,jdbcType=VARCHAR},
+	</if>
+	<if test="caseCreatedBy != null  ">
+		case_created_by=#{caseCreatedBy,jdbcType=VARCHAR},
+	</if>
+	<if test="caseCreatedTime != null  ">
+		case_created_time=#{caseCreatedTime,jdbcType=TIMESTAMP},
+	</if>
+	<if test="caseUpdatedBy != null  ">
+		case_updated_by=#{caseUpdatedBy,jdbcType=VARCHAR},
+	</if>
+	<if test="caseUpdatedTime != null  ">
+		case_updated_time=#{caseUpdatedTime,jdbcType=TIMESTAMP},
+	</if>
+	<if test="id != null  ">
+		id=#{id,jdbcType=INTEGER},
+	</if>
+	<if test="caseLitigant != null  ">
+		case_litigant=#{caseLitigant,jdbcType=VARCHAR},
+	</if>
+	<if test="caseDefendantName != null  ">
+		case_defendant_name=#{caseDefendantName,jdbcType=VARCHAR},
+	</if>
+	<if test="caseDefendantRegCapital != null  ">
+		case_defendant_reg_capital=#{caseDefendantRegCapital,jdbcType=VARCHAR},
+	</if>
+	<if test="caseDefendantArea != null  ">
+		case_defendant_area=#{caseDefendantArea,jdbcType=VARCHAR},
+	</if>
+	<if test="prLetter != null  ">
+		pr_letter=#{prLetter,jdbcType=VARCHAR},
+	</if>
+	<if test="prLetteror != null  ">
+		pr_letteror=#{prLetteror,jdbcType=VARCHAR},
+	</if>
+	<if test="prSendDate != null  ">
+		pr_send_date=#{prSendDate,jdbcType=DATE},
+	</if>
+	<if test="prDeliveryDate != null  ">
+		pr_delivery_date=#{prDeliveryDate,jdbcType=DATE},
+	</if>
+	<if test="prIsClose != null  ">
+		pr_is_close=#{prIsClose,jdbcType=VARCHAR},
+	</if>
+	<if test="prIsDirectAction != null  ">
+		pr_is_direct_action=#{prIsDirectAction,jdbcType=VARCHAR},
+	</if>
+	<if test="firFirstor != null  ">
+		fir_firstor=#{firFirstor,jdbcType=VARCHAR},
+	</if>
+	<if test="firLawyer != null  ">
+		fir_lawyer=#{firLawyer,jdbcType=VARCHAR},
+	</if>
+	<if test="firSubmitDate != null  ">
+		fir_submit_date=#{firSubmitDate,jdbcType=DATE},
+	</if>
+	<if test="firEstablishDate != null  ">
+		fir_establish_date=#{firEstablishDate,jdbcType=DATE},
+	</if>
+	<if test="firLitigationCosts != null  ">
+		fir_litigation_costs=#{firLitigationCosts,jdbcType=DECIMAL},
+	</if>
+	<if test="firAnnouncementCosts != null  ">
+		fir_announcement_costs=#{firAnnouncementCosts,jdbcType=DECIMAL},
+	</if>
+	<if test="firNotaryCosts != null  ">
+		fir_notary_costs=#{firNotaryCosts,jdbcType=DECIMAL},
+	</if>
+	<if test="firOtherCosts != null  ">
+		fir_other_costs=#{firOtherCosts,jdbcType=DECIMAL},
+	</if>
+	<if test="firAdjudicationCourt != null  ">
+		fir_adjudication_court=#{firAdjudicationCourt,jdbcType=VARCHAR},
+	</if>
+	<if test="firJudge != null  ">
+		fir_judge=#{firJudge,jdbcType=VARCHAR},
+	</if>
+	<if test="firJudgeContact != null  ">
+		fir_judge_contact=#{firJudgeContact,jdbcType=VARCHAR},
+	</if>
+	<if test="firFCourtDate != null  ">
+		fir_f_court_date=#{firFCourtDate,jdbcType=DATE},
+	</if>
+	<if test="firFVerdictDate != null  ">
+		fir_f_verdict_date=#{firFVerdictDate,jdbcType=DATE},
+	</if>
+	<if test="firFVerdictReceiveDate != null  ">
+		fir_f_verdict_receive_date=#{firFVerdictReceiveDate,jdbcType=DATE},
+	</if>
+	<if test="firIsApology != null  ">
+		fir_is_apology=#{firIsApology,jdbcType=VARCHAR},
+	</if>
+	<if test="firDefendantCompensationTotal != null  ">
+		fir_defendant_compensation_total=#{firDefendantCompensationTotal,jdbcType=DECIMAL},
+	</if>
+	<if test="firDefendantExpenses != null  ">
+		fir_defendant_expenses=#{firDefendantExpenses,jdbcType=DECIMAL},
+	</if>
+	<if test="firPlaintiffCosts != null  ">
+		fir_plaintiff_costs=#{firPlaintiffCosts,jdbcType=DECIMAL},
+	</if>
+	<if test="firDefendantCosts != null  ">
+		fir_defendant_costs=#{firDefendantCosts,jdbcType=DECIMAL},
+	</if>
+	<if test="firIsClose != null  ">
+		fir_is_close=#{firIsClose,jdbcType=VARCHAR},
+	</if>
+	<if test="firAppealDate != null  ">
+		fir_appeal_date=#{firAppealDate,jdbcType=DATE},
+	</if>
+	<if test="firIsPreMediation != null  ">
+		fir_is_pre_mediation=#{firIsPreMediation,jdbcType=VARCHAR},
+	</if>
+	<if test="firIsActionMediation != null  ">
+		fir_is_action_mediation=#{firIsActionMediation,jdbcType=VARCHAR},
+	</if>
+	<if test="firMediationDate != null  ">
+		fir_mediation_date=#{firMediationDate,jdbcType=DATE},
+	</if>
+	<if test="firIsAppeal != null  ">
+		fir_is_appeal=#{firIsAppeal,jdbcType=VARCHAR},
+	</if>
+	<if test="firAppellant != null  ">
+		fir_appellant=#{firAppellant,jdbcType=VARCHAR},
+	</if>
+	<if test="firIsCarryOut != null  ">
+		fir_is_carry_out=#{firIsCarryOut,jdbcType=VARCHAR},
+	</if>
+	<if test="twoLawyer != null  ">
+		two_lawyer=#{twoLawyer,jdbcType=VARCHAR},
+	</if>
+	<if test="twoSCourtDate != null  ">
+		two_s_court_date=#{twoSCourtDate,jdbcType=DATE},
+	</if>
+	<if test="twoJudge != null  ">
+		two_judge=#{twoJudge,jdbcType=VARCHAR},
+	</if>
+	<if test="twoJudgeContact != null  ">
+		two_judge_contact=#{twoJudgeContact,jdbcType=VARCHAR},
+	</if>
+	<if test="twoSJudgmentEffectiveDate != null  ">
+		two_s_judgment_effective_date=#{twoSJudgmentEffectiveDate,jdbcType=DATE},
+	</if>
+	<if test="twoIsApology != null  ">
+		two_is_apology=#{twoIsApology,jdbcType=VARCHAR},
+	</if>
+	<if test="twoDefendantCompensationTotal != null  ">
+		two_defendant_compensation_total=#{twoDefendantCompensationTotal,jdbcType=VARCHAR},
+	</if>
+	<if test="twoDefendantExpenses != null  ">
+		two_defendant_expenses=#{twoDefendantExpenses,jdbcType=VARCHAR},
+	</if>
+	<if test="twoPlaintiffCosts != null  ">
+		two_plaintiff_costs=#{twoPlaintiffCosts,jdbcType=VARCHAR},
+	</if>
+	<if test="twoDefendantCosts != null  ">
+		two_defendant_costs=#{twoDefendantCosts,jdbcType=DECIMAL},
+	</if>
+	<if test="twoIsClose != null  ">
+		two_is_close=#{twoIsClose,jdbcType=VARCHAR},
+	</if>
+	<if test="twoExecutionDeadline != null  ">
+		two_execution_deadline=#{twoExecutionDeadline,jdbcType=DATE},
+	</if>
+	<if test="twoIsCarryOut != null  ">
+		two_is_carry_out=#{twoIsCarryOut,jdbcType=VARCHAR},
+	</if>
+	<if test="outLawyer != null  ">
+		out_lawyer=#{outLawyer,jdbcType=VARCHAR},
+	</if>
+	<if test="outAppDate != null  ">
+		out_app_date=#{outAppDate,jdbcType=DATE},
+	</if>
+	<if test="outAppTotal != null  ">
+		out_app_total=#{outAppTotal,jdbcType=DECIMAL},
+	</if>
+	<if test="outJudge != null  ">
+		out_judge=#{outJudge,jdbcType=VARCHAR},
+	</if>
+	<if test="outJudgeContact != null  ">
+		out_judge_contact=#{outJudgeContact,jdbcType=VARCHAR},
+	</if>
+	<if test="outActualTotal != null  ">
+		out_actual_total=#{outActualTotal,jdbcType=DECIMAL},
+	</if>
+	<if test="outFCollectionSubject != null  ">
+		out_f_collection_subject=#{outFCollectionSubject,jdbcType=VARCHAR},
+	</if>
+	<if test="outIsReconcile != null  ">
+		out_is_reconcile=#{outIsReconcile,jdbcType=VARCHAR},
+	</if>
+	<if test="outIsClose != null  ">
+		out_is_close=#{outIsClose,jdbcType=VARCHAR},
+	</if>
+	</trim> where cp_src=#{cpSrc,jdbcType=VARCHAR}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from case_m_info where cp_src = #{cp_src}
+</delete>
+ 
+<!-- 根据id查询 案件综合信息 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	,(select nickName from sys_user sut where sut.id=case_m_info.cp_supply) as supply_name
+	,(select nickName from sys_user sut where sut.id=case_m_info.cp_applicant) as applicant_name
+	,(select nickName from sys_user sut where sut.id=case_m_info.cp_forensics) as forensics_name
+	,(select nickName from sys_user sut where sut.id=case_m_info.pr_letteror) as letteror_name
+	,(select nickName from sys_user sut where sut.id=case_m_info.fir_lawyer) as fir_lawyer_name 
+	,(select nickName from sys_user sut where sut.id=case_m_info.two_lawyer) as two_lawyer_name 
+	,(select nickName from sys_user sut where sut.id=case_m_info.out_lawyer) as out_lawyer_name 
+	,(select nickName from sys_user sut where sut.id=case_m_info.case_created_by) as created_name
+	,(select nickName from sys_user sut where sut.id=case_m_info.case_updated_by) as updated_name  
+	 from case_m_info where id=#{id,jdbcType=INTEGER}
+</select>
+
+<!-- 案件综合信息 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from case_m_info 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询案件综合信息列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	,(select nickName from sys_user sut where sut.id=case_m_info.cp_supply) as supply_name
+	,(select nickName from sys_user sut where sut.id=case_m_info.cp_applicant) as applicant_name
+	,(select nickName from sys_user sut where sut.id=case_m_info.cp_forensics) as forensics_name
+	,(select nickName from sys_user sut where sut.id=case_m_info.pr_letteror) as letteror_name
+	,(select nickName from sys_user sut where sut.id=case_m_info.fir_lawyer) as fir_lawyer_name 
+	,(select nickName from sys_user sut where sut.id=case_m_info.two_lawyer) as two_lawyer_name 
+	,(select nickName from sys_user sut where sut.id=case_m_info.out_lawyer) as out_lawyer_name 
+	,(select nickName from sys_user sut where sut.id=case_m_info.case_created_by) as created_name
+	,(select nickName from sys_user sut where sut.id=case_m_info.case_updated_by) as updated_name  
+	from case_m_info 
+	<include refid="Example_Where_Clause"/>
+	
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+
+	<if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+<!--*********************************** generation code  end ***********************************-->
+</mapper>
