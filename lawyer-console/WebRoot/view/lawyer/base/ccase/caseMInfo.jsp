@@ -14,6 +14,7 @@
 			<label class="ui-label">被告名称:</label><input name="caseDefendantName" class="easyui-box ui-text" style="width:100px;">
 	    </p>
 	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+	    <a href="<%=basePath%>/caseMInfo/exceportExcel.do?" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">数据导出</a>
       </form>  
      </div> 
      <!--  Search panel end -->
