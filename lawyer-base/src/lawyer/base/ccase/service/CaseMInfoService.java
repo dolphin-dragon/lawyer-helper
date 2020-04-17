@@ -1,10 +1,13 @@
 package lawyer.base.ccase.service;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.base.page.BasePage;
 import com.base.service.BaseService;
 import lawyer.base.ccase.dao.CaseMInfoDao;
 
@@ -23,5 +26,10 @@ public class CaseMInfoService<T> extends BaseService<T> {
 
 	public CaseMInfoDao<T> getDao() {
 		return dao;
+	}
+
+	//query Entity List no page
+	public List<T> queryList(BasePage page){
+		return getDao().queryList(page);
 	}
 }

@@ -115,5 +115,5 @@
 	<bean id="springContextUtil" class="com.base.util.SpringContextUtil" />
 	
 	<import resource="spring-email.xml" />
-	<import resource="activiti-context.xml" />
+	<!-- <import resource="activiti-context.xml" /> -->
 </beans>

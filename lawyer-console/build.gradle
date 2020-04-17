@@ -47,7 +47,8 @@ ext {
 }
 
 sourceSets {
-        main.java.srcDirs = ['src']
+ 		main.java.srcDirs = ['src']
+        //main.java.srcDirs = ['src','flow']
         main.resources.srcDirs = ['resources','../lawyer-base/resources',cfg_env]
 }
 
@@ -66,12 +67,16 @@ dependencies {
 	//compile files('lib/lawyer-base-0.0.1-SNAPSHOT.jar')
 	
 	
-	//compile 'org.activiti:activiti-engine:5.22.0'
-	compile 'org.activiti:activiti-spring:5.22.0'
-	compile 'org.activiti:activiti-diagram-rest:5.22.0'
-	compile 'org.activiti:activiti-json-converter:5.22.0'
-	//compile 'batik:batik-codec:1.6'
-	compile 'batik:batik-transcoder:1.6'
+//	//compile 'org.activiti:activiti-engine:5.22.0'
+//	compile 'org.activiti:activiti-spring:5.22.0'
+//	compile 'org.activiti:activiti-diagram-rest:5.22.0'
+//	compile 'org.activiti:activiti-json-converter:5.22.0'
+//	//compile 'batik:batik-codec:1.6'
+//	compile 'batik:batik-transcoder:1.6'
+	
+	compile 'cn.afterturn:easypoi-base:4.+'
+	compile 'cn.afterturn:easypoi-web:4.+'
+	compile 'cn.afterturn:easypoi-annotation:4.+'
 }
 
 // 设置 Project Facets

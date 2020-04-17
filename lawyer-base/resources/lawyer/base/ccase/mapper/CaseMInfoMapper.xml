@@ -731,4 +731,20 @@
     </if>
 </select>
 <!--*********************************** generation code  end ***********************************-->
+<!-- 查询案件综合信息列表 -->
+<select id="queryList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	,(select nickName from sys_user sut where sut.id=case_m_info.cp_supply) as supply_name
+	,(select nickName from sys_user sut where sut.id=case_m_info.cp_applicant) as applicant_name
+	,(select nickName from sys_user sut where sut.id=case_m_info.cp_forensics) as forensics_name
+	,(select nickName from sys_user sut where sut.id=case_m_info.pr_letteror) as letteror_name
+	,(select nickName from sys_user sut where sut.id=case_m_info.fir_lawyer) as fir_lawyer_name 
+	,(select nickName from sys_user sut where sut.id=case_m_info.two_lawyer) as two_lawyer_name 
+	,(select nickName from sys_user sut where sut.id=case_m_info.out_lawyer) as out_lawyer_name 
+	,(select nickName from sys_user sut where sut.id=case_m_info.case_created_by) as created_name
+	,(select nickName from sys_user sut where sut.id=case_m_info.case_updated_by) as updated_name  
+	from case_m_info 
+	<include refid="Example_Where_Clause"/>
+</select>
 </mapper>

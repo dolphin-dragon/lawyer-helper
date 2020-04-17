@@ -1,5 +1,7 @@
 package lawyer.base.ccase.controller;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -10,12 +12,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.base.web.BaseAction;
+
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.entity.ExportParams;
+
 import com.base.util.HtmlUtil;
 import lawyer.base.ccase.entity.CaseMInfo;
 import lawyer.base.ccase.page.CaseMInfoPage;
@@ -135,4 +142,36 @@ public class CaseMInfoController extends BaseAction{
 		sendSuccessMessage(response, "删除成功");
 	}
 	/*********************************** generation code  end ***********************************/
+	/**
+	 * 导出数据
+	 */
+	@RequestMapping("/exceportExcel")
+	public void exceportExcel(HttpServletResponse response, CaseMInfoPage page) {
+		OutputStream out = null;
+		try {
+			List<CaseMInfo> dataList = caseMInfoService.queryList(page);
+			Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("案件信息", "案件信息"), CaseMInfo.class,dataList);
+			String fileName = "case.xls";
+			// 设置返回响应头
+			response.setContentType("application/xls;charset=UTF-8");
+			response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
+			out = response.getOutputStream();
+			workbook.write(out);
+		} catch (IOException e) {
+			log.error("exceportExcel case info error", e);
+		} finally {
+			if (null != out) {
+				try {
+					out.flush();
+				} catch (IOException e) {
+					log.error("exceportExcel case info flush error", e);
+				}
+				try {
+					out.close();
+				} catch (IOException e) {
+					log.error("exceportExcel case info close error", e);
+				}
+			}
+		}
+	}
 }

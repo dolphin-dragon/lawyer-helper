@@ -5,14 +5,27 @@ subprojects {
 	[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 ext {
-	maven_rep = 'http://127.0.0.1:8081/nexus/content/groups/public/'
-	maven_snapshots = 'http://127.0.0.1:8081/nexus/content/repositories/snapshots/'
-	maven_user = 'dev'
-	maven_upwd = 'dev@123'
+	//maven_rep = 'http://127.0.0.1:8081/nexus/content/groups/public/'
+	//maven_snapshots = 'http://127.0.0.1:8081/nexus/content/repositories/snapshots/'
+	//maven_rep = 'http://192.168.31.203:8081/nexus/content/groups/public/'
+    //maven_snapshots = 'http://192.168.31.203:8081/nexus/content/repositories/snapshots/'
+	//maven_user = 'dev'
+	//maven_upwd = 'dev@123'
+	
+	maven_rep = 'http://39.100.203.167/nexus/content/groups/public/'
+    maven_snapshots = 'http://39.100.203.167/nexus/content/repositories/snapshots/'
+    maven_user = 'dev'
+    maven_upwd = 'dev@123#xQ'
 }
 
 repositories {
-	maven { url maven_rep} 
+	maven { url 'https://maven.aliyun.com/repository/public/' }
+	maven { url maven_rep
+	   credentials {
+            username = maven_user
+            password = maven_upwd
+        }
+	} 
     //mavenCentral()
     //jcenter()
 }

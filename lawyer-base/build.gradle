@@ -30,6 +30,10 @@ dependencies {
 	//gen
 	//compile 'generate-framework:generate:0.1.+'
 	//runtime 'mysql:mysql-connector-java:5.+'
+	
+	compile 'cn.afterturn:easypoi-base:4.+'
+	compile 'cn.afterturn:easypoi-web:4.+'
+	compile 'cn.afterturn:easypoi-annotation:4.+'
 }
 
 uploadArchives {
