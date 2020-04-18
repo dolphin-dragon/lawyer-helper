@@ -149,7 +149,7 @@ public class CaseMInfoController extends BaseAction{
 		OutputStream out = null;
 		try {
 			List<CaseMInfo> dataList = caseMInfoService.queryList(page);
-			Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("案件信息", "案件信息"), CaseMInfo.class,dataList);
+			Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams(null, "案件信息"), CaseMInfo.class,dataList);
 			String fileName = "案件信息.xls";
 			// 设置返回响应头
 			response.setContentType("application/xls;charset=UTF-8");
