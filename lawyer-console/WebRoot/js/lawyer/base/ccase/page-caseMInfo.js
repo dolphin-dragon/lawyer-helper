@@ -19,7 +19,22 @@ otter.caseMInfo = function(){
 	   			toolbar:[
 					{id:'btnadd',text:'添加',btnType:'add'},
 					{id:'btnedit',text:'修改',btnType:'edit'},
-					{id:'btndelete',text:'删除',btnType:'remove'}
+					{id:'btndelete',text:'删除',btnType:'remove'},
+					{id:'btnexport',text:'数据导出',btnType:'export',iconCls:'icon-save',handler:function(){
+						var action = 'exceportExcel.do?';
+						//获取查询参数
+						var cpSupply = $('input[name="cpSupply"]',$('#searchForm')).val();  
+						var caseLitigant = $('input[name="caseLitigant"]',$('#searchForm')).val();  
+						var caseDefendantName = $('input[name="caseDefendantName"]',$('#searchForm')).val();  
+						//请求参数拼装
+						var params = '';
+						params+='&cpSupply='+cpSupply;
+						params+='&caseLitigant='+caseLitigant;
+						params+='&caseDefendantName='+caseDefendantName;
+						console.log("export "+action+ encodeURI(params));
+						//下载请求处理
+						window.location.href = action+ encodeURI(params);
+					}}
 				],
 	   			columns:[[
 					{field:'id',title:'案件编号',rowspan:2,
@@ -106,7 +121,7 @@ otter.caseMInfo = function(){
 								  return 'background-color:#CCCCCC;';
 							}
 						},
-					{field:'cp_violate_desc',title:'侵权概况',align:'center',sortable:true,
+					{field:'cp_violate_desc',title:'侵权概况',align:'left',sortable:true,width:260,
 							formatter:function(value,row,index){
 								return row.cpViolateDesc;
 							},
@@ -232,7 +247,7 @@ otter.caseMInfo = function(){
 								  return 'background-color:#99FFCC;';
 							}
 						},
-					{field:'case_defendant_name',title:'被告名称',align:'center',sortable:true,
+					{field:'case_defendant_name',title:'被告名称',align:'left',sortable:true,width:260,
 							formatter:function(value,row,index){
 								return row.caseDefendantName;
 							},
@@ -248,7 +263,7 @@ otter.caseMInfo = function(){
 								  return 'background-color:#99FFCC;';
 							}
 						},
-					{field:'case_defendant_area',title:'被告所在地',align:'center',sortable:true,
+					{field:'case_defendant_area',title:'被告所在地',align:'left',sortable:true,width:260,
 							formatter:function(value,row,index){
 								return row.caseDefendantArea;
 							},
@@ -256,7 +271,7 @@ otter.caseMInfo = function(){
 								  return 'background-color:#99FFCC;';
 							}
 						},
-					{field:'pr_letter',title:'律师函编号',align:'center',sortable:true,
+					{field:'pr_letter',title:'律师函编号',align:'left',sortable:true,
 							formatter:function(value,row,index){
 								return row.prLetter;
 							},

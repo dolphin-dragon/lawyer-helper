@@ -17,29 +17,29 @@ public class CaseMInfo extends BaseEntity {
 	private java.lang.String cpSrc;//   案件来源
 	@Excel(name = "案源人")
 	private java.lang.String supplyName;	private java.lang.String cpSupply;//   案源人
-    @Excel(name = "申请公证日期", databaseFormat="yyyyMMdd")
+    @Excel(name = "申请公证日期", exportFormat="yyyyMMdd")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date cpApplyDate;//   申请公证日期
     @Excel(name = "公证书申请人")
-    private java.lang.String applicantName;	private java.lang.String cpApplicant;//   公证书申请人
+	private java.lang.String cpApplicant;//   公证书申请人    private java.lang.String applicantName;
     @Excel(name = "取证人")
     private java.lang.String forensicsName;	private java.lang.String cpForensics;//   取证人
     @Excel(name = "侵权类型" ,replace = { "肖像权_1", "肖像权(含名誉权)_2", "肖像权(含姓名权)_3","肖像权(含姓名权、名誉权)_4","名誉权_3", "_null"})	private java.lang.String cpViolateType;//   侵权类型
     @Excel(name = "侵权概况")	private java.lang.String cpViolateDesc;//   侵权概况
-	@Excel(name = "案件可诉确认日期", databaseFormat="yyyyMMdd")
+	@Excel(name = "案件可诉确认日期", exportFormat="yyyyMMdd")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date cpActionDate;//   案件可诉确认日期
-	@Excel(name = "当事人确认日期", databaseFormat="yyyyMMdd")
+	@Excel(name = "当事人确认日期", exportFormat="yyyyMMdd")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date cpLitigantAcDate;//   当事人确认日期
 	private java.lang.String cpActionImg;//   案件可诉确认截图	private java.lang.String cpLitigantAcImg;//   当事人确认截图
 	@Excel(name = "当事人是否要求直接诉讼" ,replace = { "是_1", "否_2","_null"})	private java.lang.String cpIsDirectAction;//   当事人是否要求直接诉讼
 	
-	@Excel(name = "状态")	private java.lang.Integer caseStatus;//   状态	private java.lang.String caseDelFlag;//   删除标记	private java.lang.String caseOrg;//   机构编码
+	@Excel(name = "状态",replace = { "结案通过_91","结案通过_92","结案通过_93","结案通过_94","结案通过_95", "进行中_*","进行中_null"})	private java.lang.Integer caseStatus;//   状态	private java.lang.String caseDelFlag;//   删除标记	private java.lang.String caseOrg;//   机构编码
 	@Excel(name = "创建人")
 	private java.lang.String createName;	private java.lang.String caseCreatedBy;//   创建人
-	@Excel(name = "创建时间", databaseFormat="yyyyMMdd")
+	@Excel(name = "创建时间", exportFormat="yyyyMMdd")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date caseCreatedTime;//   创建时间
 	@Excel(name = "更新人")
 	private java.lang.String updateName;	private java.lang.String caseUpdatedBy;//   更新人
-	@Excel(name = "创建时间", databaseFormat="yyyyMMdd")
+	@Excel(name = "创建时间", exportFormat="yyyyMMdd")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date caseUpdatedTime;//   更新时间	@Excel(name = "当事人")	private java.lang.String caseLitigant;//   当事人
 	@Excel(name = "被告名称")	private java.lang.String caseDefendantName;//   被告名称
 	@Excel(name = "被告注册资本")	private java.lang.String caseDefendantRegCapital;//   被告注册资本
@@ -48,9 +48,9 @@ public class CaseMInfo extends BaseEntity {
 	@Excel(name = "律师函编号")	private java.lang.String prLetter;//   律师函编号
 	@Excel(name = "律师函主办人")
 	private java.lang.String letterorName;	private java.lang.String prLetteror;//   律师函主办人
-	@Excel(name = "律师函发送日期", databaseFormat="yyyyMMdd")
+	@Excel(name = "律师函发送日期", exportFormat="yyyyMMdd")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date prSendDate;//   律师函发送日期
-	@Excel(name = "律师函送达日期", databaseFormat="yyyyMMdd")
+	@Excel(name = "律师函送达日期", exportFormat="yyyyMMdd")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date prDeliveryDate;//   律师函送达日期
 	@Excel(name = "是否结案" ,replace = { "是_1", "否_2","_null"})	private java.lang.String prIsClose;//   是否结案
 	@Excel(name = "是否诉讼" ,replace = { "是_1", "否_2","_null"})	private java.lang.String prIsDirectAction;//   是否诉讼
@@ -58,9 +58,9 @@ public class CaseMInfo extends BaseEntity {
 	@Excel(name = "第一责任人")	private java.lang.String firFirstor;//   第一责任人
 	@Excel(name = "一审主办律师")
 	private java.lang.String firLawyerName;	private java.lang.String firLawyer;//   一审主办律师
-	@Excel(name = "提交立案材料日期", databaseFormat="yyyyMMdd")
+	@Excel(name = "提交立案材料日期", exportFormat="yyyyMMdd")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date firSubmitDate;//   提交立案材料日期
-	@Excel(name = "立案日期", databaseFormat="yyyyMMdd")
+	@Excel(name = "立案日期", exportFormat="yyyyMMdd")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date firEstablishDate;//   立案日期
 	@Excel(name = "诉讼费用")	private java.math.BigDecimal firLitigationCosts;//   诉讼费用
 	@Excel(name = "公告费用")	private java.math.BigDecimal firAnnouncementCosts;//   公告费用
@@ -69,11 +69,11 @@ public class CaseMInfo extends BaseEntity {
 	@Excel(name = "受理法院")	private java.lang.String firAdjudicationCourt;//   受理法院
 	@Excel(name = "主办法官")	private java.lang.String firJudge;//   主办法官
 	@Excel(name = "联系方式")	private java.lang.String firJudgeContact;//   联系方式
-	@Excel(name = "一审开庭日期", databaseFormat="yyyyMMdd")
+	@Excel(name = "一审开庭日期", exportFormat="yyyyMMdd")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date firFCourtDate;//   一审开庭日期
-	@Excel(name = "一审判决书落款日期", databaseFormat="yyyyMMdd")
+	@Excel(name = "一审判决书落款日期", exportFormat="yyyyMMdd")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date firFVerdictDate;//   一审判决书落款日期
-	@Excel(name = "一审判决书收到日期", databaseFormat="yyyyMMdd")
+	@Excel(name = "一审判决书收到日期", exportFormat="yyyyMMdd")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date firFVerdictReceiveDate;//   一审判决书收到日期
 	@Excel(name = "是否致歉" ,replace = { "是_1", "否_2","_null"})	private java.lang.String firIsApology;//   是否致歉
 	@Excel(name = "被告赔偿总额")	private java.math.BigDecimal firDefendantCompensationTotal;//   被告赔偿总额
@@ -81,11 +81,11 @@ public class CaseMInfo extends BaseEntity {
 	@Excel(name = "原告承担诉费")	private java.math.BigDecimal firPlaintiffCosts;//   原告承担诉费
 	@Excel(name = "被告承担诉费")	private java.math.BigDecimal firDefendantCosts;//   被告承担诉费
 	@Excel(name = "是否结案" ,replace = { "是_1", "否_2","_null"})	private java.lang.String firIsClose;//   是否结案
-	@Excel(name = "上诉截止日期", databaseFormat="yyyyMMdd")
+	@Excel(name = "上诉截止日期", exportFormat="yyyyMMdd")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date firAppealDate;//   上诉截止日期
 	@Excel(name = "是否诉前调解",replace = { "是_1", "否_2","_null"})	private java.lang.String firIsPreMediation;//   是否诉前调解
 	@Excel(name = "是否诉中调解",replace = { "是_1", "否_2","_null"})	private java.lang.String firIsActionMediation;//   是否诉中调解
-	@Excel(name = "调解书日期", databaseFormat="yyyyMMdd")
+	@Excel(name = "调解书日期", exportFormat="yyyyMMdd")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date firMediationDate;//   调解书日期
 	@Excel(name = "是否上诉" ,replace = { "是_1", "否_2","_null"})	private java.lang.String firIsAppeal;//   是否上诉
 	@Excel(name = "上诉人")	private java.lang.String firAppellant;//   上诉人
@@ -93,11 +93,11 @@ public class CaseMInfo extends BaseEntity {
 	
 	@Excel(name = "二审主办律师")
 	private java.lang.String twoLawyerName;	private java.lang.String twoLawyer;//   二审主办律师
-	@Excel(name = "调解书日期", databaseFormat="yyyyMMdd")
+	@Excel(name = "调解书日期", exportFormat="yyyyMMdd")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date twoSCourtDate;//   二审开庭日期
 	@Excel(name = "主办法官")	private java.lang.String twoJudge;//   主办法官
 	@Excel(name = "二审主办律师")	private java.lang.String twoJudgeContact;//   联系方式
-	@Excel(name = "二审判决生效日期", databaseFormat="yyyyMMdd")
+	@Excel(name = "二审判决生效日期", exportFormat="yyyyMMdd")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date twoSJudgmentEffectiveDate;//   二审判决生效日期
 	@Excel(name = "是否致歉" ,replace = { "是_1", "否_2","_null"})	private java.lang.String twoIsApology;//   是否致歉
 	@Excel(name = "一审被告赔偿总额")	private java.lang.String twoDefendantCompensationTotal;//   一审被告赔偿总额
@@ -105,13 +105,13 @@ public class CaseMInfo extends BaseEntity {
 	@Excel(name = "一审原告承担诉费")	private java.lang.String twoPlaintiffCosts;//   一审原告承担诉费
 	@Excel(name = "一审被告承担诉费")	private java.math.BigDecimal twoDefendantCosts;//   一审被告承担诉费
 	@Excel(name = "是否结案" ,replace = { "是_1", "否_2","_null"})	private java.lang.String twoIsClose;//   是否结案
-	@Excel(name = "执行截止日期", databaseFormat="yyyyMMdd")
+	@Excel(name = "执行截止日期", exportFormat="yyyyMMdd")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date twoExecutionDeadline;//   执行截止日期
 	@Excel(name = "是否需要执行",replace = { "是_1", "否_2","_null"})	private java.lang.String twoIsCarryOut;//   是否需要执行
 	
 	@Excel(name = "执行主办律师")
 	private java.lang.String outLawyerName;	private java.lang.String outLawyer;//   执行主办律师
-	@Excel(name = "执行申请日期", databaseFormat="yyyyMMdd")
+	@Excel(name = "执行申请日期", exportFormat="yyyyMMdd")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")	private java.util.Date outAppDate;//   执行申请日期
 	@Excel(name = "申请执行总额")	private java.math.BigDecimal outAppTotal;//   申请执行总额
 	@Excel(name = "执行主办法官")	private java.lang.String outJudge;//   执行主办法官

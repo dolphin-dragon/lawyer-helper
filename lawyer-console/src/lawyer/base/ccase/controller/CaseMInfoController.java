@@ -2,12 +2,12 @@ package lawyer.base.ccase.controller;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,12 +18,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.base.util.HtmlUtil;
 import com.base.web.BaseAction;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
-
-import com.base.util.HtmlUtil;
 import lawyer.base.ccase.entity.CaseMInfo;
 import lawyer.base.ccase.page.CaseMInfoPage;
 import lawyer.base.ccase.service.CaseMInfoService;
@@ -151,13 +150,13 @@ public class CaseMInfoController extends BaseAction{
 		try {
 			List<CaseMInfo> dataList = caseMInfoService.queryList(page);
 			Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("案件信息", "案件信息"), CaseMInfo.class,dataList);
-			String fileName = "case.xls";
+			String fileName = "案件信息.xls";
 			// 设置返回响应头
 			response.setContentType("application/xls;charset=UTF-8");
-			response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
+			response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName, "UTF-8"));
 			out = response.getOutputStream();
 			workbook.write(out);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			log.error("exceportExcel case info error", e);
 		} finally {
 			if (null != out) {
