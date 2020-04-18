@@ -34,6 +34,9 @@ dependencies {
 	compile 'cn.afterturn:easypoi-base:4.+'
 	compile 'cn.afterturn:easypoi-web:4.+'
 	compile 'cn.afterturn:easypoi-annotation:4.+'
+	
+	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.3'
 }
 
 uploadArchives {
