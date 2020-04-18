@@ -32,7 +32,14 @@ public class CaseMInfo extends BaseEntity {
 	private java.lang.String cpActionImg;//   案件可诉确认截图	private java.lang.String cpLitigantAcImg;//   当事人确认截图
 	@Excel(name = "当事人是否要求直接诉讼" ,replace = { "是_1", "否_2","_null"})	private java.lang.String cpIsDirectAction;//   当事人是否要求直接诉讼
 	
-	@Excel(name = "状态",replace = { "结案通过_91","结案通过_92","结案通过_93","结案通过_94","结案通过_95", "进行中_*","进行中_null"})	private java.lang.Integer caseStatus;//   状态	private java.lang.String caseDelFlag;//   删除标记	private java.lang.String caseOrg;//   机构编码
+	@Excel(name = "状态",replace = { "结案通过_91","结案通过_92","结案通过_93","结案通过_94","结案通过_95", 
+			"进行中_21","进行中_22","进行中_23","进行中_24","进行中_25",
+			"进行中_31","进行中_32","进行中_33","进行中_34","进行中_35",
+			"进行中_41","进行中_42","进行中_43","进行中_43","进行中_44",
+			"进行中_51","进行中_52","进行中_53","进行中_54","进行中_55",
+			"进行中_-1","进行中_-2","进行中_-3","进行中_-4","进行中_-5",
+			"进行中_null"})	private java.lang.Integer caseStatus;//   状态
+		private java.lang.String caseDelFlag;//   删除标记	private java.lang.String caseOrg;//   机构编码
 	@Excel(name = "创建人")
 	private java.lang.String createName;	private java.lang.String caseCreatedBy;//   创建人
 	@Excel(name = "创建时间", exportFormat="yyyy-MM-dd")

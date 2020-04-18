@@ -32,7 +32,18 @@ otter.caseApply = function(){
 							return false;
 						}
 					}
-					_box.handler.edit();
+					
+					_box.handler.edit(function(){
+						var acimg = $('input[name="actionImg"]',$('#editForm')).val();
+						if(''!=acimg){
+							$("#ck_actionImg").attr('src',acimg);
+						}
+						
+						var liacimg = $('input[name="litigantAcImg"]',$('#editForm')).val();
+						if(''!=liacimg){
+							$("#ck_litigantAcImg").attr('src',liacimg);
+						}
+					});
 				},
 				save:function(){
 					//判断是否被禁用帐号
@@ -175,7 +186,7 @@ otter.caseApply = function(){
 							return row.defendantRegCapital;
 						}
 					},
-				{field:'defendant_area',title:'被告所在地',align:'left',sortable:true,
+				{field:'defendant_area',title:'被告所在地',align:'left',sortable:true,width:200,
 						formatter:function(value,row,index){
 							return row.defendantArea;
 						}
@@ -235,7 +246,7 @@ otter.caseApply = function(){
 								return "";
 							}
 						},
-					{field:'violate_desc',title:'侵权概况',align:'center',sortable:true,
+					{field:'violate_desc',title:'侵权概况',align:'left',sortable:true,width:300,
 							formatter:function(value,row,index){
 								return row.violateDesc;
 							}
