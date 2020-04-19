@@ -82,11 +82,11 @@
 		     		 <div class="ui-edit">
 							<div class="fitem">
 								<label>当事人</label>
-								<input name="litigant" type="text" maxlength="128" class="easyui-validatebox" data-options="" missingMessage="请填写当事人">
+								<input name="litigant" type="text" maxlength="128" class="easyui-validatebox" data-options="" missingMessage="请填写当事人" style="margin: 0px; width: 200px;">
 							</div>
 							<div class="fitem">
 								<label>被告名称</label>
-								<input name="defendantName" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写被告名称">
+								<textarea name="defendantName" type="text" maxlength="1024" class="easyui-validatebox" placeholder="多被告换行分隔"  data-options="required:true" missingMessage="请填写被告名称" style="margin: 0px; width: 200px; height: 40px;"></textarea>
 							</div>
 							<div class="fitem">
 								<label>被告注册资本</label>
@@ -94,7 +94,7 @@
 							</div>
 							<div class="fitem">
 								<label>被告所在地</label>
-								<textarea name="defendantArea" type="text" maxlength="1024" class="easyui-validatebox" data-options="required:true" missingMessage="请填写被告所在地" style="margin: 0px; width: 150px; height: 60px;"></textarea>
+								<textarea name="defendantArea" type="text" maxlength="1024" class="easyui-validatebox" placeholder="多被告换行分隔"  data-options="required:true" missingMessage="请填写被告所在地" style="margin: 0px; width: 200px; height: 60px;"></textarea>
 							</div>
 						<!-- 	<div class="fitem">
 								<label>状态</label>
@@ -132,11 +132,11 @@
      		 		<div class="ui-edit">
 					<div class="fitem">
 						<label>当事人</label>
-						<input name="litigant" type="text" maxlength="128" class="easyui-validatebox" data-options="required:true" missingMessage="请填写当事人">
+						<input name="litigant" type="text" maxlength="128" class="easyui-validatebox" data-options="required:true" missingMessage="请填写当事人" missingMessage="请填写当事人" style="margin: 0px; width: 200px;">
 					</div>
 					<div class="fitem">
 						<label>被告名称(全称)</label>
-						<input name="defendantName" type="text" maxlength="1024" class="easyui-validatebox" data-options="required:true" missingMessage="请填写被告名称">
+						<textarea name="defendantName" type="text" maxlength="1024" class="easyui-validatebox" placeholder="多被告换行分隔"  data-options="required:true" missingMessage="请填写被告名称" style="margin: 0px; width: 200px; height: 40px;"></textarea>
 					</div>
 					<div class="fitem">
 						<label>被告注册资本</label>
@@ -144,7 +144,7 @@
 					</div>
 					<div class="fitem">
 						<label>被告所在地</label>
-						<textarea name="defendantArea" type="text" maxlength="1024" class="easyui-validatebox" data-options="required:true" missingMessage="请填写被告所在地" style="margin: 0px; width: 150px; height: 60px;"></textarea>
+						<textarea name="defendantArea" type="text" maxlength="1024" class="easyui-validatebox" placeholder="多被告换行分隔"  data-options="required:true" missingMessage="请填写被告所在地" style="margin: 0px; width: 200px; height: 60px;"></textarea>
 					</div>
 					<div class="fitem">
 						<label>案件来源</label>
@@ -157,6 +157,13 @@
 					<div class="fitem">
 						<label>案源人</label>
 						<input class="easyui-combobox" name="supply" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请选择案源人">
+					</div>
+					<div class="fitem">
+						<label>是否公证</label>
+						<select class="easyui-combobox" name="isApply" data-options="" missingMessage="请选择是否公证">
+                    		<option value="1">&ensp;&ensp;是&ensp;&ensp;</option>
+                    		<option value="2" selected="selected">&ensp;&ensp;否&ensp;&ensp;</option>
+                   		</select>
 					</div>
 					<div class="fitem">
 						<label>申请公证日期</label>
@@ -182,7 +189,7 @@
 					</div>
 					<div class="fitem">
 						<label>侵权概况</label>
-						<textarea name="violateDesc" type="text" maxlength="3072" placeholder="请填写线上侵权链接数量、图片数量及线下侵权图片数量、载体。" class="easyui-validatebox" data-options="" missingMessage="请填写侵权概况" style="margin: 0px; width: 150px; height: 60px;"></textarea>
+						<textarea name="violateDesc" type="text" maxlength="3072" placeholder="请填写线上侵权链接数量、图片数量及线下侵权图片数量、载体。" class="easyui-validatebox" data-options="" missingMessage="请填写侵权概况" style="margin: 0px; width: 200px; height: 100px;"></textarea>
 					</div>
 					<div class="fitem">
 						<label>案件可诉确认日期</label>

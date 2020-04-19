@@ -14,3 +14,6 @@ alter table case_second_instance add is_carry_out varchar(1)    comment '是否�
 
 alter table case_carry_out add is_reconcile varchar(1)    comment '是否执行和解';
 alter table case_carry_out add is_close varchar(1)    comment '是否结案';
+
+-- 2020-04-19 update
+alter table case_apply add is_apply varchar(1)    comment '是否公证  1是 2否';

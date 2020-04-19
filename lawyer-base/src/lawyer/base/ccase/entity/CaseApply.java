@@ -12,7 +12,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  */
 public class CaseApply extends CaseInfo {
 	private java.lang.Integer status;//   状态	private java.lang.String org;//   机构编码	private java.lang.String createdBy;//   创建人	private java.util.Date createdTime;//   创建时间	private java.lang.String updatedBy;//   更新人	private java.util.Date updatedTime;//   更新时间	private java.lang.Integer caseId;//   案件序号	private java.lang.String src;//   案件来源	private java.lang.String supply;//   案源人
-		@DateTimeFormat(pattern="yyyy-MM-dd")
+	
+	private java.lang.String isApply;//   是否公证  1是 2否	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	private java.util.Date applyDate;//   申请公证日期	private java.lang.String applicant;//   公证书申请人	private java.lang.String forensics;//   取证人	private java.lang.String violateType;//   侵权类型	private java.lang.String violateDesc;//   侵权概况
 	
@@ -101,5 +102,11 @@ public class CaseApply extends CaseInfo {
 	}
 	public void setIsDirectAction(java.lang.String isDirectAction) {
 		this.isDirectAction = isDirectAction;
+	}
+	public java.lang.String getIsApply() {
+		return isApply;
+	}
+	public void setIsApply(java.lang.String isApply) {
+		this.isApply = isApply;
 	}
 }

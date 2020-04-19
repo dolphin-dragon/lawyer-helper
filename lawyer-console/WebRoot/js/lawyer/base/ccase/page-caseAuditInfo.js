@@ -47,10 +47,10 @@ otter.caseInfo = function(){
 					{id:'btnaudit',text:'案件审核',btnType:'audit',iconCls:'icon-tip',handler:function(){
 						var record = _box.utils.getCheckedRows();
 						if ( _box.utils.checkSelectOne(record)){
-							if(null == record[0]['status'] || 'null' == record[0]['status'] || 0 > record[0]['status'] ||record[0]['status'] >10 ) {
+						/*	if(null == record[0]['status'] || 'null' == record[0]['status'] || 0 > record[0]['status'] ||record[0]['status'] >10 ) {
 								otter.alert('提示','案件未发起审批，请重新选择待审批案件！');
 								return false;
-							}
+							}*/
 							
 							$('#sp-edit-win').dialog({
 								buttons:[

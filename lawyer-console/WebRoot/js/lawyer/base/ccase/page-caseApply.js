@@ -211,6 +211,17 @@ otter.caseApply = function(){
 								return row.supplyName;
 							}
 						},
+					{field:'isApply',title:'是否公证',align:'center',sortable:true,
+							formatter:function(value,row,index){
+	                    		if(value == 1){
+									return "是";
+								}
+								if(value == 2){
+									return "否";
+								}
+								return "";
+							}
+						},
 					{field:'apply_date',title:'申请公证日期',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.applyDate;
