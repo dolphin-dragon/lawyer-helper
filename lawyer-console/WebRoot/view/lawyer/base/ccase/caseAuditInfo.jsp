@@ -3,6 +3,24 @@
 <html>
   <head>
    <%@include file="/view/resource.jsp" %>
+   	<style type="text/css">
+	.vimg_div {
+		width: 200px;
+		height: 100px;
+		border: #000 solid 0px;
+		margin: 5px auto;
+		/* overflow: hidden; */
+	}
+	
+	.vimg_div img {
+		cursor: pointer;
+		transition: all 0.6s;
+	}
+	
+	.vimg_div img:hover {
+		transform: scale(2);
+	}
+	</style>
   </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
@@ -203,7 +221,7 @@
 						</div>
 					</div>
 					<div class="fitem">
-						<div>
+						<div class="vimg_div">
 							<label></label>
 							<img id="ck_actionImg" style="width:200px;height:100px;"/>
 						</div>
@@ -220,7 +238,7 @@
                         </div>
                     </div>
                     <div class="fitem">
-						<div>
+						<div class="vimg_div">
 							<label></label> 
 							<img id="ck_litigantAcImg" style="width:200px;height:100px;"/>
 						</div>

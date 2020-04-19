@@ -2,8 +2,26 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-   <%@include file="/view/resource.jsp" %>
-  </head>
+  	<%@include file="/view/resource.jsp" %>
+	<style type="text/css">
+	.vimg_div {
+		width: 200px;
+		height: 100px;
+		border: #000 solid 0px;
+		margin: 5px auto;
+		/* overflow: hidden; */
+	}
+	
+	.vimg_div img {
+		cursor: pointer;
+		transition: all 0.6s;
+	}
+	
+	.vimg_div img:hover {
+		transform: scale(2);
+	}
+	</style>
+</head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
  	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
@@ -133,9 +151,9 @@
 						</div>
 					</div>
 					<div class="fitem">
-						<div>
+						<div class="vimg_div">
 							<label></label>
-							<img id="ck_actionImg" οnmοuseοver="bigImg(this)" οnmοuseοut="closeImgWin()" style="width:200px;height:100px;"/>
+							<img id="ck_actionImg" style="width:200px;height:100px;"/>
 						</div>
 					</div>
 				    <div class="fitem">
@@ -150,9 +168,9 @@
                         </div>
                     </div>
                     <div class="fitem">
-						<div>
+						<div class="vimg_div">
 							<label></label> 
-							<img id="ck_litigantAcImg" οnmοuseοver="bigImg(this)" οnmοuseοut="closeImgWin()" style="width:200px;height:100px;"/>
+							<img id="ck_litigantAcImg" style="width:200px;height:100px;"/>
 						</div>
 					</div>
                     <div class="fitem">
@@ -195,94 +213,6 @@
 				})
 			});
 		});
-		//οnmοuseοver="bigImg(this)" οnmοuseοut="closeImgWin()"
-			function bigImg(imgObj){
-				/**
-				 * dialog预览图片
-				* @param imgObj img的jquery对象
-				 **/
-					// 若imgObj为空或imgObj的[src]为【Þ】时，图片无法打开
-				    if ((imgObj == undefined || imgObj == null || imgObj.length == 0)
-				    		|| ($(imgObj).attr("src") == "" || /Þ$/i.test($(imgObj).attr("src")))) {
-				    	$.messager.alert('提示', "该图片无法打开！");
-				    	return;
-				    }
-				    var img = new Image();   
-					img.src = $(imgObj).attr("src");
-					
-					var imgWidth = "";
-					var imgHeight = "";
-					var imgProportion="";
-						// 当<img>的class中配置了"img-width-**px"或"img-height-**px"或"img-proportion-**%"时（仅支持整数），使用对应的图片大小
-					var imgClassNames = $(imgObj).prop("class");
-					if (imgClassNames != undefined && imgClassNames != "") {
-						var imgClassNameArray = imgClassNames.split(" ");
-						var imgClassName;
-						for (var index in imgClassNameArray) {
-							imgClassName = imgClassNameArray[index];
-							// 图片宽度
-							if (/^(img-width-\d+px)/i.test(imgClassName)) {
-								imgWidth = imgClassName.substring(10,imgClassName.length-2);
-								
-							// 图片高度
-							} else if (/^(img-height-\d+px)/i.test(imgClassName)) {
-								imgHeight = imgClassName.substring(11,imgClassName.length-2);
-								
-							// 图片显示比例
-							} else if (/^(img-proportion-\d+%)/i.test(imgClassName)) {
-								imgProportion = imgClassName.substring(15,imgClassName.length);
-							}
-						}
-					}
-					// 显示宽度
-					if (imgWidth != null && imgWidth != "") {
-						img.width = imgWidth;
-					}
-					// 显示高度
-					if (imgHeight != null && imgHeight != "") {
-						img.height = imgHeight;
-					}
-					// 显示比例设置
-					if (imgProportion != null && imgProportion != "") {
-						img.width  = img.width * parseFloat(imgProportion)/100;
-						img.height  = img.height * parseFloat(imgProportion)/100;
-					}
-					// 保持图片纵横比的情况下，取得能够在$(window)中放得下的大小
-					var heightWidthPropor = img.height/img.width;
-					var width = $(window).width()*0.8 >= img.width ? img.width:$(window).width()*0.8;
-					var height;
-					if ($(window).height()*0.8 < width*heightWidthPropor) {
-						height = $(window).height()*0.8;
-						width = height/heightWidthPropor;
-					} else {
-						height = width*heightWidthPropor;
-					}
-					
-					// 防止因用户拖动边框而导致dialog宽高固定不变
-					$("#view_dialog").parent().css("width","auto");
-					$("#view_dialog").parent().css("height","auto");
-					
-					$("#img_id").css("height",height + "px");
-					$("#img_id").css("max-height",height + "px");
-					if (imgWidth != null && imgWidth != "") {
-						$("#img_id").css("width",width + "px");
-						$("#img_id").css("max-width",width + "px");
-					}
-					
-					$("#view_dialog").css("width",width + "px");
-					$("#view_dialog").css("height",height + 5 + "px");
-					
-					$("#img_id").css("overflow","hidden");
-					$("#img_id").attr('src',img.src); 
-					$("#view_dialog").window('center');
-					// 解决关闭按钮位置问题
-					$("div.panel-header.panel-header-noborder.window-header").css("width","auto");
-				 	$("#view_dialog").dialog("open");
-			}
-			
-			function closeImgWin(){
-				$("#view_dialog").dialog("close");
-			}
 	</script>
 </body>
 </html>
