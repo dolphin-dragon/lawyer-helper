@@ -16,6 +16,11 @@ otter.caseApply = function(){
 		config:{
 			event:{
 				add:function(){
+                    $("#ck_actionImg").attr('src','');
+                    $("#ck_litigantAcImg").attr('src','');
+                    $("#ck_actionImg").css("opacity","0");
+                    $("#ck_litigantAcImg").css("opacity","0");
+					
 					//$('#typeIds_combobox').combobox('reload');
 					_box.handler.add();
 				},
@@ -24,6 +29,11 @@ otter.caseApply = function(){
 					$('input,textarea',$('#editForm')).removeAttr('readonly');
 					$('.easyui-combobox , .easyui-datebox',$('#editForm')).combobox('enable');
 					$('input[type="button"]',$('#editForm')).removeAttr('disabled');
+					
+                    $("#ck_actionImg").attr('src','');
+                    $("#ck_litigantAcImg").attr('src','');
+                    $("#ck_actionImg").css("opacity","0");
+                    $("#ck_litigantAcImg").css("opacity","0");
 					
 					var selected = _box.utils.getCheckedRows();
 					if ( _box.utils.checkSelectOne(selected)){
@@ -37,11 +47,13 @@ otter.caseApply = function(){
 						var acimg = $('input[name="actionImg"]',$('#editForm')).val();
 						if(''!=acimg){
 							$("#ck_actionImg").attr('src',acimg);
+							$("#ck_actionImg").css("opacity","1");
 						}
 						
 						var liacimg = $('input[name="litigantAcImg"]',$('#editForm')).val();
 						if(''!=liacimg){
 							$("#ck_litigantAcImg").attr('src',liacimg);
+			                $("#ck_litigantAcImg").css("opacity","1");
 						}
 					});
 				},

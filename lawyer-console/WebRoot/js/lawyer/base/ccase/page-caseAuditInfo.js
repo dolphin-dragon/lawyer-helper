@@ -67,17 +67,21 @@ otter.caseInfo = function(){
 									_box.handler.refresh();
 								},
 								onOpen : function(){
-									console.log("rest img");
+									$("#ck_actionImg").attr('src','');
+					                $("#ck_litigantAcImg").attr('src','');
+					                $("#ck_actionImg").css("opacity","0");
+					                $("#ck_litigantAcImg").css("opacity","0");
+									
 									var acimg = $('input[name="actionImg"]',$('#app_Form')).val();
-									console.log("rest acimg "+acimg);
 									if(''!=acimg){
 										$("#ck_actionImg").attr('src',acimg);
+										$("#ck_actionImg").css("opacity","1");
 									}
 									
 									var liacimg = $('input[name="litigantAcImg"]',$('#app_Form')).val();
-									console.log("rest liacimg "+liacimg);
 									if(''!=liacimg){
 										$("#ck_litigantAcImg").attr('src',liacimg);
+										$("#ck_litigantAcImg").css("opacity","1");
 									}
 								}
 							});
