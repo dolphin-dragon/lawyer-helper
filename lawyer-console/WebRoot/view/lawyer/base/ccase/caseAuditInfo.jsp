@@ -195,6 +195,12 @@
 							<input type="button" id="uploadActionImgButton" value="上传截图" />
 						</div>
 					</div>
+					<div class="fitem">
+						<div>
+							<label></label>
+							<img id="ck_actionImg" style="width:200px;height:100px;"/>
+						</div>
+					</div>
 				    <div class="fitem">
 						<label>当事人确认日期</label>
 						<input name="litigantAcDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写当事人确认日期">
@@ -206,6 +212,12 @@
                             <input type="button" id="uploadLitigantAcImgButton" value="上传截图" />
                         </div>
                     </div>
+                    <div class="fitem">
+						<div>
+							<label></label> 
+							<img id="ck_litigantAcImg" style="width:200px;height:100px;"/>
+						</div>
+					</div>
                     <div class="fitem">
 						<label>当事人是否要求直接诉讼</label>
 						<select class="easyui-combobox" name="isDirectAction" data-options="" missingMessage="当事人是否要求直接诉讼">

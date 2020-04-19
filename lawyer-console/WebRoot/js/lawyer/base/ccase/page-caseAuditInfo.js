@@ -65,6 +65,20 @@ otter.caseInfo = function(){
 								],
 								onClose : function(){
 									_box.handler.refresh();
+								},
+								onOpen : function(){
+									console.log("rest img");
+									var acimg = $('input[name="actionImg"]',$('#app_Form')).val();
+									console.log("rest acimg "+acimg);
+									if(''!=acimg){
+										$("#ck_actionImg").attr('src',acimg);
+									}
+									
+									var liacimg = $('input[name="litigantAcImg"]',$('#app_Form')).val();
+									console.log("rest liacimg "+liacimg);
+									if(''!=liacimg){
+										$("#ck_litigantAcImg").attr('src',liacimg);
+									}
 								}
 							});
 
