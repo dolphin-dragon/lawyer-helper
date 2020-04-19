@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.base.util.HtmlUtil;
+import com.base.util.SessionUtilsExt;
 import com.base.web.BaseAction;
+import com.otter.entity.SysUser;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
@@ -173,4 +175,89 @@ public class CaseMInfoController extends BaseAction{
 			}
 		}
 	}
+	
+	/**********************普通用户数据统计功能****************************/
+	/**
+	 * 说明：
+	 * @param url
+	 * @param classifyId
+	 * @return
+	 * @throws Exception 
+	 */
+	@RequestMapping("/list2User") 
+	public ModelAndView  listByUser(CaseMInfoPage page,HttpServletRequest request) throws Exception{
+		log.info("/caseMInfo/list2User page :"+page+" request:"+request);
+		
+		Map<String,Object>  context = getRootMap();
+		
+		log.info("forword lawyer/base/ccase/list2User ---- context:"+Arrays.toString(context.entrySet().toArray()));
+		return forword("lawyer/base/ccase/caseMInfoByUser",context); 
+	}
+	
+	/**
+	 * 说明：
+	 * @param page
+	 * @param response
+	 * @throws Exception 
+	 */
+	@RequestMapping("/dataList2User") 
+	public void  datalistByUser(CaseMInfoPage page,HttpServletResponse response) throws Exception{
+		log.info("/caseMInfo/dataList2User page :"+page+" response:"+response);
+		List<CaseMInfo> dataList = null;
+		SysUser user = SessionUtilsExt.getUser(request);
+		if(null != user) {
+			if(!SessionUtilsExt.isAdmin(request)) {
+				page.setCaseCreatedBy(user.getId()+"");
+			}
+			dataList = caseMInfoService.queryByList(page);
+		}
+		//设置页面数据
+		Map<String,Object> jsonMap = new HashMap<String,Object>();
+		jsonMap.put("total",page.getPager().getRowCount());
+		jsonMap.put("rows", dataList);
+		
+		log.info("/caseMInfo/dataList2User writerJson ---- context:"+Arrays.toString(jsonMap.entrySet().toArray()));
+		HtmlUtil.writerJson(response, jsonMap);
+	}
+	
+	/**
+	 * 导出数据
+	 */
+	@RequestMapping("/exportExcel2User")
+	public void exportExcel2User(HttpServletResponse response, CaseMInfoPage page) {
+		OutputStream out = null;
+		try {
+			List<CaseMInfo> dataList = null;
+			SysUser user = SessionUtilsExt.getUser(request);
+			if(null != user) {
+				if(!SessionUtilsExt.isAdmin(request)) {
+					page.setCaseCreatedBy(user.getId()+"");
+				}
+				dataList = caseMInfoService.queryList(page);
+			}
+			Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams(null, "案件信息"), CaseMInfo.class,dataList);
+			String fileName = "案件信息.xls";
+			// 设置返回响应头
+			response.setContentType("application/xls;charset=UTF-8");
+			response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName, "UTF-8"));
+			out = response.getOutputStream();
+			workbook.write(out);
+		} catch (Exception e) {
+			log.error("exportExcel2User case info error", e);
+		} finally {
+			if (null != out) {
+				try {
+					out.flush();
+				} catch (IOException e) {
+					log.error("exportExcel2User case info flush error", e);
+				}
+				try {
+					out.close();
+				} catch (IOException e) {
+					log.error("exportExcel2User case info close error", e);
+				}
+			}
+		}
+	}
+	/**********************普通用户数据统计功能****************************/
 }
