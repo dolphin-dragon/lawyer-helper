@@ -204,8 +204,8 @@ public class SysUserExtController extends BaseAction{
 	/*********************************** generation code  end ***********************************/
 	
 	@RequestMapping("/listDatas")
-	public void dataListByStatus(HttpServletResponse response) throws Exception {
-		List<SysUserExt> dataList = sysUserExtService.queryByList(new SysUserExtPage());
+	public void dataListByStatus(HttpServletResponse response,SysUserExt entity) throws Exception {
+		List<SysUserExt> dataList = sysUserExtService.listDatas(entity);
 		HtmlUtil.writerJson(response, dataList);
 	}
 	

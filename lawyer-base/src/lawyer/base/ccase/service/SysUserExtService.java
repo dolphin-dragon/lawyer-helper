@@ -1,10 +1,13 @@
 package lawyer.base.ccase.service;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.base.page.BasePage;
 import com.base.service.BaseService;
 import lawyer.base.ccase.dao.SysUserExtDao;
 
@@ -23,5 +26,9 @@ public class SysUserExtService<T> extends BaseService<T> {
 
 	public SysUserExtDao<T> getDao() {
 		return dao;
+	}
+	
+	public List<T> listDatas(T t) throws Exception {
+		return getDao().listDatas(t);
 	}
 }
