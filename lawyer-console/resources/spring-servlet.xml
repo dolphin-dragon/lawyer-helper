@@ -15,10 +15,6 @@
     	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
     </context:component-scan>
 
-	<context:component-scan base-package="lawyer.base.activiti.rest.diagram.editor" />
-	<context:component-scan base-package="lawyer.base.activiti.rest.diagram.editor.main" />
-	<context:component-scan base-package="lawyer.base.activiti.rest.diagram.editor.model" />
-	<context:component-scan base-package="lawyer.base.activiti.rest.diagram.services" />
 	<!-- ***************加载资源文件*************** -->
 	<bean id="systemPros" class="com.base.util.PropertiesConfig">
 		<property name="locations">
@@ -33,6 +29,7 @@
 	<mvc:interceptors>
 		<!-- Changes the locale when a 'locale' request parameter is sent; e.g. /?locale=de -->
 		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+		<bean class="com.base.interceptor.LogInterceptor" />
 		<bean class="com.base.interceptor.AuthInterceptor" />
 		<bean class="com.base.interceptor.ExceptionInterceptor" />
 	</mvc:interceptors>
