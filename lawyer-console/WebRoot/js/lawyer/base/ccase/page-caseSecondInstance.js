@@ -132,6 +132,26 @@ otter.caseSecondInstance = function(){
 							return "进行中";
 						}
 					},
+					{field:'delFlag',title:'是否有效',align:'center',sortable:true,
+						styler:function(value,row,index){
+							if(value == 0){
+								return "color:green;";
+							}
+							if(value == 1){
+							  return 'color:red;';  
+							}
+							return "color:green;";
+						},
+						formatter:function(value,row,index){
+                    		if(value == 0){
+								return "有效";
+							}
+							if(value == 1){
+								return "已删除";
+							}
+							return "有效";
+						}
+					},
 					/*{field:'status',title:'状态',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.status;

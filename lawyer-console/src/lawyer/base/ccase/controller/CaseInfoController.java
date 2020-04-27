@@ -78,8 +78,10 @@ public class CaseInfoController extends BaseAction{
 	public void  datalist(CaseInfoPage page,HttpServletResponse response) throws Exception{
 		log.info("/caseInfo/dataList page :"+page+" response:"+response);
 		SysUser user = SessionUtilsExt.getUser(request);
-		if(!SessionUtilsExt.isAdmin(request))
+		if(!SessionUtilsExt.isAdmin(request)) {
 			page.setCreatedBy(user.getId()+"");
+			page.setDelFlag("0");
+		}
 		
 		List<CaseInfo> dataList = caseInfoService.queryByList(page);
 		//设置页面数据
@@ -178,6 +180,10 @@ public class CaseInfoController extends BaseAction{
 	public void  auditDatalist(CaseInfoPage page,HttpServletResponse response) throws Exception{
 		log.info("/caseInfo/auditDatalist page :"+page+" response:"+response);
 
+		if(!SessionUtilsExt.isAdmin(request)) {
+			page.setDelFlag("0");
+		}
+		
 		List<CaseInfo> dataList = caseInfoService.queryByList(page);
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();

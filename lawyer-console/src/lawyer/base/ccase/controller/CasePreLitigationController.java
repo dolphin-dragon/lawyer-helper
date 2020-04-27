@@ -74,8 +74,10 @@ public class CasePreLitigationController extends BaseAction{
 	public void  datalist(CasePreLitigationPage page,HttpServletResponse response) throws Exception{
 		log.info("/casePreLitigation/dataList page :"+page+" response:"+response);
 		SysUser user = SessionUtilsExt.getUser(request);
-		if(!SessionUtilsExt.isAdmin(request))
+		if(!SessionUtilsExt.isAdmin(request)) {
 			page.setCreatedBy(user.getId()+"");
+			page.setDelFlag("0");
+		}
 		
 		List<CasePreLitigation> dataList = casePreLitigationService.queryByList(page);
 		//设置页面数据

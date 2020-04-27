@@ -148,11 +148,27 @@ otter.caseApply = function(){
 							return "进行中";
 						}
 					},
-					/*{field:'status',title:'状态',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.status;
+					{field:'delFlag',title:'是否有效',align:'center',sortable:true,
+						styler:function(value,row,index){
+							if(value == 0){
+								return "color:green;";
 							}
+							if(value == 1){
+							  return 'color:red;';  
+							}
+							return "color:green;";
 						},
+						formatter:function(value,row,index){
+                    		if(value == 0){
+								return "有效";
+							}
+							if(value == 1){
+								return "已删除";
+							}
+							return "有效";
+						}
+					},
+						/*
 					{field:'org',title:'机构编码',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.org;
@@ -188,7 +204,7 @@ otter.caseApply = function(){
 							return row.litigant;
 						}
 					},
-				{field:'defendant_name',title:'被告名称',align:'left',sortable:true,
+				{field:'defendant_name',title:'被告名称',align:'left',sortable:true,width:200,
 						formatter:function(value,row,index){
 							return row.defendantName;
 						}

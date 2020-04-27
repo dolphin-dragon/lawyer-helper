@@ -72,6 +72,10 @@ public class CaseMInfoController extends BaseAction{
 	public void  datalist(CaseMInfoPage page,HttpServletResponse response) throws Exception{
 		log.info("/caseMInfo/dataList page :"+page+" response:"+response);
 		
+		if(!SessionUtilsExt.isAdmin(request)) {
+			page.setCaseDelFlag("0");
+		}
+		
 		List<CaseMInfo> dataList = caseMInfoService.queryByList(page);
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
@@ -150,6 +154,7 @@ public class CaseMInfoController extends BaseAction{
 	public void exceportExcel(HttpServletResponse response, CaseMInfoPage page) {
 		OutputStream out = null;
 		try {
+			page.setCaseDelFlag("0");
 			List<CaseMInfo> dataList = caseMInfoService.queryList(page);
 			Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams(null, "案件信息"), CaseMInfo.class,dataList);
 			String fileName = "案件信息.xls";
@@ -209,6 +214,7 @@ public class CaseMInfoController extends BaseAction{
 			if(!SessionUtilsExt.isAdmin(request)) {
 				page.setCaseCreatedBy(user.getId()+"");
 			}
+			page.setCaseDelFlag("0");
 			dataList = caseMInfoService.queryByList(page);
 		}
 		//设置页面数据
@@ -232,6 +238,7 @@ public class CaseMInfoController extends BaseAction{
 			if(null != user) {
 				if(!SessionUtilsExt.isAdmin(request)) {
 					page.setCaseCreatedBy(user.getId()+"");
+					page.setCaseDelFlag("0");
 				}
 				dataList = caseMInfoService.queryList(page);
 			}

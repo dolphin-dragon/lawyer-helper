@@ -73,7 +73,11 @@ public class CaseSecondInstanceController extends BaseAction{
 	@RequestMapping("/dataList") 
 	public void  datalist(CaseSecondInstancePage page,HttpServletResponse response) throws Exception{
 		log.info("/caseSecondInstance/dataList page :"+page+" response:"+response);
-		
+		SysUser user = SessionUtilsExt.getUser(request);
+		if(!SessionUtilsExt.isAdmin(request)) {
+			page.setCreatedBy(user.getId()+"");
+			page.setDelFlag("0");
+		}
 		List<CaseSecondInstance> dataList = caseSecondInstanceService.queryByList(page);
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();

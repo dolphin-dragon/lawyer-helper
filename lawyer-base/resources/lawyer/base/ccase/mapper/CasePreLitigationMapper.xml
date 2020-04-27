@@ -43,6 +43,10 @@
 	    and status =  #{status}
 	</if>
 	<!--  -->
+	<if test="delFlag != null and delFlag != ''" >
+	    and del_flag =  #{delFlag}
+	</if>
+	<!--  -->
 		 	<if test="org != null and org != ''" >
 	    and org =  #{org}
 	</if>

@@ -25,7 +25,7 @@
        
 <!-- case_info table all fields -->
 <sql id="Base_Column_List" >
-	 status,org,created_by,created_time,updated_by,updated_time,id,litigant,defendant_name,defendant_reg_capital,defendant_area
+	 status,org,created_by,created_time,updated_by,updated_time,id,litigant,defendant_name,defendant_reg_capital,defendant_area,del_flag
 </sql>
 
 <!-- 查询条件 -->
@@ -36,6 +36,10 @@
 	    and status =  #{status}
 	</if>
 	<!--  -->
+	<if test="delFlag != null and delFlag != ''" >
+	    and del_flag =  #{delFlag}
+	</if>
+		<!--  -->
 		 	<if test="org != null and org != ''" >
 	    and org =  #{org}
 	</if>

@@ -76,9 +76,10 @@ public class CaseFirstInstanceController extends BaseAction{
 	public void  datalist(CaseFirstInstancePage page,HttpServletResponse response) throws Exception{
 		log.info("/caseFirstInstance/dataList page :"+page+" response:"+response);
 		SysUser user = SessionUtilsExt.getUser(request);
-		if(!SessionUtilsExt.isAdmin(request))
+		if(!SessionUtilsExt.isAdmin(request)) {
 			page.setCreatedBy(user.getId()+"");
-		
+			page.setDelFlag("0");
+		}
 		List<CaseFirstInstance> dataList = caseFirstInstanceService.queryByList(page);
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
