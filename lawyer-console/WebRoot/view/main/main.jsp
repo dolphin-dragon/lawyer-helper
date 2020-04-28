@@ -4,7 +4,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <title>lawyer-console</title>
+    <title>星权办公助手</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />  
     <%@include file="/view/resource.jsp" %>
     <link rel="stylesheet" type="text/css" href="<%=basePath%>/css/main.css">
     <script type="text/javascript" src="<%=basePath%>/js/ux/main/main.js"></script>

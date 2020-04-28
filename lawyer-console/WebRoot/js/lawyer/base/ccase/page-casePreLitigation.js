@@ -185,22 +185,22 @@ otter.casePreLitigation = function(){
 								return row.caseId;
 							}
 						},*/
-					{field:'litigant',title:'当事人',align:'center',sortable:true,
+					{field:'litigant',title:'当事人',align:'left',sortable:true,
 						formatter:function(value,row,index){
 							return row.litigant;
 						}
 					},
-				{field:'defendant_name',title:'被告名称',align:'center',sortable:true,
+				{field:'defendant_name',title:'被告名称',align:'left',sortable:true,width:200,
 						formatter:function(value,row,index){
 							return row.defendantName;
 						}
 					},
-				{field:'defendant_reg_capital',title:'被告注册资本',align:'center',sortable:true,
+				{field:'defendant_reg_capital',title:'被告注册资本',align:'left',sortable:true,width:100,
 						formatter:function(value,row,index){
 							return row.defendantRegCapital;
 						}
 					},
-				{field:'defendant_area',title:'被告所在地',align:'center',sortable:true,
+				{field:'defendant_area',title:'被告所在地',align:'left',sortable:true,width:200,
 						formatter:function(value,row,index){
 							return row.defendantArea;
 						}
@@ -253,7 +253,7 @@ otter.casePreLitigation = function(){
 								return "";
 							}
 						},
-					{field:'remark',title:'备注',align:'center',sortable:true,
+					{field:'remark',title:'备注',align:'left',sortable:true,
 							formatter:function(value,row,index){
 								return row.remark;
 							}

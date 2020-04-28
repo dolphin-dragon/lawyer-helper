@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
  <head>
-  <title></title>
-  <link rel="shortcut icon" href="favicon.ico">
+  <title>星权办公助手</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />  
   <!--[if lt IE 9]>
    <script src="plug-in/login/js/html5.js"></script>
   <![endif]-->
@@ -37,7 +37,7 @@ input::-moz-placeholder { /* Mozilla Firefox 19+*/
 　　color:#aaa;font-size:14px;
 }
 input:-ms-input-placeholder { /* Internet Explorer 10+*/
-　　color:#aaa;font-size:14px;
+　　color:#aaa;font-size:12px;
 }
       
 #versionBar {
