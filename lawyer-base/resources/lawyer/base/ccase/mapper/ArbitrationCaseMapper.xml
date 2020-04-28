@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lawyer.base.ccase.dao.ArbitrationCaseDao" > 
+<!--*********************************** generation code  start ***********************************-->
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="lawyer.base.ccase.entity.ArbitrationCase" >
+	<result column="status" property="status" jdbcType="INTEGER"/>
+	<result column="del_flag" property="delFlag" jdbcType="VARCHAR"/>
+	<result column="org" property="org" jdbcType="VARCHAR"/>
+	<result column="created_by" property="createdBy" jdbcType="VARCHAR"/>
+	<result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
+	<result column="updated_by" property="updatedBy" jdbcType="VARCHAR"/>
+	<result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
+	<result column="id" property="id" jdbcType="VARCHAR"/>
+	<result column="src" property="src" jdbcType="VARCHAR"/>
+	<result column="supply" property="supply" jdbcType="VARCHAR"/>
+	<result column="litigant" property="litigant" jdbcType="VARCHAR"/>
+	<result column="cause" property="cause" jdbcType="VARCHAR"/>
+	<result column="applicant" property="applicant" jdbcType="VARCHAR"/>
+	<result column="respondent" property="respondent" jdbcType="VARCHAR"/>
+	<result column="request" property="request" jdbcType="VARCHAR"/>
+	<result column="trust_date" property="trustDate" jdbcType="DATE"/>
+	<result column="lawyer" property="lawyer" jdbcType="VARCHAR"/>
+	<result column="agent" property="agent" jdbcType="VARCHAR"/>
+	<result column="chief_arbitrator" property="chiefArbitrator" jdbcType="VARCHAR"/>
+	<result column="our_side" property="ourSide" jdbcType="VARCHAR"/>
+	<result column="other_side" property="otherSide" jdbcType="VARCHAR"/>
+	<result column="arb_secretary" property="arbSecretary" jdbcType="VARCHAR"/>
+	<result column="secretary_contact" property="secretaryContact" jdbcType="VARCHAR"/>
+	<result column="op_court_nums" property="opCourtNums" jdbcType="VARCHAR"/>
+	<result column="op_court_date" property="opCourtDate" jdbcType="DATE"/>
+	<result column="clos_type" property="closType" jdbcType="VARCHAR"/>
+</resultMap>
+       
+<!-- arbitration_case table all fields -->
+<sql id="Base_Column_List" >
+	 status,del_flag,org,created_by,created_time,updated_by,updated_time,id,src,supply,litigant,cause,applicant,respondent,request,trust_date,lawyer,agent,chief_arbitrator,our_side,other_side,arb_secretary,secretary_contact,op_court_nums,op_court_date,clos_type
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+<trim prefix = "where" prefixOverrides="and|or">
+	<!--  -->
+		<if test="status != null" >
+	    and status =  #{status}
+	</if>
+	<!--  -->
+		 	<if test="delFlag != null and delFlag != ''" >
+	    and del_flag =  #{delFlag}
+	</if>
+	<!--  -->
+		 	<if test="org != null and org != ''" >
+	    and org =  #{org}
+	</if>
+	<!--  -->
+		 	<if test="createdBy != null and createdBy != ''" >
+	    and created_by =  #{createdBy}
+	</if>
+	<!--  -->
+		<if test="createdTime != null" >
+	    and created_time =  #{createdTime}
+	</if>
+	<!--  -->
+		 	<if test="updatedBy != null and updatedBy != ''" >
+	    and updated_by =  #{updatedBy}
+	</if>
+	<!--  -->
+		<if test="updatedTime != null" >
+	    and updated_time =  #{updatedTime}
+	</if>
+	<!--  -->
+		 	<if test="id != null and id != ''" >
+	    and id =  #{id}
+	</if>
+	<!--  -->
+		 	<if test="src != null and src != ''" >
+	    and src =  #{src}
+	</if>
+	<!--  -->
+		 	<if test="supply != null and supply != ''" >
+	    and supply =  #{supply}
+	</if>
+	<!--  -->
+		 	<if test="litigant != null and litigant != ''" >
+	    and litigant =  #{litigant}
+	</if>
+	<!--  -->
+		 	<if test="cause != null and cause != ''" >
+	    and cause =  #{cause}
+	</if>
+	<!--  -->
+		 	<if test="applicant != null and applicant != ''" >
+	    and applicant =  #{applicant}
+	</if>
+	<!--  -->
+		 	<if test="respondent != null and respondent != ''" >
+	    and respondent =  #{respondent}
+	</if>
+	<!--  -->
+		 	<if test="request != null and request != ''" >
+	    and request =  #{request}
+	</if>
+	<!--  -->
+		<if test="trustDate != null" >
+	    and trust_date =  #{trustDate}
+	</if>
+	<!--  -->
+		 	<if test="lawyer != null and lawyer != ''" >
+	    and lawyer =  #{lawyer}
+	</if>
+	<!--  -->
+		 	<if test="agent != null and agent != ''" >
+	    and agent =  #{agent}
+	</if>
+	<!--  -->
+		 	<if test="chiefArbitrator != null and chiefArbitrator != ''" >
+	    and chief_arbitrator =  #{chiefArbitrator}
+	</if>
+	<!--  -->
+		 	<if test="ourSide != null and ourSide != ''" >
+	    and our_side =  #{ourSide}
+	</if>
+	<!--  -->
+		 	<if test="otherSide != null and otherSide != ''" >
+	    and other_side =  #{otherSide}
+	</if>
+	<!--  -->
+		 	<if test="arbSecretary != null and arbSecretary != ''" >
+	    and arb_secretary =  #{arbSecretary}
+	</if>
+	<!--  -->
+		 	<if test="secretaryContact != null and secretaryContact != ''" >
+	    and secretary_contact =  #{secretaryContact}
+	</if>
+	<!--  -->
+		 	<if test="opCourtNums != null and opCourtNums != ''" >
+	    and op_court_nums =  #{opCourtNums}
+	</if>
+	<!--  -->
+		<if test="opCourtDate != null" >
+	    and op_court_date =  #{opCourtDate}
+	</if>
+	<!--  -->
+		 	<if test="closType != null and closType != ''" >
+	    and clos_type =  #{closType}
+	</if>
+</trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into arbitration_case(status,del_flag,org,created_by,created_time,updated_by,updated_time,id,src,supply,litigant,cause,applicant,respondent,request,trust_date,lawyer,agent,chief_arbitrator,our_side,other_side,arb_secretary,secretary_contact,op_court_nums,op_court_date,clos_type)
+ values(#{status,jdbcType=INTEGER},#{delFlag,jdbcType=VARCHAR},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{id,jdbcType=VARCHAR},#{src,jdbcType=VARCHAR},#{supply,jdbcType=VARCHAR},#{litigant,jdbcType=VARCHAR},#{cause,jdbcType=VARCHAR},#{applicant,jdbcType=VARCHAR},#{respondent,jdbcType=VARCHAR},#{request,jdbcType=VARCHAR},#{trustDate,jdbcType=DATE},#{lawyer,jdbcType=VARCHAR},#{agent,jdbcType=VARCHAR},#{chiefArbitrator,jdbcType=VARCHAR},#{ourSide,jdbcType=VARCHAR},#{otherSide,jdbcType=VARCHAR},#{arbSecretary,jdbcType=VARCHAR},#{secretaryContact,jdbcType=VARCHAR},#{opCourtNums,jdbcType=VARCHAR},#{opCourtDate,jdbcType=DATE},#{closType,jdbcType=VARCHAR})
+</insert>
+
+<!-- 根据id，修改记录-->
+ <update id="update" parameterType="Object" >
+  update arbitration_case set del_flag=#{delFlag,jdbcType=VARCHAR},org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},id=#{id,jdbcType=VARCHAR},src=#{src,jdbcType=VARCHAR},supply=#{supply,jdbcType=VARCHAR},litigant=#{litigant,jdbcType=VARCHAR},cause=#{cause,jdbcType=VARCHAR},applicant=#{applicant,jdbcType=VARCHAR},respondent=#{respondent,jdbcType=VARCHAR},request=#{request,jdbcType=VARCHAR},trust_date=#{trustDate,jdbcType=DATE},lawyer=#{lawyer,jdbcType=VARCHAR},agent=#{agent,jdbcType=VARCHAR},chief_arbitrator=#{chiefArbitrator,jdbcType=VARCHAR},our_side=#{ourSide,jdbcType=VARCHAR},other_side=#{otherSide,jdbcType=VARCHAR},arb_secretary=#{arbSecretary,jdbcType=VARCHAR},secretary_contact=#{secretaryContact,jdbcType=VARCHAR},op_court_nums=#{opCourtNums,jdbcType=VARCHAR},op_court_date=#{opCourtDate,jdbcType=DATE},clos_type=#{closType,jdbcType=VARCHAR} where status=#{status,jdbcType=INTEGER}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update arbitration_case set 
+	<trim  suffixOverrides="," >
+	<if test="delFlag != null  ">
+		del_flag=#{delFlag,jdbcType=VARCHAR},
+	</if>
+	<if test="org != null  ">
+		org=#{org,jdbcType=VARCHAR},
+	</if>
+	<if test="createdBy != null  ">
+		created_by=#{createdBy,jdbcType=VARCHAR},
+	</if>
+	<if test="createdTime != null  ">
+		created_time=#{createdTime,jdbcType=TIMESTAMP},
+	</if>
+	<if test="updatedBy != null  ">
+		updated_by=#{updatedBy,jdbcType=VARCHAR},
+	</if>
+	<if test="updatedTime != null  ">
+		updated_time=#{updatedTime,jdbcType=TIMESTAMP},
+	</if>
+	<if test="id != null  ">
+		id=#{id,jdbcType=VARCHAR},
+	</if>
+	<if test="src != null  ">
+		src=#{src,jdbcType=VARCHAR},
+	</if>
+	<if test="supply != null  ">
+		supply=#{supply,jdbcType=VARCHAR},
+	</if>
+	<if test="litigant != null  ">
+		litigant=#{litigant,jdbcType=VARCHAR},
+	</if>
+	<if test="cause != null  ">
+		cause=#{cause,jdbcType=VARCHAR},
+	</if>
+	<if test="applicant != null  ">
+		applicant=#{applicant,jdbcType=VARCHAR},
+	</if>
+	<if test="respondent != null  ">
+		respondent=#{respondent,jdbcType=VARCHAR},
+	</if>
+	<if test="request != null  ">
+		request=#{request,jdbcType=VARCHAR},
+	</if>
+	<if test="trustDate != null  ">
+		trust_date=#{trustDate,jdbcType=DATE},
+	</if>
+	<if test="lawyer != null  ">
+		lawyer=#{lawyer,jdbcType=VARCHAR},
+	</if>
+	<if test="agent != null  ">
+		agent=#{agent,jdbcType=VARCHAR},
+	</if>
+	<if test="chiefArbitrator != null  ">
+		chief_arbitrator=#{chiefArbitrator,jdbcType=VARCHAR},
+	</if>
+	<if test="ourSide != null  ">
+		our_side=#{ourSide,jdbcType=VARCHAR},
+	</if>
+	<if test="otherSide != null  ">
+		other_side=#{otherSide,jdbcType=VARCHAR},
+	</if>
+	<if test="arbSecretary != null  ">
+		arb_secretary=#{arbSecretary,jdbcType=VARCHAR},
+	</if>
+	<if test="secretaryContact != null  ">
+		secretary_contact=#{secretaryContact,jdbcType=VARCHAR},
+	</if>
+	<if test="opCourtNums != null  ">
+		op_court_nums=#{opCourtNums,jdbcType=VARCHAR},
+	</if>
+	<if test="opCourtDate != null  ">
+		op_court_date=#{opCourtDate,jdbcType=DATE},
+	</if>
+	<if test="closType != null  ">
+		clos_type=#{closType,jdbcType=VARCHAR},
+	</if>
+	</trim> where status=#{status,jdbcType=INTEGER}
+</update>
+
+<!-- 删除记录 -->
+<!-- 
+<delete id="delete" parameterType="Object">
+	delete 	 from arbitration_case where status = #{status}
+</delete>
+-->
+<update id="delete" parameterType="Object">
+    update arbitration_case set del_flag='1' where id=#{id,jdbcType=INTEGER}
+</update>
+
+<!-- 根据id查询 仲裁案件信息表 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from arbitration_case where status = #{status}
+</select>
+
+<!-- 仲裁案件信息表 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from arbitration_case 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询仲裁案件信息表列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+
+	select 
+	<include refid="Base_Column_List"/>
+	from arbitration_case 
+	<include refid="Example_Where_Clause"/>
+	
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+
+	<if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+
+</select>
+<!--*********************************** generation code  end ***********************************-->
+
+	
+</mapper>

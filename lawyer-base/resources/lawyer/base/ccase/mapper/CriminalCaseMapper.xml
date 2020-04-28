@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lawyer.base.ccase.dao.CriminalCaseDao" > 
+<!--*********************************** generation code  start ***********************************-->
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="lawyer.base.ccase.entity.CriminalCase" >
+	<result column="status" property="status" jdbcType="INTEGER"/>
+	<result column="del_flag" property="delFlag" jdbcType="VARCHAR"/>
+	<result column="org" property="org" jdbcType="VARCHAR"/>
+	<result column="created_by" property="createdBy" jdbcType="VARCHAR"/>
+	<result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
+	<result column="updated_by" property="updatedBy" jdbcType="VARCHAR"/>
+	<result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
+	<result column="id" property="id" jdbcType="VARCHAR"/>
+	<result column="src" property="src" jdbcType="VARCHAR"/>
+	<result column="supply" property="supply" jdbcType="VARCHAR"/>
+	<result column="commission_date" property="commissionDate" jdbcType="DATE"/>
+	<result column="client" property="client" jdbcType="VARCHAR"/>
+	<result column="lawyer" property="lawyer" jdbcType="VARCHAR"/>
+	<result column="litigant" property="litigant" jdbcType="VARCHAR"/>
+	<result column="suspected_charges" property="suspectedCharges" jdbcType="VARCHAR"/>
+	<result column="action_stage" property="actionStage" jdbcType="VARCHAR"/>
+	<result column="judgment_date" property="judgmentDate" jdbcType="DATE"/>
+	<result column="is_close" property="isClose" jdbcType="VARCHAR"/>
+</resultMap>
+       
+<!-- criminal_case table all fields -->
+<sql id="Base_Column_List" >
+	 status,del_flag,org,created_by,created_time,updated_by,updated_time,id,src,supply,commission_date,client,lawyer,litigant,suspected_charges,action_stage,judgment_date,is_close
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+<trim prefix = "where" prefixOverrides="and|or">
+	<!--  -->
+		<if test="status != null" >
+	    and status =  #{status}
+	</if>
+	<!--  -->
+		 	<if test="delFlag != null and delFlag != ''" >
+	    and del_flag =  #{delFlag}
+	</if>
+	<!--  -->
+		 	<if test="org != null and org != ''" >
+	    and org =  #{org}
+	</if>
+	<!--  -->
+		 	<if test="createdBy != null and createdBy != ''" >
+	    and created_by =  #{createdBy}
+	</if>
+	<!--  -->
+		<if test="createdTime != null" >
+	    and created_time =  #{createdTime}
+	</if>
+	<!--  -->
+		 	<if test="updatedBy != null and updatedBy != ''" >
+	    and updated_by =  #{updatedBy}
+	</if>
+	<!--  -->
+		<if test="updatedTime != null" >
+	    and updated_time =  #{updatedTime}
+	</if>
+	<!--  -->
+		 	<if test="id != null and id != ''" >
+	    and id =  #{id}
+	</if>
+	<!--  -->
+		 	<if test="src != null and src != ''" >
+	    and src =  #{src}
+	</if>
+	<!--  -->
+		 	<if test="supply != null and supply != ''" >
+	    and supply =  #{supply}
+	</if>
+	<!--  -->
+		<if test="commissionDate != null" >
+	    and commission_date =  #{commissionDate}
+	</if>
+	<!--  -->
+		 	<if test="client != null and client != ''" >
+	    and client =  #{client}
+	</if>
+	<!--  -->
+		 	<if test="lawyer != null and lawyer != ''" >
+	    and lawyer =  #{lawyer}
+	</if>
+	<!--  -->
+		 	<if test="litigant != null and litigant != ''" >
+	    and litigant =  #{litigant}
+	</if>
+	<!--  -->
+		 	<if test="suspectedCharges != null and suspectedCharges != ''" >
+	    and suspected_charges =  #{suspectedCharges}
+	</if>
+	<!--  -->
+		 	<if test="actionStage != null and actionStage != ''" >
+	    and action_stage =  #{actionStage}
+	</if>
+	<!--  -->
+		<if test="judgmentDate != null" >
+	    and judgment_date =  #{judgmentDate}
+	</if>
+	<!--  -->
+		 	<if test="isClose != null and isClose != ''" >
+	    and is_close =  #{isClose}
+	</if>
+</trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into criminal_case(status,del_flag,org,created_by,created_time,updated_by,updated_time,id,src,supply,commission_date,client,lawyer,litigant,suspected_charges,action_stage,judgment_date,is_close)
+ values(#{status,jdbcType=INTEGER},#{delFlag,jdbcType=VARCHAR},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{id,jdbcType=VARCHAR},#{src,jdbcType=VARCHAR},#{supply,jdbcType=VARCHAR},#{commissionDate,jdbcType=DATE},#{client,jdbcType=VARCHAR},#{lawyer,jdbcType=VARCHAR},#{litigant,jdbcType=VARCHAR},#{suspectedCharges,jdbcType=VARCHAR},#{actionStage,jdbcType=VARCHAR},#{judgmentDate,jdbcType=DATE},#{isClose,jdbcType=VARCHAR})
+</insert>
+
+<!-- 根据id，修改记录-->
+ <update id="update" parameterType="Object" >
+  update criminal_case set del_flag=#{delFlag,jdbcType=VARCHAR},org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},id=#{id,jdbcType=VARCHAR},src=#{src,jdbcType=VARCHAR},supply=#{supply,jdbcType=VARCHAR},commission_date=#{commissionDate,jdbcType=DATE},client=#{client,jdbcType=VARCHAR},lawyer=#{lawyer,jdbcType=VARCHAR},litigant=#{litigant,jdbcType=VARCHAR},suspected_charges=#{suspectedCharges,jdbcType=VARCHAR},action_stage=#{actionStage,jdbcType=VARCHAR},judgment_date=#{judgmentDate,jdbcType=DATE},is_close=#{isClose,jdbcType=VARCHAR} where status=#{status,jdbcType=INTEGER}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update criminal_case set 
+	<trim  suffixOverrides="," >
+	<if test="delFlag != null  ">
+		del_flag=#{delFlag,jdbcType=VARCHAR},
+	</if>
+	<if test="org != null  ">
+		org=#{org,jdbcType=VARCHAR},
+	</if>
+	<if test="createdBy != null  ">
+		created_by=#{createdBy,jdbcType=VARCHAR},
+	</if>
+	<if test="createdTime != null  ">
+		created_time=#{createdTime,jdbcType=TIMESTAMP},
+	</if>
+	<if test="updatedBy != null  ">
+		updated_by=#{updatedBy,jdbcType=VARCHAR},
+	</if>
+	<if test="updatedTime != null  ">
+		updated_time=#{updatedTime,jdbcType=TIMESTAMP},
+	</if>
+	<if test="id != null  ">
+		id=#{id,jdbcType=VARCHAR},
+	</if>
+	<if test="src != null  ">
+		src=#{src,jdbcType=VARCHAR},
+	</if>
+	<if test="supply != null  ">
+		supply=#{supply,jdbcType=VARCHAR},
+	</if>
+	<if test="commissionDate != null  ">
+		commission_date=#{commissionDate,jdbcType=DATE},
+	</if>
+	<if test="client != null  ">
+		client=#{client,jdbcType=VARCHAR},
+	</if>
+	<if test="lawyer != null  ">
+		lawyer=#{lawyer,jdbcType=VARCHAR},
+	</if>
+	<if test="litigant != null  ">
+		litigant=#{litigant,jdbcType=VARCHAR},
+	</if>
+	<if test="suspectedCharges != null  ">
+		suspected_charges=#{suspectedCharges,jdbcType=VARCHAR},
+	</if>
+	<if test="actionStage != null  ">
+		action_stage=#{actionStage,jdbcType=VARCHAR},
+	</if>
+	<if test="judgmentDate != null  ">
+		judgment_date=#{judgmentDate,jdbcType=DATE},
+	</if>
+	<if test="isClose != null  ">
+		is_close=#{isClose,jdbcType=VARCHAR},
+	</if>
+	</trim> where status=#{status,jdbcType=INTEGER}
+</update>
+
+<!-- 删除记录 -->
+<!-- 
+<delete id="delete" parameterType="Object">
+	delete 	 from criminal_case where status = #{status}
+</delete>
+-->
+<update id="delete" parameterType="Object">
+    update criminal_case set del_flag='1' where id=#{id,jdbcType=INTEGER}
+</update>
+ 
+<!-- 根据id查询 刑事案件信息表 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from criminal_case where status = #{status}
+</select>
+
+<!-- 刑事案件信息表 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from criminal_case 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询刑事案件信息表列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+
+	select 
+	<include refid="Base_Column_List"/>
+	from criminal_case 
+	<include refid="Example_Where_Clause"/>
+	
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+
+	<if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+
+</select>
+<!--*********************************** generation code  end ***********************************-->
+
+	
+</mapper>
