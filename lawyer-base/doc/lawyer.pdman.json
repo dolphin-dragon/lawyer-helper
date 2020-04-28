@@ -1375,13 +1375,15 @@
               "name": "STATUS",
               "type": "Integer",
               "remark": "",
-              "chnname": "状态"
+              "chnname": "状态",
+              "defaultValue": "1"
             },
             {
               "name": "DEL_FLAG",
               "type": "YesNo",
               "remark": "",
-              "chnname": "删除标记"
+              "chnname": "删除标记",
+              "defaultValue": "0"
             },
             {
               "name": "ORG",
@@ -1588,13 +1590,15 @@
               "name": "STATUS",
               "type": "Integer",
               "remark": "",
-              "chnname": "状态"
+              "chnname": "状态",
+              "defaultValue": "1"
             },
             {
               "name": "DEL_FLAG",
               "type": "YesNo",
               "remark": "",
-              "chnname": "删除标记"
+              "chnname": "删除标记",
+              "defaultValue": "0"
             },
             {
               "name": "ORG",
@@ -1684,13 +1688,13 @@
             },
             {
               "name": "WORK_CONTENT",
-              "type": "LongString",
+              "type": "DefaultString",
               "remark": "",
               "chnname": "工作内容"
             },
             {
               "name": "PARTY_DRAFT_NAME",
-              "type": "DefaultString",
+              "type": "MiddleString",
               "remark": "",
               "chnname": "当事人底稿名称"
             },
@@ -1783,13 +1787,15 @@
               "name": "STATUS",
               "type": "Integer",
               "remark": "",
-              "chnname": "状态"
+              "chnname": "状态",
+              "defaultValue": "1"
             },
             {
               "name": "DEL_FLAG",
               "type": "YesNo",
               "remark": "",
-              "chnname": "删除标记"
+              "chnname": "删除标记",
+              "defaultValue": "0"
             },
             {
               "name": "ORG",
@@ -1849,7 +1855,7 @@
             },
             {
               "name": "CLIENT",
-              "type": "LongString",
+              "type": "ShortString",
               "remark": "",
               "chnname": "委托人"
             },
