@@ -13,7 +13,7 @@
 	<result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
 	<result column="updated_by" property="updatedBy" jdbcType="VARCHAR"/>
 	<result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
-	<result column="id" property="id" jdbcType="VARCHAR"/>
+	<result column="id" property="id" jdbcType="INTEGER"/>
 	<result column="src" property="src" jdbcType="VARCHAR"/>
 	<result column="supply" property="supply" jdbcType="VARCHAR"/>
 	<result column="litigant" property="litigant" jdbcType="VARCHAR"/>
@@ -71,7 +71,7 @@
 	    and updated_time =  #{updatedTime}
 	</if>
 	<!--  -->
-		 	<if test="id != null and id != ''" >
+		 	<if test="id != null" >
 	    and id =  #{id}
 	</if>
 	<!--  -->
@@ -154,39 +154,39 @@
 <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey>
-  insert into arbitration_case(status,del_flag,org,created_by,created_time,updated_by,updated_time,id,src,supply,litigant,cause,applicant,respondent,request,trust_date,lawyer,agent,chief_arbitrator,our_side,other_side,arb_secretary,secretary_contact,op_court_nums,op_court_date,clos_type)
- values(#{status,jdbcType=INTEGER},#{delFlag,jdbcType=VARCHAR},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{id,jdbcType=VARCHAR},#{src,jdbcType=VARCHAR},#{supply,jdbcType=VARCHAR},#{litigant,jdbcType=VARCHAR},#{cause,jdbcType=VARCHAR},#{applicant,jdbcType=VARCHAR},#{respondent,jdbcType=VARCHAR},#{request,jdbcType=VARCHAR},#{trustDate,jdbcType=DATE},#{lawyer,jdbcType=VARCHAR},#{agent,jdbcType=VARCHAR},#{chiefArbitrator,jdbcType=VARCHAR},#{ourSide,jdbcType=VARCHAR},#{otherSide,jdbcType=VARCHAR},#{arbSecretary,jdbcType=VARCHAR},#{secretaryContact,jdbcType=VARCHAR},#{opCourtNums,jdbcType=VARCHAR},#{opCourtDate,jdbcType=DATE},#{closType,jdbcType=VARCHAR})
+  insert into arbitration_case(org,created_by,created_time,updated_by,updated_time,id,src,supply,litigant,cause,applicant,respondent,request,trust_date,lawyer,agent,chief_arbitrator,our_side,other_side,arb_secretary,secretary_contact,op_court_nums,op_court_date,clos_type)
+ values(#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{id,jdbcType=INTEGER},#{src,jdbcType=VARCHAR},#{supply,jdbcType=VARCHAR},#{litigant,jdbcType=VARCHAR},#{cause,jdbcType=VARCHAR},#{applicant,jdbcType=VARCHAR},#{respondent,jdbcType=VARCHAR},#{request,jdbcType=VARCHAR},#{trustDate,jdbcType=DATE},#{lawyer,jdbcType=VARCHAR},#{agent,jdbcType=VARCHAR},#{chiefArbitrator,jdbcType=VARCHAR},#{ourSide,jdbcType=VARCHAR},#{otherSide,jdbcType=VARCHAR},#{arbSecretary,jdbcType=VARCHAR},#{secretaryContact,jdbcType=VARCHAR},#{opCourtNums,jdbcType=VARCHAR},#{opCourtDate,jdbcType=DATE},#{closType,jdbcType=VARCHAR})
 </insert>
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update arbitration_case set del_flag=#{delFlag,jdbcType=VARCHAR},org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},id=#{id,jdbcType=VARCHAR},src=#{src,jdbcType=VARCHAR},supply=#{supply,jdbcType=VARCHAR},litigant=#{litigant,jdbcType=VARCHAR},cause=#{cause,jdbcType=VARCHAR},applicant=#{applicant,jdbcType=VARCHAR},respondent=#{respondent,jdbcType=VARCHAR},request=#{request,jdbcType=VARCHAR},trust_date=#{trustDate,jdbcType=DATE},lawyer=#{lawyer,jdbcType=VARCHAR},agent=#{agent,jdbcType=VARCHAR},chief_arbitrator=#{chiefArbitrator,jdbcType=VARCHAR},our_side=#{ourSide,jdbcType=VARCHAR},other_side=#{otherSide,jdbcType=VARCHAR},arb_secretary=#{arbSecretary,jdbcType=VARCHAR},secretary_contact=#{secretaryContact,jdbcType=VARCHAR},op_court_nums=#{opCourtNums,jdbcType=VARCHAR},op_court_date=#{opCourtDate,jdbcType=DATE},clos_type=#{closType,jdbcType=VARCHAR} where status=#{status,jdbcType=INTEGER}
+  update arbitration_case set updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},id=#{id,jdbcType=INTEGER},src=#{src,jdbcType=VARCHAR},supply=#{supply,jdbcType=VARCHAR},litigant=#{litigant,jdbcType=VARCHAR},cause=#{cause,jdbcType=VARCHAR},applicant=#{applicant,jdbcType=VARCHAR},respondent=#{respondent,jdbcType=VARCHAR},request=#{request,jdbcType=VARCHAR},trust_date=#{trustDate,jdbcType=DATE},lawyer=#{lawyer,jdbcType=VARCHAR},agent=#{agent,jdbcType=VARCHAR},chief_arbitrator=#{chiefArbitrator,jdbcType=VARCHAR},our_side=#{ourSide,jdbcType=VARCHAR},other_side=#{otherSide,jdbcType=VARCHAR},arb_secretary=#{arbSecretary,jdbcType=VARCHAR},secretary_contact=#{secretaryContact,jdbcType=VARCHAR},op_court_nums=#{opCourtNums,jdbcType=VARCHAR},op_court_date=#{opCourtDate,jdbcType=DATE},clos_type=#{closType,jdbcType=VARCHAR} where id=#{id,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="updateBySelective" parameterType="Object" >
 	update arbitration_case set 
 	<trim  suffixOverrides="," >
-	<if test="delFlag != null  ">
+	<if test="delFlag != null and delFlag !='' ">
 		del_flag=#{delFlag,jdbcType=VARCHAR},
 	</if>
-	<if test="org != null  ">
+	<if test="org != null and org !='' ">
 		org=#{org,jdbcType=VARCHAR},
 	</if>
-	<if test="createdBy != null  ">
+	<if test="createdBy != null and createdBy !='' ">
 		created_by=#{createdBy,jdbcType=VARCHAR},
 	</if>
 	<if test="createdTime != null  ">
 		created_time=#{createdTime,jdbcType=TIMESTAMP},
 	</if>
-	<if test="updatedBy != null  ">
+	<if test="updatedBy != null and updatedBy !='' ">
 		updated_by=#{updatedBy,jdbcType=VARCHAR},
 	</if>
 	<if test="updatedTime != null  ">
 		updated_time=#{updatedTime,jdbcType=TIMESTAMP},
 	</if>
 	<if test="id != null  ">
-		id=#{id,jdbcType=VARCHAR},
+		id=#{id,jdbcType=INTEGER},
 	</if>
 	<if test="src != null  ">
 		src=#{src,jdbcType=VARCHAR},
@@ -242,7 +242,7 @@
 	<if test="closType != null  ">
 		clos_type=#{closType,jdbcType=VARCHAR},
 	</if>
-	</trim> where status=#{status,jdbcType=INTEGER}
+	</trim> where id=#{id,jdbcType=INTEGER}
 </update>
 
 <!-- 删除记录 -->
@@ -258,7 +258,7 @@
 <!-- 根据id查询 仲裁案件信息表 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
 	select <include refid="Base_Column_List" /> 
-	 from arbitration_case where status = #{status}
+	 from arbitration_case where id=#{id,jdbcType=INTEGER}
 </select>
 
 <!-- 仲裁案件信息表 列表总数-->

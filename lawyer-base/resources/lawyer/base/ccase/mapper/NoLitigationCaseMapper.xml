@@ -13,7 +13,7 @@
 	<result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
 	<result column="updated_by" property="updatedBy" jdbcType="VARCHAR"/>
 	<result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
-	<result column="id" property="id" jdbcType="VARCHAR"/>
+	<result column="id" property="id" jdbcType="INTEGER"/>
 	<result column="client" property="client" jdbcType="VARCHAR"/>
 	<result column="principal" property="principal" jdbcType="VARCHAR"/>
 	<result column="commission_sdate" property="commissionSdate" jdbcType="DATE"/>
@@ -68,7 +68,7 @@
 	    and updated_time =  #{updatedTime}
 	</if>
 	<!--  -->
-		 	<if test="id != null and id != ''" >
+		 	<if test="id != null" >
 	    and id =  #{id}
 	</if>
 	<!--  -->
@@ -139,39 +139,39 @@
 <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey>
-  insert into no_litigation_case(status,del_flag,org,created_by,created_time,updated_by,updated_time,id,client,principal,commission_sdate,commission_edate,billing_model,billing_standard,receive_date,src,work_content,party_draft_name,contract_party,resp_date,resp_file_name,account_time,remark)
- values(#{status,jdbcType=INTEGER},#{delFlag,jdbcType=VARCHAR},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{id,jdbcType=VARCHAR},#{client,jdbcType=VARCHAR},#{principal,jdbcType=VARCHAR},#{commissionSdate,jdbcType=DATE},#{commissionEdate,jdbcType=DATE},#{billingModel,jdbcType=VARCHAR},#{billingStandard,jdbcType=VARCHAR},#{receiveDate,jdbcType=DATE},#{src,jdbcType=VARCHAR},#{workContent,jdbcType=VARCHAR},#{partyDraftName,jdbcType=VARCHAR},#{contractParty,jdbcType=VARCHAR},#{respDate,jdbcType=DATE},#{respFileName,jdbcType=VARCHAR},#{accountTime,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR})
+  insert into no_litigation_case(org,created_by,created_time,updated_by,updated_time,id,client,principal,commission_sdate,commission_edate,billing_model,billing_standard,receive_date,src,work_content,party_draft_name,contract_party,resp_date,resp_file_name,account_time,remark)
+ values(#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{id,jdbcType=INTEGER},#{client,jdbcType=VARCHAR},#{principal,jdbcType=VARCHAR},#{commissionSdate,jdbcType=DATE},#{commissionEdate,jdbcType=DATE},#{billingModel,jdbcType=VARCHAR},#{billingStandard,jdbcType=VARCHAR},#{receiveDate,jdbcType=DATE},#{src,jdbcType=VARCHAR},#{workContent,jdbcType=VARCHAR},#{partyDraftName,jdbcType=VARCHAR},#{contractParty,jdbcType=VARCHAR},#{respDate,jdbcType=DATE},#{respFileName,jdbcType=VARCHAR},#{accountTime,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR})
 </insert>
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update no_litigation_case set del_flag=#{delFlag,jdbcType=VARCHAR},org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},id=#{id,jdbcType=VARCHAR},client=#{client,jdbcType=VARCHAR},principal=#{principal,jdbcType=VARCHAR},commission_sdate=#{commissionSdate,jdbcType=DATE},commission_edate=#{commissionEdate,jdbcType=DATE},billing_model=#{billingModel,jdbcType=VARCHAR},billing_standard=#{billingStandard,jdbcType=VARCHAR},receive_date=#{receiveDate,jdbcType=DATE},src=#{src,jdbcType=VARCHAR},work_content=#{workContent,jdbcType=VARCHAR},party_draft_name=#{partyDraftName,jdbcType=VARCHAR},contract_party=#{contractParty,jdbcType=VARCHAR},resp_date=#{respDate,jdbcType=DATE},resp_file_name=#{respFileName,jdbcType=VARCHAR},account_time=#{accountTime,jdbcType=VARCHAR},remark=#{remark,jdbcType=VARCHAR} where status=#{status,jdbcType=INTEGER}
+  update no_litigation_case set updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},id=#{id,jdbcType=INTEGER},client=#{client,jdbcType=VARCHAR},principal=#{principal,jdbcType=VARCHAR},commission_sdate=#{commissionSdate,jdbcType=DATE},commission_edate=#{commissionEdate,jdbcType=DATE},billing_model=#{billingModel,jdbcType=VARCHAR},billing_standard=#{billingStandard,jdbcType=VARCHAR},receive_date=#{receiveDate,jdbcType=DATE},src=#{src,jdbcType=VARCHAR},work_content=#{workContent,jdbcType=VARCHAR},party_draft_name=#{partyDraftName,jdbcType=VARCHAR},contract_party=#{contractParty,jdbcType=VARCHAR},resp_date=#{respDate,jdbcType=DATE},resp_file_name=#{respFileName,jdbcType=VARCHAR},account_time=#{accountTime,jdbcType=VARCHAR},remark=#{remark,jdbcType=VARCHAR} where id=#{id,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="updateBySelective" parameterType="Object" >
 	update no_litigation_case set 
 	<trim  suffixOverrides="," >
-	<if test="delFlag != null  ">
+	<if test="delFlag != null and delFlag !='' ">
 		del_flag=#{delFlag,jdbcType=VARCHAR},
 	</if>
-	<if test="org != null  ">
+	<if test="org != null and org !='' ">
 		org=#{org,jdbcType=VARCHAR},
 	</if>
-	<if test="createdBy != null  ">
+	<if test="createdBy != null and createdBy !='' ">
 		created_by=#{createdBy,jdbcType=VARCHAR},
 	</if>
 	<if test="createdTime != null  ">
 		created_time=#{createdTime,jdbcType=TIMESTAMP},
 	</if>
-	<if test="updatedBy != null  ">
+	<if test="updatedBy != null and updatedBy !='' ">
 		updated_by=#{updatedBy,jdbcType=VARCHAR},
 	</if>
 	<if test="updatedTime != null  ">
 		updated_time=#{updatedTime,jdbcType=TIMESTAMP},
 	</if>
 	<if test="id != null  ">
-		id=#{id,jdbcType=VARCHAR},
+		id=#{id,jdbcType=INTEGER},
 	</if>
 	<if test="client != null  ">
 		client=#{client,jdbcType=VARCHAR},
@@ -218,7 +218,7 @@
 	<if test="remark != null  ">
 		remark=#{remark,jdbcType=VARCHAR},
 	</if>
-	</trim> where status=#{status,jdbcType=INTEGER}
+	</trim> where id=#{id,jdbcType=INTEGER}
 </update>
 
 <!-- 删除记录 -->
@@ -234,7 +234,7 @@
 <!-- 根据id查询 非诉业务信息表 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
 	select <include refid="Base_Column_List" /> 
-	 from no_litigation_case where status = #{status}
+	 from no_litigation_case where id=#{id,jdbcType=INTEGER}
 </select>
 
 <!-- 非诉业务信息表 列表总数-->

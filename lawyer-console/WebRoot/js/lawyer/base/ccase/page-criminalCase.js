@@ -23,7 +23,7 @@ otter.criminalCase = function(){
 				],
 	   			columns:[[
 					{field:'id',checkbox:true},
-					{field:'id',title:'序号',align:'center',sortable:true,
+					{field:'cid',title:'序号',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.id;
 						}

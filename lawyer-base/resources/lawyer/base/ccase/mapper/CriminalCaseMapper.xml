@@ -13,7 +13,7 @@
 	<result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
 	<result column="updated_by" property="updatedBy" jdbcType="VARCHAR"/>
 	<result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
-	<result column="id" property="id" jdbcType="VARCHAR"/>
+	<result column="id" property="id" jdbcType="INTEGER"/>
 	<result column="src" property="src" jdbcType="VARCHAR"/>
 	<result column="supply" property="supply" jdbcType="VARCHAR"/>
 	<result column="commission_date" property="commissionDate" jdbcType="DATE"/>
@@ -63,7 +63,7 @@
 	    and updated_time =  #{updatedTime}
 	</if>
 	<!--  -->
-		 	<if test="id != null and id != ''" >
+		 	<if test="id != null" >
 	    and id =  #{id}
 	</if>
 	<!--  -->
@@ -114,13 +114,13 @@
 <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey>
-  insert into criminal_case(status,del_flag,org,created_by,created_time,updated_by,updated_time,id,src,supply,commission_date,client,lawyer,litigant,suspected_charges,action_stage,judgment_date,is_close)
- values(#{status,jdbcType=INTEGER},#{delFlag,jdbcType=VARCHAR},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{id,jdbcType=VARCHAR},#{src,jdbcType=VARCHAR},#{supply,jdbcType=VARCHAR},#{commissionDate,jdbcType=DATE},#{client,jdbcType=VARCHAR},#{lawyer,jdbcType=VARCHAR},#{litigant,jdbcType=VARCHAR},#{suspectedCharges,jdbcType=VARCHAR},#{actionStage,jdbcType=VARCHAR},#{judgmentDate,jdbcType=DATE},#{isClose,jdbcType=VARCHAR})
+  insert into criminal_case(org,created_by,created_time,updated_by,updated_time,id,src,supply,commission_date,client,lawyer,litigant,suspected_charges,action_stage,judgment_date,is_close)
+ values(#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{id,jdbcType=INTEGER},#{src,jdbcType=VARCHAR},#{supply,jdbcType=VARCHAR},#{commissionDate,jdbcType=DATE},#{client,jdbcType=VARCHAR},#{lawyer,jdbcType=VARCHAR},#{litigant,jdbcType=VARCHAR},#{suspectedCharges,jdbcType=VARCHAR},#{actionStage,jdbcType=VARCHAR},#{judgmentDate,jdbcType=DATE},#{isClose,jdbcType=VARCHAR})
 </insert>
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update criminal_case set del_flag=#{delFlag,jdbcType=VARCHAR},org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},id=#{id,jdbcType=VARCHAR},src=#{src,jdbcType=VARCHAR},supply=#{supply,jdbcType=VARCHAR},commission_date=#{commissionDate,jdbcType=DATE},client=#{client,jdbcType=VARCHAR},lawyer=#{lawyer,jdbcType=VARCHAR},litigant=#{litigant,jdbcType=VARCHAR},suspected_charges=#{suspectedCharges,jdbcType=VARCHAR},action_stage=#{actionStage,jdbcType=VARCHAR},judgment_date=#{judgmentDate,jdbcType=DATE},is_close=#{isClose,jdbcType=VARCHAR} where status=#{status,jdbcType=INTEGER}
+  update criminal_case set updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},id=#{id,jdbcType=INTEGER},src=#{src,jdbcType=VARCHAR},supply=#{supply,jdbcType=VARCHAR},commission_date=#{commissionDate,jdbcType=DATE},client=#{client,jdbcType=VARCHAR},lawyer=#{lawyer,jdbcType=VARCHAR},litigant=#{litigant,jdbcType=VARCHAR},suspected_charges=#{suspectedCharges,jdbcType=VARCHAR},action_stage=#{actionStage,jdbcType=VARCHAR},judgment_date=#{judgmentDate,jdbcType=DATE},is_close=#{isClose,jdbcType=VARCHAR} where id=#{id,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -146,7 +146,7 @@
 		updated_time=#{updatedTime,jdbcType=TIMESTAMP},
 	</if>
 	<if test="id != null  ">
-		id=#{id,jdbcType=VARCHAR},
+		id=#{id,jdbcType=INTEGER},
 	</if>
 	<if test="src != null  ">
 		src=#{src,jdbcType=VARCHAR},
@@ -178,7 +178,7 @@
 	<if test="isClose != null  ">
 		is_close=#{isClose,jdbcType=VARCHAR},
 	</if>
-	</trim> where status=#{status,jdbcType=INTEGER}
+	</trim> where id=#{id,jdbcType=INTEGER}
 </update>
 
 <!-- 删除记录 -->
@@ -194,7 +194,7 @@
 <!-- 根据id查询 刑事案件信息表 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
 	select <include refid="Base_Column_List" /> 
-	 from criminal_case where status = #{status}
+	 from criminal_case where id=#{id,jdbcType=INTEGER}
 </select>
 
 <!-- 刑事案件信息表 列表总数-->

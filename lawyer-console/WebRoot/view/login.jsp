@@ -94,7 +94,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+*/
    <span>登陆成功!请稍后....</span>
   </div>
   <div id="login">
-  	<div class="ribbon" style="background-image:url(plug-in/login/images/typelogin.png);"></div>
+  	<!-- <div class="ribbon" style="background-image:url(plug-in/login/images/typelogin.png);"></div> -->
    <div class="inner">
     <div class="logo">
      <img src="logo.jpg"/>
