@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lawyer.base.ccase.dao.SysFileAttachDao" > 
+<!--*********************************** generation code  start ***********************************-->
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="lawyer.base.ccase.entity.SysFileAttach" >
+	<result column="id" property="id" jdbcType="INTEGER"/>
+	<result column="filename" property="filename" jdbcType="VARCHAR"/>
+	<result column="filepath" property="filepath" jdbcType="VARCHAR"/>
+	<result column="ext" property="ext" jdbcType="VARCHAR"/>
+	<result column="filetype" property="filetype" jdbcType="VARCHAR"/>
+	<result column="note" property="note" jdbcType="VARCHAR"/>
+	<result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
+	<result column="created_by" property="createdBy" jdbcType="VARCHAR"/>
+</resultMap>
+       
+<!-- sys_file_attach table all fields -->
+<sql id="Base_Column_List" >
+	 id,filename,filepath,ext,filetype,note,created_time,created_by
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+<trim prefix = "where" prefixOverrides="and|or">
+	<!--  -->
+		<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	<!--  -->
+		 	<if test="filename != null and filename != ''" >
+	    and filename =  #{filename}
+	</if>
+	<!--  -->
+		 	<if test="filepath != null and filepath != ''" >
+	    and filepath =  #{filepath}
+	</if>
+	<!--  -->
+		 	<if test="ext != null and ext != ''" >
+	    and ext =  #{ext}
+	</if>
+	<!--  -->
+		 	<if test="filetype != null and filetype != ''" >
+	    and filetype =  #{filetype}
+	</if>
+	<!--  -->
+		 	<if test="note != null and note != ''" >
+	    and note =  #{note}
+	</if>
+	<!--  -->
+		<if test="createdTime != null" >
+	    and created_time =  #{createdTime}
+	</if>
+	<!--  -->
+		 	<if test="createdBy != null and createdBy != ''" >
+	    and created_by =  #{createdBy}
+	</if>
+</trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into sys_file_attach(id,filename,filepath,ext,filetype,note,created_time,created_by)
+ values(#{id,jdbcType=INTEGER},#{filename,jdbcType=VARCHAR},#{filepath,jdbcType=VARCHAR},#{ext,jdbcType=VARCHAR},#{filetype,jdbcType=VARCHAR},#{note,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{createdBy,jdbcType=VARCHAR})
+</insert>
+
+<!-- 根据id，修改记录-->
+ <update id="update" parameterType="Object" >
+  update sys_file_attach set filename=#{filename,jdbcType=VARCHAR},filepath=#{filepath,jdbcType=VARCHAR},ext=#{ext,jdbcType=VARCHAR},filetype=#{filetype,jdbcType=VARCHAR},note=#{note,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},created_by=#{createdBy,jdbcType=VARCHAR} where id=#{id,jdbcType=INTEGER}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update sys_file_attach set 
+	<trim  suffixOverrides="," >
+	<if test="filename != null  ">
+		filename=#{filename,jdbcType=VARCHAR},
+	</if>
+	<if test="filepath != null  ">
+		filepath=#{filepath,jdbcType=VARCHAR},
+	</if>
+	<if test="ext != null  ">
+		ext=#{ext,jdbcType=VARCHAR},
+	</if>
+	<if test="filetype != null  ">
+		filetype=#{filetype,jdbcType=VARCHAR},
+	</if>
+	<if test="note != null  ">
+		note=#{note,jdbcType=VARCHAR},
+	</if>
+	<if test="createdTime != null  ">
+		created_time=#{createdTime,jdbcType=TIMESTAMP},
+	</if>
+	<if test="createdBy != null  ">
+		created_by=#{createdBy,jdbcType=VARCHAR},
+	</if>
+	</trim> where id=#{id,jdbcType=INTEGER}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from sys_file_attach where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 附件信息表 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from sys_file_attach where id = #{id}
+</select>
+
+<!-- 附件信息表 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from sys_file_attach 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询附件信息表列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+
+	select 
+	<include refid="Base_Column_List"/>
+	from sys_file_attach 
+	<include refid="Example_Where_Clause"/>
+	
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+
+	<if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+
+</select>
+<!--*********************************** generation code  end ***********************************-->
+
+	
+</mapper>

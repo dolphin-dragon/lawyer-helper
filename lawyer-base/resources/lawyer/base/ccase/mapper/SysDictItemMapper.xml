@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lawyer.base.ccase.dao.SysDictItemDao" > 
+<!--*********************************** generation code  start ***********************************-->
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="lawyer.base.ccase.entity.SysDictItem" >
+	<result column="id" property="id" jdbcType="INTEGER"/>
+	<result column="dict_id" property="dictId" jdbcType="INTEGER"/>
+	<result column="item_text" property="itemText" jdbcType="VARCHAR"/>
+	<result column="item_value" property="itemValue" jdbcType="VARCHAR"/>
+	<result column="description" property="description" jdbcType="VARCHAR"/>
+	<result column="sort_order" property="sortOrder" jdbcType="INTEGER"/>
+	<result column="status" property="status" jdbcType="INTEGER"/>
+	<result column="del_flag" property="delFlag" jdbcType="VARCHAR"/>
+	<result column="created_by" property="createdBy" jdbcType="VARCHAR"/>
+	<result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
+	<result column="updated_by" property="updatedBy" jdbcType="VARCHAR"/>
+	<result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
+</resultMap>
+       
+<!-- sys_dict_item table all fields -->
+<sql id="Base_Column_List" >
+	 id,dict_id,item_text,item_value,description,sort_order,status,del_flag,created_by,created_time,updated_by,updated_time
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+<trim prefix = "where" prefixOverrides="and|or">
+	<!--  -->
+		<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	<!--  -->
+		<if test="dictId != null" >
+	    and dict_id =  #{dictId}
+	</if>
+	<!--  -->
+		 	<if test="itemText != null and itemText != ''" >
+	    and item_text =  #{itemText}
+	</if>
+	<!--  -->
+		 	<if test="itemValue != null and itemValue != ''" >
+	    and item_value =  #{itemValue}
+	</if>
+	<!--  -->
+		 	<if test="description != null and description != ''" >
+	    and description =  #{description}
+	</if>
+	<!--  -->
+		<if test="sortOrder != null" >
+	    and sort_order =  #{sortOrder}
+	</if>
+	<!--  -->
+		<if test="status != null" >
+	    and status =  #{status}
+	</if>
+	<!--  -->
+		 	<if test="delFlag != null and delFlag != ''" >
+	    and del_flag =  #{delFlag}
+	</if>
+	<!--  -->
+		 	<if test="createdBy != null and createdBy != ''" >
+	    and created_by =  #{createdBy}
+	</if>
+	<!--  -->
+		<if test="createdTime != null" >
+	    and created_time =  #{createdTime}
+	</if>
+	<!--  -->
+		 	<if test="updatedBy != null and updatedBy != ''" >
+	    and updated_by =  #{updatedBy}
+	</if>
+	<!--  -->
+		<if test="updatedTime != null" >
+	    and updated_time =  #{updatedTime}
+	</if>
+</trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into sys_dict_item(id,dict_id,item_text,item_value,description,sort_order,status,del_flag,created_by,created_time,updated_by,updated_time)
+ values(#{id,jdbcType=INTEGER},#{dictId,jdbcType=INTEGER},#{itemText,jdbcType=VARCHAR},#{itemValue,jdbcType=VARCHAR},#{description,jdbcType=VARCHAR},#{sortOrder,jdbcType=INTEGER},#{status,jdbcType=INTEGER},#{delFlag,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP})
+</insert>
+
+<!-- 根据id，修改记录-->
+ <update id="update" parameterType="Object" >
+  update sys_dict_item set dict_id=#{dictId,jdbcType=INTEGER},item_text=#{itemText,jdbcType=VARCHAR},item_value=#{itemValue,jdbcType=VARCHAR},description=#{description,jdbcType=VARCHAR},sort_order=#{sortOrder,jdbcType=INTEGER},status=#{status,jdbcType=INTEGER},del_flag=#{delFlag,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP} where id=#{id,jdbcType=INTEGER}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update sys_dict_item set 
+	<trim  suffixOverrides="," >
+	<if test="dictId != null  ">
+		dict_id=#{dictId,jdbcType=INTEGER},
+	</if>
+	<if test="itemText != null  ">
+		item_text=#{itemText,jdbcType=VARCHAR},
+	</if>
+	<if test="itemValue != null  ">
+		item_value=#{itemValue,jdbcType=VARCHAR},
+	</if>
+	<if test="description != null  ">
+		description=#{description,jdbcType=VARCHAR},
+	</if>
+	<if test="sortOrder != null  ">
+		sort_order=#{sortOrder,jdbcType=INTEGER},
+	</if>
+	<if test="status != null  ">
+		status=#{status,jdbcType=INTEGER},
+	</if>
+	<if test="delFlag != null  ">
+		del_flag=#{delFlag,jdbcType=VARCHAR},
+	</if>
+	<if test="createdBy != null  ">
+		created_by=#{createdBy,jdbcType=VARCHAR},
+	</if>
+	<if test="createdTime != null  ">
+		created_time=#{createdTime,jdbcType=TIMESTAMP},
+	</if>
+	<if test="updatedBy != null  ">
+		updated_by=#{updatedBy,jdbcType=VARCHAR},
+	</if>
+	<if test="updatedTime != null  ">
+		updated_time=#{updatedTime,jdbcType=TIMESTAMP},
+	</if>
+	</trim> where id=#{id,jdbcType=INTEGER}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from sys_dict_item where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 字典项目信息表 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from sys_dict_item where id = #{id}
+</select>
+
+<!-- 字典项目信息表 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from sys_dict_item 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询字典项目信息表列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+
+	select 
+	<include refid="Base_Column_List"/>
+	from sys_dict_item 
+	<include refid="Example_Where_Clause"/>
+	
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+
+	<if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+
+</select>
+<!--*********************************** generation code  end ***********************************-->
+
+	
+</mapper>

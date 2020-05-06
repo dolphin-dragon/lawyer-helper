@@ -15,10 +15,8 @@ CREATE TABLE simple_flow (
 ) ENGINE=InnoDB comment = '简单流程信息表' default character set utf8 collate utf8_bin;
 
 CREATE TABLE simple_flow_attach(
-  id int not null auto_increment comment 'id',
   sflow_id int DEFAULT NULL COMMENT '流程id',
   sfile_attach_id int DEFAULT NULL COMMENT '附件id',
-  del_flag varchar(1) default 0 comment '删除标记 1删除 0正常' ,
 )ENGINE=InnoDB comment = '简单流程附件关联表' default character set utf8 collate utf8_bin;
 
 CREATE TABLE sys_file_attach (
