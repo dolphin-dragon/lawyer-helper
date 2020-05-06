@@ -1,3 +1,72 @@
+-- 2020-05-06
+CREATE TABLE simple_flow (
+  id int NOT NULL AUTO_INCREMENT,
+  title varchar(120) NOT NULL COMMENT '流程标题',
+  note varchar(1024) NOT NULL COMMENT '流程说明',
+  ftype varchar(32) DEFAULT NULL COMMENT '流程业务类型',
+  created_time datetime NOT NULL COMMENT '创建时间',
+  created_by varchar(32) NOT NULL COMMENT '发起人',
+  del_flag varchar(1) default 0 comment '删除标记 1删除 0正常' ,
+  status varchar(1) DEFAULT 0 COMMENT '状态（0草稿 1待审批 2审批通过 9驳回）',
+  updated_by varchar(32) DEFAULT NULL COMMENT '更新人',
+  updated_time datetime DEFAULT NULL COMMENT '更新时间',
+  approver varchar(32) DEFAULT NULL COMMENT '审批人',
+  PRIMARY KEY (id)
+) ENGINE=InnoDB comment = '简单流程信息表' default character set utf8 collate utf8_bin;
+
+CREATE TABLE simple_flow_attach(
+  id int not null auto_increment comment 'id',
+  sflow_id int DEFAULT NULL COMMENT '流程id',
+  sfile_attach_id int DEFAULT NULL COMMENT '附件id',
+  del_flag varchar(1) default 0 comment '删除标记 1删除 0正常' ,
+)ENGINE=InnoDB comment = '简单流程附件关联表' default character set utf8 collate utf8_bin;
+
+CREATE TABLE sys_file_attach (
+  id int NOT NULL AUTO_INCREMENT,
+  fileName varchar(120) NOT NULL COMMENT '文件名',
+  filePath varchar(1024) NOT NULL COMMENT '文件路径',
+  ext varchar(32) DEFAULT NULL COMMENT '扩展名',
+  fileType varchar(32) DEFAULT NULL,
+  note varchar(1024) DEFAULT NULL COMMENT '说明',
+  created_time datetime NOT NULL COMMENT '创建时间',
+  created_by varchar(32) NOT NULL COMMENT '上传者',
+  PRIMARY KEY (id)
+) ENGINE=InnoDB comment = '附件信息表' default character set utf8 collate utf8_bin;
+
+CREATE TABLE sys_dict (
+  id int not null auto_increment comment '字典id',
+  dict_name varchar(100) DEFAULT NULL COMMENT '字典名称',
+  dict_code varchar(100) DEFAULT NULL COMMENT '字典编码',
+  description varchar(255) DEFAULT NULL COMMENT '描述',
+  del_flag varchar(1) default 0 comment '删除标记 1删除 0正常' ,
+  created_by varchar(32) DEFAULT NULL COMMENT '创建人',
+  created_time datetime DEFAULT NULL COMMENT '创建时间',
+  updated_by varchar(32) DEFAULT NULL COMMENT '更新人',
+  updated_time datetime DEFAULT NULL COMMENT '更新时间',
+  type int(1) unsigned zerofill DEFAULT '0' COMMENT '字典类型0为string,1为number',
+  PRIMARY KEY (id) USING BTREE,
+  UNIQUE KEY indextable_dict_code (dict_code) USING BTREE
+) ENGINE=InnoDB comment = '系统字典信息表' default character set utf8 collate utf8_bin;
+
+CREATE TABLE sys_dict_item (
+  id int not null auto_increment comment '字典项id',
+  dict_id int DEFAULT NULL COMMENT '字典id',
+  item_text varchar(100) DEFAULT NULL COMMENT '字典项文本',
+  item_value varchar(100) DEFAULT NULL COMMENT '字典项值',
+  description varchar(255) DEFAULT NULL COMMENT '描述',
+  sort_order int(10) DEFAULT NULL COMMENT '排序',
+  status int(11) DEFAULT 1 COMMENT '状态（1启用 0不启用）',
+  del_flag varchar(1)   default 0 comment '删除标记 1删除 0正常' ,
+  created_by varchar(32) DEFAULT NULL,
+  created_time datetime DEFAULT NULL,
+  updated_by varchar(32) DEFAULT NULL,
+  updated_time datetime DEFAULT NULL,
+  PRIMARY KEY (id) USING BTREE,
+  KEY index_table_dict_id (dict_id) USING BTREE,
+  KEY index_table_sort_order (sort_order) USING BTREE,
+  KEY index_table_dict_status (status) USING BTREE
+) ENGINE=InnoDB comment = '系统字典项目信息表' default character set utf8 collate utf8_bin;
+
 -- 2020-04-28
 create table arbitration_case(
     status int   default 1 comment '状态' ,
