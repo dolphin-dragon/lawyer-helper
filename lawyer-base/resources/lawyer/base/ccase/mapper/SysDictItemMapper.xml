@@ -18,11 +18,16 @@
 	<result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
 	<result column="updated_by" property="updatedBy" jdbcType="VARCHAR"/>
 	<result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
+	
+	<result column="dict_name" property="dictName" jdbcType="VARCHAR"/>
+	<result column="dict_code" property="dictCode" jdbcType="VARCHAR"/>
+	<result column="dict_description" property="dictDescription" jdbcType="VARCHAR"/>
+	<result column="dict_del_flag" property="dictDelFlag" jdbcType="VARCHAR"/>
 </resultMap>
        
 <!-- sys_dict_item table all fields -->
 <sql id="Base_Column_List" >
-	 id,dict_id,item_text,item_value,description,sort_order,status,del_flag,created_by,created_time,updated_by,updated_time
+	 id,dict_id,item_text,item_value,description,sort_order,status,del_flag,created_by,created_time,updated_by,updated_time,dict_name,dict_code,dict_description,dict_del_flag
 </sql>
 
 <!-- 查询条件 -->
@@ -141,21 +146,23 @@
 <!-- 根据id查询 字典项目信息表 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
 	select <include refid="Base_Column_List" /> 
-	 from sys_dict_item where id = #{id}
+	 from  (select b.*,a.dict_code,a.dict_name,a.description as dict_description,a.del_flag  as dict_del_flag from sys_dict a left join sys_dict_item b  on a.id = b.dict_id 
+	) as sys_dict_item where id = #{id}
 </select>
 
 <!-- 字典项目信息表 列表总数-->
 <select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
-	select count(1) from sys_dict_item 
+	select count(1) from (select b.*,a.dict_code,a.dict_name,a.description as dict_description,a.del_flag  as dict_del_flag from sys_dict a left join sys_dict_item b  on a.id = b.dict_id 
+	) as sys_dict_item 
 	<include refid="Example_Where_Clause"/>
 </select>
   	
 <!-- 查询字典项目信息表列表 -->
 <select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
-
 	select 
 	<include refid="Base_Column_List"/>
-	from sys_dict_item 
+	from (select b.*,a.dict_code,a.dict_name,a.description as dict_description,a.del_flag  as dict_del_flag from sys_dict a left join sys_dict_item b  on a.id = b.dict_id 
+	) as sys_dict_item 
 	<include refid="Example_Where_Clause"/>
 	
 	<if test="pager.orderCondition != null and pager.orderCondition != ''" >

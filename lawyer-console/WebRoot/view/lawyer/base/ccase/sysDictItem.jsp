@@ -23,28 +23,36 @@
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="字典项目信息表" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="字典项目信息表" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:300px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
-		     	   <div class="ftitle">字典项目信息表</div>
+		     	<!--    <div class="ftitle">字典项目信息表</div> -->
 					<div class="fitem">
-						<label>字典id</label>
-						<input name="dictId" type="text" maxlength="11" class="easyui-numberbox" data-options="" missingMessage="请填写字典id">
+						<label>字典标识</label>
+						<input name="dictId" id="dictId" type="text" maxlength="11" class="easyui-validatebox" data-options="" missingMessage="请填写字典id">
 					</div>
 					<div class="fitem">
-						<label>字典项文本</label>
+						<label>字典名称</label>
+						<input name="dictName" id="dictName" type="text" maxlength="100" class="easyui-validatebox" data-options="" missingMessage="请填写字典名称">
+					</div>
+					<div class="fitem">
+						<label>字典编码</label>
+						<input name="dictCode" id="dictCode" type="text" maxlength="100" class="easyui-validatebox" data-options="" missingMessage="请填写字典编码">
+					</div>
+					<div class="fitem">
+						<label>字典项名称</label>
 						<input name="itemText" type="text" maxlength="100" class="easyui-validatebox" data-options="" missingMessage="请填写字典项文本">
 					</div>
 					<div class="fitem">
-						<label>字典项值</label>
+						<label>字典项编码</label>
 						<input name="itemValue" type="text" maxlength="100" class="easyui-validatebox" data-options="" missingMessage="请填写字典项值">
 					</div>
 					<div class="fitem">
 						<label>描述</label>
 						<input name="description" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写描述">
 					</div>
-					<div class="fitem">
+					<!-- <div class="fitem">
 						<label>排序</label>
 						<input name="sortOrder" type="text" maxlength="10" class="easyui-numberbox" data-options="" missingMessage="请填写排序">
 					</div>
@@ -71,7 +79,7 @@
 					<div class="fitem">
 						<label>updated_time</label>
 						<input name="updatedTime" type="text" maxlength="19" class="easyui-datetimebox" data-options="" missingMessage="请填写updated_time">
-					</div>
+					</div> -->
   			</div>
      	</form>
   	 </div>

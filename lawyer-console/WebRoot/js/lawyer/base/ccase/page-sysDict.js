@@ -23,12 +23,12 @@ otter.sysDict = function(){
 				],
 	   			columns:[[
 					{field:'id',checkbox:true},
-					{field:'dict_name',title:'字典名称',align:'center',sortable:true,
+					{field:'dictName',title:'字典名称',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.dictName;
 							}
 						},
-					{field:'dict_code',title:'字典编码',align:'center',sortable:true,
+					{field:'dictCode',title:'字典编码',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.dictCode;
 							}
@@ -38,12 +38,23 @@ otter.sysDict = function(){
 								return row.description;
 							}
 						},
-					{field:'del_flag',title:'删除标记 1删除 0正常',align:'center',sortable:true,
+					{field:'delFlag',title:'删除状态',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.delFlag;
+								if(value == 1){
+									return "删除";
+								}
+								if(value == 0){
+									return "有效";
+								}
+								return "有效";
 							}
 						},
-					{field:'created_by',title:'创建人',align:'center',sortable:true,
+						{field:'_',title:'操作',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return "<a href='#' onclick='otter.sysDict.qItems("+row.id+",\""+row.dictName+"\")'>查看条目</a> <a href='#' style='color:green;' onclick='otter.sysDict.addItems("+row.id+",\""+row.dictName+"\")'>添加条目</a>";
+							}
+						}
+					/*{field:'created_by',title:'创建人',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.createdBy;
 							}
@@ -67,7 +78,7 @@ otter.sysDict = function(){
 							formatter:function(value,row,index){
 								return row.type;
 							}
-						},
+						},*/
 					]]
 			}
 		},

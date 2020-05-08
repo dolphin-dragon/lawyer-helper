@@ -27,7 +27,7 @@
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
-		     	   <div class="ftitle">字典信息表</div>
+		     	   <!-- <div class="ftitle">字典信息表</div> -->
 					<div class="fitem">
 						<label>字典名称</label>
 						<input name="dictName" type="text" maxlength="100" class="easyui-validatebox" data-options="" missingMessage="请填写字典名称">
@@ -40,7 +40,7 @@
 						<label>描述</label>
 						<input name="description" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写描述">
 					</div>
-					<div class="fitem">
+					<!-- <div class="fitem">
 						<label>删除标记 1删除 0正常</label>
 						<input name="delFlag" type="text" maxlength="1" class="easyui-validatebox" data-options="" missingMessage="请填写删除标记 1删除 0正常">
 					</div>
@@ -63,7 +63,7 @@
 					<div class="fitem">
 						<label>字典类型0为string,1为number</label>
 						<input name="type" type="text" maxlength="1" class="easyui-validatebox" data-options="" missingMessage="请填写字典类型0为string,1为number">
-					</div>
+					</div> -->
   			</div>
      	</form>
   	 </div>

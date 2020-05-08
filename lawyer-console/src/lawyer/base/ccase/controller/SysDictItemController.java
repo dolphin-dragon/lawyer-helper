@@ -49,7 +49,7 @@ public class SysDictItemController extends BaseAction{
 		log.info("/sysDictItem/list page :"+page+" request:"+request);
 		
 		Map<String,Object>  context = getRootMap();
-		
+		context.put("data", page);
 		log.info("forword lawyer/base/ccase/sysDictItem ---- context:"+Arrays.toString(context.entrySet().toArray()));
 		return forword("lawyer/base/ccase/sysDictItem",context); 
 	}
