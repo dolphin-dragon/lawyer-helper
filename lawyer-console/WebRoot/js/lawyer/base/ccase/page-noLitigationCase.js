@@ -23,12 +23,7 @@ otter.noLitigationCase = function(){
 				],
 	   			columns:[[
 					{field:'id',checkbox:true},
-					{field:'cid',title:'序号',align:'center',sortable:true,
-						formatter:function(value,row,index){
-							return row.id;
-						}
-					},
-					/*{field:'status',title:'状态',align:'center',sortable:true,
+					{field:'status',title:'状态',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.status;
 							}
@@ -62,25 +57,10 @@ otter.noLitigationCase = function(){
 							formatter:function(value,row,index){
 								return row.updatedTime;
 							}
-						},*/
-					{field:'client',title:'委托人',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.client;
-							}
 						},
-					{field:'principal',title:'被委托人',align:'center',sortable:true,
+					{field:'nolitigation_customer_id',title:'非诉业务客户ID',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.principal;
-							}
-						},
-					{field:'commission_sdate',title:'委托开始时间',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.commissionSdate;
-							}
-						},
-					{field:'commission_edate',title:'委托结束时间',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.commissionEdate;
+								return row.nolitigationCustomerId;
 							}
 						},
 					{field:'billing_model',title:'计费模式',align:'center',sortable:true,
@@ -138,11 +118,6 @@ otter.noLitigationCase = function(){
 								return row.remark;
 							}
 						},
-					{field:'status',title:'状态',align:'center',sortable:true,
-						formatter:function(value,row,index){
-							return row.status;
-						}
-					},
 					]]
 			}
 		},

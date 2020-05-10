@@ -7,7 +7,8 @@ CREATE TABLE simple_flow (
   created_time datetime NOT NULL COMMENT '创建时间',
   created_by varchar(32) NOT NULL COMMENT '发起人',
   del_flag varchar(1) default 0 comment '删除标记 1删除 0正常' ,
-  status varchar(1) DEFAULT 0 COMMENT '状态（0草稿 1待审批 2审批通过 9驳回）',
+  status varchar(1) DEFAULT 0 COMMENT '状态（0草稿 1待审批 2审批通过 9驳回 8已结束）',
+  remark varchar(1024) DEFAULT NULL comment '备注' ,
   updated_by varchar(32) DEFAULT NULL COMMENT '更新人',
   updated_time datetime DEFAULT NULL COMMENT '更新时间',
   approver varchar(32) DEFAULT NULL COMMENT '审批人',
@@ -96,6 +97,24 @@ create table arbitration_case(
     primary key (id)
 ) engine = innodb comment = '仲裁案件信息表 仲裁案件信息表' default character set utf8 collate utf8_bin;
 
+create table no_litigation_customer(
+    status int   default 1 comment '状态' ,
+    del_flag varchar(1)   default 0 comment '删除标记' ,
+    org varchar(32)    comment '机构编码' ,
+    created_by varchar(32)    comment '创建人' ,
+    created_time datetime    comment '创建时间' ,
+    updated_by varchar(32)    comment '更新人' ,
+    updated_time datetime    comment '更新时间' ,
+    id int not null auto_increment comment '客户ID' ,
+    client varchar(32)    comment '委托人' ,
+    principal varchar(32)    comment '被委托人' ,
+    commission_sdate date    comment '委托开始时间' ,
+    commission_edate date    comment '委托结束时间' ,
+    billing_model varchar(32)    comment '计费模式' ,
+    billing_standard varchar(32)    comment '计费标准' ,
+    primary key (id)
+) engine = innodb comment = '非诉业务客户信息表 非诉业务信息表' default character set utf8 collate utf8_bin;
+
 create table no_litigation_case(
     status int   default 1 comment '状态' ,
     del_flag varchar(1)   default 0 comment '删除标记' ,
@@ -105,10 +124,7 @@ create table no_litigation_case(
     updated_by varchar(32)    comment '更新人' ,
     updated_time datetime    comment '更新时间' ,
     id int not null auto_increment comment '案件序号' ,
-    client varchar(32)    comment '委托人' ,
-    principal varchar(32)    comment '被委托人' ,
-    commission_sdate date    comment '委托开始时间' ,
-    commission_edate date    comment '委托结束时间' ,
+    nolitigation_customer_id int not null comment '非诉业务客户ID' ,
     billing_model varchar(32)    comment '计费模式' ,
     billing_standard varchar(32)    comment '计费标准' ,
     receive_date date    comment '需求接收日期' ,

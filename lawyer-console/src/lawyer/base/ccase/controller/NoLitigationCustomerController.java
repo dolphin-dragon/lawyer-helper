@@ -17,25 +17,25 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.base.web.BaseAction;
 import com.base.util.HtmlUtil;
-import lawyer.base.ccase.entity.NoLitigationCase;
-import lawyer.base.ccase.page.NoLitigationCasePage;
-import lawyer.base.ccase.service.NoLitigationCaseService;
+import lawyer.base.ccase.entity.NoLitigationCustomer;
+import lawyer.base.ccase.page.NoLitigationCustomerPage;
+import lawyer.base.ccase.service.NoLitigationCustomerService;
  
 /**
- * <b>功能：</b>NoLitigationCaseController<br>
+ * <b>功能：</b>NoLitigationCustomerController<br>
  * <b>作者：</b>dragon<br>
  * <b>日期：</b> 2020-05-10 <br>
  * <b>版权所有：<b>lawyer-helper版权所有(C) 2018，www.lawyer-helper.com<br>
  */ 
 @Controller
-@RequestMapping("/noLitigationCase") 
-public class NoLitigationCaseController extends BaseAction{
+@RequestMapping("/noLitigationCustomer") 
+public class NoLitigationCustomerController extends BaseAction{
 	
-	private final Logger log= Logger.getLogger(NoLitigationCaseController.class);
+	private final Logger log= Logger.getLogger(NoLitigationCustomerController.class);
 	/*********************************** generation code  start ***********************************/
 	// Servrice start
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
-	private NoLitigationCaseService<NoLitigationCase> noLitigationCaseService; 
+	private NoLitigationCustomerService<NoLitigationCustomer> noLitigationCustomerService; 
 	
 	/**
 	 * 说明：
@@ -45,13 +45,13 @@ public class NoLitigationCaseController extends BaseAction{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/list") 
-	public ModelAndView  list(NoLitigationCasePage page,HttpServletRequest request) throws Exception{
-		log.info("/noLitigationCase/list page :"+page+" request:"+request);
+	public ModelAndView  list(NoLitigationCustomerPage page,HttpServletRequest request) throws Exception{
+		log.info("/noLitigationCustomer/list page :"+page+" request:"+request);
 		
 		Map<String,Object>  context = getRootMap();
 		
-		log.info("forword lawyer/base/ccase/noLitigationCase ---- context:"+Arrays.toString(context.entrySet().toArray()));
-		return forword("lawyer/base/ccase/noLitigationCase",context); 
+		log.info("forword lawyer/base/ccase/noLitigationCustomer ---- context:"+Arrays.toString(context.entrySet().toArray()));
+		return forword("lawyer/base/ccase/noLitigationCustomer",context); 
 	}
 	
 	/**
@@ -61,16 +61,16 @@ public class NoLitigationCaseController extends BaseAction{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/dataList") 
-	public void  datalist(NoLitigationCasePage page,HttpServletResponse response) throws Exception{
-		log.info("/noLitigationCase/dataList page :"+page+" response:"+response);
+	public void  datalist(NoLitigationCustomerPage page,HttpServletResponse response) throws Exception{
+		log.info("/noLitigationCustomer/dataList page :"+page+" response:"+response);
 		
-		List<NoLitigationCase> dataList = noLitigationCaseService.queryByList(page);
+		List<NoLitigationCustomer> dataList = noLitigationCustomerService.queryByList(page);
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
 		jsonMap.put("total",page.getPager().getRowCount());
 		jsonMap.put("rows", dataList);
 		
-		log.info("/noLitigationCase/dataList writerJson ---- context:"+Arrays.toString(jsonMap.entrySet().toArray()));
+		log.info("/noLitigationCustomer/dataList writerJson ---- context:"+Arrays.toString(jsonMap.entrySet().toArray()));
 		HtmlUtil.writerJson(response, jsonMap);
 	}
 	
@@ -82,17 +82,17 @@ public class NoLitigationCaseController extends BaseAction{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/save")
-	public void save(NoLitigationCase entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
-		log.info("/noLitigationCase/save entity :"+entity+" typeIds:"+Arrays.toString(typeIds)+" response:"+response);
+	public void save(NoLitigationCustomer entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
+		log.info("/noLitigationCustomer/save entity :"+entity+" typeIds:"+Arrays.toString(typeIds)+" response:"+response);
 		
 		//Map<String,Object>  context = new HashMap<String,Object>();
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
-				noLitigationCaseService.add(entity);
+				noLitigationCustomerService.add(entity);
 		}else{
-			noLitigationCaseService.update(entity);
+			noLitigationCustomerService.update(entity);
 		}
 		
-		log.info("/noLitigationCase/save sendSuccessMessage 保存成功~");
+		log.info("/noLitigationCustomer/save sendSuccessMessage 保存成功~");
 		sendSuccessMessage(response, "保存成功~");
 	}
 	
@@ -104,10 +104,10 @@ public class NoLitigationCaseController extends BaseAction{
 	 */
 	@RequestMapping("/getId")
 	public void getId(String id,HttpServletResponse response) throws Exception{
-		log.info("/noLitigationCase/getId id :"+id+" response:"+response);
+		log.info("/noLitigationCustomer/getId id :"+id+" response:"+response);
 		
 		Map<String,Object>  context = new HashMap<String,Object>();
-		NoLitigationCase entity  = noLitigationCaseService.queryById(id);
+		NoLitigationCustomer entity  = noLitigationCustomerService.queryById(id);
 		if(entity  == null){
 			sendFailureMessage(response, "没有找到对应的记录!");
 			return;
@@ -115,7 +115,7 @@ public class NoLitigationCaseController extends BaseAction{
 		context.put(SUCCESS, true);
 		context.put("data", entity);
 		
-		log.info("/noLitigationCase/getId writerJson ---- context:"+Arrays.toString(context.entrySet().toArray()));
+		log.info("/noLitigationCustomer/getId writerJson ---- context:"+Arrays.toString(context.entrySet().toArray()));
 		HtmlUtil.writerJson(response, context);
 	}
 	
@@ -127,11 +127,11 @@ public class NoLitigationCaseController extends BaseAction{
 	 */
 	@RequestMapping("/delete")
 	public void delete(String[] id,HttpServletResponse response) throws Exception{
-		log.info("/noLitigationCase/delete id :"+Arrays.toString(id)+" response:"+response);
+		log.info("/noLitigationCustomer/delete id :"+Arrays.toString(id)+" response:"+response);
 		
-		noLitigationCaseService.delete(id);
+		noLitigationCustomerService.delete(id);
 		
-		log.info("/noLitigationCase/delete sendSuccessMessage 删除成功~");
+		log.info("/noLitigationCustomer/delete sendSuccessMessage 删除成功~");
 		sendSuccessMessage(response, "删除成功");
 	}
 	/*********************************** generation code  end ***********************************/

@@ -1,5 +1,5 @@
-$package('otter.noLitigationCase');
-otter.noLitigationCase = function(){
+$package('otter.noLitigationCustomer');
+otter.noLitigationCustomer = function(){
 	var _box = null;
 	var _this = {
 		config:{
@@ -14,7 +14,7 @@ otter.noLitigationCase = function(){
 				}
 			},
   			dataGrid:{
-  				title:'非诉业务信息表',
+  				title:'非诉业务客户信息表',
 	   			url:'dataList.do',
 	   			toolbar:[
 					{id:'btnadd',text:'添加',btnType:'add'},
@@ -58,9 +58,24 @@ otter.noLitigationCase = function(){
 								return row.updatedTime;
 							}
 						},
-					{field:'nolitigation_customer_id',title:'非诉业务客户ID',align:'center',sortable:true,
+					{field:'client',title:'委托人',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.nolitigationCustomerId;
+								return row.client;
+							}
+						},
+					{field:'principal',title:'被委托人',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.principal;
+							}
+						},
+					{field:'commission_sdate',title:'委托开始时间',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.commissionSdate;
+							}
+						},
+					{field:'commission_edate',title:'委托结束时间',align:'center',sortable:true,
+							formatter:function(value,row,index){
+								return row.commissionEdate;
 							}
 						},
 					{field:'billing_model',title:'计费模式',align:'center',sortable:true,
@@ -71,51 +86,6 @@ otter.noLitigationCase = function(){
 					{field:'billing_standard',title:'计费标准',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.billingStandard;
-							}
-						},
-					{field:'receive_date',title:'需求接收日期',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.receiveDate;
-							}
-						},
-					{field:'src',title:'接收途径',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.src;
-							}
-						},
-					{field:'work_content',title:'工作内容',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.workContent;
-							}
-						},
-					{field:'party_draft_name',title:'当事人底稿名称',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.partyDraftName;
-							}
-						},
-					{field:'contract_party',title:'合同相对放',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.contractParty;
-							}
-						},
-					{field:'resp_date',title:'返稿日期',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.respDate;
-							}
-						},
-					{field:'resp_file_name',title:'律师返稿文件名称',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.respFileName;
-							}
-						},
-					{field:'account_time',title:'核算用时',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.accountTime;
-							}
-						},
-					{field:'remark',title:'特殊情况备注',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.remark;
 							}
 						},
 					]]
@@ -130,5 +100,5 @@ otter.noLitigationCase = function(){
 }();
 
 $(function(){
-	otter.noLitigationCase.init();
+	otter.noLitigationCustomer.init();
 });
