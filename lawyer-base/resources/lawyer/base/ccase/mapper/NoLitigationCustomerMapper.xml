@@ -100,7 +100,7 @@
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update no_litigation_customer set del_flag=#{delFlag,jdbcType=VARCHAR},org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},id=#{id,jdbcType=INTEGER},client=#{client,jdbcType=VARCHAR},principal=#{principal,jdbcType=VARCHAR},commission_sdate=#{commissionSdate,jdbcType=DATE},commission_edate=#{commissionEdate,jdbcType=DATE},billing_model=#{billingModel,jdbcType=VARCHAR},billing_standard=#{billingStandard,jdbcType=VARCHAR} where status=#{status,jdbcType=INTEGER}
+  update no_litigation_customer set del_flag=#{delFlag,jdbcType=VARCHAR},org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},client=#{client,jdbcType=VARCHAR},principal=#{principal,jdbcType=VARCHAR},commission_sdate=#{commissionSdate,jdbcType=DATE},commission_edate=#{commissionEdate,jdbcType=DATE},billing_model=#{billingModel,jdbcType=VARCHAR},billing_standard=#{billingStandard,jdbcType=VARCHAR} where id=#{id,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -146,18 +146,23 @@
 	<if test="billingStandard != null  ">
 		billing_standard=#{billingStandard,jdbcType=VARCHAR},
 	</if>
-	</trim> where status=#{status,jdbcType=INTEGER}
+	</trim> where id = #{id}
 </update>
 
 <!-- 删除记录 -->
+<!-- 
 <delete id="delete" parameterType="Object">
 	delete 	 from no_litigation_customer where status = #{status}
 </delete>
+-->
+<update id="delete" parameterType="Object">
+    update no_litigation_customer set del_flag='1' where id = #{id}
+</update>
  
 <!-- 根据id查询 非诉业务客户信息表 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
 	select <include refid="Base_Column_List" /> 
-	 from no_litigation_customer where status = #{status}
+	 from no_litigation_customer where id = #{id}
 </select>
 
 <!-- 非诉业务客户信息表 列表总数-->
@@ -181,9 +186,6 @@
 	<if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
        ${pager.mysqlQueryCondition}
     </if>
-
 </select>
 <!--*********************************** generation code  end ***********************************-->
-
-	
 </mapper>

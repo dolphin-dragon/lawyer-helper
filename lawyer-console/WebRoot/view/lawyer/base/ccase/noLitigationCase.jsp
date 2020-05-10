@@ -26,9 +26,11 @@
      <!-- Edit Win&Form -->
      <div id="edit-win" class="easyui-dialog" title="非诉业务信息表" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
      	<form id="editForm" class="ui-form" method="post">  
-     		 <input class="hidden" name="id">
+     		 <input class="hidden" name="id" id="id">
+     		 <input class="hidden" name="nolitigationCustomerId" id="nolitigationCustomerId">
+     		 <input class="hidden" name="etype" id="etype">
      		 <div class="ui-edit">
-		     	   <div class="ftitle">非诉业务信息表</div>
+		     	   <!-- <div class="ftitle">非诉业务信息表</div>
 					<div class="fitem">
 						<label>状态</label>
 						<input name="status" type="text" maxlength="11" class="easyui-numberbox" data-options="" missingMessage="请填写状态">
@@ -60,15 +62,34 @@
 					<div class="fitem">
 						<label>非诉业务客户ID</label>
 						<input name="nolitigationCustomerId" type="text" maxlength="11" class="easyui-numberbox" data-options="required:true" missingMessage="请填写非诉业务客户ID">
+					</div> -->
+					<div id="cust">
+					<div class="fitem">
+						<label>委托人</label>
+						<input name="client" id="client" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写委托人">
+					</div>
+					<div class="fitem">
+						<label>被委托人</label>
+						<input name="principal" id="principal" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写被委托人">
+					</div>
+					<div class="fitem">
+						<label>委托开始时间</label>
+						<input name="commissionSdate" id="commissionSdate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写委托开始时间">
+					</div>
+					<div class="fitem">
+						<label>委托结束时间</label>
+						<input name="commissionEdate" id="commissionEdate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写委托结束时间">
 					</div>
 					<div class="fitem">
 						<label>计费模式</label>
-						<input name="billingModel" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写计费模式">
+						<input name="billingModel" id="billingModel" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写计费模式">
 					</div>
 					<div class="fitem">
 						<label>计费标准</label>
-						<input name="billingStandard" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写计费标准">
+						<input name="billingStandard" id="billingStandard" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写计费标准">
 					</div>
+					</div>
+					<div id="case">
 					<div class="fitem">
 						<label>需求接收日期</label>
 						<input name="receiveDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写需求接收日期">
@@ -104,6 +125,7 @@
 					<div class="fitem">
 						<label>特殊情况备注</label>
 						<input name="remark" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写特殊情况备注">
+					</div>
 					</div>
   			</div>
      	</form>

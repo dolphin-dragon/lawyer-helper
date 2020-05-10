@@ -26,11 +26,17 @@
 	<result column="resp_file_name" property="respFileName" jdbcType="VARCHAR"/>
 	<result column="account_time" property="accountTime" jdbcType="VARCHAR"/>
 	<result column="remark" property="remark" jdbcType="VARCHAR"/>
+
+	<result column="cust_del_flag" property="custDelFlag" jdbcType="VARCHAR"/>
+	<result column="client" property="client" jdbcType="VARCHAR"/>
+	<result column="principal" property="principal" jdbcType="VARCHAR"/>
+	<result column="commission_sdate" property="commissionSdate" jdbcType="DATE"/>
+	<result column="commission_edate" property="commissionEdate" jdbcType="DATE"/>
 </resultMap>
        
 <!-- no_litigation_case table all fields -->
 <sql id="Base_Column_List" >
-	 status,del_flag,org,created_by,created_time,updated_by,updated_time,id,nolitigation_customer_id,billing_model,billing_standard,receive_date,src,work_content,party_draft_name,contract_party,resp_date,resp_file_name,account_time,remark
+	 status,del_flag,org,created_by,created_time,updated_by,updated_time,id,nolitigation_customer_id,billing_model,billing_standard,receive_date,src,work_content,party_draft_name,contract_party,resp_date,resp_file_name,account_time,remark,cust_del_flag,client,principal,commission_sdate,commission_edate 
 </sql>
 
 <!-- 查询条件 -->
@@ -210,21 +216,26 @@
 <!-- 根据id查询 非诉业务信息表 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
 	select <include refid="Base_Column_List" /> 
-	 from no_litigation_case where id = #{id}
+	 from (select a.del_flag as cust_del_flag, a.client, a.principal, a.commission_sdate, a.commission_edate, IFNULL(b.billing_model,a.billing_model) as billing_model, IFNULL(b.billing_standard,a.billing_standard) as billing_standard,
+b.status, b.del_flag, b.org, b.created_by, b.created_time, b.updated_by, b.updated_time, b.id, a.id as nolitigation_customer_id,  b.receive_date, b.src, b.work_content, b.party_draft_name, b.contract_party, b.resp_date, b.resp_file_name, b.account_time, b.remark 
+from no_litigation_customer a left join no_litigation_case b  on a.id = b.nolitigation_customer_id) as no_litigation_case where id = #{id}
 </select>
 
 <!-- 非诉业务信息表 列表总数-->
 <select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
-	select count(1) from no_litigation_case 
+	select count(1) from (select a.del_flag as cust_del_flag, a.client, a.principal, a.commission_sdate, a.commission_edate, IFNULL(b.billing_model,a.billing_model) as billing_model, IFNULL(b.billing_standard,a.billing_standard) as billing_standard,
+b.status, b.del_flag, b.org, b.created_by, b.created_time, b.updated_by, b.updated_time, b.id, a.id as nolitigation_customer_id,  b.receive_date, b.src, b.work_content, b.party_draft_name, b.contract_party, b.resp_date, b.resp_file_name, b.account_time, b.remark 
+from no_litigation_customer a left join no_litigation_case b  on a.id = b.nolitigation_customer_id  ) as no_litigation_case 
 	<include refid="Example_Where_Clause"/>
 </select>
   	
 <!-- 查询非诉业务信息表列表 -->
 <select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
-
 	select 
 	<include refid="Base_Column_List"/>
-	from no_litigation_case 
+	from (select a.del_flag as cust_del_flag, a.client, a.principal, a.commission_sdate, a.commission_edate, IFNULL(b.billing_model,a.billing_model) as billing_model, IFNULL(b.billing_standard,a.billing_standard) as billing_standard,
+b.status, b.del_flag, b.org, b.created_by, b.created_time, b.updated_by, b.updated_time, b.id, a.id as nolitigation_customer_id,  b.receive_date, b.src, b.work_content, b.party_draft_name, b.contract_party, b.resp_date, b.resp_file_name, b.account_time, b.remark 
+from no_litigation_customer a left join no_litigation_case b  on a.id = b.nolitigation_customer_id ) as no_litigation_case 
 	<include refid="Example_Where_Clause"/>
 	
 	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
