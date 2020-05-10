@@ -1,25 +1,31 @@
 package lawyer.base.ccase.controller;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.base.web.BaseAction;
 import com.base.util.HtmlUtil;
+import com.base.util.SessionUtilsExt;
+import com.base.web.BaseAction;
+import com.otter.entity.SysUser;
+
+import lawyer.base.ccase.entity.SysDict;
 import lawyer.base.ccase.entity.SysDictItem;
 import lawyer.base.ccase.page.SysDictItemPage;
 import lawyer.base.ccase.service.SysDictItemService;
+import lawyer.base.ccase.service.SysDictService;
  
 /**
  * <b>功能：</b>SysDictItemController<br>
@@ -35,8 +41,11 @@ public class SysDictItemController extends BaseAction{
 	/*********************************** generation code  start ***********************************/
 	// Servrice start
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
-	private SysDictItemService<SysDictItem> sysDictItemService; 
-	
+	private SysDictItemService<SysDictItem> sysDictItemService;
+	// Servrice start
+	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
+	private SysDictService<SysDict> sysDictService;
+
 	/**
 	 * 说明：
 	 * @param url
@@ -82,16 +91,43 @@ public class SysDictItemController extends BaseAction{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/save")
-	public void save(SysDictItem entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
-		log.info("/sysDictItem/save entity :"+entity+" typeIds:"+Arrays.toString(typeIds)+" response:"+response);
-		
-		//Map<String,Object>  context = new HashMap<String,Object>();
-		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
+	public void save(SysDictItem entity,Integer[] typeIds,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		SysUser user = SessionUtilsExt.getUser(request);
+		String etype = request.getParameter("etype");
+		log.info("/sysDictItem/save entity :"+entity+" typeIds:"+Arrays.toString(typeIds)+" request:"+request+" response:"+response+" etype:"+etype);
+		if(StringUtils.equals("0", etype)) {
+			Integer dict_id = entity.getDictId();
+			if(null == dict_id) {
+				SysDict dict = new SysDict();
+				dict.setDictName(entity.getDictName());
+				dict.setDictCode(entity.getDictCode());
+				dict.setDescription(entity.getDescription());
+				dict.setCreatedBy(user.getId()+"");
+				dict.setCreatedTime(new Date());
+				dict.setDelFlag("0");
+				
+				sysDictService.add(dict);
+			}else {
+				SysDict dict = sysDictService.queryById(entity.getDictId());
+				dict.setDictName(entity.getDictName());
+				dict.setDictCode(entity.getDictCode());
+				dict.setDescription(entity.getDescription());
+				dict.setUpdatedBy(user.getId()+"");
+				dict.setUpdatedTime(new Date());
+				sysDictService.update(dict);
+			}
+		}else {
+			if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
+				entity.setCreatedBy(user.getId()+"");
+				entity.setCreatedTime(new Date());
+				entity.setDelFlag("0");
 				sysDictItemService.add(entity);
-		}else{
-			sysDictItemService.update(entity);
+			}else{
+				entity.setUpdatedBy(user.getId()+"");
+				entity.setUpdatedTime(new Date());
+				sysDictItemService.update(entity);
+			}
 		}
-		
 		log.info("/sysDictItem/save sendSuccessMessage 保存成功~");
 		sendSuccessMessage(response, "保存成功~");
 	}
@@ -103,8 +139,8 @@ public class SysDictItemController extends BaseAction{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/getId")
-	public void getId(String id,HttpServletResponse response) throws Exception{
-		log.info("/sysDictItem/getId id :"+id+" response:"+response);
+	public void getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		log.info("/sysDictItem/getId id :"+id+" request:"+request+" response:"+response);
 		
 		Map<String,Object>  context = new HashMap<String,Object>();
 		SysDictItem entity  = sysDictItemService.queryById(id);
@@ -126,10 +162,14 @@ public class SysDictItemController extends BaseAction{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/delete")
-	public void delete(String[] id,HttpServletResponse response) throws Exception{
-		log.info("/sysDictItem/delete id :"+Arrays.toString(id)+" response:"+response);
-		
-		sysDictItemService.delete(id);
+	public void delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		String etype = request.getParameter("etype");
+		log.info("/sysDictItem/delete id :"+Arrays.toString(id)+" request:"+request+" response:"+response+" etype:"+etype);
+		if(StringUtils.equals("0", etype)) {
+			sysDictService.delete(id);
+		}else {
+			sysDictItemService.delete(id);
+		}
 		
 		log.info("/sysDictItem/delete sendSuccessMessage 删除成功~");
 		sendSuccessMessage(response, "删除成功");

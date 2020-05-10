@@ -118,9 +118,14 @@
 </update>
 
 <!-- 删除记录 -->
+<!--
 <delete id="delete" parameterType="Object">
 	delete 	 from sys_dict where id = #{id}
 </delete>
+-->
+<update id="delete" parameterType="Object">
+    update sys_dict set del_flag='1' where id = #{id}
+</update>
  
 <!-- 根据id查询 字典信息表 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
@@ -133,7 +138,7 @@
 	select count(1) from sys_dict 
 	<include refid="Example_Where_Clause"/>
 </select>
-  	
+
 <!-- 查询字典信息表列表 -->
 <select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
 

@@ -9,8 +9,10 @@
  	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">字典id:</label><input name="dictId" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">字典项文本:</label><input name="itemText" class="easyui-box ui-text" style="width:100px;">
+        	<label class="ui-label">字典编码:</label><input name="dictCode" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">字典名称:</label><input name="dictName" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">条目编码:</label><input name="itemValue" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">条目名称:</label><input name="itemText" class="easyui-box ui-text" style="width:100px;">
 	    </p>
 	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
@@ -26,12 +28,14 @@
      <div id="edit-win" class="easyui-dialog" title="字典项目信息表" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:300px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
+     		 <input class="hidden" name="dictId" id="dictId">
+     		 <input class="hidden" name="etype" id="etype">
      		 <div class="ui-edit">
-		     	<!--    <div class="ftitle">字典项目信息表</div> -->
+		     	<!--    <div class="ftitle">字典项目信息表</div> 
 					<div class="fitem">
 						<label>字典标识</label>
 						<input name="dictId" id="dictId" type="text" maxlength="11" class="easyui-validatebox" data-options="" missingMessage="请填写字典id">
-					</div>
+					</div>-->
 					<div class="fitem">
 						<label>字典名称</label>
 						<input name="dictName" id="dictName" type="text" maxlength="100" class="easyui-validatebox" data-options="" missingMessage="请填写字典名称">
@@ -40,16 +44,16 @@
 						<label>字典编码</label>
 						<input name="dictCode" id="dictCode" type="text" maxlength="100" class="easyui-validatebox" data-options="" missingMessage="请填写字典编码">
 					</div>
-					<div class="fitem">
-						<label>字典项名称</label>
+					<div class="fitem" id="itemText">
+						<label>条目名称</label>
 						<input name="itemText" type="text" maxlength="100" class="easyui-validatebox" data-options="" missingMessage="请填写字典项文本">
 					</div>
-					<div class="fitem">
-						<label>字典项编码</label>
+					<div class="fitem" id="itemValue">
+						<label>条目编码</label>
 						<input name="itemValue" type="text" maxlength="100" class="easyui-validatebox" data-options="" missingMessage="请填写字典项值">
 					</div>
 					<div class="fitem">
-						<label>描述</label>
+						<label>说明</label>
 						<input name="description" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写描述">
 					</div>
 					<!-- <div class="fitem">

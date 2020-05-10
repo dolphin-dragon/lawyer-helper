@@ -34,51 +34,59 @@
 <sql id="Example_Where_Clause">
 <trim prefix = "where" prefixOverrides="and|or">
 	<!--  -->
-		<if test="id != null" >
+	<if test="id != null" >
 	    and id =  #{id}
 	</if>
 	<!--  -->
-		<if test="dictId != null" >
+	<if test="dictId != null" >
 	    and dict_id =  #{dictId}
 	</if>
 	<!--  -->
-		 	<if test="itemText != null and itemText != ''" >
-	    and item_text =  #{itemText}
+	<if test="dictName != null and dictName != ''" >
+	    and (dict_name =  #{dictName} OR dict_name like CONCAT('%', #{dictName},'%'))
 	</if>
 	<!--  -->
-		 	<if test="itemValue != null and itemValue != ''" >
-	    and item_value =  #{itemValue}
+	<if test="dictCode != null and dictCode != ''" >
+	     and (dict_code =  #{dictCode} OR dict_code like CONCAT('%', #{dictCode},'%'))
 	</if>
 	<!--  -->
-		 	<if test="description != null and description != ''" >
+	<if test="itemText != null and itemText != ''" >
+	    and (item_text =  #{itemText} OR item_text like CONCAT('%', #{itemText},'%'))
+	</if>
+	<!--  -->
+	<if test="itemValue != null and itemValue != ''" >
+	     and (item_value =  #{itemValue} OR item_value like CONCAT('%', #{itemValue},'%'))
+	</if>
+	<!--  -->
+	<if test="description != null and description != ''" >
 	    and description =  #{description}
 	</if>
 	<!--  -->
-		<if test="sortOrder != null" >
+	<if test="sortOrder != null" >
 	    and sort_order =  #{sortOrder}
 	</if>
 	<!--  -->
-		<if test="status != null" >
+	<if test="status != null" >
 	    and status =  #{status}
 	</if>
 	<!--  -->
-		 	<if test="delFlag != null and delFlag != ''" >
+	<if test="delFlag != null and delFlag != ''" >
 	    and del_flag =  #{delFlag}
 	</if>
 	<!--  -->
-		 	<if test="createdBy != null and createdBy != ''" >
+	<if test="createdBy != null and createdBy != ''" >
 	    and created_by =  #{createdBy}
 	</if>
 	<!--  -->
-		<if test="createdTime != null" >
+	<if test="createdTime != null" >
 	    and created_time =  #{createdTime}
 	</if>
 	<!--  -->
-		 	<if test="updatedBy != null and updatedBy != ''" >
+	<if test="updatedBy != null and updatedBy != ''" >
 	    and updated_by =  #{updatedBy}
 	</if>
 	<!--  -->
-		<if test="updatedTime != null" >
+	<if test="updatedTime != null" >
 	    and updated_time =  #{updatedTime}
 	</if>
 </trim>
@@ -139,20 +147,25 @@
 </update>
 
 <!-- 删除记录 -->
+<!-- 
 <delete id="delete" parameterType="Object">
 	delete 	 from sys_dict_item where id = #{id}
 </delete>
+-->
+<update id="delete" parameterType="Object">
+    update sys_dict_item set del_flag='1' where id = #{id}
+</update>
  
 <!-- 根据id查询 字典项目信息表 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
 	select <include refid="Base_Column_List" /> 
-	 from  (select b.*,a.dict_code,a.dict_name,a.description as dict_description,a.del_flag  as dict_del_flag from sys_dict a left join sys_dict_item b  on a.id = b.dict_id 
+	 from  (select b.id, b.item_text, b.item_value, b.description, b.sort_order, b.status, b.del_flag, b.created_by, b.created_time, b.updated_by, b.updated_time,a.id as dict_id,a.dict_code,a.dict_name,a.description as dict_description,a.del_flag  as dict_del_flag from sys_dict a left join sys_dict_item b  on a.id = b.dict_id 
 	) as sys_dict_item where id = #{id}
 </select>
 
 <!-- 字典项目信息表 列表总数-->
 <select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
-	select count(1) from (select b.*,a.dict_code,a.dict_name,a.description as dict_description,a.del_flag  as dict_del_flag from sys_dict a left join sys_dict_item b  on a.id = b.dict_id 
+	select count(1) from (select b.id, b.item_text, b.item_value, b.description, b.sort_order, b.status, b.del_flag, b.created_by, b.created_time, b.updated_by, b.updated_time,a.id as dict_id,a.dict_code,a.dict_name,a.description as dict_description,a.del_flag  as dict_del_flag from sys_dict a left join sys_dict_item b  on a.id = b.dict_id 
 	) as sys_dict_item 
 	<include refid="Example_Where_Clause"/>
 </select>
@@ -161,7 +174,7 @@
 <select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
 	select 
 	<include refid="Base_Column_List"/>
-	from (select b.*,a.dict_code,a.dict_name,a.description as dict_description,a.del_flag  as dict_del_flag from sys_dict a left join sys_dict_item b  on a.id = b.dict_id 
+	from (select b.id, b.item_text, b.item_value, b.description, b.sort_order, b.status, b.del_flag, b.created_by, b.created_time, b.updated_by, b.updated_time,a.id as dict_id,a.dict_code,a.dict_name,a.description as dict_description,a.del_flag  as dict_del_flag from sys_dict a left join sys_dict_item b  on a.id = b.dict_id 
 	) as sys_dict_item 
 	<include refid="Example_Where_Clause"/>
 	
