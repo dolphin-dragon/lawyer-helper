@@ -133,6 +133,8 @@
                     		<option value="3">肖像权(含姓名权)</option>
                     		<option value="4">肖像权(含姓名权、名誉权)</option>
                     		<option value="5">名誉权</option>
+                    		<option value="6">不当得利纠纷</option>
+                    		<option value="7">合同纠纷</option>
                    		</select>
 					</div>
 					<div class="fitem">

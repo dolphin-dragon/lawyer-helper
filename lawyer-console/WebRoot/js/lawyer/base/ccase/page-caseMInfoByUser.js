@@ -115,6 +115,12 @@ otter.caseMInfo = function(){
 								if(value == 5){
 									return "名誉权";
 								}
+								if(value == 6){
+									return "不当得利纠纷";
+								}
+								if(value == 7){
+									return "合同纠纷";
+								}
 								return "";
 							},
 							styler:function(index,row){
