@@ -32,11 +32,11 @@ otter.noLitigationCase = function(){
 				},
 				edit:function(){
 					var selected = _box.utils.getCheckedRows();
-					if(null == selected[0]['id'] || 'null' == selected[0]['id'] || '' == selected[0]['id']){
-						otter.alert('提示','当前客户没有可编辑的工作项！');
-						return;
-					}
 					if ( _box.utils.checkSelectOne(selected)){
+						if(null == selected[0]['id'] || 'null' == selected[0]['id'] || '' == selected[0]['id']){
+							otter.alert('提示','当前客户没有可编辑的工作项！');
+							return;
+						}
 						$('#etype').attr('value', '1');
 						$('#case').css("display", "block");
 						$('input,textarea',$('#cust')).attr('readonly',true);

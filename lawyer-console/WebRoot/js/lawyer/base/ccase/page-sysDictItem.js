@@ -23,11 +23,11 @@ otter.sysDictItem = function(){
 				},
 				edit:function(){
 					var selected = _box.utils.getCheckedRows();
-					if(null == selected[0]['id'] || 'null' == selected[0]['id'] || '' == selected[0]['id']){
-						otter.alert('提示','当前字典未设置项目不可编辑！');
-						return;
-					}
 					if ( _box.utils.checkSelectOne(selected)){
+						if(null == selected[0]['id'] || 'null' == selected[0]['id'] || '' == selected[0]['id']){
+							otter.alert('提示','当前字典未设置项目不可编辑！');
+							return;
+						}
 						$('#dictId').attr('value', selected[0]['dictId']);
 						$('#dictName').attr('value', selected[0]['dictName']);
 						$('#dictCode').attr('value', selected[0]['dictCode']);
