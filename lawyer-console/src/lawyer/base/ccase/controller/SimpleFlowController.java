@@ -1,6 +1,7 @@
 package lawyer.base.ccase.controller;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.base.web.BaseAction;
+import com.otter.entity.SysUser;
 import com.base.util.HtmlUtil;
+import com.base.util.SessionUtilsExt;
+
 import lawyer.base.ccase.entity.SimpleFlow;
 import lawyer.base.ccase.page.SimpleFlowPage;
 import lawyer.base.ccase.service.SimpleFlowService;
@@ -84,14 +88,25 @@ public class SimpleFlowController extends BaseAction{
 	@RequestMapping("/save")
 	public void save(SimpleFlow entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
 		log.info("/simpleFlow/save entity :"+entity+" typeIds:"+Arrays.toString(typeIds)+" response:"+response);
-		
-		//Map<String,Object>  context = new HashMap<String,Object>();
+		SysUser user = SessionUtilsExt.getUser(request);
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
-				simpleFlowService.add(entity);
+			entity.setCreatedBy(null!=user?user.getId()+"":"");
+			entity.setCreatedTime(new Date());
+			entity.setStatus("0");
+			simpleFlowService.add(entity);
 		}else{
-			simpleFlowService.update(entity);
+			SimpleFlow dbentity = simpleFlowService.queryById(entity.getId());
+			dbentity.setRemark(entity.getRemark());
+			dbentity.setTitle(entity.getTitle());
+			dbentity.setNote(entity.getNote());
+			dbentity.setFtype(entity.getFtype());
+			dbentity.setApprover(entity.getApprover());
+
+			dbentity.setUpdatedBy(null!=user?user.getId()+"":"");
+			dbentity.setUpdatedTime(new Date());
+			dbentity.setStatus("0");
+			simpleFlowService.update(dbentity);
 		}
-		
 		log.info("/simpleFlow/save sendSuccessMessage 保存成功~");
 		sendSuccessMessage(response, "保存成功~");
 	}
@@ -135,4 +150,30 @@ public class SimpleFlowController extends BaseAction{
 		sendSuccessMessage(response, "删除成功");
 	}
 	/*********************************** generation code  end ***********************************/
+	@RequestMapping("/push")
+	public void push(SimpleFlow entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
+		log.info("/simpleFlow/save entity :"+entity+" typeIds:"+Arrays.toString(typeIds)+" response:"+response);
+		SysUser user = SessionUtilsExt.getUser(request);
+		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
+			entity.setCreatedBy(null!=user?user.getId()+"":"");
+			entity.setCreatedTime(new Date());
+			entity.setStatus("1");
+			simpleFlowService.add(entity);
+		}else{
+			SimpleFlow dbentity = simpleFlowService.queryById(entity.getId());
+			dbentity.setRemark(entity.getRemark());
+			dbentity.setTitle(entity.getTitle());
+			dbentity.setNote(entity.getNote());
+			dbentity.setFtype(entity.getFtype());
+			dbentity.setApprover(entity.getApprover());
+
+			dbentity.setUpdatedBy(null!=user?user.getId()+"":"");
+			dbentity.setUpdatedTime(new Date());
+			dbentity.setStatus("1");
+			
+			simpleFlowService.update(dbentity);
+		}
+		log.info("/simpleFlow/save sendSuccessMessage 保存成功~");
+		sendSuccessMessage(response, "保存成功~");
+	}
 }

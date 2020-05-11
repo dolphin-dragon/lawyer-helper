@@ -5,12 +5,27 @@ otter.simpleFlow = function(){
 		config:{
 			event:{
 				add:function(){
-					$('#typeIds_combobox').combobox('reload');
 					_box.handler.add();
 				},
 				edit:function(){
-					$('#typeIds_combobox').combobox('reload');
-					_box.handler.edit();
+					var selected = _box.utils.getCheckedRows();
+					if ( _box.utils.checkSelectOne(selected)){
+						if(!(null == selected[0]['status'] || 0 == selected[0]['status'] || 9 == selected[0]['status'])){
+							otter.alert('提示','当前流程在处理中不能进行操作！');
+							return;
+						}
+						_box.handler.edit();
+					}
+				},
+				remove: function(){
+					var selected = _box.utils.getCheckedRows();
+					if ( _box.utils.checkSelectOne(selected)){
+						if(!(null == selected[0]['status'] || 0 == selected[0]['status'] || 9 == selected[0]['status'])){
+							otter.alert('提示','当前流程在处理中不能进行操作！');
+							return;
+						}
+						_box.handler.remove();
+					}
 				}
 			},
   			dataGrid:{
@@ -35,7 +50,13 @@ otter.simpleFlow = function(){
 						},
 					{field:'ftype',title:'流程业务类型',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.ftype;
+								if(value == 10){
+									return "公章申请";
+								}
+								if(value == 11){
+									return "人力资源章申请";
+								}
+								return "";
 							}
 						},
 					{field:'created_time',title:'创建时间',align:'center',sortable:true,
@@ -43,22 +64,55 @@ otter.simpleFlow = function(){
 								return row.createdTime;
 							}
 						},
-					{field:'created_by',title:'发起人',align:'center',sortable:true,
+					{field:'createdBy',title:'发起人',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.createdBy;
+								return row.createdName;
 							}
 						},
-					{field:'del_flag',title:'删除标记 1删除 0正常',align:'center',sortable:true,
+					{field:'approver',title:'审批人',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.approverName;
+						}
+					},
+					{field:'status',title:'流程状态',align:'center',sortable:true,
+							styler:function(value,row,index){
+								if(value == 0){
+								  return 'color:black;';  
+								}
+								if(value == 1){
+									return "color:blue;";
+								}
+								if(value == 2){
+									return 'color:green;';  
+								}
+								if(value == 8){
+									return "color:black;";
+								}
+								if(value == 9){
+									return 'color:red;';  
+								}
+								return 'color:black;';  
+							},
 							formatter:function(value,row,index){
-								return row.delFlag;
+								if(value == 0){
+									  return '草稿';  
+								}
+								if(value == 1){
+									return "待审批";
+								}
+								if(value == 2){
+									return '审批通过';  
+								}
+								if(value == 8){
+									return "已结束";
+								}
+								if(value == 9){
+									return '驳回';  
+								}
+								return "草稿";
 							}
 						},
-					{field:'status',title:'状态（0草稿 1待审批 2审批通过 9驳回）',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.status;
-							}
-						},
-					{field:'remark',title:'备注',align:'center',sortable:true,
+/*					{field:'remark',title:'备注',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.remark;
 							}
@@ -67,17 +121,33 @@ otter.simpleFlow = function(){
 							formatter:function(value,row,index){
 								return row.updatedBy;
 							}
-						},
+						},*/
 					{field:'updated_time',title:'更新时间',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.updatedTime;
 							}
 						},
-					{field:'approver',title:'审批人',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.approver;
+
+					{field:'delFlag',title:'删除状态',align:'center',sortable:true,
+						styler:function(value,row,index){
+							if(value == 1){
+							  return 'color:red;';  
 							}
+							if(value == 0){
+								return "color:blue;";
+							}
+							return 'color:blue;';  
 						},
+						formatter:function(value,row,index){
+							if(value == 1){
+								return "已删除";
+							}
+							if(value == 0){
+								return "未删除";
+							}
+							return "未删除";
+						}
+					},
 					]]
 			}
 		},

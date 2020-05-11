@@ -18,6 +18,9 @@
 	<result column="updated_by" property="updatedBy" jdbcType="VARCHAR"/>
 	<result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
 	<result column="approver" property="approver" jdbcType="VARCHAR"/>
+	
+	<result column="created_name" property="createdName" jdbcType="VARCHAR"/>
+	<result column="approver_name" property="approverName" jdbcType="VARCHAR"/>
 </resultMap>
        
 <!-- simple_flow table all fields -->
@@ -134,9 +137,14 @@
 </update>
 
 <!-- 删除记录 -->
+<!--
 <delete id="delete" parameterType="Object">
 	delete 	 from simple_flow where id = #{id}
 </delete>
+-->
+<update id="delete" parameterType="Object">
+    update simple_flow set del_flag='1' where id = #{id}
+</update>
  
 <!-- 根据id查询 简单流程信息表 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
@@ -152,22 +160,17 @@
   	
 <!-- 查询简单流程信息表列表 -->
 <select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
-
-	select 
-	<include refid="Base_Column_List"/>
+	select <include refid="Base_Column_List"/>
+	,(select nickName from sys_user sut where sut.id=simple_flow.created_by) as created_name 
+	,(select nickName from sys_user sut where sut.id=simple_flow.approver) as approver_name 
 	from simple_flow 
 	<include refid="Example_Where_Clause"/>
-	
 	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
       ${pager.orderCondition}
     </if>
-
 	<if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
        ${pager.mysqlQueryCondition}
     </if>
-
 </select>
 <!--*********************************** generation code  end ***********************************-->
-
-	
 </mapper>

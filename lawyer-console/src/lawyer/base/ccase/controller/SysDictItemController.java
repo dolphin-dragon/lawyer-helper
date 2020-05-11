@@ -23,6 +23,7 @@ import com.otter.entity.SysUser;
 
 import lawyer.base.ccase.entity.SysDict;
 import lawyer.base.ccase.entity.SysDictItem;
+import lawyer.base.ccase.entity.SysUserExt;
 import lawyer.base.ccase.page.SysDictItemPage;
 import lawyer.base.ccase.service.SysDictItemService;
 import lawyer.base.ccase.service.SysDictService;
@@ -170,9 +171,16 @@ public class SysDictItemController extends BaseAction{
 		}else {
 			sysDictItemService.delete(id);
 		}
-		
+
 		log.info("/sysDictItem/delete sendSuccessMessage 删除成功~");
 		sendSuccessMessage(response, "删除成功");
 	}
 	/*********************************** generation code  end ***********************************/
+	@RequestMapping("/listItems")
+	public void dataListByStatus(HttpServletResponse response,SysDictItem entity) throws Exception {
+		
+		List<SysDictItem> dataList = sysDictItemService.listItems(entity);
+		
+		HtmlUtil.writerJson(response, dataList);
+	}
 }

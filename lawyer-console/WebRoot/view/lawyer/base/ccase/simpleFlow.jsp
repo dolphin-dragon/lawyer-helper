@@ -27,19 +27,28 @@
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
-		     	   <div class="ftitle">简单流程信息表</div>
+		     	  <!--  <div class="ftitle">简单流程信息表</div> -->
 					<div class="fitem">
-						<label>流程标题</label>
-						<input name="title" type="text" maxlength="120" class="easyui-validatebox" data-options="required:true" missingMessage="请填写流程标题">
+						<label>名称</label>
+						<input name="title" type="text" maxlength="120" class="easyui-validatebox" data-options="required:true" missingMessage="请填写流程标题" style="margin: 0px; width: 200px;">
 					</div>
 					<div class="fitem">
-						<label>流程说明</label>
-						<input name="note" type="text" maxlength="1024" class="easyui-validatebox" data-options="required:true" missingMessage="请填写流程说明">
+						<label>说明</label>
+						<textarea name="note" type="text" maxlength="1024" class="easyui-validatebox" data-options="required:true" missingMessage="请填写流程说明" style="margin: 0px; width: 200px; height: 60px;"></textarea>
 					</div>
 					<div class="fitem">
-						<label>流程业务类型</label>
-						<input name="ftype" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写流程业务类型">
+						<label>流程类型</label>
+						<!-- 
+						<input name="ftype" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写流程业务类型"> 
+						-->
+						<input class="easyui-combobox" name="ftype" data-options="required:true,valueField:'itemValue',textField:'itemText',url:'<%=basePath %>/sysDictItem/listItems.do?dictCode=SIMPLE_FLOW'" missingMessage="请填写流程业务类型"  style="margin: 0px; width: 200px;">
 					</div>
+					<div class="fitem">
+						<label>审批人</label>
+						<!-- <input name="approver" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写审批人"> -->
+						<input class="easyui-combobox" name="approver" data-options="required:true,valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写审批人"  style="margin: 0px; width: 200px;">
+					</div>
+					<!--
 					<div class="fitem">
 						<label>创建时间</label>
 						<input name="createdTime" type="text" maxlength="19" class="easyui-datetimebox" data-options="required:true" missingMessage="请填写创建时间">
@@ -56,10 +65,12 @@
 						<label>状态（0草稿 1待审批 2审批通过 9驳回）</label>
 						<input name="status" type="text" maxlength="1" class="easyui-validatebox" data-options="" missingMessage="请填写状态（0草稿 1待审批 2审批通过 9驳回）">
 					</div>
+					-->
 					<div class="fitem">
 						<label>备注</label>
-						<input name="remark" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写备注">
+						<textarea name="remark" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写备注" style="margin: 0px; width: 200px; height: 60px;"></textarea>
 					</div>
+					<!-- 
 					<div class="fitem">
 						<label>更新人</label>
 						<input name="updatedBy" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写更新人">
@@ -68,10 +79,7 @@
 						<label>更新时间</label>
 						<input name="updatedTime" type="text" maxlength="19" class="easyui-datetimebox" data-options="" missingMessage="请填写更新时间">
 					</div>
-					<div class="fitem">
-						<label>审批人</label>
-						<input name="approver" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写审批人">
-					</div>
+					-->
   			</div>
      	</form>
   	 </div>

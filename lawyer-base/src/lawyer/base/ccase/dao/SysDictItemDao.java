@@ -1,5 +1,7 @@
 package lawyer.base.ccase.dao;
 
+import java.util.List;
+
 import com.base.dao.BaseDao;
 /**
  * <b>功能：</b>SysDictItemDao<br>
@@ -8,4 +10,5 @@ import com.base.dao.BaseDao;
  * <b>版权所有：<blawyer-helper版权所有(C) 2018，www.lawyer-helper.com<br>
  */
 public interface SysDictItemDao<T> extends BaseDao<T> {
+	public List<T> listItems(T t);
 }

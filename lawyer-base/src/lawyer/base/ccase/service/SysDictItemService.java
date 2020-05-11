@@ -1,5 +1,7 @@
 package lawyer.base.ccase.service;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +25,9 @@ public class SysDictItemService<T> extends BaseService<T> {
 
 	public SysDictItemDao<T> getDao() {
 		return dao;
+	}
+	
+	public List<T> listItems(T t) throws Exception {
+		return getDao().listItems(t);
 	}
 }
