@@ -21,6 +21,7 @@ import com.otter.entity.SysUser;
 import com.base.util.HtmlUtil;
 import com.base.util.SessionUtilsExt;
 
+import lawyer.base.ccase.entity.CaseInfo;
 import lawyer.base.ccase.entity.SimpleFlow;
 import lawyer.base.ccase.page.SimpleFlowPage;
 import lawyer.base.ccase.service.SimpleFlowService;
@@ -175,5 +176,86 @@ public class SimpleFlowController extends BaseAction{
 		}
 		log.info("/simpleFlow/save sendSuccessMessage 保存成功~");
 		sendSuccessMessage(response, "保存成功~");
+	}
+	
+	/**
+	 * 说明：审批人流程列表
+	 */
+	@RequestMapping("/alist") 
+	public ModelAndView  alist(SimpleFlowPage page,HttpServletRequest request) throws Exception{
+		log.info("/simpleFlow/alist page :"+page+" request:"+request);
+		
+		Map<String,Object>  context = getRootMap();
+		
+		log.info("forword lawyer/base/ccase/simpleAFlow ---- context:"+Arrays.toString(context.entrySet().toArray()));
+		return forword("lawyer/base/ccase/simpleAFlow",context); 
+	}
+	
+	/**
+	 * 说明：审批人流程数据
+	 * @param page
+	 * @param response
+	 * @throws Exception 
+	 */
+	@RequestMapping("/adataList") 
+	public void  adatalist(SimpleFlowPage page,HttpServletResponse response) throws Exception{
+		log.info("/simpleFlow/adataList page :"+page+" response:"+response);
+		SysUser user = SessionUtilsExt.getUser(request);
+		List<SimpleFlow> dataList = null;
+		if(!SessionUtilsExt.isAdmin(request) && null != user) {
+			page.setApprover(user.getId()+"");
+		}
+		dataList = simpleFlowService.queryByList(page);
+		//设置页面数据
+		Map<String,Object> jsonMap = new HashMap<String,Object>();
+		jsonMap.put("total",page.getPager().getRowCount());
+		jsonMap.put("rows", dataList);
+		
+		log.info("/simpleFlow/adataList writerJson ---- context:"+Arrays.toString(jsonMap.entrySet().toArray()));
+		HtmlUtil.writerJson(response, jsonMap);
+	}
+	
+	@RequestMapping("/audit")
+	public void audit(SimpleFlow entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
+		SysUser user = SessionUtilsExt.getUser(request);
+		if(null != user) {
+			SimpleFlow db_entity  = simpleFlowService.queryById(entity.getId());
+			
+			if(!SessionUtilsExt.isAdmin(request) && !StringUtils.equals(user.getId()+"", db_entity.getApprover())) {
+				sendFailureMessage(response, "操作异常，无权操作当前流程，请重新查看数据!");
+				return;
+			}
+			
+			if(!SessionUtilsExt.isAdmin(request) && !StringUtils.equals("1", db_entity.getStatus())) {
+				sendFailureMessage(response, "操作异常，流程状态已经变更，请刷新数据!");
+				return;
+			}
+			if(null != typeIds[0]) {
+				if(1 == typeIds[0]) {//审批通过
+					db_entity.setUpdatedBy(null!=user?user.getId()+"":"");
+					db_entity.setUpdatedTime(new Date());
+					db_entity.setStatus("2");
+				}else if(2 == typeIds[0]) {//审批驳回
+					db_entity.setUpdatedBy(null!=user?user.getId()+"":"");
+					db_entity.setUpdatedTime(new Date());
+					db_entity.setStatus("9");
+				}else if(3 == typeIds[0]){//流程完结
+					db_entity.setUpdatedBy(null!=user?user.getId()+"":"");
+					db_entity.setUpdatedTime(new Date());
+					db_entity.setStatus("8");
+				}else {
+					sendFailureMessage(response, "操作异常，非法请求!");
+					return;
+				}
+			}else {
+				sendFailureMessage(response, "操作异常，非法请求!");
+				return;
+			}
+			
+			simpleFlowService.update(db_entity);
+			log.info("/caseInfo/audit sendSuccessMessage 保存成功~");
+			sendSuccessMessage(response, "保存成功~");
+		}else
+			sendFailureMessage(response, "未登陆，无权进行任何处理!");
 	}
 }

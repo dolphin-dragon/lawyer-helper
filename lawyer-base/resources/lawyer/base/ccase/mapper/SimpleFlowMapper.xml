@@ -32,19 +32,19 @@
 <sql id="Example_Where_Clause">
 <trim prefix = "where" prefixOverrides="and|or">
 	<!--  -->
-		<if test="id != null" >
+	<if test="id != null" >
 	    and id =  #{id}
 	</if>
 	<!--  -->
-		 	<if test="title != null and title != ''" >
-	    and title =  #{title}
+	<if test="title != null and title != ''" >
+	    and (title =  #{title} OR title like CONCAT('%', #{title},'%'))
 	</if>
 	<!--  -->
-		 	<if test="note != null and note != ''" >
-	    and note =  #{note}
+	<if test="note != null and note != ''" >
+		and (note =  #{note} OR note like CONCAT('%', #{note},'%'))
 	</if>
 	<!--  -->
-		 	<if test="ftype != null and ftype != ''" >
+	<if test="ftype != null and ftype != ''" >
 	    and ftype =  #{ftype}
 	</if>
 	<!--  -->

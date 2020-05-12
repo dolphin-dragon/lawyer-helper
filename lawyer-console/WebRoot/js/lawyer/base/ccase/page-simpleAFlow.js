@@ -2,10 +2,35 @@ $package('otter.simpleFlow');
 otter.simpleFlow = function(){
 	var _box = null;
 	var _this = {
-			pushTask:function(){
-				otter.confirm("提示","提交后将等待审批处理，不可进行任何变更操作请仔细检查信息，是否提交?",function(r){
+			auditY:function(){
+				otter.confirm("提示","请仔细检查流程信息，确认审核?",function(r){
 					if(r){
-						_box.form.edit.attr('action','push.do');
+						$('#typeIds').val(1);
+						_box.form.edit.attr('action','audit.do');
+						otter.saveForm(_box.form.edit,function(data){
+							otter.closeProgress();//关闭缓冲条
+							_box.win.edit.dialog('close');
+						});
+					}
+				});
+			},
+			auditN:function(){
+				otter.confirm("提示","请仔细检查流程信息，确认驳回?",function(r){
+					if(r){
+						$('#typeIds').val(2);
+						_box.form.edit.attr('action','audit.do');
+						otter.saveForm(_box.form.edit,function(data){
+							otter.closeProgress();//关闭缓冲条
+							_box.win.edit.dialog('close');
+						});
+					}
+				});
+			},
+			flowClose:function(){
+				otter.confirm("提示","请仔细检查流程信息，确认完结关闭?",function(r){
+					if(r){
+						$('#typeIds').val(3);
+						_box.form.edit.attr('action','audit.do');
 						otter.saveForm(_box.form.edit,function(data){
 							otter.closeProgress();//关闭缓冲条
 							_box.win.edit.dialog('close');
@@ -15,55 +40,25 @@ otter.simpleFlow = function(){
 			},
 		config:{
 			event:{
-				add:function(){
-					_box.win.edit.dialog({
-						buttons:[
-							{
-								text:'保存',
-								handler:_box.events.save
-							},{
-								text:'关闭',
-								handler:_box.events.close
-							},{
-								text:'提交',
-								handler:_this.pushTask
-							}
-						],
-					onClose : function(){
-							_box.win.edit.dialog({
-								buttons:[
-									{
-										text:'保存',
-										handler:_box.events.save
-									},{
-										text:'关闭',
-										handler:_box.events.close
-									}
-								]
-							});
-							_box.handler.refresh();
-						}
-					});
-					_box.handler.add();
-				},
+//				add:function(){
+//					_box.handler.add();
+//				},
 				edit:function(){
 					var selected = _box.utils.getCheckedRows();
 					if ( _box.utils.checkSelectOne(selected)){
-						if(!(null == selected[0]['status'] || 0 == selected[0]['status'] || 9 == selected[0]['status'])){
-							otter.alert('提示','当前流程在处理中不能进行操作！');
+						if(!(1 == selected[0]['status'])){
+							otter.alert('提示','当前流程不是待审批状态，不能进行审批操作！');
 							return;
 						}
 						_box.win.edit.dialog({
 							buttons:[
 								{
-									text:'保存',
-									handler:_box.events.save
-								},{
-									text:'关闭',
-									handler:_box.events.close
-								},{
-									text:'提交',
-									handler:_this.pushTask
+									text:'通过',
+									handler:_this.auditY
+								},
+								{
+									text:'驳回',
+									handler:_this.auditN
 								}
 							],
 						onClose : function(){
@@ -82,27 +77,58 @@ otter.simpleFlow = function(){
 							}
 						});
 						
-						_box.handler.edit();
-					}
-				},
-				remove: function(){
-					var selected = _box.utils.getCheckedRows();
-					if ( _box.utils.checkSelectOne(selected)){
-						if(!(null == selected[0]['status'] || 0 == selected[0]['status'] || 9 == selected[0]['status'])){
-							otter.alert('提示','当前流程在处理中不能进行操作！');
-							return;
-						}
-						_box.handler.remove();
+						_box.handler.edit(function(){
+							$('input,textarea',_box.form.edit).attr('readonly',true);
+							$('.easyui-combobox , .easyui-datebox,.easyui-datetimebox',_box.form.edit).combobox('disable');
+							$('input[type="button"]',_box.form.edit).attr('disabled',true);
+						});
 					}
 				}
 			},
   			dataGrid:{
   				title:'简单流程列表',
-	   			url:'dataList.do',
+	   			url:'adataList.do',
 	   			toolbar:[
-					{id:'btnadd',text:'添加',btnType:'add'},
-					{id:'btnedit',text:'修改',btnType:'edit'},
-					{id:'btndelete',text:'删除',btnType:'remove'}
+					//{id:'btnadd',text:'添加',btnType:'add'},
+					{id:'btnedit',text:'审批',btnType:'edit'},
+					{id:'btnclose',text:'结束',btnType:'close',iconCls:'icon-tip',handler:function(){
+						var selected = _box.utils.getCheckedRows();
+						if ( _box.utils.checkSelectOne(selected)){
+							if(!(2 == selected[0]['status'])){
+								otter.alert('提示','当前流程未审批通过，不能进行流程关闭操作！');
+								return;
+							}
+							_box.win.edit.dialog({
+								buttons:[
+									{
+										text:'流程关闭',
+										handler:_this.flowClose
+									}
+								],
+							onClose : function(){
+									_box.win.edit.dialog({
+										buttons:[
+											{
+												text:'保存',
+												handler:_box.events.save
+											},{
+												text:'关闭',
+												handler:_box.events.close
+											}
+										]
+									});
+									_box.handler.refresh();
+								}
+							});
+							
+							_box.handler.edit(function(){
+								$('input,textarea',_box.form.edit).attr('readonly',true);
+								$('.easyui-combobox , .easyui-datebox,.easyui-datetimebox',_box.form.edit).combobox('disable');
+								$('input[type="button"]',_box.form.edit).attr('disabled',true);
+							});
+						}
+						}
+					}
 				],
 	   			columns:[[
 					{field:'id',checkbox:true},

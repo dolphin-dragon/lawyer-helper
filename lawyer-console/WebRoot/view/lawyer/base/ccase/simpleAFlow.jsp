@@ -9,6 +9,7 @@
  	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
+        	<label class="ui-label">流程号:</label><input name="id" class="easyui-box ui-text" style="width:100px;">
 			<label class="ui-label">流程名称:</label><input name="title" class="easyui-box ui-text" style="width:100px;">
 			<label class="ui-label">流程说明:</label><input name="note" class="easyui-box ui-text" style="width:100px;">
 	    </p>
@@ -26,6 +27,7 @@
      <div id="edit-win" class="easyui-dialog" title="流程信息" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
+     		 <input class="hidden" name="typeIds" id="typeIds">
      		 <div class="ui-edit">
 		     	  <!--  <div class="ftitle">简单流程信息表</div> -->
 					<div class="fitem">
@@ -83,6 +85,6 @@
   			</div>
      	</form>
   	 </div>
-  	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-simpleFlow.js"></script>
+  	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-simpleAFlow.js"></script>
   </body>
 </html>
