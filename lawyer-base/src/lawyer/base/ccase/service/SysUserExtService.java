@@ -31,4 +31,8 @@ public class SysUserExtService<T> extends BaseService<T> {
 	public List<T> listDatas(T t) throws Exception {
 		return getDao().listDatas(t);
 	}
+
+	public List<T> listDatasByRoleId(Integer roleId){
+		return getDao().listDatasByRoleId(roleId);
+	}
 }

@@ -48,7 +48,7 @@
 					<div class="fitem">
 						<label>审批人</label>
 						<!-- <input name="approver" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写审批人"> -->
-						<input class="easyui-combobox" name="approver" data-options="required:true,valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写审批人"  style="margin: 0px; width: 200px;">
+						<input class="easyui-combobox" name="approver" data-options="required:true,valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatasByRoleId.do?roleId=24'" missingMessage="请填写审批人"  style="margin: 0px; width: 200px;">
 					</div>
 					<!--
 					<div class="fitem">

@@ -21,7 +21,6 @@ import com.otter.entity.SysUser;
 import com.base.util.HtmlUtil;
 import com.base.util.SessionUtilsExt;
 
-import lawyer.base.ccase.entity.CaseInfo;
 import lawyer.base.ccase.entity.SimpleFlow;
 import lawyer.base.ccase.page.SimpleFlowPage;
 import lawyer.base.ccase.service.SimpleFlowService;
@@ -68,8 +67,13 @@ public class SimpleFlowController extends BaseAction{
 	@RequestMapping("/dataList") 
 	public void  datalist(SimpleFlowPage page,HttpServletResponse response) throws Exception{
 		log.info("/simpleFlow/dataList page :"+page+" response:"+response);
+		SysUser user = SessionUtilsExt.getUser(request);
 		
-		List<SimpleFlow> dataList = simpleFlowService.queryByList(page);
+		List<SimpleFlow> dataList = null;
+		if(!SessionUtilsExt.isAdmin(request) && null != user) {
+			page.setCreatedBy(user.getId()+"");
+		}
+		dataList = simpleFlowService.queryByList(page);
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
 		jsonMap.put("total",page.getPager().getRowCount());

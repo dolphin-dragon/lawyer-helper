@@ -11,4 +11,6 @@ import com.base.dao.BaseDao;
  */
 public interface SysUserExtDao<T> extends BaseDao<T> {
 	public List<T> listDatas(T t);
+
+	public List<T> listDatasByRoleId(Integer roleId);
 }

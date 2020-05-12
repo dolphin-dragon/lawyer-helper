@@ -232,4 +232,10 @@ public class SysUserExtController extends BaseAction{
 		mailService.sendReSetPwdMailByAsync(entity);
 		sendSuccessMessage(response, "密码重置成功，请查看注册邮箱~");
 	}
+	
+	@RequestMapping("/listDatasByRoleId")
+	public void listDatasByRoleId(HttpServletResponse response,Integer roleId) throws Exception {
+		List<SysUserExt> dataList = sysUserExtService.listDatasByRoleId(roleId);
+		HtmlUtil.writerJson(response, dataList);
+	}
 }
