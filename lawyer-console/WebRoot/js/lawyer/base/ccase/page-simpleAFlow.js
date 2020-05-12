@@ -91,7 +91,7 @@ otter.simpleFlow = function(){
 	   			toolbar:[
 					//{id:'btnadd',text:'添加',btnType:'add'},
 					{id:'btnedit',text:'审批',btnType:'edit'},
-					{id:'btnclose',text:'结束',btnType:'close',iconCls:'icon-tip',handler:function(){
+					{id:'btnclose',text:'关闭',btnType:'close',iconCls:'icon-tip',handler:function(){
 						var selected = _box.utils.getCheckedRows();
 						if ( _box.utils.checkSelectOne(selected)){
 							if(!(2 == selected[0]['status'])){
