@@ -3,6 +3,24 @@
 <html>
   <head>
    <%@include file="/view/resource.jsp" %>
+   <style type="text/css">
+	.vimg_div {
+		width: 200px;
+		height: 100px;
+		border: #000 solid 0px;
+		margin: 5px auto;
+		/* overflow: hidden; */
+	}
+	
+	.vimg_div img {
+		cursor: pointer;
+		transition: all 0.6s;
+	}
+	
+	.vimg_div img:hover {
+		transform: scale(2);
+	}
+	</style>
   </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
@@ -10,8 +28,8 @@
  	 <form id="searchForm">
         <p class="ui-fields">
         	<label class="ui-label">流程号:</label><input name="id" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">流程名称:</label><input name="title" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">流程说明:</label><input name="note" class="easyui-box ui-text" style="width:100px;">
+        	<label class="ui-label">审批事项:</label><input class="easyui-combobox" name="title" data-options="valueField:'itemValue',textField:'itemText',url:'<%=basePath %>/sysDictItem/listItems.do?dictCode=SIP_AUDIT_ITEM'" missingMessage="请填审批事项类型">
+			<label class="ui-label">事项内容:</label><input name="note" class="easyui-box ui-text" style="width:100px;">
 	    </p>
 	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
@@ -24,30 +42,53 @@
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="流程信息" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="流程信息" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:500px;height:380px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <input class="hidden" name="typeIds" id="typeIds">
      		 <div class="ui-edit">
 		     	  <!--  <div class="ftitle">简单流程信息表</div> -->
 					<div class="fitem">
-						<label>名称</label>
-						<input name="title" type="text" maxlength="120" class="easyui-validatebox" data-options="required:true" missingMessage="请填写流程标题" style="margin: 0px; width: 200px;">
+						<label>审批事项</label>
+						<!-- <input name="title" type="text" maxlength="120" class="easyui-validatebox" data-options="required:true" missingMessage="请填写流程标题" style="margin: 0px; width: 200px;"> -->
+						<input class="easyui-combobox" name="title" data-options="required:true,valueField:'itemValue',textField:'itemText',url:'<%=basePath %>/sysDictItem/listItems.do?dictCode=SIP_AUDIT_ITEM'" missingMessage="请填写审批事项"  style="margin: 0px; width: 200px;">
 					</div>
 					<div class="fitem">
-						<label>说明</label>
+						<label>事项内容</label>
 						<textarea name="note" type="text" maxlength="1024" class="easyui-validatebox" data-options="required:true" missingMessage="请填写流程说明" style="margin: 0px; width: 200px; height: 60px;"></textarea>
 					</div>
 					<div class="fitem">
-						<label>流程类型</label>
-						<!-- 
-						<input name="ftype" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写流程业务类型"> 
-						-->
-						<input class="easyui-combobox" name="ftype" data-options="required:true,valueField:'itemValue',textField:'itemText',url:'<%=basePath %>/sysDictItem/listItems.do?dictCode=SIMPLE_FLOW'" missingMessage="请填写流程业务类型"  style="margin: 0px; width: 200px;">
+						<label>文件类型/事项类型</label>
+						<input class="easyui-combobox" name="ftype" data-options="required:true,valueField:'itemValue',textField:'itemText',url:'<%=basePath %>/sysDictItem/listItems.do?dictCode=SIP_AUDIT_TYPE'" missingMessage="请填写流程业务类型"  style="margin: 0px; width: 200px;">
+					</div>
+					<div class="fitem">
+						<div>
+							<label>文件审核截图</label> 
+							<input name="fileAckImg" type="text" id="fileAckImg" style="width: 200px;" readonly=true /> 
+							<input type="button" id="uploadFileAckImgButton" value="上传截图" />
+						</div>
+					</div>
+					<div class="fitem">
+						<div class="vimg_div">
+							<label></label>
+							<img id="ck_fileAckImg" style="width:200px;height:100px;"/>
+						</div>
+					</div>
+					<div class="fitem">
+						<div>
+							<label>业务确认截图</label> 
+							<input name="bizAckImg" type="text" id="bizAckImg" style="width: 200px;" readonly=true /> 
+							<input type="button" id="uploadBizAckImgButton" value="上传截图" />
+						</div>
+					</div>
+					<div class="fitem">
+						<div class="vimg_div">
+							<label></label>
+							<img id="ck_bizAckImg" style="width:200px;height:100px;"/>
+						</div>
 					</div>
 					<div class="fitem">
 						<label>审批人</label>
-						<!-- <input name="approver" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写审批人"> -->
 						<input class="easyui-combobox" name="approver" data-options="required:true,valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatasByRoleId.do?roleId=24'" missingMessage="请填写审批人"  style="margin: 0px; width: 200px;">
 					</div>
 					<!--
@@ -86,5 +127,30 @@
      	</form>
   	 </div>
   	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-simpleAFlow.js"></script>
+  	 
+  	 <script type="text/javascript" src="<%=basePath%>/js/commons/upload/ajaxfileupload.js"></script>
+     <script type="text/javascript" src="<%=basePath%>/js/commons/upload/commonfileupload.js"></script> 
+     <script type="text/javascript" src="<%=basePath%>/js/commons/upload/dgfileupload.js"></script>
+	 <script type="text/javascript">
+		$(function() {
+			$("#uploadFileAckImgButton").click(function() {
+				commonAjaxFileUploadDG(function(data) {
+					//data.url data.path
+					$("#fileAckImg").val(data.url)
+					$("#ck_fileAckImg").attr('src',data.url);
+					$("#ck_fileAckImg").css("opacity","1");
+				})
+			});
+
+			$("#uploadBizAckImgButton").click(function() {
+				commonAjaxFileUploadDG(function(data) {
+					//data.url data.path
+					$("#bizAckImg").val(data.url)
+					$("#ck_bizAckImg").attr('src',data.url);
+					$("#ck_bizAckImg").css("opacity","1");
+				})
+			});
+		});
+	 </script>
   </body>
 </html>

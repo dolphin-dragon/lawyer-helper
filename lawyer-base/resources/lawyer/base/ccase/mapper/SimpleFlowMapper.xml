@@ -18,14 +18,17 @@
 	<result column="updated_by" property="updatedBy" jdbcType="VARCHAR"/>
 	<result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
 	<result column="approver" property="approver" jdbcType="VARCHAR"/>
+	<result column="file_ack_img" property="fileAckImg" jdbcType="VARCHAR"/>
+	<result column="biz_ack_img" property="bizAckImg" jdbcType="VARCHAR"/>
 	
 	<result column="created_name" property="createdName" jdbcType="VARCHAR"/>
 	<result column="approver_name" property="approverName" jdbcType="VARCHAR"/>
+	<result column="ftype_name" property="ftypeName" jdbcType="VARCHAR"/>
 </resultMap>
        
 <!-- simple_flow table all fields -->
 <sql id="Base_Column_List" >
-	 id,title,note,ftype,created_time,created_by,del_flag,status,remark,updated_by,updated_time,approver
+	 id,title,note,ftype,created_time,created_by,del_flag,status,remark,updated_by,updated_time,approver,file_ack_img,biz_ack_img 
 </sql>
 
 <!-- 查询条件 -->
@@ -76,9 +79,17 @@
 	    and updated_time =  #{updatedTime}
 	</if>
 	<!--  -->
-		 	<if test="approver != null and approver != ''" >
+	<if test="approver != null and approver != ''" >
 	    and approver =  #{approver}
 	</if>
+	<!-- 
+	<if test="fileAckImg != null and fileAckImg != ''" >
+	    and file_ack_img =  #{fileAckImg}
+	</if>
+	<if test="bizAckImg != null and bizAckImg != ''" >
+	    and biz_ack_img =  #{bizAckImg}
+	</if>
+	-->
 </trim>
 </sql>
 
@@ -87,13 +98,13 @@
 <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey>
-  insert into simple_flow(id,title,note,ftype,created_time,created_by,del_flag,status,remark,updated_by,updated_time,approver)
- values(#{id,jdbcType=INTEGER},#{title,jdbcType=VARCHAR},#{note,jdbcType=VARCHAR},#{ftype,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{createdBy,jdbcType=VARCHAR},#{delFlag,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{approver,jdbcType=VARCHAR})
+  insert into simple_flow(id,title,note,ftype,created_time,created_by,del_flag,status,remark,updated_by,updated_time,approver,file_ack_img,biz_ack_img)
+ values(#{id,jdbcType=INTEGER},#{title,jdbcType=VARCHAR},#{note,jdbcType=VARCHAR},#{ftype,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{createdBy,jdbcType=VARCHAR},#{delFlag,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{approver,jdbcType=VARCHAR},#{fileAckImg,jdbcType=VARCHAR},#{bizAckImg,jdbcType=VARCHAR})
 </insert>
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update simple_flow set title=#{title,jdbcType=VARCHAR},note=#{note,jdbcType=VARCHAR},ftype=#{ftype,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},created_by=#{createdBy,jdbcType=VARCHAR},del_flag=#{delFlag,jdbcType=VARCHAR},status=#{status,jdbcType=VARCHAR},remark=#{remark,jdbcType=VARCHAR},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},approver=#{approver,jdbcType=VARCHAR} where id=#{id,jdbcType=INTEGER}
+  update simple_flow set title=#{title,jdbcType=VARCHAR},note=#{note,jdbcType=VARCHAR},ftype=#{ftype,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},created_by=#{createdBy,jdbcType=VARCHAR},del_flag=#{delFlag,jdbcType=VARCHAR},status=#{status,jdbcType=VARCHAR},remark=#{remark,jdbcType=VARCHAR},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},approver=#{approver,jdbcType=VARCHAR},file_ack_img=#{fileAckImg,jdbcType=VARCHAR},biz_ack_img=#{bizAckImg,jdbcType=VARCHAR} where id=#{id,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -133,6 +144,12 @@
 	<if test="approver != null  ">
 		approver=#{approver,jdbcType=VARCHAR},
 	</if>
+	<if test="fileAckImg != null  ">
+		file_ack_img=#{fileAckImg,jdbcType=VARCHAR},
+	</if>
+	<if test="bizAckImg != null  ">
+		biz_ack_img=#{bizAckImg,jdbcType=VARCHAR},
+	</if>
 	</trim> where id=#{id,jdbcType=INTEGER}
 </update>
 
@@ -160,9 +177,11 @@
   	
 <!-- 查询简单流程信息表列表 -->
 <select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
-	select <include refid="Base_Column_List"/>
+	select id,note,ftype,created_time,created_by,del_flag,status,remark,updated_by,updated_time,approver,file_ack_img,biz_ack_img
 	,(select nickName from sys_user sut where sut.id=simple_flow.created_by) as created_name 
 	,(select nickName from sys_user sut where sut.id=simple_flow.approver) as approver_name 
+	,(select item_text from (select b.id, b.item_text, b.item_value, b.dict_id,a.dict_code,a.dict_name from sys_dict a left join sys_dict_item b  on a.id = b.dict_id) as dic_item where dic_item.item_value=simple_flow.ftype and dic_item.dict_code='SIP_AUDIT_TYPE') as ftype_name 
+	,(select item_text from (select b.id, b.item_text, b.item_value, b.dict_id,a.dict_code,a.dict_name from sys_dict a left join sys_dict_item b  on a.id = b.dict_id) as dic_item where dic_item.item_value=simple_flow.title and dic_item.dict_code='SIP_AUDIT_ITEM') as title  
 	from simple_flow 
 	<include refid="Example_Where_Clause"/>
 	<if test="pager.orderCondition != null and pager.orderCondition != ''" >

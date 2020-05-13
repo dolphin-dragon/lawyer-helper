@@ -106,6 +106,8 @@ public class SimpleFlowController extends BaseAction{
 			dbentity.setNote(entity.getNote());
 			dbentity.setFtype(entity.getFtype());
 			dbentity.setApprover(entity.getApprover());
+			dbentity.setFileAckImg(entity.getFileAckImg());
+			dbentity.setBizAckImg(entity.getBizAckImg());
 
 			dbentity.setUpdatedBy(null!=user?user.getId()+"":"");
 			dbentity.setUpdatedTime(new Date());
@@ -171,6 +173,8 @@ public class SimpleFlowController extends BaseAction{
 			dbentity.setNote(entity.getNote());
 			dbentity.setFtype(entity.getFtype());
 			dbentity.setApprover(entity.getApprover());
+			dbentity.setFileAckImg(entity.getFileAckImg());
+			dbentity.setBizAckImg(entity.getBizAckImg());
 
 			dbentity.setUpdatedBy(null!=user?user.getId()+"":"");
 			dbentity.setUpdatedTime(new Date());

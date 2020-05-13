@@ -1,3 +1,7 @@
+-- 2020-05-13 update
+alter table simple_flow add file_ack_img varchar(1024)    comment '文件审核截图';
+alter table simple_flow add biz_ack_img varchar(1024)    comment '业务确认截图';
+
 -- 2020-05-06
 CREATE TABLE simple_flow (
   id int NOT NULL AUTO_INCREMENT,

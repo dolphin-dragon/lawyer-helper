@@ -77,10 +77,27 @@ otter.simpleFlow = function(){
 							}
 						});
 						
+						$("#ck_fileAckImg").attr('src','');
+		                $("#ck_bizAckImg").attr('src','');
+		                $("#ck_fileAckImg").css("opacity","0");
+		                $("#ck_bizAckImg").css("opacity","0");
+		                
 						_box.handler.edit(function(){
 							$('input,textarea',_box.form.edit).attr('readonly',true);
 							$('.easyui-combobox , .easyui-datebox,.easyui-datetimebox',_box.form.edit).combobox('disable');
 							$('input[type="button"]',_box.form.edit).attr('disabled',true);
+							
+							var acimg = $('input[name="fileAckImg"]',$('#editForm')).val();
+							if(''!=acimg){
+								$("#ck_fileAckImg").attr('src',acimg);
+								$("#ck_fileAckImg").css("opacity","1");
+							}
+							
+							var liacimg = $('input[name="bizAckImg"]',$('#editForm')).val();
+							if(''!=liacimg){
+								$("#ck_bizAckImg").attr('src',liacimg);
+				                $("#ck_bizAckImg").css("opacity","1");
+							}
 						});
 					}
 				}
@@ -121,10 +138,27 @@ otter.simpleFlow = function(){
 								}
 							});
 							
+							$("#ck_fileAckImg").attr('src','');
+			                $("#ck_bizAckImg").attr('src','');
+			                $("#ck_fileAckImg").css("opacity","0");
+			                $("#ck_bizAckImg").css("opacity","0");
+			                
 							_box.handler.edit(function(){
 								$('input,textarea',_box.form.edit).attr('readonly',true);
 								$('.easyui-combobox , .easyui-datebox,.easyui-datetimebox',_box.form.edit).combobox('disable');
 								$('input[type="button"]',_box.form.edit).attr('disabled',true);
+								
+								var acimg = $('input[name="fileAckImg"]',$('#editForm')).val();
+								if(''!=acimg){
+									$("#ck_fileAckImg").attr('src',acimg);
+									$("#ck_fileAckImg").css("opacity","1");
+								}
+								
+								var liacimg = $('input[name="bizAckImg"]',$('#editForm')).val();
+								if(''!=liacimg){
+									$("#ck_bizAckImg").attr('src',liacimg);
+					                $("#ck_bizAckImg").css("opacity","1");
+								}
 							});
 						}
 						}
@@ -137,25 +171,28 @@ otter.simpleFlow = function(){
 							return row.id;
 						}
 					},
-					{field:'title',title:'名称',align:'center',sortable:true,
+					{field:'title',title:'审批事项',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.title;
+								if(value == 10){
+									  return '加盖公章';  
+								}
+								if(value == 11){
+									return "加盖合同专用章";
+								}
+								if(value == 12){
+									return '加盖人力资源章';  
+								}
+								return value;
 							}
 						},
-					{field:'note',title:'说明',align:'left',sortable:true,width:200,
+					{field:'note',title:'事项内容',align:'left',sortable:true,width:200,
 							formatter:function(value,row,index){
 								return row.note;
 							}
 						},
-					{field:'ftype',title:'流程类型',align:'center',sortable:true,
+					{field:'ftype',title:'文件类型/事项类型',align:'center',sortable:true,width:200,
 							formatter:function(value,row,index){
-								if(value == 10){
-									return "公章申请";
-								}
-								if(value == 11){
-									return "人力资源章申请";
-								}
-								return "";
+								return row.ftypeName;
 							}
 						},
 					{field:'created_time',title:'创建时间',align:'center',sortable:true,
