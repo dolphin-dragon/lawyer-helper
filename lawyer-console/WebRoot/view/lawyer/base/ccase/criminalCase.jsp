@@ -11,7 +11,7 @@
         <p class="ui-fields">
 			<label class="ui-label">序号:</label><input name="id" class="easyui-box ui-text" style="width:100px;">
 			<label class="ui-label">当事人:</label><input name="litigant" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">代理律师:</label><input class="easyui-combobox" name="cpSupply" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请选择代理律师">
+			<label class="ui-label">代理律师:</label><input class="easyui-combobox" editable="false"  name="cpSupply" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请选择代理律师">
 	    </p>
 	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
@@ -64,7 +64,7 @@
 					<div class="fitem">
 						<label>案源人</label>
 						<!-- <input name="supply" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写案源人"> -->
-						<input class="easyui-combobox" name="supply" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请选择案源人">
+						<input class="easyui-combobox" editable="false"  name="supply" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请选择案源人">
 					</div>
 					<div class="fitem">
 						<label>签署委托日期</label>
@@ -77,7 +77,7 @@
 					<div class="fitem">
 						<label>代理律师</label>
 						<!-- <input name="lawyer" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写代理律师"> -->
-						<input class="easyui-combobox" name="lawyer" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写代理律师">
+						<input class="easyui-combobox" editable="false"  name="lawyer" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写代理律师">
 					</div>
 					<div class="fitem">
 						<label>当事人</label>
@@ -98,7 +98,7 @@
 					<div class="fitem">
 						<label>是否结案</label>
 						<!-- <input name="isClose" type="text" maxlength="1" class="easyui-validatebox" data-options="" missingMessage="请填写是否结案"> -->
-						<select class="easyui-combobox" name="isClose" data-options="" missingMessage="请填写是否结案">
+						<select class="easyui-combobox" editable="false"  name="isClose" data-options="" missingMessage="请填写是否结案">
                     		<option value="1" selected="selected">&ensp;&ensp;是&ensp;&ensp;</option>
                     		<option value="2">&ensp;&ensp;否&ensp;&ensp;</option>
                    		</select>

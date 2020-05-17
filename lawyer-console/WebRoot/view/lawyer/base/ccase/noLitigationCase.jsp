@@ -107,7 +107,7 @@
 						<input name="partyDraftName" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写当事人底稿名称">
 					</div>
 					<div class="fitem">
-						<label>合同相对放</label>
+						<label>合同相对方</label>
 						<input name="contractParty" type="text" maxlength="128" class="easyui-validatebox" data-options="" missingMessage="请填写合同相对放">
 					</div>
 					<div class="fitem">

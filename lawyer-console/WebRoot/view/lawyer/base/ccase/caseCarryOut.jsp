@@ -76,7 +76,7 @@
 					<div class="fitem">
 						<label>执行主办律师</label>
 						<!-- <input name="lawyer" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写执行主办律师"> -->
-						<input class="easyui-combobox" name="lawyer" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写执行主办律师">
+						<input class="easyui-combobox" editable="false"  name="lawyer" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写执行主办律师">
 					</div>
 					<div class="fitem">
 						<label>执行申请日期</label>
@@ -104,14 +104,14 @@
 					</div>
 					<div class="fitem">
 						<label>是否执行和解</label>
-						<select class="easyui-combobox" name="isReconcile" data-options="" missingMessage="是否执行和解">
+						<select class="easyui-combobox" editable="false"  name="isReconcile" data-options="" missingMessage="是否执行和解">
                     		<option value="1">&ensp;&ensp;是&ensp;&ensp;</option>
                     		<option value="2" selected="selected">&ensp;&ensp;否&ensp;&ensp;</option>
                    		</select>
 					</div>
 					<div class="fitem">
 						<label>是否结案</label>
-						<select class="easyui-combobox" name="isClose" data-options="" missingMessage="是否结案">
+						<select class="easyui-combobox" editable="false"  name="isClose" data-options="" missingMessage="是否结案">
                     		<option value="1">&ensp;&ensp;是&ensp;&ensp;</option>
                     		<option value="2" selected="selected">&ensp;&ensp;否&ensp;&ensp;</option>
                    		</select>

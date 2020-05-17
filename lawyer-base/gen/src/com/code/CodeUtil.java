@@ -14,6 +14,12 @@ public class CodeUtil {
 		tables = new String[] { "arbitration_case","no_litigation_case","criminal_case"};
 		tableInfo = new String[]{"仲裁案件信息表","非诉业务信息表","刑事案件信息表"};
 		
+		tables = new String[] { "simple_flow","simple_flow_attach","sys_file_attach","sys_dict","sys_dict_item"};
+		tableInfo = new String[]{"简单流程信息表","简单流程关联附件信息表","附件信息表","字典信息表","字典项目信息表"};
+		
+		tables = new String[] { "no_litigation_customer","no_litigation_case"};
+		tableInfo = new String[]{"非诉业务客户信息表","非诉业务信息表"};
+		
 		for (int i = 0; i < tables.length; i++) {
 			String tableName = tables[i];
 			String codeName = tableInfo[i];// 中文注释 当然你用英文也是可以的

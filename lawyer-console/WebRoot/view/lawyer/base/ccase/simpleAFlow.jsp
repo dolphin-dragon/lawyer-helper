@@ -28,7 +28,7 @@
  	 <form id="searchForm">
         <p class="ui-fields">
         	<label class="ui-label">流程号:</label><input name="id" class="easyui-box ui-text" style="width:100px;">
-        	<label class="ui-label">审批事项:</label><input class="easyui-combobox" name="title" data-options="valueField:'itemValue',textField:'itemText',url:'<%=basePath %>/sysDictItem/listItems.do?dictCode=SIP_AUDIT_ITEM'" missingMessage="请填审批事项类型">
+        	<label class="ui-label">审批事项:</label><input class="easyui-combobox" editable="false"  name="title" data-options="valueField:'itemValue',textField:'itemText',url:'<%=basePath %>/sysDictItem/listItems.do?dictCode=SIP_AUDIT_ITEM'" missingMessage="请填审批事项类型">
 			<label class="ui-label">事项内容:</label><input name="note" class="easyui-box ui-text" style="width:100px;">
 	    </p>
 	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
@@ -51,7 +51,7 @@
 					<div class="fitem">
 						<label>审批事项</label>
 						<!-- <input name="title" type="text" maxlength="120" class="easyui-validatebox" data-options="required:true" missingMessage="请填写流程标题" style="margin: 0px; width: 200px;"> -->
-						<input class="easyui-combobox" name="title" data-options="required:true,valueField:'itemValue',textField:'itemText',url:'<%=basePath %>/sysDictItem/listItems.do?dictCode=SIP_AUDIT_ITEM'" missingMessage="请填写审批事项"  style="margin: 0px; width: 200px;">
+						<input class="easyui-combobox" editable="false"  name="title" data-options="required:true,valueField:'itemValue',textField:'itemText',url:'<%=basePath %>/sysDictItem/listItems.do?dictCode=SIP_AUDIT_ITEM'" missingMessage="请填写审批事项"  style="margin: 0px; width: 200px;">
 					</div>
 					<div class="fitem">
 						<label>事项内容</label>
@@ -59,7 +59,7 @@
 					</div>
 					<div class="fitem">
 						<label>文件类型/事项类型</label>
-						<input class="easyui-combobox" name="ftype" data-options="required:true,valueField:'itemValue',textField:'itemText',url:'<%=basePath %>/sysDictItem/listItems.do?dictCode=SIP_AUDIT_TYPE'" missingMessage="请填写流程业务类型"  style="margin: 0px; width: 200px;">
+						<input class="easyui-combobox" editable="false"  name="ftype" data-options="required:true,valueField:'itemValue',textField:'itemText',url:'<%=basePath %>/sysDictItem/listItems.do?dictCode=SIP_AUDIT_TYPE'" missingMessage="请填写流程业务类型"  style="margin: 0px; width: 200px;">
 					</div>
 					<div class="fitem">
 						<div>
@@ -89,7 +89,7 @@
 					</div>
 					<div class="fitem">
 						<label>审批人</label>
-						<input class="easyui-combobox" name="approver" data-options="required:true,valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatasByRoleId.do?roleId=24'" missingMessage="请填写审批人"  style="margin: 0px; width: 200px;">
+						<input class="easyui-combobox" editable="false"  name="approver" data-options="required:true,valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatasByRoleId.do?roleId=27'" missingMessage="请填写审批人"  style="margin: 0px; width: 200px;">
 					</div>
 					<!--
 					<div class="fitem">

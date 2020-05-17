@@ -11,7 +11,7 @@
         <p class="ui-fields">
 			<label class="ui-label">序号:</label><input name="id" class="easyui-box ui-text" style="width:100px;">
 			<label class="ui-label">当事人:</label><input name="litigant" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">主办律师:</label><input class="easyui-combobox" name="cpSupply" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请选择主办律师">
+			<label class="ui-label">主办律师:</label><input class="easyui-combobox" name="cpSupply" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" editable="false" missingMessage="请选择主办律师">
 	    </p>
 	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
@@ -64,7 +64,7 @@
 					<div class="fitem">
 						<label>案源人</label>
 						<!-- <input name="supply" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写案源人"> -->
-						<input class="easyui-combobox" name="supply" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请选择案源人">
+						<input class="easyui-combobox" name="supply" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" editable="false" missingMessage="请选择案源人">
 					</div>
 					<div class="fitem">
 						<label>当事人</label>
@@ -93,7 +93,7 @@
 					<div class="fitem">
 						<label>主办律师</label>
 						<!-- <input name="lawyer" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写主办律师"> -->
-						<input class="easyui-combobox" name="lawyer" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写主办律师">
+						<input class="easyui-combobox" name="lawyer" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" editable="false" missingMessage="请填写主办律师">
 					</div>
 					<div class="fitem">
 						<label>出庭代理人</label>

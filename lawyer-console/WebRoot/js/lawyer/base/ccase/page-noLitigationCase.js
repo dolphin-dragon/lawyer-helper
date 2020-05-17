@@ -220,7 +220,7 @@ otter.noLitigationCase = function(){
 								return row.partyDraftName;
 							}
 						},
-					{field:'contract_party',title:'合同相对放',align:'center',sortable:true,
+					{field:'contract_party',title:'合同相对方',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.contractParty;
 							}

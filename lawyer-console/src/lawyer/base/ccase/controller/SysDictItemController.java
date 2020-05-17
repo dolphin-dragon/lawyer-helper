@@ -119,14 +119,29 @@ public class SysDictItemController extends BaseAction{
 			}
 		}else {
 			if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
-				entity.setCreatedBy(user.getId()+"");
-				entity.setCreatedTime(new Date());
-				entity.setDelFlag("0");
-				sysDictItemService.add(entity);
+				SysDictItem item = new SysDictItem();
+				item.setDictId(entity.getDictId());
+				item.setDictCode(entity.getDictCode());
+				item.setDictName(entity.getDictName());
+				item.setDictDescription(entity.getDictDescription());
+				
+				item.setItemText(entity.getItemText());
+				item.setItemValue(entity.getItemValue());
+				item.setDescription(entity.getDescription());
+				
+				item.setCreatedBy(user.getId()+"");
+				item.setCreatedTime(new Date());
+				item.setDelFlag("0");
+				sysDictItemService.add(item);
 			}else{
-				entity.setUpdatedBy(user.getId()+"");
-				entity.setUpdatedTime(new Date());
-				sysDictItemService.update(entity);
+				SysDictItem item  = sysDictItemService.queryById(entity.getId());
+				item.setItemText(entity.getItemText());
+				item.setItemValue(entity.getItemValue());
+				item.setDescription(entity.getDescription());
+
+				item.setUpdatedBy(user.getId()+"");
+				item.setUpdatedTime(new Date());
+				sysDictItemService.update(item);
 			}
 		}
 		log.info("/sysDictItem/save sendSuccessMessage 保存成功~");

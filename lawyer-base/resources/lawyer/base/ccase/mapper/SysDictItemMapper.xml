@@ -191,7 +191,8 @@
 <!-- 字典条目信息列表 -->
 <select id="listItems" resultMap="BaseResultMap"  parameterType="Object">
 	select <include refid="Base_Column_List"/>
-	from (select b.id, b.item_text, b.item_value, b.description, b.sort_order, b.status, b.del_flag, b.created_by, b.created_time, b.updated_by, b.updated_time,a.id as dict_id,a.dict_code,a.dict_name,a.description as dict_description,a.del_flag  as dict_del_flag from sys_dict a left join sys_dict_item b  on a.id = b.dict_id 
+	from (
+		select b.id, b.item_text, b.item_value, b.description, b.sort_order, b.status, b.del_flag, b.created_by, b.created_time, b.updated_by, b.updated_time,a.id as dict_id,a.dict_code,a.dict_name,a.description as dict_description,a.del_flag  as dict_del_flag from sys_dict a left join sys_dict_item b  on a.id = b.dict_id where b.del_flag &lt;&gt; 1 and a.del_flag &lt;&gt; 1
 	) as sys_dict_item 
 	<include refid="Example_Where_Clause"/>
 </select>

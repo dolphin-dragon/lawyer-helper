@@ -9,7 +9,7 @@
  	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">案源人:</label><input class="easyui-combobox" name="cpSupply" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请选择案源人">
+			<label class="ui-label">案源人:</label><input class="easyui-combobox" editable="false"  name="cpSupply" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请选择案源人">
 			<label class="ui-label">当事人:</label><input name="caseLitigant" class="easyui-box ui-text" style="width:100px;">
 			<label class="ui-label">被告名称:</label><input name="caseDefendantName" class="easyui-box ui-text" style="width:100px;">
 	    </p>

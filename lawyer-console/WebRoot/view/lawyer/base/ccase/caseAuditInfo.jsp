@@ -125,7 +125,7 @@
 							<div class="fitem">
 								<label>创建人</label>
 								<!-- <input name="createdBy" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写创建人"> -->
-								<input class="easyui-combobox" name="createdBy" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写创建人">
+								<input class="easyui-combobox" editable="false"  name="createdBy" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写创建人">
 							</div>
 							<div class="fitem">
 								<label>创建时间</label>
@@ -134,7 +134,7 @@
 							<div class="fitem">
 								<label>更新人</label>
 								<!-- <input name="updatedBy" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写更新人"> -->
-								<input class="easyui-combobox" name="updatedBy" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写更新人">
+								<input class="easyui-combobox" editable="false"  name="updatedBy" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写更新人">
 							</div>
 						    <div class="fitem">
 								<label>更新时间</label>
@@ -166,7 +166,7 @@
 					</div>
 					<div class="fitem">
 						<label>案件来源</label>
-						<select class="easyui-combobox" name="src" data-options="" missingMessage="请填写案件来源">
+						<select class="easyui-combobox" editable="false"  name="src" data-options="" missingMessage="请填写案件来源">
                     		<option value="1" selected="selected">当事人提供</option>
                     		<option value="2">所内自行搜证</option>
                     		<option value="3">律师个人案源</option>
@@ -174,11 +174,11 @@
 					</div>
 					<div class="fitem">
 						<label>案源人</label>
-						<input class="easyui-combobox" name="supply" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请选择案源人">
+						<input class="easyui-combobox" editable="false"  name="supply" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请选择案源人">
 					</div>
 					<div class="fitem">
 						<label>是否公证</label>
-						<select class="easyui-combobox" name="isApply" data-options="" missingMessage="请选择是否公证">
+						<select class="easyui-combobox" editable="false"  name="isApply" data-options="" missingMessage="请选择是否公证">
                     		<option value="1">&ensp;&ensp;是&ensp;&ensp;</option>
                     		<option value="2" selected="selected">&ensp;&ensp;否&ensp;&ensp;</option>
                    		</select>
@@ -189,15 +189,15 @@
 					</div>
 					<div class="fitem">
 						<label>公证书申请人</label>
-						<input class="easyui-combobox" name="applicant" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写公证书申请人">
+						<input class="easyui-combobox" editable="false"  name="applicant" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写公证书申请人">
 					</div>
 					<div class="fitem">
 						<label>取证人</label>
-						<input class="easyui-combobox" name="forensics" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写取证人">
+						<input class="easyui-combobox" editable="false"  name="forensics" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写取证人">
 					</div>
 					<div class="fitem">
 						<label>侵权类型</label>
-						<select class="easyui-combobox" name="violateType" id="violateType" data-options="" missingMessage="请填写侵权类型">
+						<select class="easyui-combobox" editable="false"  name="violateType" id="violateType" data-options="" missingMessage="请填写侵权类型">
                     		<option value="1" selected="selected">肖像权</option>
                     		<option value="2">肖像权(含名誉权)</option>
                     		<option value="3">肖像权(含姓名权)</option>
@@ -247,7 +247,7 @@
 					</div>
                     <div class="fitem">
 						<label>当事人是否要求直接诉讼</label>
-						<select class="easyui-combobox" name="isDirectAction" data-options="" missingMessage="当事人是否要求直接诉讼">
+						<select class="easyui-combobox" editable="false"  name="isDirectAction" data-options="" missingMessage="当事人是否要求直接诉讼">
                     		<option value="1">&ensp;&ensp;是&ensp;&ensp;</option>
                     		<option value="2" selected="selected">&ensp;&ensp;否&ensp;&ensp;</option>
                    		</select>
@@ -282,7 +282,7 @@
 							<div class="fitem">
 								<label>律师函主办人</label>
 								<!-- <input name="letteror" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写律师函主办人"> -->
-								<input class="easyui-combobox" name="letteror" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写律师函主办人">
+								<input class="easyui-combobox" editable="false"  name="letteror" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写律师函主办人">
 							</div>
 							<div class="fitem">
 								<label>律师函发送日期</label>
@@ -294,14 +294,14 @@
 							</div>
 							<div class="fitem">
 								<label>是否结案</label>
-								<select class="easyui-combobox" name="isClose" data-options="" missingMessage="请填写是否结案">
+								<select class="easyui-combobox" editable="false"  name="isClose" data-options="" missingMessage="请填写是否结案">
 		                    		<option value="1" selected="selected">&ensp;&ensp;是&ensp;&ensp;</option>
 		                    		<option value="2">&ensp;&ensp;否&ensp;&ensp;</option>
 		                   		</select>
 							</div>
 							<div class="fitem">
 								<label>是否诉讼</label>
-								<select class="easyui-combobox" name="isDirectAction" data-options="" missingMessage="请填写是否诉讼">
+								<select class="easyui-combobox" editable="false"  name="isDirectAction" data-options="" missingMessage="请填写是否诉讼">
 		                    		<option value="1" selected="selected">&ensp;&ensp;是&ensp;&ensp;</option>
 		                    		<option value="2">&ensp;&ensp;否&ensp;&ensp;</option>
 		                   		</select>
@@ -340,7 +340,7 @@
 							</div>
 							<div class="fitem">
 								<label>一审主办律师</label>
-								<input class="easyui-combobox" name="lawyer" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写一审主办律师">
+								<input class="easyui-combobox" editable="false"  name="lawyer" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写一审主办律师">
 							</div>
 							<div class="fitem">
 								<label>提交立案材料日期</label>
@@ -348,7 +348,7 @@
 							</div>
 							<div class="fitem">
 								<label>是否诉前调解</label>
-								<select class="easyui-combobox" name="isPreMediation" data-options="" missingMessage="请填写是否诉前调解">
+								<select class="easyui-combobox" editable="false"  name="isPreMediation" data-options="" missingMessage="请填写是否诉前调解">
 		                    		<option value="1">&ensp;&ensp;是&ensp;&ensp;</option>
 		                    		<option value="2" selected="selected">&ensp;&ensp;否&ensp;&ensp;</option>
 		                   		</select>
@@ -359,7 +359,7 @@
 							</div>
 							<div class="fitem">
 								<label>是否诉中调解</label>
-								<select class="easyui-combobox" name="isActionMediation" data-options="" missingMessage="请填写是否诉中调解">
+								<select class="easyui-combobox" editable="false"  name="isActionMediation" data-options="" missingMessage="请填写是否诉中调解">
 		                    		<option value="1">&ensp;&ensp;是&ensp;&ensp;</option>
 		                    		<option value="2" selected="selected">&ensp;&ensp;否&ensp;&ensp;</option>
 		                   		</select>
@@ -410,7 +410,7 @@
 							</div>
 							<div class="fitem">
 								<label>是否致歉</label>
-								<select class="easyui-combobox" name="isApology" data-options="" missingMessage="请填写是否致歉">
+								<select class="easyui-combobox" editable="false"  name="isApology" data-options="" missingMessage="请填写是否致歉">
 		                    		<option value="1">&ensp;&ensp;是&ensp;&ensp;</option>
 		                    		<option value="2" selected="selected">&ensp;&ensp;否&ensp;&ensp;</option>
 		                   		</select>
@@ -433,7 +433,7 @@
 							</div>
 							<div class="fitem">
 								<label>是否结案</label>
-								<select class="easyui-combobox" name="isClose" data-options="" missingMessage="请填写是否结案">
+								<select class="easyui-combobox" editable="false"  name="isClose" data-options="" missingMessage="请填写是否结案">
 		                    		<option value="1" selected="selected">&ensp;&ensp;是&ensp;&ensp;</option>
 		                    		<option value="2">&ensp;&ensp;否&ensp;&ensp;</option>
 		                   		</select>
@@ -444,7 +444,7 @@
 							</div>
 							<div class="fitem">
 								<label>是否上诉</label>
-								<select class="easyui-combobox" name="isAppeal" data-options="" missingMessage="请填写是否上诉">
+								<select class="easyui-combobox" editable="false"  name="isAppeal" data-options="" missingMessage="请填写是否上诉">
 		                    		<option value="1">&ensp;&ensp;是&ensp;&ensp;</option>
 		                    		<option value="2" selected="selected">&ensp;&ensp;否&ensp;&ensp;</option>
 		                   		</select>
@@ -455,7 +455,7 @@
 							</div>
 							<div class="fitem">
 								<label>是否需要执行</label>
-								<select class="easyui-combobox" name="isCarryOut" data-options="" missingMessage="请填写是否需要执行">
+								<select class="easyui-combobox" editable="false"  name="isCarryOut" data-options="" missingMessage="请填写是否需要执行">
 		                    		<option value="1">&ensp;&ensp;是&ensp;&ensp;</option>
 		                    		<option value="2" selected="selected">&ensp;&ensp;否&ensp;&ensp;</option>
 		                   		</select>
@@ -490,7 +490,7 @@
 							
 							<div class="fitem">
 								<label>二审主办律师</label>
-								<input class="easyui-combobox" name="lawyer" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写二审主办律师">
+								<input class="easyui-combobox" editable="false"  name="lawyer" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写二审主办律师">
 							</div>
 							<div class="fitem">
 								<label>二审开庭日期</label>
@@ -510,7 +510,7 @@
 							</div>
 							<div class="fitem">
 								<label>是否致歉</label>
-								<select class="easyui-combobox" name="isApology" data-options="" missingMessage="请填写是否致歉">
+								<select class="easyui-combobox" editable="false"  name="isApology" data-options="" missingMessage="请填写是否致歉">
 		                    		<option value="1">&ensp;&ensp;是&ensp;&ensp;</option>
 		                    		<option value="2" selected="selected">&ensp;&ensp;否&ensp;&ensp;</option>
 		                   		</select>
@@ -533,7 +533,7 @@
 							</div>
 							<div class="fitem">
 								<label>是否结案</label>
-								<select class="easyui-combobox" name="isClose" data-options="" missingMessage="请填写是否结案">
+								<select class="easyui-combobox" editable="false"  name="isClose" data-options="" missingMessage="请填写是否结案">
 		                    		<option value="1" selected="selected">&ensp;&ensp;是&ensp;&ensp;</option>
 		                    		<option value="2">&ensp;&ensp;否&ensp;&ensp;</option>
 		                   		</select>
@@ -544,7 +544,7 @@
 							</div>
 							<div class="fitem">
 								<label>是否需要执行</label>
-								<select class="easyui-combobox" name="isCarryOut" data-options="" missingMessage="是否需要执行">
+								<select class="easyui-combobox" editable="false"  name="isCarryOut" data-options="" missingMessage="是否需要执行">
 		                    		<option value="1">&ensp;&ensp;是&ensp;&ensp;</option>
 		                    		<option value="2" selected="selected">&ensp;&ensp;否&ensp;&ensp;</option>
 		                   		</select>
@@ -579,7 +579,7 @@
 							
 							<div class="fitem">
 								<label>执行主办律师</label>
-								<input class="easyui-combobox" name="lawyer" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写执行主办律师">
+								<input class="easyui-combobox" editable="false"  name="lawyer" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写执行主办律师">
 							</div>
 							<div class="fitem">
 								<label>执行申请日期</label>
@@ -607,14 +607,14 @@
 							</div>
 							<div class="fitem">
 								<label>是否执行和解</label>
-								<select class="easyui-combobox" name="isReconcile" data-options="" missingMessage="是否执行和解">
+								<select class="easyui-combobox" editable="false"  name="isReconcile" data-options="" missingMessage="是否执行和解">
 		                    		<option value="1">&ensp;&ensp;是&ensp;&ensp;</option>
 		                    		<option value="2" selected="selected">&ensp;&ensp;否&ensp;&ensp;</option>
 		                   		</select>
 							</div>
 							<div class="fitem">
 								<label>是否结案</label>
-								<select class="easyui-combobox" name="isClose" data-options="" missingMessage="是否结案">
+								<select class="easyui-combobox" editable="false"  name="isClose" data-options="" missingMessage="是否结案">
 		                    		<option value="1">&ensp;&ensp;是&ensp;&ensp;</option>
 		                    		<option value="2" selected="selected">&ensp;&ensp;否&ensp;&ensp;</option>
 		                   		</select>
