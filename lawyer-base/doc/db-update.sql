@@ -1,3 +1,98 @@
+-- 2020-05-19
+CREATE OR REPLACE case_m_info AS
+select
+    cap.src AS cp_src,
+    cap.supply AS cp_supply,
+    cap.apply_date AS cp_apply_date,
+    cap.applicant AS cp_applicant,
+    cap.forensics AS cp_forensics,
+    cap.violate_type AS cp_violate_type,
+    cap.violate_desc AS cp_violate_desc,
+    cap.action_date AS cp_action_date,
+    cap.litigant_ac_date AS cp_litigant_ac_date,
+    cap.action_img AS cp_action_img,
+    cap.litigant_ac_img AS cp_litigant_ac_img,
+    cap.is_direct_action AS cp_is_direct_action,
+    m.status AS case_status,
+    m.del_flag AS case_del_flag,
+    m.org AS case_org,
+    m.created_by AS case_created_by,
+    m.created_time AS case_created_time,
+    m.updated_by AS case_updated_by,
+    m.updated_time AS case_updated_time,
+    m.id AS id,
+    m.litigant AS case_litigant,
+    m.defendant_name AS case_defendant_name,
+    m.defendant_reg_capital AS case_defendant_reg_capital,
+    m.defendant_area AS case_defendant_area,
+    cpre.letter AS pr_letter,
+    cpre.letteror AS pr_letteror,
+    cpre.send_date AS pr_send_date,
+    cpre.delivery_date AS pr_delivery_date,
+    cpre.is_close AS pr_is_close,
+    cpre.is_direct_action AS pr_is_direct_action,
+    cfir.firstor AS fir_firstor,
+    cfir.lawyer AS fir_lawyer,
+    cfir.submit_date AS fir_submit_date,
+    cfir.establish_date AS fir_establish_date,
+    cfir.litigation_costs AS fir_litigation_costs,
+    cfir.announcement_costs AS fir_announcement_costs,
+    cfir.notary_costs AS fir_notary_costs,
+    cfir.other_costs AS fir_other_costs,
+    cfir.adjudication_court AS fir_adjudication_court,
+    cfir.judge AS fir_judge,
+    cfir.judge_contact AS fir_judge_contact,
+    cfir.f_court_date AS fir_f_court_date,
+    cfir.f_verdict_date AS fir_f_verdict_date,
+    cfir.f_verdict_receive_date AS fir_f_verdict_receive_date,
+    cfir.is_apology AS fir_is_apology,
+    cfir.defendant_compensation_total AS fir_defendant_compensation_total,
+    cfir.defendant_expenses AS fir_defendant_expenses,
+    cfir.plaintiff_costs AS fir_plaintiff_costs,
+    cfir.defendant_costs AS fir_defendant_costs,
+    cfir.is_close AS fir_is_close,
+    cfir.appeal_date AS fir_appeal_date,
+    cfir.is_pre_mediation AS fir_is_pre_mediation,
+    cfir.is_action_mediation AS fir_is_action_mediation,
+    cfir.mediation_date AS fir_mediation_date,
+    cfir.is_appeal AS fir_is_appeal,
+    cfir.appellant AS fir_appellant,
+    cfir.is_carry_out AS fir_is_carry_out,
+    csec.lawyer AS two_lawyer,
+    csec.s_court_date AS two_s_court_date,
+    csec.judge AS two_judge,
+    csec.judge_contact AS two_judge_contact,
+    csec.s_judgment_effective_date AS two_s_judgment_effective_date,
+    csec.is_apology AS two_is_apology,
+    csec.defendant_compensation_total AS two_defendant_compensation_total,
+    csec.defendant_expenses AS two_defendant_expenses,
+    csec.plaintiff_costs AS two_plaintiff_costs,
+    csec.defendant_costs AS two_defendant_costs,
+    csec.is_close AS two_is_close,
+    csec.execution_deadline AS two_execution_deadline,
+    csec.is_carry_out AS two_is_carry_out,
+    cout.lawyer AS out_lawyer,
+    cout.app_date AS out_app_date,
+    cout.app_total AS out_app_total,
+    cout.judge AS out_judge,
+    cout.judge_contact AS out_judge_contact,
+    cout.actual_total AS out_actual_total,
+    cout.f_collection_subject AS out_f_collection_subject,
+    cout.is_reconcile AS out_is_reconcile,
+    cout.is_close AS out_is_close
+from
+    (((((lawyerdb.case_info m
+left join lawyerdb.case_apply cap on
+    (m.id = cap.case_id))
+left join lawyerdb.case_pre_litigation cpre on
+    (m.id = cpre.case_id))
+left join lawyerdb.case_first_instance cfir on
+    (m.id = cfir.case_id))
+left join lawyerdb.case_second_instance csec on
+    (m.id = csec.case_id))
+left join lawyerdb.case_carry_out cout on
+    (m.id = cout.case_id))
+
 -- 2020-05-13 update
 alter table simple_flow add file_ack_img varchar(1024)    comment '文件审核截图';
 alter table simple_flow add biz_ack_img varchar(1024)    comment '业务确认截图';
