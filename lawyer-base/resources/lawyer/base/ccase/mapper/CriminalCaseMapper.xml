@@ -24,6 +24,9 @@
 	<result column="action_stage" property="actionStage" jdbcType="VARCHAR"/>
 	<result column="judgment_date" property="judgmentDate" jdbcType="DATE"/>
 	<result column="is_close" property="isClose" jdbcType="VARCHAR"/>
+	
+	<result column="supply_name" property="supplyName" jdbcType="VARCHAR"/>
+	<result column="lawyer_name" property="lawyerName" jdbcType="VARCHAR"/>
 </resultMap>
        
 <!-- criminal_case table all fields -->
@@ -205,9 +208,9 @@
   	
 <!-- 查询刑事案件信息表列表 -->
 <select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
-
-	select 
-	<include refid="Base_Column_List"/>
+	select <include refid="Base_Column_List"/>
+	,(select nickName from sys_user sut where sut.id=criminal_case.supply) as supply_name 
+	,(select nickName from sys_user sut where sut.id=criminal_case.lawyer) as lawyer_name 
 	from criminal_case 
 	<include refid="Example_Where_Clause"/>
 	

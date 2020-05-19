@@ -32,6 +32,9 @@
 	<result column="op_court_nums" property="opCourtNums" jdbcType="VARCHAR"/>
 	<result column="op_court_date" property="opCourtDate" jdbcType="DATE"/>
 	<result column="clos_type" property="closType" jdbcType="VARCHAR"/>
+	
+	<result column="supply_name" property="supplyName" jdbcType="VARCHAR"/>
+	<result column="lawyer_name" property="lawyerName" jdbcType="VARCHAR"/>
 </resultMap>
        
 <!-- arbitration_case table all fields -->
@@ -269,9 +272,9 @@
   	
 <!-- 查询仲裁案件信息表列表 -->
 <select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
-
-	select 
-	<include refid="Base_Column_List"/>
+	select <include refid="Base_Column_List"/>
+	,(select nickName from sys_user sut where sut.id=arbitration_case.supply) as supply_name 
+	,(select nickName from sys_user sut where sut.id=arbitration_case.lawyer) as lawyer_name 
 	from arbitration_case 
 	<include refid="Example_Where_Clause"/>
 	

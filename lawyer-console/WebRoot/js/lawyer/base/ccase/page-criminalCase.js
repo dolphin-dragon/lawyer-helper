@@ -70,7 +70,7 @@ otter.criminalCase = function(){
 						},
 					{field:'supply',title:'案源人',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.supply;
+								return row.supplyName;
 							}
 						},
 					{field:'commission_date',title:'签署委托日期',align:'center',sortable:true,
@@ -85,7 +85,7 @@ otter.criminalCase = function(){
 						},
 					{field:'lawyer',title:'代理律师',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.lawyer;
+								return row.lawyerName;
 							}
 						},
 					{field:'litigant',title:'当事人',align:'center',sortable:true,
@@ -108,15 +108,36 @@ otter.criminalCase = function(){
 								return row.judgmentDate;
 							}
 						},
-					{field:'is_close',title:'是否结案',align:'center',sortable:true,
+					{field:'isClose',title:'是否结案',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.isClose;
+								if(value == 1){
+									return "已结案";
+								}
+								if(value == 0){
+									return "未结案";
+								}
+								return "";
 							}
 						},
-					{field:'status',title:'状态',align:'center',sortable:true,
-						formatter:function(value,row,index){
-							return row.status;
-						}
+					{field:'delFlag',title:'删除标记',align:'center',sortable:false,
+							styler:function(value,row,index){
+								if(value == 1){
+								  return 'color:red;';  
+								}
+								if(value == 0){
+									return "color:blue;";
+								}
+								return 'color:blue;';  
+							},
+							formatter:function(value,row,index){
+								if(value == 1){
+									return "已删除";
+								}
+								if(value == 0){
+									return "未删除";
+								}
+								return "未删除";
+							}
 					},
 					]]
 			}
