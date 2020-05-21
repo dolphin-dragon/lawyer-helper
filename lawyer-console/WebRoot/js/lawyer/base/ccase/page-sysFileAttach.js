@@ -5,11 +5,10 @@ otter.sysFileAttach = function(){
 		config:{
 			event:{
 				add:function(){
-					$('#typeIds_combobox').combobox('reload');
+					//$("#uploadAttach").click();
 					_box.handler.add();
 				},
 				edit:function(){
-					$('#typeIds_combobox').combobox('reload');
 					_box.handler.edit();
 				}
 			},
@@ -33,29 +32,34 @@ otter.sysFileAttach = function(){
 								return row.filepath;
 							}
 						},
+					{field:'note',title:'说明',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.note;
+						}
+					},
 					{field:'ext',title:'扩展名',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.ext;
 							}
 						},
-					{field:'filetype',title:'fileType',align:'center',sortable:true,
+					{field:'filetype',title:'文件类型',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.filetype;
 							}
 						},
-					{field:'note',title:'说明',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.note;
-							}
-						},
-					{field:'created_time',title:'创建时间',align:'center',sortable:true,
+					{field:'size',title:'文件大小',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.size;
+						}
+					},
+					{field:'createdTime',title:'创建时间',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.createdTime;
 							}
 						},
-					{field:'created_by',title:'上传者',align:'center',sortable:true,
+					{field:'createdBy',title:'上传者',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								return row.createdBy;
+								return row.createdName;
 							}
 						},
 					]]

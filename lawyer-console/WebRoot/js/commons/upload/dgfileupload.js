@@ -41,9 +41,23 @@ var html =
 		if(ldata.code == 1){
     		$("#savePath").val(ldata.savePath);
     		$("#webUrl").val(ldata.webUrl);
+    		var f = document.getElementById("upt_file").files;  
+    		//名称  
+    		var fname = f[0].name;  
+    		//大小 字节  
+    		var fsize = f[0].size;  
+    		//类型  
+    		var ftype = f[0].type; 
+    		//文件扩展名
+    		var ext=(fname.substr(fname.lastIndexOf("."))).toLowerCase()
+    		
     		obj = {
     			path: ldata.savePath,
-    			url: ldata.webUrl
+    			url: ldata.webUrl,
+    			fname: fname,
+    			fsize: fsize,
+    			ftype: ftype,
+    			fext : ext
     		}
     	}else{
     		alert(ldata.msg);

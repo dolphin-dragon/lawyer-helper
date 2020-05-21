@@ -166,7 +166,7 @@ otter.simpleFlow = function(){
 				],
 	   			columns:[[
 					{field:'id',checkbox:true},
-					{field:'tid',title:'流程编号',align:'center',sortable:true,
+					{field:'tid',title:'流程编号',align:'center',sortable:false,
 						formatter:function(value,row,index){
 							return row.id;
 						}

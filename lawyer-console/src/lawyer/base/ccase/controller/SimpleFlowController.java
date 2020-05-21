@@ -6,20 +6,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.base.web.BaseAction;
-import com.otter.entity.SysUser;
 import com.base.util.HtmlUtil;
 import com.base.util.SessionUtilsExt;
+import com.base.web.BaseAction;
+import com.otter.entity.SysUser;
 
 import lawyer.base.ccase.entity.SimpleFlow;
 import lawyer.base.ccase.page.SimpleFlowPage;
@@ -73,6 +73,11 @@ public class SimpleFlowController extends BaseAction{
 		if(!SessionUtilsExt.isAdmin(request) && null != user) {
 			page.setCreatedBy(user.getId()+"");
 		}
+		if(StringUtils.isBlank(page.getPager().getOrderField())) {
+			page.setSort("id");
+			page.getPager().setOrderDirection(false);
+		}
+	
 		dataList = simpleFlowService.queryByList(page);
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
@@ -212,6 +217,10 @@ public class SimpleFlowController extends BaseAction{
 		List<SimpleFlow> dataList = null;
 		if(!SessionUtilsExt.isAdmin(request) && null != user) {
 			page.setApprover(user.getId()+"");
+		}
+		if(StringUtils.isBlank(page.getPager().getOrderField())) {
+			page.setSort("id");
+			page.getPager().setOrderDirection(false);
 		}
 		dataList = simpleFlowService.queryByList(page);
 		//设置页面数据

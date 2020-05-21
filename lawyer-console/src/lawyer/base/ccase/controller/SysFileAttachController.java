@@ -1,6 +1,7 @@
 package lawyer.base.ccase.controller;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.base.web.BaseAction;
+import com.otter.entity.SysUser;
 import com.base.util.HtmlUtil;
+import com.base.util.SessionUtilsExt;
+
 import lawyer.base.ccase.entity.SysFileAttach;
 import lawyer.base.ccase.page.SysFileAttachPage;
 import lawyer.base.ccase.service.SysFileAttachService;
@@ -84,10 +88,12 @@ public class SysFileAttachController extends BaseAction{
 	@RequestMapping("/save")
 	public void save(SysFileAttach entity,Integer[] typeIds,HttpServletResponse response) throws Exception{
 		log.info("/sysFileAttach/save entity :"+entity+" typeIds:"+Arrays.toString(typeIds)+" response:"+response);
-		
-		//Map<String,Object>  context = new HashMap<String,Object>();
+
+		SysUser user = SessionUtilsExt.getUser(request);
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
-				sysFileAttachService.add(entity);
+			entity.setCreatedBy(null!=user?user.getId()+"":"");
+			entity.setCreatedTime(new Date());
+			sysFileAttachService.add(entity);
 		}else{
 			sysFileAttachService.update(entity);
 		}
