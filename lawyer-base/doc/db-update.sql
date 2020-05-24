@@ -1,3 +1,6 @@
+-- 2020-05-24
+ALTER TABLE sys_file_attach ADD url varchar(1024) NULL COMMENT 'url请求地址';
+
 -- 2020-05-19
 CREATE OR REPLACE case_m_info AS
 select
@@ -125,6 +128,7 @@ CREATE TABLE sys_file_attach (
   filePath varchar(1024) NOT NULL COMMENT '文件路径',
   ext varchar(32) DEFAULT NULL COMMENT '扩展名',
   fileType varchar(32) DEFAULT NULL,
+  fsize varchar(32) DEFAULT NULL COMMENT '文件大小',
   note varchar(1024) DEFAULT NULL COMMENT '说明',
   created_time datetime NOT NULL COMMENT '创建时间',
   created_by varchar(32) NOT NULL COMMENT '上传者',

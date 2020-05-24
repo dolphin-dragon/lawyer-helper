@@ -13,6 +13,9 @@ otter.simpleFlow = function(){
 					}
 				});
 			},
+			checkSelectOne : function(rows){//检查grid是否有勾选的行, 有返回 true,没有返回true
+				return _box.utils.checkSelectOne(rows);
+			},
 		config:{
 			event:{
 				add:function(){
@@ -49,7 +52,9 @@ otter.simpleFlow = function(){
 							_box.handler.refresh();
 						}
 					});
-					_box.handler.add();
+					_box.handler.add(function(){
+						$('#attachs-list').datagrid('loadData', { total: 0, rows: [] });
+					});
 				},
 				edit:function(){
 					var selected = _box.utils.getCheckedRows();
@@ -91,8 +96,11 @@ otter.simpleFlow = function(){
 		                $("#ck_bizAckImg").attr('src','');
 		                $("#ck_fileAckImg").css("opacity","0");
 		                $("#ck_bizAckImg").css("opacity","0");
+		                
+		                $("#v_attachs").empty();
+		                $('#attachs-list').datagrid('loadData', { total: 0, rows: [] });
 		                    
-						_box.handler.edit(function(){
+						_box.handler.edit(function(result){
 							var acimg = $('input[name="fileAckImg"]',$('#editForm')).val();
 							if(''!=acimg){
 								$("#ck_fileAckImg").attr('src',acimg);
@@ -104,6 +112,12 @@ otter.simpleFlow = function(){
 								$("#ck_bizAckImg").attr('src',liacimg);
 				                $("#ck_bizAckImg").css("opacity","1");
 							}
+							
+							console.log("attachs :"+result.data.attachs)
+							if(null != result.data.attachs){
+								attachs_dataGrid.datagrid('loadData',result.data.attachs);
+							}
+							
 						});
 					}
 				},
@@ -116,7 +130,26 @@ otter.simpleFlow = function(){
 						}
 						_box.handler.remove();
 					}
-				}
+				},
+				save: function(callback){
+					if(_box.form.edit.form('validate')){
+						$('<input />').attr('type','hidden').attr('name','id').attr('value','department').appendTo('#editForm');
+						
+						var rows = $('#attachs-list').datagrid("getRows");
+						var t=0;
+				    	$.each(rows,function(i,record){
+				    		var str = '{';
+				    		str += '"id":'+ record['id'];
+				    	    str +='}';
+				    		$('<input />').attr('type','hidden').attr('name','attachs['+t+'].id').attr('value',record['id']).appendTo('#v_attachs');
+				    		t++;
+				    	});
+				    	
+						_box.handler.save(function(){
+							$("#v_attachs").empty();
+						});
+					 }
+				},
 			},
   			dataGrid:{
   				title:'简单流程列表',
@@ -259,4 +292,69 @@ otter.simpleFlow = function(){
 
 $(function(){
 	otter.simpleFlow.init();
+	
+	//附件处理
+	attachs_dataGrid = $('#attachs-list').datagrid({
+			url:'',
+			fit:true,
+			fitColumns:true,
+			width:200,
+			height:160,
+			toolbar:[
+			{id:'btnadd',text:'添加附件',btnType:'add',iconCls:'icon-edit',handler:function(){
+				commonAjaxFileUploadDG(function(data) {
+					//data.url data.path
+					//console.log("add attachs :"+JSON.stringify(data));
+					
+					var url =  urls['msUrl'] + '/sysFileAttach/ajaxSave.do'
+					var option = {'filename':data.fname,
+								  'filepath':data.path,
+								  'filetype':data.ftype,
+								  'ext':data.fext,
+								  'size':data.fsize,
+								  'url':data.url
+								  };
+
+					 otter.ajaxJson(url,option,function(result){
+						// console.log("ajax save attachs: "+JSON.stringify(result))
+						// console.log("ajax save attachs id : "+result.data.id)
+							$('#attachs-list').datagrid('insertRow',{
+							    index: 0,   // 索引从0开始
+							    row: {
+							        id: result.data.id,
+							        filename: data.fname,
+							        filepath: data.path,
+							        filetype: data.ftype,
+							        url: data.url,
+							        ext: data.fext,
+							        size: data.fsize,
+							    }
+							});
+					 });
+				})
+			}},
+			{id:'btndelete',text:'删除附件',btnType:'remove',iconCls:'icon-remove',handler:function(){
+				var row = attachs_dataGrid.datagrid('getChecked');	
+				if (otter.simpleFlow.checkSelectOne(row)){
+					 var index = attachs_dataGrid.datagrid("getRowIndex",row[0]);  
+					 attachs_dataGrid.datagrid("deleteRow",index);  
+				}
+			}}
+		],
+			columns:[[
+				{field:'id',checkbox:true},
+			{field:'filename',title:'附件名称',align:'center',sortable:false,width:200,
+					formatter:function(value,row,index){
+						var html ="<a href='"+row.url+"' target='_blank'>"+row.filename+"</a>";
+						return html;
+						//return row.filename;
+					}
+			},
+			{field:'filepath',hidden:true},
+			{field:'filetype',hidden:true},
+			{field:'ext',hidden:true},
+			{field:'url',hidden:true},
+			{field:'size',hidden:true},
+		]]
+	});
 });

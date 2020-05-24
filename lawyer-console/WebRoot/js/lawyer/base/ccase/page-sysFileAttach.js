@@ -27,11 +27,16 @@ otter.sysFileAttach = function(){
 								return row.filename;
 							}
 						},
-					{field:'filepath',title:'文件路径',align:'center',sortable:true,
+					{field:'filepath',title:'存储路径',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.filepath;
 							}
 						},
+					{field:'url',title:'请求路径',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return row.url;
+						}
+					},
 					{field:'note',title:'说明',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.note;

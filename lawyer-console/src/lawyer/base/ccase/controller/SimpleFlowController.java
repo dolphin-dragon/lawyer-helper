@@ -1,5 +1,6 @@
 package lawyer.base.ccase.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -22,7 +23,11 @@ import com.base.web.BaseAction;
 import com.otter.entity.SysUser;
 
 import lawyer.base.ccase.entity.SimpleFlow;
+import lawyer.base.ccase.entity.SimpleFlowAttach;
+import lawyer.base.ccase.entity.SysFileAttach;
+import lawyer.base.ccase.page.SimpleFlowAttachPage;
 import lawyer.base.ccase.page.SimpleFlowPage;
+import lawyer.base.ccase.service.SimpleFlowAttachService;
 import lawyer.base.ccase.service.SimpleFlowService;
  
 /**
@@ -40,6 +45,8 @@ public class SimpleFlowController extends BaseAction{
 	// Servrice start
 	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
 	private SimpleFlowService<SimpleFlow> simpleFlowService; 
+	@Autowired(required=false) //自动注入，不需要生成set方法了，required=false表示没有实现类，也不会报错。
+	private SimpleFlowAttachService<SimpleFlowAttach> simpleFlowAttachService; 
 	
 	/**
 	 * 说明：
@@ -119,6 +126,21 @@ public class SimpleFlowController extends BaseAction{
 			dbentity.setStatus("0");
 			simpleFlowService.update(dbentity);
 		}
+		
+		//删除附件表对应关系
+		simpleFlowAttachService.delete(entity.getId());
+		List<SysFileAttach> attachs = entity.getAttachs();
+		if(null != attachs) {
+			//根据附件列表进行新关系保存
+			SimpleFlowAttach tmp = null;
+			for(SysFileAttach at:attachs) {
+				tmp = new SimpleFlowAttach();
+				tmp.setSfileAttachId(at.getId());
+				tmp.setSflowId(entity.getId());
+				simpleFlowAttachService.add(tmp);
+			}
+		}
+		
 		log.info("/simpleFlow/save sendSuccessMessage 保存成功~");
 		sendSuccessMessage(response, "保存成功~");
 	}
@@ -139,6 +161,25 @@ public class SimpleFlowController extends BaseAction{
 			sendFailureMessage(response, "没有找到对应的记录!");
 			return;
 		}
+		
+		List<SysFileAttach> attachs = new ArrayList<SysFileAttach>();//entity.getAttachs();
+		SimpleFlowAttachPage page = new SimpleFlowAttachPage();
+		page.setSflowId(entity.getId());
+		List<SimpleFlowAttach> dataList = simpleFlowAttachService.queryByList(page);
+		SysFileAttach tmp = null;
+		for(SimpleFlowAttach sfat : dataList) {
+			tmp = new SysFileAttach();
+			tmp.setId(sfat.getSfileAttachId());
+			tmp.setFilename(sfat.getFilename());
+			tmp.setExt(sfat.getExt());
+			tmp.setFilepath(sfat.getFilepath());;
+			tmp.setFiletype(sfat.getFiletype());
+			tmp.setSize(sfat.getSize());
+			tmp.setUrl(sfat.getUrl());
+			attachs.add(tmp);
+		}
+		entity.setAttachs(attachs);
+		
 		context.put(SUCCESS, true);
 		context.put("data", entity);
 		
@@ -186,6 +227,20 @@ public class SimpleFlowController extends BaseAction{
 			dbentity.setStatus("1");
 			
 			simpleFlowService.update(dbentity);
+		}
+		
+		//删除附件表对应关系
+		simpleFlowAttachService.delete(entity.getId());
+		List<SysFileAttach> attachs = entity.getAttachs();
+		if (null != attachs) {
+			// 根据附件列表进行新关系保存
+			SimpleFlowAttach tmp = null;
+			for (SysFileAttach at : attachs) {
+				tmp = new SimpleFlowAttach();
+				tmp.setSfileAttachId(at.getId());
+				tmp.setSflowId(entity.getId());
+				simpleFlowAttachService.add(tmp);
+			}
 		}
 		log.info("/simpleFlow/save sendSuccessMessage 保存成功~");
 		sendSuccessMessage(response, "保存成功~");

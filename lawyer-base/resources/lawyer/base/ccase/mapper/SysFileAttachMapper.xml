@@ -12,6 +12,7 @@
 	<result column="ext" property="ext" jdbcType="VARCHAR"/>
 	<result column="fsize" property="size" jdbcType="VARCHAR"/>
 	<result column="filetype" property="filetype" jdbcType="VARCHAR"/>
+	<result column="url" property="url" jdbcType="VARCHAR"/>
 	<result column="note" property="note" jdbcType="VARCHAR"/>
 	<result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
 	<result column="created_by" property="createdBy" jdbcType="VARCHAR"/>
@@ -21,7 +22,7 @@
        
 <!-- sys_file_attach table all fields -->
 <sql id="Base_Column_List" >
-	 id,filename,filepath,ext,fsize,filetype,note,created_time,created_by
+	 id,filename,filepath,ext,fsize,filetype,url,note,created_time,created_by
 </sql>
 
 <!-- 查询条件 -->
@@ -52,6 +53,10 @@
 	    and filetype =  #{filetype}
 	</if>
 	<!--  -->
+		 	<if test="url != null and url != ''" >
+	    and url =  #{url}
+	</if>
+	<!--  -->
 		 	<if test="note != null and note != ''" >
 	    and note =  #{note}
 	</if>
@@ -71,13 +76,13 @@
 <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey>
-  insert into sys_file_attach(id,filename,filepath,ext,fsize,filetype,note,created_time,created_by)
- values(#{id,jdbcType=INTEGER},#{filename,jdbcType=VARCHAR},#{filepath,jdbcType=VARCHAR},#{ext,jdbcType=VARCHAR},#{size,jdbcType=VARCHAR},#{filetype,jdbcType=VARCHAR},#{note,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{createdBy,jdbcType=VARCHAR})
+  insert into sys_file_attach(id,filename,filepath,ext,fsize,filetype,url,note,created_time,created_by)
+ values(#{id,jdbcType=INTEGER},#{filename,jdbcType=VARCHAR},#{filepath,jdbcType=VARCHAR},#{ext,jdbcType=VARCHAR},#{size,jdbcType=VARCHAR},#{filetype,jdbcType=VARCHAR},#{url,jdbcType=VARCHAR},#{note,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{createdBy,jdbcType=VARCHAR})
 </insert>
 
 <!-- 根据id，修改记录-->
  <update id="update" parameterType="Object" >
-  update sys_file_attach set filename=#{filename,jdbcType=VARCHAR},filepath=#{filepath,jdbcType=VARCHAR},ext=#{ext,jdbcType=VARCHAR},fsize=#{size,jdbcType=VARCHAR},filetype=#{filetype,jdbcType=VARCHAR},note=#{note,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},created_by=#{createdBy,jdbcType=VARCHAR} where id=#{id,jdbcType=INTEGER}
+  update sys_file_attach set filename=#{filename,jdbcType=VARCHAR},filepath=#{filepath,jdbcType=VARCHAR},ext=#{ext,jdbcType=VARCHAR},fsize=#{size,jdbcType=VARCHAR},filetype=#{filetype,jdbcType=VARCHAR},url=#{url,jdbcType=VARCHAR},note=#{note,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},created_by=#{createdBy,jdbcType=VARCHAR} where id=#{id,jdbcType=INTEGER}
  </update>
  
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -98,6 +103,9 @@
 	</if>
 	<if test="filetype != null  ">
 		filetype=#{filetype,jdbcType=VARCHAR},
+	</if>
+	<if test="url != null  ">
+		url=#{url,jdbcType=VARCHAR},
 	</if>
 	<if test="note != null  ">
 		note=#{note,jdbcType=VARCHAR},
@@ -145,6 +153,4 @@
 
 </select>
 <!--*********************************** generation code  end ***********************************-->
-
-	
 </mapper>

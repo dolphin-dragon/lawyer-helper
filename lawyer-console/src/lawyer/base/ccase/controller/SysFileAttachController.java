@@ -141,4 +141,29 @@ public class SysFileAttachController extends BaseAction{
 		sendSuccessMessage(response, "删除成功");
 	}
 	/*********************************** generation code  end ***********************************/
+	@RequestMapping("/ajaxSave")
+	public void ajaxSave(SysFileAttach entity,HttpServletResponse response) throws Exception{
+		log.info("/sysFileAttach/ajaxSave entity :"+entity+" response:"+response);
+		int status = 0;
+		try {
+			SysUser user = SessionUtilsExt.getUser(request);
+			if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
+				entity.setCreatedBy(null!=user?user.getId()+"":"");
+				entity.setCreatedTime(new Date());
+				sysFileAttachService.add(entity);
+			}else{
+				sysFileAttachService.update(entity);
+			}
+			status = 1;
+		} catch (Exception e) {
+			status = -1;
+			log.error(e,e);
+		}
+		Map<String,Object>  context = new HashMap<String,Object>();
+		context.put(SUCCESS, true);
+		context.put("status", status);
+		context.put("data", entity);
+		log.info("/sysFileAttach/ajaxSave sendSuccessMessage 保存成功~");
+		HtmlUtil.writerJson(response, context);
+	}
 }

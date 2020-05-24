@@ -16,6 +16,8 @@ public class SimpleFlow extends BaseEntity {
 	private java.lang.String fileAckImg;
 	private java.lang.String bizAckImg;
 	private java.lang.String ftypeName;
+	
+	private java.util.List<SysFileAttach> attachs;
 
 	public java.lang.Integer getId() {	    return this.id;	}	public void setId(java.lang.Integer id) {	    this.id=id;	}	public java.lang.String getTitle() {	    return this.title;	}	public void setTitle(java.lang.String title) {	    this.title=title;	}	public java.lang.String getNote() {	    return this.note;	}	public void setNote(java.lang.String note) {	    this.note=note;	}	public java.lang.String getFtype() {	    return this.ftype;	}	public void setFtype(java.lang.String ftype) {	    this.ftype=ftype;	}	public java.util.Date getCreatedTime() {	    return this.createdTime;	}	public void setCreatedTime(java.util.Date createdTime) {	    this.createdTime=createdTime;	}	public java.lang.String getCreatedBy() {	    return this.createdBy;	}	public void setCreatedBy(java.lang.String createdBy) {	    this.createdBy=createdBy;	}	public java.lang.String getDelFlag() {	    return this.delFlag;	}	public void setDelFlag(java.lang.String delFlag) {	    this.delFlag=delFlag;	}	public java.lang.String getStatus() {	    return this.status;	}	public void setStatus(java.lang.String status) {	    this.status=status;	}	public java.lang.String getRemark() {	    return this.remark;	}	public void setRemark(java.lang.String remark) {	    this.remark=remark;	}	public java.lang.String getUpdatedBy() {	    return this.updatedBy;	}	public void setUpdatedBy(java.lang.String updatedBy) {	    this.updatedBy=updatedBy;	}	public java.util.Date getUpdatedTime() {	    return this.updatedTime;	}	public void setUpdatedTime(java.util.Date updatedTime) {	    this.updatedTime=updatedTime;	}	public java.lang.String getApprover() {	    return this.approver;	}	public void setApprover(java.lang.String approver) {	    this.approver=approver;	}
 	public java.lang.String getCreatedName() {
@@ -47,5 +49,11 @@ public class SimpleFlow extends BaseEntity {
 	}
 	public void setFtypeName(java.lang.String ftypeName) {
 		this.ftypeName = ftypeName;
+	}
+	public java.util.List<SysFileAttach> getAttachs() {
+		return attachs;
+	}
+	public void setAttachs(java.util.List<SysFileAttach> attachs) {
+		this.attachs = attachs;
 	}
 }

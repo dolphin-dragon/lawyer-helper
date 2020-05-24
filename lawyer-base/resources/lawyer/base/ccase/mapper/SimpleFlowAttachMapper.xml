@@ -8,11 +8,19 @@
 <resultMap id="BaseResultMap" type="lawyer.base.ccase.entity.SimpleFlowAttach" >
 	<result column="sflow_id" property="sflowId" jdbcType="INTEGER"/>
 	<result column="sfile_attach_id" property="sfileAttachId" jdbcType="INTEGER"/>
+	
+	<result column="filename" property="filename" jdbcType="VARCHAR"/>
+	<result column="filepath" property="filepath" jdbcType="VARCHAR"/>
+	<result column="ext" property="ext" jdbcType="VARCHAR"/>
+	<result column="fsize" property="size" jdbcType="VARCHAR"/>
+	<result column="filetype" property="filetype" jdbcType="VARCHAR"/>
+	<result column="url" property="url" jdbcType="VARCHAR"/>
+	<result column="note" property="note" jdbcType="VARCHAR"/>
 </resultMap>
        
 <!-- simple_flow_attach table all fields -->
 <sql id="Base_Column_List" >
-	 sflow_id,sfile_attach_id
+	 sflow_id,sfile_attach_id,filename,filepath,ext,fsize,filetype,note,url
 </sql>
 
 <!-- 查询条件 -->
@@ -31,9 +39,9 @@
 
 <!-- 插入记录 -->
 <insert id="add" parameterType="Object" >
-<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+<!--   <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
-  </selectKey>
+  </selectKey> -->
   insert into simple_flow_attach(sflow_id,sfile_attach_id)
  values(#{sflowId,jdbcType=INTEGER},#{sfileAttachId,jdbcType=INTEGER})
 </insert>
@@ -55,13 +63,14 @@
 
 <!-- 删除记录 -->
 <delete id="delete" parameterType="Object">
-	delete 	 from simple_flow_attach where sflow_id = #{sflow_id}
+	delete from simple_flow_attach where sflow_id = #{sflowId}
 </delete>
  
 <!-- 根据id查询 简单流程关联附件信息表 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
 	select <include refid="Base_Column_List" /> 
-	 from simple_flow_attach where sflow_id = #{sflow_id}
+	 from (select b.sflow_id,b.sfile_attach_id ,a.fileName ,a.filePath ,a.fileType ,a.fsize ,a.note ,a.ext,a.url from sys_file_attach a,simple_flow_attach b where a.id = b.sfile_attach_id ) as simple_flow_attach  
+	 where sflow_id = #{sflowId}
 </select>
 
 <!-- 简单流程关联附件信息表 列表总数-->
@@ -72,12 +81,10 @@
   	
 <!-- 查询简单流程关联附件信息表列表 -->
 <select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
-
-	select 
-	<include refid="Base_Column_List"/>
-	from simple_flow_attach 
+	select <include refid="Base_Column_List"/>
+	from (select b.sflow_id,b.sfile_attach_id ,a.fileName ,a.filePath ,a.fileType ,a.fsize ,a.note ,a.ext,a.url from sys_file_attach a,simple_flow_attach b where a.id = b.sfile_attach_id ) as simple_flow_attach 
 	<include refid="Example_Where_Clause"/>
-	
+
 	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
       ${pager.orderCondition}
     </if>
@@ -85,9 +92,6 @@
 	<if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
        ${pager.mysqlQueryCondition}
     </if>
-
 </select>
 <!--*********************************** generation code  end ***********************************-->
-
-	
 </mapper>

@@ -55,6 +55,10 @@
 						<textarea name="note" type="text" maxlength="1024" class="easyui-validatebox" placeholder="多被告换行分隔"  data-options="" missingMessage="请填写说明" style="margin: 0px; width: 200px; height: 60px;"></textarea>
 					</div>
 					<div class="fitem hidden">
+						<label>访问地址</label>
+						<input name="url" id="url" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="访问地址">
+					</div>
+					<div class="fitem hidden">
 						<label>创建时间</label>
 						<input name="createdTime" type="text" maxlength="19" class="easyui-datetimebox" data-options="" missingMessage="请填写创建时间">
 					</div>
@@ -81,6 +85,7 @@
 					$("#filetype").val(data.ftype);
 					$("#ext").val(data.fext);
 					$("#size").val(data.fsize);
+					$("#url").val(data.url);
 				})
 			});
 		});

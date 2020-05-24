@@ -5,7 +5,6 @@
    <%@include file="/view/resource.jsp" %>
    	<style type="text/css">
 	.vimg_div {
-		width: 200px;
 		height: 100px;
 		border: #000 solid 0px;
 		margin: 5px auto;
@@ -41,9 +40,9 @@
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="流程信息" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="流程信息" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:460px;height:400px;">  
      	<form id="editForm" class="ui-form" method="post">  
-     		 <input class="hidden" name="id">
+     		 <input class="hidden" name="id" >
      		 <div class="ui-edit">
 		     	  <!--  <div class="ftitle">简单流程信息表</div> -->
 					<div class="fitem">
@@ -66,11 +65,11 @@
 							<input type="button" id="uploadFileAckImgButton" value="上传截图" />
 						</div>
 					</div>
-					<div class="fitem">
-						<div class="vimg_div">
+					<div class="fitem vimg_div">
+						<!-- <div class="vimg_div"> -->
 							<label></label>
-							<img id="ck_fileAckImg" style="width:200px;height:100px;"/>
-						</div>
+							<img id="ck_fileAckImg" class="hidden"/>
+					<!-- 	</div> -->
 					</div>
 					<div class="fitem">
 						<div>
@@ -82,7 +81,7 @@
 					<div class="fitem">
 						<div class="vimg_div">
 							<label></label>
-							<img id="ck_bizAckImg" style="width:200px;height:100px;"/>
+							<img id="ck_bizAckImg" class="hidden" style="width:200px;height:100px;"/>
 						</div>
 					</div>
 					<div class="fitem">
@@ -107,10 +106,6 @@
 						<input name="status" type="text" maxlength="1" class="easyui-validatebox" data-options="" missingMessage="请填写状态（0草稿 1待审批 2审批通过 9驳回）">
 					</div>
 					-->
-					<div class="fitem">
-						<label>备注</label>
-						<textarea name="remark" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写备注" style="margin: 0px; width: 200px; height: 60px;"></textarea>
-					</div>
 					<!-- 
 					<div class="fitem">
 						<label>更新人</label>
@@ -121,6 +116,19 @@
 						<input name="updatedTime" type="text" maxlength="19" class="easyui-datetimebox" data-options="" missingMessage="请填写更新时间">
 					</div>
 					-->
+					<div class="fitem">
+							<label>附件</label>
+							<!-- <input class="hidden" name="attachs" id="attachs"> -->
+							<div style="height:160px; width:200px;padding-left: 100px;">
+								<table id="attachs-list"></table>
+								<div name="v_attachs" id="v_attachs">
+								</div>
+							</div>
+					</div>
+					<div class="fitem">
+						<label>备注</label>
+						<textarea name="remark" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写备注" style="margin: 0px; width: 200px; height: 60px;"></textarea>
+					</div>
   			</div>
      	</form>
   	 </div>
@@ -136,7 +144,9 @@
 					//data.url data.path
 					$("#fileAckImg").val(data.url)
 					$("#ck_fileAckImg").attr('src',data.url);
-					$("#ck_fileAckImg").css("opacity","1");
+					//style="width:200px;height:100px;"
+					$("#ck_fileAckImg").css("opacity","1").css("width","200px").css("height","100px");
+					$("#ck_fileAckImg").show();
 				})
 			});
 
@@ -146,6 +156,7 @@
 					$("#bizAckImg").val(data.url)
 					$("#ck_bizAckImg").attr('src',data.url);
 					$("#ck_bizAckImg").css("opacity","1");
+					$("#ck_bizAckImg").show();
 				})
 			});
 		});
