@@ -74,7 +74,7 @@ public class NoLitigationCaseController extends BaseAction{
 		SysUser user = SessionUtilsExt.getUser(request);
 		if(!SessionUtilsExt.isAdmin(request)) {
 			page.setCreatedBy(user.getId()+"");
-			page.setDelFlag("0");
+			//page.setDelFlag("0");
 		}
 		List<NoLitigationCase> dataList = noLitigationCaseService.queryByList(page);
 		//设置页面数据

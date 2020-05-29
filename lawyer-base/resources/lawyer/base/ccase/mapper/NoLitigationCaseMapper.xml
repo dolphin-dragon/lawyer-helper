@@ -217,14 +217,14 @@
 <select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
 	select <include refid="Base_Column_List" /> 
 	 from (select a.del_flag as cust_del_flag, a.client, a.principal, a.commission_sdate, a.commission_edate, IFNULL(b.billing_model,a.billing_model) as billing_model, IFNULL(b.billing_standard,a.billing_standard) as billing_standard,
-b.status, b.del_flag, b.org, b.created_by, b.created_time, b.updated_by, b.updated_time, b.id, a.id as nolitigation_customer_id,  b.receive_date, b.src, b.work_content, b.party_draft_name, b.contract_party, b.resp_date, b.resp_file_name, b.account_time, b.remark 
+b.status, b.del_flag, b.org, a.created_by, b.created_time, b.updated_by, b.updated_time, b.id, a.id as nolitigation_customer_id,  b.receive_date, b.src, b.work_content, b.party_draft_name, b.contract_party, b.resp_date, b.resp_file_name, b.account_time, b.remark 
 from no_litigation_customer a left join no_litigation_case b  on a.id = b.nolitigation_customer_id) as no_litigation_case where id = #{id}
 </select>
 
 <!-- 非诉业务信息表 列表总数-->
 <select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
 	select count(1) from (select a.del_flag as cust_del_flag, a.client, a.principal, a.commission_sdate, a.commission_edate, IFNULL(b.billing_model,a.billing_model) as billing_model, IFNULL(b.billing_standard,a.billing_standard) as billing_standard,
-b.status, b.del_flag, b.org, b.created_by, b.created_time, b.updated_by, b.updated_time, b.id, a.id as nolitigation_customer_id,  b.receive_date, b.src, b.work_content, b.party_draft_name, b.contract_party, b.resp_date, b.resp_file_name, b.account_time, b.remark 
+b.status, b.del_flag, b.org, a.created_by, b.created_time, b.updated_by, b.updated_time, b.id, a.id as nolitigation_customer_id,  b.receive_date, b.src, b.work_content, b.party_draft_name, b.contract_party, b.resp_date, b.resp_file_name, b.account_time, b.remark 
 from no_litigation_customer a left join no_litigation_case b  on a.id = b.nolitigation_customer_id  ) as no_litigation_case 
 	<include refid="Example_Where_Clause"/>
 </select>
@@ -234,7 +234,7 @@ from no_litigation_customer a left join no_litigation_case b  on a.id = b.noliti
 	select 
 	<include refid="Base_Column_List"/>
 	from (select a.del_flag as cust_del_flag, a.client, a.principal, a.commission_sdate, a.commission_edate, IFNULL(b.billing_model,a.billing_model) as billing_model, IFNULL(b.billing_standard,a.billing_standard) as billing_standard,
-b.status, b.del_flag, b.org, b.created_by, b.created_time, b.updated_by, b.updated_time, b.id, a.id as nolitigation_customer_id,  b.receive_date, b.src, b.work_content, b.party_draft_name, b.contract_party, b.resp_date, b.resp_file_name, b.account_time, b.remark 
+b.status, b.del_flag, b.org, a.created_by, b.created_time, b.updated_by, b.updated_time, b.id, a.id as nolitigation_customer_id,  b.receive_date, b.src, b.work_content, b.party_draft_name, b.contract_party, b.resp_date, b.resp_file_name, b.account_time, b.remark 
 from no_litigation_customer a left join no_litigation_case b  on a.id = b.nolitigation_customer_id ) as no_litigation_case 
 	<include refid="Example_Where_Clause"/>
 	
