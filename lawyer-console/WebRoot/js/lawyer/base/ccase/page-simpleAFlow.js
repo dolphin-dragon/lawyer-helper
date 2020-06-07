@@ -83,8 +83,10 @@ otter.simpleFlow = function(){
 		                $("#ck_bizAckImg").css("opacity","0");
 		                $("#ck_fileAckImg").hide();
 	                	$("#ck_bizAckImg").hide();
-		                
-						_box.handler.edit(function(){
+	                	attachs_dataGrid.datagrid('loadData', { total: 0, rows: [] });
+	                	$("#attachs-dv").hide();
+	                	
+						_box.handler.edit(function(result){
 							$('input,textarea',_box.form.edit).attr('readonly',true);
 							$('.easyui-combobox , .easyui-datebox,.easyui-datetimebox',_box.form.edit).combobox('disable');
 							$('input[type="button"]',_box.form.edit).attr('disabled',true);
@@ -101,6 +103,12 @@ otter.simpleFlow = function(){
 								$("#ck_bizAckImg").css("opacity","1").css("width","200px").css("height","100px");
 								$("#ck_bizAckImg").attr('src',liacimg);
 				                $("#ck_bizAckImg").show();
+							}
+							
+							console.log("attachs :"+result.data.attachs);
+							if(null != result.data.attachs){
+								attachs_dataGrid.datagrid('loadData',result.data.attachs);
+								$("#attachs-dv").hide();
 							}
 						});
 					}
@@ -148,8 +156,10 @@ otter.simpleFlow = function(){
 			                $("#ck_bizAckImg").css("opacity","0");
 			                $("#ck_fileAckImg").hide();
 		                	$("#ck_bizAckImg").hide();
+		                	attachs_dataGrid.datagrid('loadData', { total: 0, rows: [] });
+		                	$("#attachs-dv").hide();
 			                
-							_box.handler.edit(function(){
+							_box.handler.edit(function(result){
 								$('input,textarea',_box.form.edit).attr('readonly',true);
 								$('.easyui-combobox , .easyui-datebox,.easyui-datetimebox',_box.form.edit).combobox('disable');
 								$('input[type="button"]',_box.form.edit).attr('disabled',true);
@@ -166,6 +176,12 @@ otter.simpleFlow = function(){
 									$("#ck_bizAckImg").css("opacity","1").css("width","200px").css("height","100px");
 									$("#ck_bizAckImg").attr('src',liacimg);
 					                $("#ck_bizAckImg").show();
+								}
+								
+								console.log("attachs :"+result.data.attachs);
+								if(null != result.data.attachs && result.data.attachs.length>0){
+									attachs_dataGrid.datagrid('loadData',result.data.attachs);
+									$("#attachs-dv").show();
 								}
 							});
 						}
@@ -305,4 +321,68 @@ otter.simpleFlow = function(){
 
 $(function(){
 	otter.simpleFlow.init();
+	//附件处理
+	attachs_dataGrid = $('#attachs-list').datagrid({
+			url:'',
+			fit:true,
+			fitColumns:true,
+			width:200,
+			height:160,
+			/*toolbar:[
+			{id:'btnadd',text:'添加附件',btnType:'add',iconCls:'icon-edit',handler:function(){
+				commonAjaxFileUploadDG(function(data) {
+					//data.url data.path
+					//console.log("add attachs :"+JSON.stringify(data));
+					
+					var url =  urls['msUrl'] + '/sysFileAttach/ajaxSave.do'
+					var option = {'filename':data.fname,
+								  'filepath':data.path,
+								  'filetype':data.ftype,
+								  'ext':data.fext,
+								  'size':data.fsize,
+								  'url':data.url
+								  };
+
+					 otter.ajaxJson(url,option,function(result){
+						// console.log("ajax save attachs: "+JSON.stringify(result))
+						// console.log("ajax save attachs id : "+result.data.id)
+							$('#attachs-list').datagrid('insertRow',{
+							    index: 0,   // 索引从0开始
+							    row: {
+							        id: result.data.id,
+							        filename: data.fname,
+							        filepath: data.path,
+							        filetype: data.ftype,
+							        url: data.url,
+							        ext: data.fext,
+							        size: data.fsize,
+							    }
+							});
+					 });
+				})
+			}},
+			{id:'btndelete',text:'删除附件',btnType:'remove',iconCls:'icon-remove',handler:function(){
+				var row = attachs_dataGrid.datagrid('getChecked');	
+				if (otter.simpleFlow.checkSelectOne(row)){
+					 var index = attachs_dataGrid.datagrid("getRowIndex",row[0]);  
+					 attachs_dataGrid.datagrid("deleteRow",index);  
+				}
+			}}
+		],*/
+			columns:[[
+				{field:'id',checkbox:true},
+			{field:'filename',title:'附件名称',align:'center',sortable:false,width:200,
+					formatter:function(value,row,index){
+						var html ="<a href='"+row.url+"' target='_blank'>"+row.filename+"</a>";
+						return html;
+						//return row.filename;
+					}
+			},
+			{field:'filepath',hidden:true},
+			{field:'filetype',hidden:true},
+			{field:'ext',hidden:true},
+			{field:'url',hidden:true},
+			{field:'size',hidden:true},
+		]]
+	});
 });

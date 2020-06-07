@@ -119,7 +119,7 @@ otter.simpleFlow = function(){
 				                $("#ck_bizAckImg").show();
 							}
 							
-							console.log("attachs :"+result.data.attachs)
+							console.log("attachs :"+result.data.attachs);
 							if(null != result.data.attachs){
 								attachs_dataGrid.datagrid('loadData',result.data.attachs);
 							}

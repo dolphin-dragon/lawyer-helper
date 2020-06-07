@@ -64,7 +64,7 @@
 					<div class="fitem">
 						<div>
 							<label>文件审核截图</label> 
-							<input name="fileAckImg" type="text" id="fileAckImg" style="width: 200px;" readonly=true /> 
+							<input name="fileAckImg" type="text" id="fileAckImg" class="hidden" style="width: 200px;" readonly=true /> 
 							<input type="button" id="uploadFileAckImgButton" value="上传截图" />
 						</div>
 					</div>
@@ -77,7 +77,7 @@
 					<div class="fitem">
 						<div>
 							<label>业务确认截图</label> 
-							<input name="bizAckImg" type="text" id="bizAckImg" style="width: 200px;" readonly=true /> 
+							<input name="bizAckImg" type="text" id="bizAckImg" class="hidden" style="width: 200px;" readonly=true /> 
 							<input type="button" id="uploadBizAckImgButton" value="上传截图" />
 						</div>
 					</div>
@@ -109,6 +109,15 @@
 						<input name="status" type="text" maxlength="1" class="easyui-validatebox" data-options="" missingMessage="请填写状态（0草稿 1待审批 2审批通过 9驳回）">
 					</div>
 					-->
+					<div class="fitem">
+							<label>附件</label>
+							<!-- <input class="hidden" name="attachs" id="attachs"> -->
+							<div id="attachs-dv" style="height:160px; width:200px;padding-left: 100px;">
+								<table id="attachs-list"></table>
+								<div name="v_attachs" id="v_attachs">
+								</div>
+							</div>
+					</div>
 					<div class="fitem">
 						<label>备注</label>
 						<textarea name="remark" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写备注" style="margin: 0px; width: 200px; height: 60px;"></textarea>
