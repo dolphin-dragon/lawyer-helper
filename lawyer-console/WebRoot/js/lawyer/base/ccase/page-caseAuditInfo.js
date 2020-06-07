@@ -71,17 +71,21 @@ otter.caseInfo = function(){
 					                $("#ck_litigantAcImg").attr('src','');
 					                $("#ck_actionImg").css("opacity","0");
 					                $("#ck_litigantAcImg").css("opacity","0");
+				                	$("#ck_actionImg").hide();
+				                	$("#ck_litigantAcImg").hide();
 									
 									var acimg = $('input[name="actionImg"]',$('#app_Form')).val();
 									if(''!=acimg){
+										$("#ck_actionImg").css("opacity","1").css("width","200px").css("height","100px");
 										$("#ck_actionImg").attr('src',acimg);
-										$("#ck_actionImg").css("opacity","1");
+										$("#ck_actionImg").show();
 									}
 									
 									var liacimg = $('input[name="litigantAcImg"]',$('#app_Form')).val();
 									if(''!=liacimg){
+										$("#ck_litigantAcImg").css("opacity","1").css("width","200px").css("height","100px");
 										$("#ck_litigantAcImg").attr('src',liacimg);
-										$("#ck_litigantAcImg").css("opacity","1");
+										$("#ck_litigantAcImg").show();
 									}
 								}
 							});

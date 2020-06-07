@@ -5,8 +5,8 @@
    <%@include file="/view/resource.jsp" %>
    	<style type="text/css">
 	.vimg_div {
-		width: 200px;
-		height: 100px;
+/* 		width: 200px;
+		height: 100px; */
 		border: #000 solid 0px;
 		margin: 5px auto;
 		/* overflow: hidden; */
@@ -225,7 +225,7 @@
 					<div class="fitem">
 						<div class="vimg_div">
 							<label></label>
-							<img id="ck_actionImg" style="width:200px;height:100px;"/>
+							<img id="ck_actionImg" class="hidden"/>
 						</div>
 					</div>
 				    <div class="fitem">
@@ -242,7 +242,7 @@
                     <div class="fitem">
 						<div class="vimg_div">
 							<label></label> 
-							<img id="ck_litigantAcImg" style="width:200px;height:100px;"/>
+							<img id="ck_litigantAcImg" class="hidden"/>
 						</div>
 					</div>
                     <div class="fitem">

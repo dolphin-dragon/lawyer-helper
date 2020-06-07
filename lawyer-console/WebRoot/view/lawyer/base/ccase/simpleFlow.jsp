@@ -5,7 +5,6 @@
    <%@include file="/view/resource.jsp" %>
    	<style type="text/css">
 	.vimg_div {
-		height: 100px;
 		border: #000 solid 0px;
 		margin: 5px auto;
 		/* overflow: hidden; */
@@ -66,10 +65,8 @@
 						</div>
 					</div>
 					<div class="fitem vimg_div">
-						<!-- <div class="vimg_div"> -->
 							<label></label>
 							<img id="ck_fileAckImg" class="hidden"/>
-					<!-- 	</div> -->
 					</div>
 					<div class="fitem">
 						<div>
@@ -81,7 +78,7 @@
 					<div class="fitem">
 						<div class="vimg_div">
 							<label></label>
-							<img id="ck_bizAckImg" class="hidden" style="width:200px;height:100px;"/>
+							<img id="ck_bizAckImg" class="hidden" />
 						</div>
 					</div>
 					<div class="fitem">
@@ -143,9 +140,9 @@
 				commonAjaxFileUploadDG(function(data) {
 					//data.url data.path
 					$("#fileAckImg").val(data.url)
+					$("#ck_fileAckImg").css("opacity","1").css("width","200px").css("height","100px");
 					$("#ck_fileAckImg").attr('src',data.url);
 					//style="width:200px;height:100px;"
-					$("#ck_fileAckImg").css("opacity","1").css("width","200px").css("height","100px");
 					$("#ck_fileAckImg").show();
 				})
 			});
@@ -154,8 +151,8 @@
 				commonAjaxFileUploadDG(function(data) {
 					//data.url data.path
 					$("#bizAckImg").val(data.url)
+					$("#ck_bizAckImg").css("opacity","1").css("width","200px").css("height","100px");
 					$("#ck_bizAckImg").attr('src',data.url);
-					$("#ck_bizAckImg").css("opacity","1");
 					$("#ck_bizAckImg").show();
 				})
 			});
