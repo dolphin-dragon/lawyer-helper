@@ -107,14 +107,14 @@ otter.simpleFlow = function(){
 						_box.handler.edit(function(result){
 							var acimg = $('input[name="fileAckImg"]',$('#editForm')).val();
 							if(''!=acimg){
-								$("#ck_fileAckImg").css("opacity","1").css("width","200px").css("height","100px");
+								$("#ck_fileAckImg").css("opacity","1");
 								$("#ck_fileAckImg").attr('src',acimg);
 								$("#ck_fileAckImg").show();
 							}
 							
 							var liacimg = $('input[name="bizAckImg"]',$('#editForm')).val();
 							if(''!=liacimg){
-								$("#ck_bizAckImg").css("opacity","1").css("width","200px").css("height","100px");
+								$("#ck_bizAckImg").css("opacity","1");
 								$("#ck_bizAckImg").attr('src',liacimg);
 				                $("#ck_bizAckImg").show();
 							}

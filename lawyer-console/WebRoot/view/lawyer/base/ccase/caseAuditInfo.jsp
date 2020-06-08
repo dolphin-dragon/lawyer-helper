@@ -14,6 +14,10 @@
 	
 	.vimg_div img {
 		cursor: pointer;
+		width: auto;
+		height: auto;
+		max-width: 20%;
+		max-height: 20%;
 		transition: all 0.6s;
 	}
 	

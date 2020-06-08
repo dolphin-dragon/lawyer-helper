@@ -14,6 +14,10 @@
 	
 	.vimg_div img {
 		cursor: pointer;
+		width: auto;
+		height: auto;
+		max-width: 20%;
+		max-height: 20%;
 		transition: all 0.6s;
 	}
 	
@@ -146,8 +150,6 @@
 				commonAjaxFileUploadDG(function(data) {
 					//data.url data.path
 					$("#fileAckImg").val(data.url)
-					$("#ck_fileAckImg").css("width","200px");
-					$("#ck_fileAckImg").css("height","100px");
 					$("#ck_fileAckImg").attr('src',data.url);
 					$("#ck_fileAckImg").css("opacity","1");
 				})
@@ -157,8 +159,6 @@
 				commonAjaxFileUploadDG(function(data) {
 					//data.url data.path
 					$("#bizAckImg").val(data.url)
-					$("#ck_bizAckImg").css("width","200px");
-					$("#ck_bizAckImg").css("height","100px");
 					$("#ck_bizAckImg").attr('src',data.url);
 					$("#ck_bizAckImg").css("opacity","1");
 				})

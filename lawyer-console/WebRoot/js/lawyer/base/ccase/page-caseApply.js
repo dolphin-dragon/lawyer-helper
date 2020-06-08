@@ -22,7 +22,10 @@ otter.caseApply = function(){
                     $("#ck_litigantAcImg").css("opacity","0");
                 	$("#ck_actionImg").hide();
                 	$("#ck_litigantAcImg").hide();
-					
+                	
+                	$('input,textarea',$('#editForm')).removeAttr('readonly');
+					$('.easyui-combobox , .easyui-datebox',$('#editForm')).combobox('enable');
+					$('input[type="button"]',$('#editForm')).removeAttr('disabled');
 					//$('#typeIds_combobox').combobox('reload');
 					_box.handler.add();
 				},
@@ -51,14 +54,14 @@ otter.caseApply = function(){
 					_box.handler.edit(function(){
 						var acimg = $('input[name="actionImg"]',$('#editForm')).val();
 						if(''!=acimg){
-							$("#ck_actionImg").css("opacity","1").css("width","200px").css("height","100px");
+							$("#ck_actionImg").css("opacity","1");
 							$("#ck_actionImg").attr('src',acimg);
 							$("#ck_actionImg").show();
 						}
 						
 						var liacimg = $('input[name="litigantAcImg"]',$('#editForm')).val();
 						if(''!=liacimg){
-							$("#ck_litigantAcImg").css("opacity","1").css("width","200px").css("height","100px");
+							$("#ck_litigantAcImg").css("opacity","1");
 							$("#ck_litigantAcImg").attr('src',liacimg);
 			                $("#ck_litigantAcImg").show();
 						}

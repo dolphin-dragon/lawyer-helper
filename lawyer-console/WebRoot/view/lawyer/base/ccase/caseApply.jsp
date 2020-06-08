@@ -14,6 +14,10 @@
 	
 	.vimg_div img {
 		cursor: pointer;
+		width: auto;
+		height: auto;
+		max-width: 20%;
+		max-height: 20%;
 		transition: all 0.6s;
 	}
 	
@@ -203,8 +207,6 @@
 					//console.log(data)
 					$("#actionImg").val(data.url)
 					$("#ck_actionImg").attr('src',data.url);
-					$("#ck_actionImg").css("width","200px");
-					$("#ck_actionImg").css("height","100px");
 					$("#ck_actionImg").css("opacity","1");
 					$("#ck_actionImg").show();
 				})
@@ -216,8 +218,6 @@
 					//console.log(data)
 					$("#litigantAcImg").val(data.url)
 					$("#ck_litigantAcImg").attr('src',data.url);
-					$("#ck_litigantAcImg").css("width","200px");
-					$("#ck_litigantAcImg").css("height","100px");
 					$("#ck_litigantAcImg").css("opacity","1");
 					$("#ck_litigantAcImg").show();
 				})

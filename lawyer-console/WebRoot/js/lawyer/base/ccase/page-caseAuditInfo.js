@@ -76,14 +76,14 @@ otter.caseInfo = function(){
 									
 									var acimg = $('input[name="actionImg"]',$('#app_Form')).val();
 									if(''!=acimg){
-										$("#ck_actionImg").css("opacity","1").css("width","200px").css("height","100px");
+										$("#ck_actionImg").css("opacity","1");
 										$("#ck_actionImg").attr('src',acimg);
 										$("#ck_actionImg").show();
 									}
 									
 									var liacimg = $('input[name="litigantAcImg"]',$('#app_Form')).val();
 									if(''!=liacimg){
-										$("#ck_litigantAcImg").css("opacity","1").css("width","200px").css("height","100px");
+										$("#ck_litigantAcImg").css("opacity","1");
 										$("#ck_litigantAcImg").attr('src',liacimg);
 										$("#ck_litigantAcImg").show();
 									}
