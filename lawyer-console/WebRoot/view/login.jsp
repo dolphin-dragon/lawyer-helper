@@ -105,7 +105,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+*/
        <input class="userName" name="email" type="text" id="email" placeholder="登录邮箱地址" title="用户名" iscookie="true"  nullmsg="请输入用户名!"/>
       </div>
       <div class="tip">
-       <input class="password" name="pwd" type="password" id="pwd" placeholder="登录密码" title="密码" nullmsg="请输入密码!"/>
+       <input class="password" name="pwd" type="password" id="pwd" autocomplete="off" placeholder="登录密码" title="密码" nullmsg="请输入密码!"/>
       </div>
       <div class="tip">
  		<img class="vc-pic" id="vc-pic" src="ImageServlet" />

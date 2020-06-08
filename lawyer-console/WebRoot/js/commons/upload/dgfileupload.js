@@ -1,4 +1,5 @@
-﻿function commonAjaxFileUploadDG(selfCallback) {
+﻿//TODO:可扩展参数传递进行上传文件类型过滤处理
+function commonAjaxFileUploadDG(selfCallback) {
 var html =
 	'<div id="dg_upload" title="文件上传">'
 	+ '	<form id="uploadForm" class="ui-form" method="post" enctype="multipart/form-data">'
