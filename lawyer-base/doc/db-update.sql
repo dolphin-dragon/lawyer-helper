@@ -124,10 +124,10 @@ CREATE TABLE simple_flow_attach(
 
 CREATE TABLE sys_file_attach (
   id int NOT NULL AUTO_INCREMENT,
-  fileName varchar(120) NOT NULL COMMENT '文件名',
-  filePath varchar(1024) NOT NULL COMMENT '文件路径',
+  filename varchar(120) NOT NULL COMMENT '文件名',
+  filepath varchar(1024) NOT NULL COMMENT '文件路径',
   ext varchar(32) DEFAULT NULL COMMENT '扩展名',
-  fileType varchar(32) DEFAULT NULL,
+  filetype varchar(32) DEFAULT NULL,
   fsize varchar(32) DEFAULT NULL COMMENT '文件大小',
   note varchar(1024) DEFAULT NULL COMMENT '说明',
   created_time datetime NOT NULL COMMENT '创建时间',
