@@ -42,15 +42,17 @@ var html =
 		if(ldata.code == 1){
     		$("#savePath").val(ldata.savePath);
     		$("#webUrl").val(ldata.webUrl);
-    		var f = document.getElementById("upt_file").files;  
+    		var f = document.getElementById('upt_file').files[0];
     		//名称  
-    		var fname = f[0].name;  
+    		var fname = f.name;  
     		//大小 字节  
-    		var fsize = f[0].size;  
+    		var fsize = f.size;  
     		//类型  
-    		var ftype = f[0].type; 
+    		var ftype = f.type; 
     		//文件扩展名
     		var ext=(fname.substr(fname.lastIndexOf("."))).toLowerCase()
+    		
+    		console.log("fname:"+fname+" fsize:"+fsize +" fext:"+ext);
     		
     		obj = {
     			path: ldata.savePath,
