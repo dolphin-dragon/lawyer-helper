@@ -16,7 +16,7 @@ var html =
 	+ '    			<input name="webUrl" type="text" id="webUrl" style="width:300px;" readonly=true />'
 	+ '			</div>'
 	+ '			<div class="fitem">'
-	+ '				<input type="button" id="uploadButton11" value="上传" />'
+	+ '				<input type="button" id="uploadButton11" class="hidden" value="上传" />'
 	+ '				<input type="button" id="upOkButton" class="hidden" value="确认" />'
 	+ '			</div>'
 	+ '		</div>'
@@ -36,6 +36,35 @@ var html =
       width: 500,
       modal: true
     });
+	
+	 $('#upt_file').change(function(e){
+		    // console.log($(this).val());//val()获取到的是完整的文件路径值；C:\fakepath\js-dom.png
+		    console.log(e)
+		    /*
+		    简单的获取选择文件的名字
+		    currentTarget:获取到的是绑定事件的对象
+		    e.currentTarget.files 是一个数组，如果支持多个文件，则需要遍历
+		    */
+		    var fileMsg = e.currentTarget.files;
+		    if(fileMsg != null || fileMsg!=''){
+		    	$("#uploadButton11").show();
+		    }
+//		    var fileName = fileMsg[0].name;
+//		    console.log(fileName);//js-dom.png
+//		    //大小 字节 
+//		    var fileSize = fileMsg[0].size;
+//		    console.log(fileSize);//350061
+//		    //类型 
+//		    var fileType = fileMsg[0].type;
+//		    console.log(fileType);//image/png
+//		    // 判断文件类型
+//		    var type=(fileType.substr(fileType.lastIndexOf("."))).toLowerCase();
+//		    if(type!=".jpg"&&type!=".gif"&&type!=".jpeg"&& type!=".png"){
+//		      alert("您上传图片的类型不符合(.jpg|.jpeg|.gif|.png)！");
+//		       return false;
+//		    }
+//		    $('.inp_file_name').text(fileName)
+		  })
 
 	var obj = {}
 	function uploadInfo(ldata){
@@ -50,7 +79,9 @@ var html =
     		//类型  
     		var ftype = f.type; 
     		//文件扩展名
-    		var ext=(fname.substr(fname.lastIndexOf("."))).toLowerCase()
+    		var ext=(fname.substr(fname.lastIndexOf("."))).toLowerCase();
+
+    		ftype = (fname.substr(fname.lastIndexOf(".")+1)).toLowerCase();
     		
     		console.log("fname:"+fname+" fsize:"+fsize +" fext:"+ext);
     		
