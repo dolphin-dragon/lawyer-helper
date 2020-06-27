@@ -25,7 +25,7 @@
 	 
      <!-- Edit Win&Form -->
      <div id="edit-win" class="easyui-dialog" title="案件综合信息" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
-     	<form id="editForm" class="ui-form" method="post">  
+     	<form id="editForm" class="ui-form hidden" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
 		     	   <div class="ftitle">案件综合信息</div>

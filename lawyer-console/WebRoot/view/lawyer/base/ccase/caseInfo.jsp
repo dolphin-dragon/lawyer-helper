@@ -592,6 +592,6 @@
 		</div>
   	 </div>
 
-  	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-caseInfo.js"></script>
+  	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-caseInfo.js?var=<%=ot_ver%>"></script>
   </body>
 </html>

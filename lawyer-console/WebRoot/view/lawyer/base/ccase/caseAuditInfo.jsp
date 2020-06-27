@@ -633,6 +633,6 @@
 		</div>
   	 </div>
 
-  	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-caseAuditInfo.js"></script>
+  	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-caseAuditInfo.js?var=<%=ot_ver%>"></script>
   </body>
 </html>

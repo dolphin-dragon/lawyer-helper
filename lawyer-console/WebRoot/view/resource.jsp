@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+    String ot_ver = "202006272324";
 %>
 <!-- 公共资源CSS,JS  -->
 <!--Css -->

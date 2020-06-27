@@ -219,7 +219,7 @@ otter.caseApply = function(){
 							return row.defendantName;
 						}
 					},
-				{field:'defendant_reg_capital',title:'被告注册资本',align:'center',sortable:true,
+				{field:'defendant_reg_capital',title:'被告注册资本',align:'left',sortable:true,width:200,
 						formatter:function(value,row,index){
 							return row.defendantRegCapital;
 						}
@@ -275,7 +275,7 @@ otter.caseApply = function(){
 								return row.forensicsName;
 							}
 						},
-					{field:'violateType',title:'侵权类型',align:'center',sortable:true,
+					{field:'violateType',title:'侵权类型',align:'right',sortable:true,
 							formatter:function(value,row,index){
 	                    		if(value == 1){
 									return "肖像权";

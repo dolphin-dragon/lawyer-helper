@@ -45,7 +45,7 @@
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="案件确立信息登记表" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:450px;">  
+     <div id="edit-win" class="easyui-dialog" title="案件确立信息登记表" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:500px;height:450px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="caseId">
      		 <div class="ui-edit">
@@ -80,24 +80,24 @@
 					</div> -->
 					<div class="fitem">
 						<label>当事人</label>
-						<input name="litigant" type="text" maxlength="128" class="easyui-validatebox" data-options="required:true" missingMessage="请填写当事人" style="margin: 0px; width: 200px;">
+						<input name="litigant" type="text" maxlength="128" class="easyui-validatebox" data-options="required:true" missingMessage="请填写当事人" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>被告名称(全称)</label>
-						<textarea name="defendantName" type="text" maxlength="1024" class="easyui-validatebox" placeholder="多被告换行分隔"  data-options="required:true" missingMessage="请填写被告名称" style="margin: 0px; width: 200px; height: 40px;"></textarea>
+						<textarea name="defendantName" type="text" maxlength="1024" class="easyui-validatebox" placeholder="多被告换行分隔"  data-options="required:true" missingMessage="请填写被告名称" style="margin: 0px; width: 300px; height: 40px;"></textarea>
 					</div>
 					<div class="fitem">
 						<label>被告注册资本</label>
-						<input name="defendantRegCapital" type="text" maxlength="32" class="easyui-validatebox" placeholder="多被告空格分隔,如:20万 300万 " data-options="" missingMessage="请填写被告注册资本" style="margin: 0px; width: 200px;">
+						<input name="defendantRegCapital" type="text" maxlength="32" class="easyui-validatebox" placeholder="多被告空格分隔,如:20万 300万 " data-options="" missingMessage="请填写被告注册资本" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>被告所在地</label>
-						<textarea name="defendantArea" type="text" maxlength="1024" class="easyui-validatebox" placeholder="多被告换行分隔"  data-options="required:true" missingMessage="请填写被告所在地" style="margin: 0px; width: 200px; height: 60px;"></textarea>
+						<textarea name="defendantArea" type="text" maxlength="1024" class="easyui-validatebox" placeholder="多被告换行分隔"  data-options="required:true" missingMessage="请填写被告所在地" style="margin: 0px; width: 300px; height: 60px;"></textarea>
 					</div>
 					<div class="fitem">
 						<label>案件来源</label>
 						<!-- <input name="src" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写案件来源"> -->
-						<select class="easyui-combobox" name="src" data-options="" editable="false" missingMessage="请填写案件来源">
+						<select class="easyui-combobox" name="src" data-options="" editable="false" missingMessage="请填写案件来源" style="margin: 0px; width: 300px;">
                     		<option value="1" selected="selected">当事人提供</option>
                     		<option value="2">所内自行搜证</option>
                     		<option value="3">律师个人案源</option>
@@ -106,32 +106,32 @@
 					<div class="fitem">
 						<label>案源人</label>
 						<!-- <input name="supply" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写案源人"> -->
-						<input class="easyui-combobox" name="supply" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" editable="false" missingMessage="请选择案源人">
+						<input class="easyui-combobox" name="supply" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" editable="false" missingMessage="请选择案源人" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>是否公证</label>
-						<select class="easyui-combobox" name="isApply" data-options="" editable="false" missingMessage="请选择是否公证">
+						<select class="easyui-combobox" name="isApply" data-options="" editable="false" missingMessage="请选择是否公证" style="margin: 0px; width: 300px;">
                     		<option value="1">&ensp;&ensp;是&ensp;&ensp;</option>
                     		<option value="2" selected="selected">&ensp;&ensp;否&ensp;&ensp;</option>
                    		</select>
 					</div>
 					<div class="fitem">
 						<label>申请公证日期</label>
-						<input name="applyDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写申请公证日期">
+						<input name="applyDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写申请公证日期" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>公证书申请人</label>
-						<input name="applicant" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写公证书申请人">
+						<input name="applicant" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写公证书申请人" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>取证人</label>
 						<!-- <input name="forensics" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写取证人"> -->
-						<input class="easyui-combobox" name="forensics" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" editable="false" missingMessage="请填写取证人">
+						<input class="easyui-combobox" name="forensics" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" editable="false" missingMessage="请填写取证人" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>侵权类型</label>
 						<!-- <input name="violateType" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写侵权类型"> -->
-						<select class="easyui-combobox" name="violateType" id="violateType" data-options="" editable="false" missingMessage="请填写侵权类型">
+						<select class="easyui-combobox" name="violateType" id="violateType" data-options="" editable="false" missingMessage="请填写侵权类型" style="margin: 0px; width: 300px;">
                     		<option value="1" selected="selected">肖像权</option>
                     		<option value="2">肖像权(含名誉权)</option>
                     		<option value="3">肖像权(含姓名权)</option>
@@ -143,11 +143,11 @@
 					</div>
 					<div class="fitem">
 						<label>侵权概况</label>
-						<textarea name="violateDesc" type="text" maxlength="3072" placeholder="请填写线上侵权链接数量、图片数量及线下侵权图片数量、载体。" class="easyui-validatebox" data-options="" missingMessage="请填写侵权概况" style="margin: 0px; width: 200px; height: 100px;"></textarea>
+						<textarea name="violateDesc" type="text" maxlength="3072" placeholder="请填写线上侵权链接数量、图片数量及线下侵权图片数量、载体。" class="easyui-validatebox" data-options="" missingMessage="请填写侵权概况" style="margin: 0px; width: 300px; height: 100px;"></textarea>
 					</div>
 					<div class="fitem">
 						<label>案件可诉确认日期</label>
-						<input name="actionDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写案件可诉确认日期">
+						<input name="actionDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写案件可诉确认日期" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<div>
@@ -164,7 +164,7 @@
 					</div>
 				    <div class="fitem">
 						<label>当事人确认日期</label>
-						<input name="litigantAcDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写当事人确认日期">
+						<input name="litigantAcDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写当事人确认日期" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
                         <div>
@@ -181,7 +181,7 @@
 					</div>
                     <div class="fitem">
 						<label>当事人是否要求直接诉讼</label>
-						<select class="easyui-combobox" name="isDirectAction" data-options="" editable="false" missingMessage="当事人是否要求直接诉讼">
+						<select class="easyui-combobox" name="isDirectAction" data-options="" editable="false" missingMessage="当事人是否要求直接诉讼" style="margin: 0px; width: 300px;">
                     		<option value="1">&ensp;&ensp;是&ensp;&ensp;</option>
                     		<option value="2" selected="selected">&ensp;&ensp;否&ensp;&ensp;</option>
                    		</select>
@@ -194,7 +194,7 @@
    		<img id="img_id" alt="">
 	</div>
   	 </div>
-  	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-caseApply.js"></script>
+  	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-caseApply.js?var=<%=ot_ver%>"></script>
 
   	 <script type="text/javascript" src="<%=basePath%>/js/commons/upload/ajaxfileupload.js"></script>
      <script type="text/javascript" src="<%=basePath%>/js/commons/upload/commonfileupload.js"></script> 
