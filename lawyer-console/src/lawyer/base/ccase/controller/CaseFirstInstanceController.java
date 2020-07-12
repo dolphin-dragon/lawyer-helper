@@ -80,6 +80,12 @@ public class CaseFirstInstanceController extends BaseAction{
 			page.setCreatedBy(user.getId()+"");
 			page.setDelFlag("0");
 		}
+
+		if(StringUtils.isBlank(page.getPager().getOrderField())) {
+			page.setSort("case_id");
+			page.getPager().setOrderDirection(false);
+		}
+
 		List<CaseFirstInstance> dataList = caseFirstInstanceService.queryByList(page);
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
@@ -199,6 +205,7 @@ public class CaseFirstInstanceController extends BaseAction{
 					caseSecondInstance.setCreatedTime(new Date());
 					caseSecondInstance.setUpdatedBy(null!=user?user.getId()+"":"");
 					caseSecondInstance.setUpdatedTime(new Date());
+					caseSecondInstance.setStatus(0);
 
 					caseSecondInstanceService.add(caseSecondInstance);
 					status = 43;
@@ -226,6 +233,7 @@ public class CaseFirstInstanceController extends BaseAction{
 					caseCarryOut.setCreatedTime(new Date());
 					caseCarryOut.setUpdatedBy(null!=user?user.getId()+"":"");
 					caseCarryOut.setUpdatedTime(new Date());
+					caseCarryOut.setStatus(0);
 
 					caseCarryOutService.add(caseCarryOut);
 					status = 53;

@@ -24,12 +24,12 @@
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="非诉业务信息表" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="非诉业务信息表" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:500px;height:450px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id" id="id">
      		 <input class="hidden" name="nolitigationCustomerId" id="nolitigationCustomerId">
      		 <input class="hidden" name="etype" id="etype">
-     		 <div class="ui-edit">
+     		 <div class="ui-edit hidden">
 		     	   <!-- <div class="ftitle">非诉业务信息表</div>
 					<div class="fitem">
 						<label>状态</label>
@@ -66,70 +66,70 @@
 					<div id="cust">
 					<div class="fitem">
 						<label>委托人</label>
-						<input name="client" id="client" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写委托人">
+						<input name="client" id="client" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写委托人" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>被委托人</label>
-						<input name="principal" id="principal" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写被委托人">
+						<input name="principal" id="principal" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写被委托人" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>委托开始时间</label>
-						<input name="commissionSdate" id="commissionSdate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写委托开始时间">
+						<input name="commissionSdate" id="commissionSdate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写委托开始时间" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>委托结束时间</label>
-						<input name="commissionEdate" id="commissionEdate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写委托结束时间">
+						<input name="commissionEdate" id="commissionEdate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写委托结束时间" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>计费模式</label>
-						<input name="billingModel" id="billingModel" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写计费模式">
+						<input name="billingModel" id="billingModel" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写计费模式" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>计费标准</label>
-						<input name="billingStandard" id="billingStandard" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写计费标准">
+						<input name="billingStandard" id="billingStandard" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写计费标准" style="margin: 0px; width: 300px;">
 					</div>
 					</div>
 					<div id="case">
 					<div class="fitem">
 						<label>需求接收日期</label>
-						<input name="receiveDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写需求接收日期">
+						<input name="receiveDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写需求接收日期" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>接收途径</label>
-						<input name="src" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写接收途径">
+						<input name="src" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写接收途径" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>工作内容</label>
-						<input name="workContent" type="text" maxlength="3072" class="easyui-validatebox" data-options="" missingMessage="请填写工作内容">
+						<input name="workContent" type="text" maxlength="3072" class="easyui-validatebox" data-options="" missingMessage="请填写工作内容" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>当事人底稿名称</label>
-						<input name="partyDraftName" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写当事人底稿名称">
+						<textarea name="partyDraftName" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写当事人底稿名称" style="margin: 0px; width: 300px; height: 60px;"></textarea>
 					</div>
 					<div class="fitem">
 						<label>合同相对方</label>
-						<input name="contractParty" type="text" maxlength="128" class="easyui-validatebox" data-options="" missingMessage="请填写合同相对放">
+						<input name="contractParty" type="text" maxlength="128" class="easyui-validatebox" data-options="" missingMessage="请填写合同相对放" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>返稿日期</label>
-						<input name="respDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写返稿日期">
+						<input name="respDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写返稿日期" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>律师返稿文件名称</label>
-						<input name="respFileName" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写律师返稿文件名称">
+						<textarea name="respFileName" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写律师返稿文件名称" style="margin: 0px; width: 300px; height: 60px;"></textarea>
 					</div>
 					<div class="fitem">
 						<label>核算用时</label>
-						<input name="accountTime" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写核算用时">
+						<input name="accountTime" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写核算用时" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>特殊情况备注</label>
-						<input name="remark" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写特殊情况备注">
+						<textarea name="remark" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写特殊情况备注" style="margin: 0px; width: 300px; height: 60px;"></textarea>
 					</div>
 					</div>
   			</div>
      	</form>
   	 </div>
-  	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-noLitigationCase.js"></script>
+  	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-noLitigationCase.js?var=<%=ot_ver%>"></script>
   </body>
 </html>

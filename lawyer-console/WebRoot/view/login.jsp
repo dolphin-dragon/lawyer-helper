@@ -139,7 +139,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+*/
    </div>
   </div>
   <!-- Link JScript-->
-  <script type="text/javascript" src="plug-in/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="js/commons/jquery.min.js"></script>
   <script type="text/javascript" src="plug-in/jquery/jquery.cookie.js"></script>
   <script type="text/javascript" src="plug-in/login/js/jquery-jrumble.js"></script>
   <script type="text/javascript" src="plug-in/login/js/jquery.tipsy.js"></script>

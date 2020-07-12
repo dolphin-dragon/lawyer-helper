@@ -37,7 +37,9 @@ otter.caseSecondInstance = function(){
 						}
 					}
 
-					_box.handler.edit();
+					_box.handler.edit(function(){
+						$(".ui-edit").show();
+					});
 				},
 				save:function(){
 					var selected = _box.utils.getCheckedRows();
@@ -100,6 +102,8 @@ otter.caseSecondInstance = function(){
 								$('input,textarea',$('#editForm')).attr('readonly',true);
 								$('.easyui-combobox , .easyui-datebox',$('#editForm')).combobox('disable');
 								$('input[type="button"]',$('#editForm')).attr('disabled',true);
+
+								$(".ui-edit").show();
 							});
 						}
 					}}
@@ -187,22 +191,22 @@ otter.caseSecondInstance = function(){
 								return row.caseId;
 							}
 						},*/
-					{field:'litigant',title:'当事人',align:'center',sortable:true,
+					{field:'litigant',title:'当事人',align:'left',sortable:false,width:100,
 						formatter:function(value,row,index){
 							return row.litigant;
 						}
 					},
-				{field:'defendant_name',title:'被告名称',align:'center',sortable:true,
+				{field:'defendant_name',title:'被告名称',align:'center',sortable:false,width:200,
 						formatter:function(value,row,index){
 							return row.defendantName;
 						}
 					},
-				{field:'defendant_reg_capital',title:'被告注册资本',align:'center',sortable:true,
+				{field:'defendant_reg_capital',title:'被告注册资本',align:'right',sortable:false,
 						formatter:function(value,row,index){
 							return row.defendantRegCapital;
 						}
 					},
-				{field:'defendant_area',title:'被告所在地',align:'center',sortable:true,
+				{field:'defendant_area',title:'被告所在地',align:'center',sortable:false,width:200,
 						formatter:function(value,row,index){
 							return row.defendantArea;
 						}
@@ -218,12 +222,12 @@ otter.caseSecondInstance = function(){
 								return row.scourtDate;
 							}
 						},
-					{field:'judge',title:'主办法官',align:'center',sortable:true,
+					{field:'judge',title:'主办法官',align:'left',sortable:false,width:100,
 							formatter:function(value,row,index){
 								return row.judge;
 							}
 						},
-					{field:'judge_contact',title:'联系方式',align:'center',sortable:true,
+					{field:'judge_contact',title:'联系方式',align:'left',sortable:false,width:100,
 							formatter:function(value,row,index){
 								return row.judgeContact;
 							}
@@ -244,22 +248,22 @@ otter.caseSecondInstance = function(){
 								return "";
 							}
 						},
-					{field:'defendant_compensation_total',title:'一审被告赔偿总额',align:'center',sortable:true,
+					{field:'defendant_compensation_total',title:'一审被告赔偿总额',align:'right',sortable:false,
 							formatter:function(value,row,index){
 								return row.defendantCompensationTotal;
 							}
 						},
-					{field:'defendant_expenses',title:'一审被告承担合理开支费用',align:'center',sortable:true,
+					{field:'defendant_expenses',title:'一审被告承担合理开支费用',align:'right',sortable:false,
 							formatter:function(value,row,index){
 								return row.defendantExpenses;
 							}
 						},
-					{field:'plaintiff_costs',title:'一审原告承担诉费',align:'center',sortable:true,
+					{field:'plaintiff_costs',title:'一审原告承担诉费',align:'right',sortable:false,
 							formatter:function(value,row,index){
 								return row.plaintiffCosts;
 							}
 						},
-					{field:'defendant_costs',title:'一审被告承担诉费',align:'center',sortable:true,
+					{field:'defendant_costs',title:'一审被告承担诉费',align:'right',sortable:false,
 							formatter:function(value,row,index){
 								return row.defendantCosts;
 							}
@@ -296,7 +300,7 @@ otter.caseSecondInstance = function(){
 								return "";
 							}
 						},
-					{field:'remark',title:'备注',align:'center',sortable:true,
+					{field:'remark',title:'备注',align:'center',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.remark;
 							}

@@ -24,10 +24,10 @@
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="员工信息登记" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="员工信息登记" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:500px;height:450px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="uid">
-     		 <div class="ui-edit">
+     		 <div class="ui-edit hidden">
 <!-- 		     	   <div class="ftitle">用户信息设置</div>
 					<div class="fitem">
 						<label>状态</label>
@@ -119,6 +119,6 @@
   			</div>
      	</form>
   	 </div>
-  	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-sysUserExt.js"></script>
+  	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-sysUserExt.js?var=<%=ot_ver%>"></script>
   </body>
 </html>

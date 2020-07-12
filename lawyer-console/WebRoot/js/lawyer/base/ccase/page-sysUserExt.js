@@ -6,13 +6,17 @@ otter.sysUserExt = function(){
 			event:{
 				add:function(){
 					$('#typeIds_combobox').combobox('reload');
-					_box.handler.add();
+					_box.handler.add(function(){
+						$(".ui-edit").show();
+					});
 				},
 				edit:function(){
 					$('input[name=email]',$('#editForm')).attr('readonly',true);
 					$('input[name=name]',$('#editForm')).attr('readonly',true);
 					$('#typeIds_combobox').combobox('reload');
-					_box.handler.edit();
+					_box.handler.edit(function(){
+						$(".ui-edit").show();
+					});
 				}
 			},
   			dataGrid:{

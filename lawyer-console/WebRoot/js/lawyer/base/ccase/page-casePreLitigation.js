@@ -37,7 +37,9 @@ otter.casePreLitigation = function(){
 						}
 					}
 
-					_box.handler.edit();
+					_box.handler.edit(function(){
+						$(".ui-edit").show();
+					});
 				},
 				save:function(){
 					var selected = _box.utils.getCheckedRows();
@@ -98,6 +100,8 @@ otter.casePreLitigation = function(){
 								$('input,textarea',$('#editForm')).attr('readonly',true);
 								$('.easyui-combobox , .easyui-datebox',$('#editForm')).combobox('disable');
 								$('input[type="button"]',$('#editForm')).attr('disabled',true);
+
+								$(".ui-edit").show();
 							});
 						}
 					}}
@@ -190,17 +194,17 @@ otter.casePreLitigation = function(){
 							return row.litigant;
 						}
 					},
-				{field:'defendant_name',title:'被告名称',align:'left',sortable:true,width:200,
+				{field:'defendant_name',title:'被告名称',align:'left',sortable:false,width:200,
 						formatter:function(value,row,index){
 							return row.defendantName;
 						}
 					},
-				{field:'defendant_reg_capital',title:'被告注册资本',align:'left',sortable:true,width:100,
+				{field:'defendant_reg_capital',title:'被告注册资本',align:'right',sortable:false,
 						formatter:function(value,row,index){
 							return row.defendantRegCapital;
 						}
 					},
-				{field:'defendant_area',title:'被告所在地',align:'left',sortable:true,width:200,
+				{field:'defendant_area',title:'被告所在地',align:'left',sortable:false,width:200,
 						formatter:function(value,row,index){
 							return row.defendantArea;
 						}
@@ -253,7 +257,7 @@ otter.casePreLitigation = function(){
 								return "";
 							}
 						},
-					{field:'remark',title:'备注',align:'left',sortable:true,
+					{field:'remark',title:'备注',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.remark;
 							}

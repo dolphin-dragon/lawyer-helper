@@ -18,6 +18,8 @@ otter.sysDictItem = function(){
 							//控制界面原始不可用
 							$('input[name="dictName"]',$('#editForm')).attr('readonly',true);//.attr("disabled","disabled");
 							$('input[name="dictCode"]',$('#editForm')).attr('readonly',true);//.attr("disabled","disabled");
+
+							$(".ui-edit").show();
 						});
 					}
 				},
@@ -38,6 +40,8 @@ otter.sysDictItem = function(){
 							//控制界面原始不可用
 							$('input[name="dictName"]',$('#editForm')).attr('readonly',true);//.attr("disabled","disabled");
 							$('input[name="dictCode"]',$('#editForm')).attr('readonly',true);//.attr("disabled","disabled");
+
+							$(".ui-edit").show();
 						});
 					}
 				},
@@ -59,6 +63,8 @@ otter.sysDictItem = function(){
 							//控制界面原始不可用
 							$('#itemText').css("display", "none");
 							$('#itemValue').css("display", "none");
+
+							$(".ui-edit").show();
 						});
 					}},
 					{id:'btnedit',text:'修改字典',btnType:'btneditDict',iconCls:'icon-edit',handler:function(){
@@ -76,6 +82,8 @@ otter.sysDictItem = function(){
 										//控制界面原始不可用
 										$('#itemText').css("display", "none");
 										$('#itemValue').css("display", "none");
+
+										$(".ui-edit").show();
 									});
 								}
 							});

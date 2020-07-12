@@ -22,8 +22,11 @@ otter.noLitigationCase = function(){
 									$('#id').attr('value', '');
 									$('input,textarea',$('#case')).removeAttr('value');
 									$('#case').css("display", "block");
+									$('.easyui-combobox , .easyui-datebox',$('#cust')).combobox('disable');
 									
-									_box.win.edit.dialog('open'); 
+									_box.win.edit.dialog('open');
+
+									$(".ui-edit").show();
 								});
 							}
 						});
@@ -40,8 +43,11 @@ otter.noLitigationCase = function(){
 						$('#etype').attr('value', '1');
 						$('#case').css("display", "block");
 						$('input,textarea',$('#cust')).attr('readonly',true);
+						$('.easyui-combobox , .easyui-datebox',$('#cust')).combobox('disable');
 
-						_box.handler.edit();
+						_box.handler.edit(function(){
+							$(".ui-edit").show();
+						});
 					}
 				},
 				remove: function(){
@@ -56,11 +62,13 @@ otter.noLitigationCase = function(){
 	   				{id:'btnadd',text:'添加客户',btnType:'btnaddCust',iconCls:'icon-add',handler:function(){
 	   					$('input,textarea',$('#cust')).removeAttr('value');
 	   					$('input,textarea',$('#cust')).removeAttr('readonly');
+	   					$('.easyui-combobox , .easyui-datebox',$('#cust')).combobox('enable');
 
 						$('#etype').attr('value', '0');
 						_box.handler.add(new function(){
 							//控制界面原始不可用
 							$('#case').css("display", "none");
+							$(".ui-edit").show();
 						});
 					}},
 					{id:'btnedit',text:'修改客户',btnType:'btneditCust',iconCls:'icon-edit',handler:function(){
@@ -79,8 +87,10 @@ otter.noLitigationCase = function(){
 										$('input,textarea',$('#cust')).removeAttr('readonly');
 										$('#nolitigationCustomerId').attr('value', selected[0]['nolitigationCustomerId']);
 										$('#case').css("display", "none");
+										$('.easyui-combobox , .easyui-datebox',$('#cust')).combobox('enable');
 										
-										_box.win.edit.dialog('open'); 
+										_box.win.edit.dialog('open');
+										$(".ui-edit").show();
 									});
 									
 								}
@@ -149,12 +159,12 @@ otter.noLitigationCase = function(){
 								return row.nolitigationCustomerId;
 							}
 					},
-					{field:'client',title:'委托人',align:'center',sortable:true,
+					{field:'client',title:'委托人',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.client;
 							}
 					},
-					{field:'principal',title:'被委托人',align:'center',sortable:true,
+					{field:'principal',title:'被委托人',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.principal;
 							}
@@ -190,12 +200,12 @@ otter.noLitigationCase = function(){
 						}
 					},
 
-					{field:'billing_model',title:'计费模式',align:'center',sortable:true,
+					{field:'billing_model',title:'计费模式',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.billingModel;
 							}
 						},
-					{field:'billing_standard',title:'计费标准',align:'center',sortable:true,
+					{field:'billing_standard',title:'计费标准',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.billingStandard;
 							}
@@ -205,22 +215,22 @@ otter.noLitigationCase = function(){
 								return row.receiveDate;
 							}
 						},
-					{field:'src',title:'接收途径',align:'center',sortable:true,
+					{field:'src',title:'接收途径',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.src;
 							}
 						},
-					{field:'work_content',title:'工作内容',align:'center',sortable:true,
+					{field:'work_content',title:'工作内容',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.workContent;
 							}
 						},
-					{field:'party_draft_name',title:'当事人底稿名称',align:'center',sortable:true,
+					{field:'party_draft_name',title:'当事人底稿名称',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.partyDraftName;
 							}
 						},
-					{field:'contract_party',title:'合同相对方',align:'center',sortable:true,
+					{field:'contract_party',title:'合同相对方',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.contractParty;
 							}
@@ -230,12 +240,12 @@ otter.noLitigationCase = function(){
 								return row.respDate;
 							}
 						},
-					{field:'resp_file_name',title:'律师返稿文件名称',align:'center',sortable:true,
+					{field:'resp_file_name',title:'律师返稿文件名称',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.respFileName;
 							}
 						},
-					{field:'account_time',title:'核算用时',align:'center',sortable:true,
+					{field:'account_time',title:'核算用时',align:'right',sortable:true,
 							formatter:function(value,row,index){
 								return row.accountTime;
 							}
@@ -260,7 +270,7 @@ otter.noLitigationCase = function(){
 								return "未删除";
 							}
 					},
-					{field:'remark',title:'特殊情况备注',align:'center',sortable:true,
+					{field:'remark',title:'特殊情况备注',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.remark;
 							}

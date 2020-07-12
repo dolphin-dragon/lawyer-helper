@@ -80,6 +80,12 @@ public class CaseApplyController extends BaseAction{
 			page.setCreatedBy(user.getId()+"");
 			page.setDelFlag("0");
 		}
+
+		if(StringUtils.isBlank(page.getPager().getOrderField())) {
+			page.setSort("case_id");
+			page.getPager().setOrderDirection(false);
+		}
+
 		List<CaseApply> dataList = caseApplyService.queryByList(page);
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
@@ -108,6 +114,7 @@ public class CaseApplyController extends BaseAction{
 			caseInfo.setDefendantArea(entity.getDefendantArea());
 			caseInfo.setDefendantName(entity.getDefendantName());
 			caseInfo.setDefendantRegCapital(entity.getDefendantRegCapital());
+			caseInfo.setStatus(0);
 			
 			caseInfo.setCreatedBy(null!=user?user.getId()+"":"");
 			caseInfo.setCreatedTime(new Date());
@@ -120,6 +127,7 @@ public class CaseApplyController extends BaseAction{
 			entity.setCreatedTime(new Date());
 			entity.setUpdatedBy(null!=user?user.getId()+"":"");
 			entity.setUpdatedTime(new Date());
+			entity.setStatus(0);
 			caseApplyService.add(entity);
 		}else{
 			CaseInfo caseInfo = caseInfoService.queryById(entity.getCaseId());
@@ -215,6 +223,7 @@ public class CaseApplyController extends BaseAction{
 					caseFirstInstance.setCreatedTime(new Date());
 					caseFirstInstance.setUpdatedBy(null!=user?user.getId()+"":"");
 					caseFirstInstance.setUpdatedTime(new Date());
+					caseFirstInstance.setStatus(0);
 
 					caseFirstInstanceService.add(caseFirstInstance);
 					status=31;
@@ -232,6 +241,7 @@ public class CaseApplyController extends BaseAction{
 					casePreLitigation.setCreatedTime(new Date());
 					casePreLitigation.setUpdatedBy(null!=user?user.getId()+"":"");
 					casePreLitigation.setUpdatedTime(new Date());
+					casePreLitigation.setStatus(0);
 
 					casePreLitigationService.add(casePreLitigation);
 					status=21;

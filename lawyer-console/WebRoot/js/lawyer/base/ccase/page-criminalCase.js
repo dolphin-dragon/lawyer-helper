@@ -6,11 +6,15 @@ otter.criminalCase = function(){
 			event:{
 				add:function(){
 					$('#typeIds_combobox').combobox('reload');
-					_box.handler.add();
+					_box.handler.add(function(){
+						$(".ui-edit").show();
+					});
 				},
 				edit:function(){
 					$('#typeIds_combobox').combobox('reload');
-					_box.handler.edit();
+					_box.handler.edit(function(){
+						$(".ui-edit").show();
+					});
 				}
 			},
   			dataGrid:{
@@ -63,7 +67,7 @@ otter.criminalCase = function(){
 								return row.updatedTime;
 							}
 						},*/
-					{field:'src',title:'案件来源',align:'center',sortable:true,
+					{field:'src',title:'案件来源',align:'left',sortable:false,width:100,
 							formatter:function(value,row,index){
 								return row.src;
 							}
@@ -78,7 +82,7 @@ otter.criminalCase = function(){
 								return row.commissionDate;
 							}
 						},
-					{field:'client',title:'委托人',align:'center',sortable:true,
+					{field:'client',title:'委托人',align:'center',sortable:false,width:100,
 							formatter:function(value,row,index){
 								return row.client;
 							}
@@ -88,17 +92,17 @@ otter.criminalCase = function(){
 								return row.lawyerName;
 							}
 						},
-					{field:'litigant',title:'当事人',align:'center',sortable:true,
+					{field:'litigant',title:'当事人',align:'left',sortable:false,width:100,
 							formatter:function(value,row,index){
 								return row.litigant;
 							}
 						},
-					{field:'suspected_charges',title:'涉嫌罪名',align:'center',sortable:true,
+					{field:'suspected_charges',title:'涉嫌罪名',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.suspectedCharges;
 							}
 						},
-					{field:'action_stage',title:'诉讼阶段',align:'center',sortable:true,
+					{field:'action_stage',title:'诉讼阶段',align:'left',sortable:false,width:100,
 							formatter:function(value,row,index){
 								return row.actionStage;
 							}

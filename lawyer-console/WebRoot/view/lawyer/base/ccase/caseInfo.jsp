@@ -24,10 +24,10 @@
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="Basic window" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="Basic window" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:500px;height:450px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
-     		 <div class="ui-edit">
+     		 <div class="ui-edit hidden">
 		     	   <div class="ftitle">案件基础信息</div>
 					<div class="fitem">
 						<label>状态</label>
@@ -79,7 +79,7 @@
   	  		<div title="基本信息">
   	  		     <form id="base_Form" class="ui-form" method="post">  
 		     		 <input class="hidden" name="id">
-		     		 <div class="ui-edit">
+		     		 <div class="ui-edit hidden">
 							<div class="fitem">
 								<label>当事人</label>
 								<input name="litigant" type="text" maxlength="128" class="easyui-validatebox" data-options="" missingMessage="请填写当事人">
@@ -129,7 +129,7 @@
 			<div title="确立信息" >
 				<form id="app_Form" class="ui-form" method="post">  
 	     		  <input class="hidden" name="caseId">
-     		 		<div class="ui-edit">
+     		 		<div class="ui-edit hidden">
 					<div class="fitem">
 						<label>当事人</label>
 						<input name="litigant" type="text" maxlength="128" class="easyui-validatebox" data-options="required:true" missingMessage="请填写当事人">
@@ -221,7 +221,7 @@
 			<div title="诉前信息">
 				<form id="pre_Form" class="ui-form" method="post">  
 		     		 <input class="hidden" name="caseId">
-		     		 <div class="ui-edit">
+		     		 <div class="ui-edit hidden">
 							<div class="fitem">
 								<label>当事人</label>
 								<input name="litigant" type="text" maxlength="128" class="easyui-validatebox" readonly="true" data-options="" missingMessage="请填写当事人">
@@ -279,7 +279,7 @@
 			<div title="一审信息">
 				<form id="first_Form" class="ui-form" method="post">  
 		     		 <input class="hidden" name="caseId">
-		     		 <div class="ui-edit">
+		     		 <div class="ui-edit hidden">
 							<div class="fitem">
 								<label>当事人</label>
 								<input name="litigant" type="text" maxlength="128" class="easyui-validatebox" readonly="true" data-options="" missingMessage="请填写当事人">
@@ -433,7 +433,7 @@
 			<div title="二审信息">
 			     <form id="second_Form" class="ui-form" method="post">  
 		     		 <input class="hidden" name="caseId">
-		     		 <div class="ui-edit">
+		     		 <div class="ui-edit hidden">
 							<div class="fitem">
 								<label>当事人</label>
 								<input name="litigant" type="text" maxlength="128" class="easyui-validatebox" readonly="true" data-options="" missingMessage="请填写当事人">
@@ -522,7 +522,7 @@
 			<div title="执行信息">
 			     <form id="out_Form" class="ui-form" method="post">  
 		     		 <input class="hidden" name="caseId">
-		     		 <div class="ui-edit">
+		     		 <div class="ui-edit hidden">
 							<div class="fitem">
 								<label>当事人</label>
 								<input name="litigant" type="text" maxlength="128" class="easyui-validatebox" readonly="true" data-options="" missingMessage="请填写当事人">

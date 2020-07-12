@@ -6,11 +6,15 @@ otter.caseMInfo = function(){
 			event:{
 				add:function(){
 					$('#typeIds_combobox').combobox('reload');
-					_box.handler.add();
+					_box.handler.add(function(){
+						$(".ui-edit").show();
+					});
 				},
 				edit:function(){
 					$('#typeIds_combobox').combobox('reload');
-					_box.handler.edit();
+					_box.handler.edit(function(){
+						$(".ui-edit").show();
+					});
 				}
 			},
   			dataGrid:{
@@ -31,7 +35,7 @@ otter.caseMInfo = function(){
 						params+='&cpSupply='+cpSupply;
 						params+='&caseLitigant='+caseLitigant;
 						params+='&caseDefendantName='+caseDefendantName;
-						console.log("export "+action+ encodeURI(params));
+//						console.log("export "+action+ encodeURI(params));
 						//下载请求处理
 						window.location.href = action+ encodeURI(params);
 					}}
@@ -82,7 +86,7 @@ otter.caseMInfo = function(){
 								  return 'background-color:#CCCCCC;';
 							}
 						},
-					{field:'cp_applicant',title:'公证书申请人',align:'center',sortable:true,
+					{field:'cp_applicant',title:'公证书申请人',align:'left',sortable:true,
 							formatter:function(value,row,index){
 								return row.cpApplicant;
 							},
@@ -261,7 +265,7 @@ otter.caseMInfo = function(){
 								  return 'background-color:#99FFCC;';
 							}
 						},
-					{field:'case_defendant_reg_capital',title:'被告注册资本',align:'center',sortable:true,
+					{field:'case_defendant_reg_capital',title:'被告注册资本',align:'right',sortable:false,
 							formatter:function(value,row,index){
 								return row.caseDefendantRegCapital;
 							},

@@ -78,6 +78,12 @@ public class CaseSecondInstanceController extends BaseAction{
 			page.setCreatedBy(user.getId()+"");
 			page.setDelFlag("0");
 		}
+
+		if(StringUtils.isBlank(page.getPager().getOrderField())) {
+			page.setSort("case_id");
+			page.getPager().setOrderDirection(false);
+		}
+
 		List<CaseSecondInstance> dataList = caseSecondInstanceService.queryByList(page);
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
@@ -195,6 +201,7 @@ public class CaseSecondInstanceController extends BaseAction{
 					caseCarryOut.setCreatedTime(new Date());
 					caseCarryOut.setUpdatedBy(null!=user?user.getId()+"":"");
 					caseCarryOut.setUpdatedTime(new Date());
+					caseCarryOut.setStatus(0);
 					
 					caseCarryOutService.add(caseCarryOut);
 					status = 54;

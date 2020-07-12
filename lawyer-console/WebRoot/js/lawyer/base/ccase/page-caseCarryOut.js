@@ -20,6 +20,7 @@ otter.caseCarryOut = function(){
 					_box.handler.add();
 				},*/
 				edit:function(){
+				
 					//$('#typeIds_combobox').combobox('reload');
 					$('input,textarea',$('#editForm')).removeAttr('readonly');
 					$('.easyui-combobox , .easyui-datebox',$('#editForm')).combobox('enable');
@@ -29,23 +30,28 @@ otter.caseCarryOut = function(){
 					if ( _box.utils.checkSelectOne(selected)){
 						if(!(null==selected[0]['status'] || 0 == selected[0]['status']) || 1==selected[0]['isClose']) {
 							if(3 == selected[0]['status'] ){
-								_box.handler.edit();
+								_box.handler.edit(function(){
+									$(".ui-edit").show();
+								});
 								return false;
 							}
 							otter.alert('提示','案件已推送下阶段处理不能进行编辑！');
 							return false;
 						}
 					}
-					
-					_box.handler.edit();
+					_box.handler.edit(function(){
+						$(".ui-edit").show();
+					});
 				},
 				save:function(){
+					_box.handler.save();
+					/*
 					var selected = _box.utils.getCheckedRows();
 					if (_box.utils.checkSelectOne(selected)){
 						if(1==selected[0]['isClose']){
 							otter.confirm("提示","案件结案将不能更改任何信息,是否确定?",function(r){
 								if(r){
-									//_box.handler.save();
+//									_box.handler.save();
 									otter.closeProgress();//关闭缓冲条
 									_box.win.edit.dialog('close');
 								}
@@ -54,6 +60,7 @@ otter.caseCarryOut = function(){
 							_box.handler.save();
 						}
 					}
+					*/
 				}
 			},
   			dataGrid:{
@@ -187,22 +194,22 @@ otter.caseCarryOut = function(){
 								return row.caseId;
 							}
 						},*/
-					{field:'litigant',title:'当事人',align:'left',sortable:true,
+					{field:'litigant',title:'当事人',align:'left',sortable:false,width:200,
 						formatter:function(value,row,index){
 							return row.litigant;
 						}
 					},
-				{field:'defendant_name',title:'被告名称',align:'left',sortable:true,
+				{field:'defendant_name',title:'被告名称',align:'left',sortable:false,width:200,
 						formatter:function(value,row,index){
 							return row.defendantName;
 						}
 					},
-				{field:'defendant_reg_capital',title:'被告注册资本',align:'center',sortable:true,
+				{field:'defendant_reg_capital',title:'被告注册资本',align:'right',sortable:false,
 						formatter:function(value,row,index){
 							return row.defendantRegCapital;
 						}
 					},
-				{field:'defendant_area',title:'被告所在地',align:'left',sortable:true,
+				{field:'defendant_area',title:'被告所在地',align:'left',sortable:false,width:200,
 						formatter:function(value,row,index){
 							return row.defendantArea;
 						}
@@ -218,27 +225,27 @@ otter.caseCarryOut = function(){
 								return row.appDate;
 							}
 						},
-					{field:'app_total',title:'申请执行总额',align:'center',sortable:true,
+					{field:'app_total',title:'申请执行总额',align:'right',sortable:false,
 							formatter:function(value,row,index){
 								return row.appTotal;
 							}
 						},
-					{field:'judge',title:'执行主办法官',align:'center',sortable:true,
+					{field:'judge',title:'执行主办法官',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.judge;
 							}
 						},
-					{field:'judge_contact',title:'联系方式',align:'center',sortable:true,
+					{field:'judge_contact',title:'联系方式',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.judgeContact;
 							}
 						},
-					{field:'actual_total',title:'实际执行总额',align:'center',sortable:true,
+					{field:'actual_total',title:'实际执行总额',align:'right',sortable:false,
 							formatter:function(value,row,index){
 								return row.actualTotal;
 							}
 						},
-					{field:'f_collection_subject',title:'首位收款主体',align:'center',sortable:true,
+					{field:'f_collection_subject',title:'首位收款主体',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.fcollectionSubject;
 							}
@@ -270,7 +277,7 @@ otter.caseCarryOut = function(){
 								return "";
 							}
 						},
-					{field:'remark',title:'备注',align:'left',sortable:true,
+					{field:'remark',title:'备注',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.remark;
 							}

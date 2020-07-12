@@ -24,10 +24,10 @@
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="刑事案件信息表" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="刑事案件信息表" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:500px;height:450px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
-     		 <div class="ui-edit">
+     		 <div class="ui-edit hidden">
 		     	   <!-- <div class="ftitle">刑事案件信息表</div>
 					<div class="fitem">
 						<label>状态</label>
@@ -59,46 +59,46 @@
 					</div> -->
 					<div class="fitem">
 						<label>案件来源</label>
-						<input name="src" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写案件来源">
+						<input name="src" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写案件来源" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>案源人</label>
 						<!-- <input name="supply" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写案源人"> -->
-						<input class="easyui-combobox" editable="false"  name="supply" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请选择案源人">
+						<input class="easyui-combobox" editable="false"  name="supply" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请选择案源人" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>签署委托日期</label>
-						<input name="commissionDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写签署委托日期">
+						<input name="commissionDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写签署委托日期" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>委托人</label>
-						<input name="client" type="text" maxlength="128" class="easyui-validatebox" data-options="" missingMessage="请填写委托人">
+						<input name="client" type="text" maxlength="128" class="easyui-validatebox" data-options="" missingMessage="请填写委托人" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>代理律师</label>
 						<!-- <input name="lawyer" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写代理律师"> -->
-						<input class="easyui-combobox" editable="false"  name="lawyer" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写代理律师">
+						<input class="easyui-combobox" editable="false"  name="lawyer" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写代理律师" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>当事人</label>
-						<input name="litigant" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写当事人">
+						<input name="litigant" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写当事人" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>涉嫌罪名</label>
-						<textarea name="suspectedCharges" type="text" maxlength="3072" class="easyui-validatebox" data-options="" missingMessage="请填写涉嫌罪名" style="margin: 0px; width: 200px; height: 100px;"></textarea>
+						<textarea name="suspectedCharges" type="text" maxlength="3072" class="easyui-validatebox" data-options="" missingMessage="请填写涉嫌罪名" style="margin: 0px; width: 300px; height: 60px;"></textarea>
 					</div>
 					<div class="fitem">
 						<label>诉讼阶段</label>
-						<input name="actionStage" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写诉讼阶段">
+						<input name="actionStage" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写诉讼阶段" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>判决日期</label>
-						<input name="judgmentDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写判决日期">
+						<input name="judgmentDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写判决日期" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>是否结案</label>
 						<!-- <input name="isClose" type="text" maxlength="1" class="easyui-validatebox" data-options="" missingMessage="请填写是否结案"> -->
-						<select class="easyui-combobox" editable="false"  name="isClose" data-options="" missingMessage="请填写是否结案">
+						<select class="easyui-combobox" editable="false"  name="isClose" data-options="" missingMessage="请填写是否结案" style="margin: 0px; width: 300px;">
                     		<option value="1" selected="selected">&ensp;&ensp;是&ensp;&ensp;</option>
                     		<option value="2">&ensp;&ensp;否&ensp;&ensp;</option>
                    		</select>
@@ -106,6 +106,6 @@
   			</div>
      	</form>
   	 </div>
-  	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-criminalCase.js"></script>
+  	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-criminalCase.js?var=<%=ot_ver%>"></script>
   </body>
 </html>

@@ -16,8 +16,8 @@
 		cursor: pointer;
 		width: auto;
 		height: auto;
-		max-width: 20%;
-		max-height: 20%;
+		max-width: 50%;
+		max-height: 50%;
 		transition: all 0.6s;
 	}
 	
@@ -46,24 +46,24 @@
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="流程信息" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:500px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="流程信息" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:500px;height:450px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <input class="hidden" name="typeIds" id="typeIds">
-     		 <div class="ui-edit">
+     		 <div class="ui-edit hidden">
 		     	  <!--  <div class="ftitle">简单流程信息表</div> -->
 					<div class="fitem">
 						<label>审批事项</label>
 						<!-- <input name="title" type="text" maxlength="120" class="easyui-validatebox" data-options="required:true" missingMessage="请填写流程标题" style="margin: 0px; width: 200px;"> -->
-						<input class="easyui-combobox" editable="false"  name="title" data-options="required:true,valueField:'itemValue',textField:'itemText',url:'<%=basePath %>/sysDictItem/listItems.do?dictCode=SIP_AUDIT_ITEM'" missingMessage="请填写审批事项"  style="margin: 0px; width: 200px;">
+						<input class="easyui-combobox" editable="false"  name="title" data-options="required:true,valueField:'itemValue',textField:'itemText',url:'<%=basePath %>/sysDictItem/listItems.do?dictCode=SIP_AUDIT_ITEM'" missingMessage="请填写审批事项" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>事项内容</label>
-						<textarea name="note" type="text" maxlength="1024" class="easyui-validatebox" data-options="required:true" missingMessage="请填写流程说明" style="margin: 0px; width: 200px; height: 60px;"></textarea>
+						<textarea name="note" type="text" maxlength="1024" class="easyui-validatebox" data-options="required:true" missingMessage="请填写流程说明" style="margin: 0px; width: 300px; height: 60px;"></textarea>
 					</div>
 					<div class="fitem">
 						<label>文件类型/事项类型</label>
-						<input class="easyui-combobox" editable="false"  name="ftype" data-options="required:true,valueField:'itemValue',textField:'itemText',url:'<%=basePath %>/sysDictItem/listItems.do?dictCode=SIP_AUDIT_TYPE'" missingMessage="请填写流程业务类型"  style="margin: 0px; width: 200px;">
+						<input class="easyui-combobox" editable="false"  name="ftype" data-options="required:true,valueField:'itemValue',textField:'itemText',url:'<%=basePath %>/sysDictItem/listItems.do?dictCode=SIP_AUDIT_TYPE'" missingMessage="请填写流程业务类型" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<div>
@@ -93,7 +93,7 @@
 					</div>
 					<div class="fitem">
 						<label>审批人</label>
-						<input class="easyui-combobox" editable="false"  name="approver" data-options="required:true,valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatasByRoleId.do?roleId=27'" missingMessage="请填写审批人"  style="margin: 0px; width: 200px;">
+						<input class="easyui-combobox" editable="false"  name="approver" data-options="required:true,valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatasByRoleId.do?roleId=27'" missingMessage="请填写审批人"  style="margin: 0px; width: 300px;">
 					</div>
 					<!--
 					<div class="fitem">
@@ -116,15 +116,14 @@
 					<div class="fitem">
 							<label>附件</label>
 							<!-- <input class="hidden" name="attachs" id="attachs"> -->
-							<div id="attachs-dv" style="height:160px; width:200px;padding-left: 100px;">
+							<div id="attachs-dv" style="height:160px; width:300px;padding-left:100px;">
 								<table id="attachs-list"></table>
-								<div name="v_attachs" id="v_attachs">
-								</div>
+								<div name="v_attachs" id="v_attachs"></div>
 							</div>
 					</div>
 					<div class="fitem">
 						<label>备注</label>
-						<textarea name="remark" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写备注" style="margin: 0px; width: 200px; height: 60px;"></textarea>
+						<textarea name="remark" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写备注" style="margin: 0px; width: 300px; height: 60px;"></textarea>
 					</div>
 					<!-- 
 					<div class="fitem">
@@ -139,7 +138,7 @@
   			</div>
      	</form>
   	 </div>
-  	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-simpleAFlow.js"></script>
+  	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-simpleAFlow.js?var=<%=ot_ver%>"></script>
   	 
   	 <script type="text/javascript" src="<%=basePath%>/js/commons/upload/ajaxfileupload.js"></script>
      <script type="text/javascript" src="<%=basePath%>/js/commons/upload/commonfileupload.js"></script> 

@@ -23,10 +23,10 @@
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="诉前和解记录表" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:450px;">  
+     <div id="edit-win" class="easyui-dialog" title="诉前和解记录表" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:500px;height:450px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="caseId">
-     		 <div class="ui-edit">
+     		 <div class="ui-edit hidden">
 		     	   <!-- <div class="ftitle">案件诉前和解信息</div>
 				   <div class="fitem">
 						<label>状态</label>
@@ -58,58 +58,58 @@
 					</div> -->
 					<div class="fitem">
 						<label>当事人</label>
-						<input name="litigant" type="text" maxlength="128" class="easyui-validatebox" readonly="true" data-options="" missingMessage="请填写当事人">
+						<input name="litigant" type="text" maxlength="128" class="easyui-validatebox" readonly="true" data-options="" missingMessage="请填写当事人" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>被告名称(全称)</label>
-						<input name="defendantName" type="text" maxlength="1024" class="easyui-validatebox" readonly="true" data-options="" missingMessage="请填写被告名称">
+						<input name="defendantName" type="text" maxlength="1024" class="easyui-validatebox" readonly="true" data-options="" missingMessage="请填写被告名称" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>被告注册资本</label>
-						<input name="defendantRegCapital" type="text" maxlength="32" class="easyui-validatebox" readonly="true" data-options="" missingMessage="请填写被告注册资本">
+						<input name="defendantRegCapital" type="text" maxlength="32" class="easyui-validatebox" readonly="true" data-options="" missingMessage="请填写被告注册资本" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>被告所在地</label>
-						<textarea name="defendantArea" type="text" maxlength="1024" class="easyui-validatebox" readonly="true" data-options="" missingMessage="请填写被告所在地"></textarea>
+						<textarea name="defendantArea" type="text" maxlength="1024" class="easyui-validatebox" readonly="true" data-options="" missingMessage="请填写被告所在地" style="margin: 0px; width: 300px; height: 60px;"></textarea>
 					</div>
 					<div class="fitem">
 						<label>律师函编号</label>
-						<input name="letter" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写律师函编号">
+						<input name="letter" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写律师函编号" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>律师函主办人</label>
 						<!-- <input name="letteror" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写律师函主办人"> -->
-						<input class="easyui-combobox" editable="false"  name="letteror" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写律师函主办人">
+						<input class="easyui-combobox" editable="false"  name="letteror" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写律师函主办人" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>律师函发送日期</label>
-						<input name="sendDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写律师函发送日期">
+						<input name="sendDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写律师函发送日期" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>律师函送达日期</label>
-						<input name="deliveryDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写律师函送达日期">
+						<input name="deliveryDate" type="text" maxlength="10" class="easyui-datebox" data-options="" missingMessage="请填写律师函送达日期" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>是否结案</label>
-						<select class="easyui-combobox" editable="false"  name="isClose" data-options="" missingMessage="请填写是否结案">
+						<select class="easyui-combobox" editable="false"  name="isClose" data-options="" missingMessage="请填写是否结案" style="margin: 0px; width: 300px;">
                     		<option value="1" selected="selected">&ensp;&ensp;是&ensp;&ensp;</option>
                     		<option value="2">&ensp;&ensp;否&ensp;&ensp;</option>
                    		</select>
 					</div>
 					<div class="fitem">
 						<label>是否诉讼</label>
-						<select class="easyui-combobox" editable="false"  name="isDirectAction" data-options="" missingMessage="请填写是否诉讼">
+						<select class="easyui-combobox" editable="false"  name="isDirectAction" data-options="" missingMessage="请填写是否诉讼" style="margin: 0px; width: 300px;">
                     		<option value="1" selected="selected">&ensp;&ensp;是&ensp;&ensp;</option>
                     		<option value="2">&ensp;&ensp;否&ensp;&ensp;</option>
                    		</select>
 					</div>
 					<div class="fitem">
 						<label>备注</label>
-						<textarea name="remark" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写备注"></textarea>
+						<textarea name="remark" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写备注" style="margin: 0px; width: 300px; height: 60px;"></textarea>
 					</div>
   			</div>
      	</form>
   	 </div>
-  	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-casePreLitigation.js"></script>
+  	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-casePreLitigation.js?var=<%=ot_ver%>"></script>
   </body>
 </html>

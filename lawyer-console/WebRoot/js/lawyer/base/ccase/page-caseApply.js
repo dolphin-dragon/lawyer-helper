@@ -27,7 +27,9 @@ otter.caseApply = function(){
 					$('.easyui-combobox , .easyui-datebox',$('#editForm')).combobox('enable');
 					$('input[type="button"]',$('#editForm')).removeAttr('disabled');
 					//$('#typeIds_combobox').combobox('reload');
-					_box.handler.add();
+					_box.handler.add(function(){
+						$(".ui-edit").show();
+					});
 				},
 				edit:function(){
 					//$('#typeIds_combobox').combobox('reload');
@@ -65,6 +67,7 @@ otter.caseApply = function(){
 							$("#ck_litigantAcImg").attr('src',liacimg);
 			                $("#ck_litigantAcImg").show();
 						}
+						$(".ui-edit").show();
 					});
 				},
 				save:function(){
@@ -126,6 +129,7 @@ otter.caseApply = function(){
 								$('input,textarea',$('#editForm')).attr('readonly',true);
 								$('.easyui-combobox , .easyui-datebox',$('#editForm')).combobox('disable');
 								$('input[type="button"]',$('#editForm')).attr('disabled',true);
+								$(".ui-edit").show();
 							});
 						}
 					}}
@@ -209,7 +213,7 @@ otter.caseApply = function(){
 								return row.caseId;
 							}
 						},*/
-					{field:'litigant',title:'当事人',align:'left',sortable:true,
+					{field:'litigant',title:'当事人',align:'left',sortable:true,width:200,
 						formatter:function(value,row,index){
 							return row.litigant;
 						}
@@ -219,7 +223,7 @@ otter.caseApply = function(){
 							return row.defendantName;
 						}
 					},
-				{field:'defendant_reg_capital',title:'被告注册资本',align:'left',sortable:true,width:200,
+				{field:'defendant_reg_capital',title:'被告注册资本',align:'right',sortable:false,
 						formatter:function(value,row,index){
 							return row.defendantRegCapital;
 						}
@@ -265,7 +269,7 @@ otter.caseApply = function(){
 								return row.applyDate;
 							}
 						},
-					{field:'applicant',title:'公证书申请人',align:'center',sortable:true,
+					{field:'applicant',title:'公证书申请人',align:'left',sortable:true,
 							formatter:function(value,row,index){
 								return row.applicant;
 							}

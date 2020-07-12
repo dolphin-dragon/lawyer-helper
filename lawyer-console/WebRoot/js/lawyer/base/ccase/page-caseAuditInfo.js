@@ -30,11 +30,15 @@ otter.caseInfo = function(){
 			event:{
 				add:function(){
 					$('#typeIds_combobox').combobox('reload');
-					_box.handler.add();
+					_box.handler.add(function(){
+						$(".ui-edit").show();
+					});
 				},
 				edit:function(){
 					$('#typeIds_combobox').combobox('reload');
-					_box.handler.edit();
+					_box.handler.edit(function(){
+						$(".ui-edit").show();
+					});
 				}
 			},
   			dataGrid:{
@@ -146,6 +150,8 @@ otter.caseInfo = function(){
 
 								$("#sp-tabs").tabs('select',0);
 								$('#sp-edit-win').dialog('open');
+									
+								$(".ui-edit").show();
 							});
 						}
 					}}
@@ -239,7 +245,7 @@ otter.caseInfo = function(){
 								return row.defendantName;
 							}
 						},
-					{field:'defendant_reg_capital',title:'被告注册资本',align:'left',sortable:true,width:200,
+					{field:'defendant_reg_capital',title:'被告注册资本',align:'right',sortable:false,
 							formatter:function(value,row,index){
 								return row.defendantRegCapital;
 							}

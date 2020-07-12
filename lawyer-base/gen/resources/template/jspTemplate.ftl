@@ -26,7 +26,7 @@
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="${codeName}" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="${codeName}" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:500px;height:450px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">
@@ -35,13 +35,13 @@
 #if  ($po.propertyName !='id')     	   
 					<div class="fitem">
 						<label>${po.columnComment}</label>
-						<input name="${po.propertyName}" type="text" maxlength="${po.charmaxLength}" class="${po.classType}" data-options="${po.optionType}" missingMessage="请填写${po.columnComment}">
+						<input name="${po.propertyName}" type="text" maxlength="${po.charmaxLength}" class="${po.classType}" data-options="${po.optionType}" missingMessage="请填写${po.columnComment}" style="margin: 0px; width: 300px;">
 					</div>
 #end
 #end
   			</div>
      	</form>
   	 </div>
-  	 <script type="text/javascript" src="<%=basePath%>/${webJsPackage}/${bussPackageWebPath}/${entityPackageWebPath}/page-${lowerName}.js"></script>
+  	 <script type="text/javascript" src="<%=basePath%>/${webJsPackage}/${bussPackageWebPath}/${entityPackageWebPath}/page-${lowerName}.js?var=<%=ot_ver%>"></script>
   </body>
 </html>

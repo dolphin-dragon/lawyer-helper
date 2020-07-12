@@ -265,10 +265,11 @@ var YDataGrid = function(config){
 					Grid.datagrid('checkRow',rowIndex);
 				}
 			};
-			Grid.datagrid(dataconfig);
+//			Grid.datagrid(dataconfig);
+			initTbar(dataconfig);
 		}
 		//初始化Grid按钮 按钮控制
-		var initTbar = function(){
+		var initTbar = function(dataconfig){
 			var tbars = getToolbar();
 			var _url = urls['msUrl'] + '/getActionBtn.do';
 			var data = {'url':window.location.href};
@@ -276,7 +277,8 @@ var YDataGrid = function(config){
 			otter.ajaxJson(_url,data,function(data){
 				if(data.success){
 					if(data.allType){
-						Grid.datagrid({'toolbar':tbars});
+						dataconfig.toolbar = tbars;
+						//Grid.datagrid({'toolbar':tbars});
 					}else{
 						var newBars = [];
 						jQuery.inArray("John", data.types);				
@@ -293,9 +295,11 @@ var YDataGrid = function(config){
 							}
 						}
 						if(newBars.length > 0){
-							Grid.datagrid({'toolbar':newBars});
+//							Grid.datagrid({'toolbar':newBars});
+							dataconfig.toolbar=newBars;
 						}
 					}
+					Grid.datagrid(dataconfig);
 				}else{
 					otter.alert('提示',data.msg);
 				}
@@ -344,7 +348,7 @@ var YDataGrid = function(config){
 		//初始化方法
 		this.init = function(){
 			initGrid();
-			initTbar();
+//			initTbar();
 			initForm();
 			initWin();
 		}

@@ -78,7 +78,12 @@ public class CasePreLitigationController extends BaseAction{
 			page.setCreatedBy(user.getId()+"");
 			page.setDelFlag("0");
 		}
-		
+
+		if(StringUtils.isBlank(page.getPager().getOrderField())) {
+			page.setSort("case_id");
+			page.getPager().setOrderDirection(false);
+		}
+
 		List<CasePreLitigation> dataList = casePreLitigationService.queryByList(page);
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
@@ -197,6 +202,7 @@ public class CasePreLitigationController extends BaseAction{
 				caseFirstInstance.setCreatedTime(new Date());
 				caseFirstInstance.setUpdatedBy(null!=user?user.getId()+"":"");
 				caseFirstInstance.setUpdatedTime(new Date());
+				caseFirstInstance.setStatus(0);
 				
 				caseFirstInstanceService.add(caseFirstInstance);
 				status=32;

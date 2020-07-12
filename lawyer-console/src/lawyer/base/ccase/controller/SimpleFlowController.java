@@ -232,10 +232,10 @@ public class SimpleFlowController extends BaseAction{
 		//删除附件表对应关系
 		simpleFlowAttachService.delete(entity.getId());
 		List<SysFileAttach> attachs = entity.getAttachs();
-		if (null != attachs) {
-			// 根据附件列表进行新关系保存
+		if(null != attachs) {
+			//根据附件列表进行新关系保存
 			SimpleFlowAttach tmp = null;
-			for (SysFileAttach at : attachs) {
+			for(SysFileAttach at:attachs) {
 				tmp = new SimpleFlowAttach();
 				tmp.setSfileAttachId(at.getId());
 				tmp.setSflowId(entity.getId());

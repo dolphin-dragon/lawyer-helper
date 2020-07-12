@@ -6,10 +6,14 @@ otter.sysFileAttach = function(){
 			event:{
 				add:function(){
 					//$("#uploadAttach").click();
-					_box.handler.add();
+					_box.handler.add(function(){
+						$(".ui-edit").show();
+					});
 				},
 				edit:function(){
-					_box.handler.edit();
+					_box.handler.edit(function(){
+						$(".ui-edit").show();
+					});
 				}
 			},
   			dataGrid:{

@@ -76,6 +76,12 @@ public class CaseCarryOutController extends BaseAction{
 			page.setCreatedBy(user.getId()+"");
 			page.setDelFlag("0");
 		}
+		
+		if(StringUtils.isBlank(page.getPager().getOrderField())) {
+			page.setSort("case_id");
+			page.getPager().setOrderDirection(false);
+		}
+		
 		List<CaseCarryOut> dataList = caseCarryOutService.queryByList(page);
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
@@ -108,6 +114,8 @@ public class CaseCarryOutController extends BaseAction{
 			if(StringUtils.equals("1", entity.getIsClose())) {
 				caseInfo.setStatus(5);
 				entity.setStatus(1);
+			}else {
+				entity.setStatus(0);
 			}
 			
 			caseInfoService.update(caseInfo);

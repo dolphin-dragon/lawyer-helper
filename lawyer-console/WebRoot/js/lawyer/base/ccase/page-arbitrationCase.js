@@ -6,11 +6,15 @@ otter.arbitrationCase = function(){
 			event:{
 				add:function(){
 					$('#typeIds_combobox').combobox('reload');
-					_box.handler.add();
+					_box.handler.add(function(){
+						$(".ui-edit").show();
+					});
 				},
 				edit:function(){
 					$('#typeIds_combobox').combobox('reload');
-					_box.handler.edit();
+					_box.handler.edit(function(){
+						$(".ui-edit").show();
+					});
 				}
 			},
   			dataGrid:{
@@ -54,7 +58,7 @@ otter.arbitrationCase = function(){
 								return row.updatedTime;
 							}
 						},*/
-					{field:'src',title:'案件来源',align:'center',sortable:true,
+					{field:'src',title:'案件来源',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.src;
 							}
@@ -64,27 +68,27 @@ otter.arbitrationCase = function(){
 								return row.supplyName;
 							}
 						},
-					{field:'litigant',title:'当事人',align:'center',sortable:true,
+					{field:'litigant',title:'当事人',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.litigant;
 							}
 						},
-					{field:'cause',title:'案由',align:'center',sortable:true,
+					{field:'cause',title:'案由',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.cause;
 							}
 						},
-					{field:'applicant',title:'申请人',align:'center',sortable:true,
+					{field:'applicant',title:'申请人',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.applicant;
 							}
 						},
-					{field:'respondent',title:'被申请人',align:'center',sortable:true,
+					{field:'respondent',title:'被申请人',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.respondent;
 							}
 						},
-					{field:'request',title:'反请求状况',align:'center',sortable:true,
+					{field:'request',title:'反请求状况',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.request;
 							}
@@ -99,37 +103,37 @@ otter.arbitrationCase = function(){
 								return row.lawyerName;
 							}
 						},
-					{field:'agent',title:'出庭代理人',align:'center',sortable:true,
+					{field:'agent',title:'出庭代理人',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.agent;
 							}
 						},
-					{field:'chief_arbitrator',title:'首席仲裁员',align:'center',sortable:true,
+					{field:'chief_arbitrator',title:'首席仲裁员',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.chiefArbitrator;
 							}
 						},
-					{field:'our_side',title:'我方边裁',align:'center',sortable:true,
+					{field:'our_side',title:'我方边裁',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.ourSide;
 							}
 						},
-					{field:'other_side',title:'对方边裁',align:'center',sortable:true,
+					{field:'other_side',title:'对方边裁',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.otherSide;
 							}
 						},
-					{field:'arb_secretary',title:'仲裁秘书',align:'center',sortable:true,
+					{field:'arb_secretary',title:'仲裁秘书',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.arbSecretary;
 							}
 						},
-					{field:'secretary_contact',title:'仲裁秘书联系方式',align:'center',sortable:true,
+					{field:'secretary_contact',title:'仲裁秘书联系方式',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.secretaryContact;
 							}
 						},
-					{field:'op_court_nums',title:'开庭次数',align:'center',sortable:true,
+					{field:'op_court_nums',title:'开庭次数',align:'right',sortable:true,
 							formatter:function(value,row,index){
 								return row.opCourtNums;
 							}

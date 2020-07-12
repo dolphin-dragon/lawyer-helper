@@ -23,10 +23,10 @@
 	 </div>
 	 
      <!-- Edit Win&Form -->
-     <div id="edit-win" class="easyui-dialog" title="字典信息表" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:380px;">  
+     <div id="edit-win" class="easyui-dialog" title="字典信息表" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:500px;height:450px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
-     		 <div class="ui-edit">
+     		 <div class="ui-edit hidden">
 		     	   <!-- <div class="ftitle">字典信息表</div> -->
 					<div class="fitem">
 						<label>字典名称</label>
@@ -67,6 +67,6 @@
   			</div>
      	</form>
   	 </div>
-  	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-sysDict.js"></script>
+  	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-sysDict.js?var=<%=ot_ver%>"></script>
   </body>
 </html>

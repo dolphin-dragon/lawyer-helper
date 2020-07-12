@@ -6,10 +6,35 @@ otter.simpleFlow = function(){
 				otter.confirm("提示","提交后将等待审批处理，不可进行任何变更操作请仔细检查信息，是否提交?",function(r){
 					if(r){
 						_box.form.edit.attr('action','push.do');
-						otter.saveForm(_box.form.edit,function(data){
-							otter.closeProgress();//关闭缓冲条
-							_box.win.edit.dialog('close');
-						});
+						
+						if(_box.form.edit.form('validate')){
+							$('<input />').attr('type','hidden').attr('name','id').attr('value','department').appendTo('#editForm');
+							
+							var rows = $('#attachs-list').datagrid("getRows");
+							var t=0;
+					    	$.each(rows,function(i,record){
+					    		var str = '{';
+					    		str += '"id":'+ record['id'];
+					    	    str +='}';
+					    		$('<input />').attr('type','hidden').attr('name','attachs['+t+'].id').attr('value',record['id']).appendTo('#v_attachs');
+					    		t++;
+					    	});
+					    	
+//							_box.handler.save(function(){
+//								$("#v_attachs").empty();
+//							});
+							
+							otter.saveForm(_box.form.edit,function(data){
+								otter.closeProgress();//关闭缓冲条
+								_box.win.edit.dialog('close');
+								$("#v_attachs").empty();
+							});
+						 }
+						
+//						otter.saveForm(_box.form.edit,function(data){
+//							otter.closeProgress();//关闭缓冲条
+//							_box.win.edit.dialog('close');
+//						});
 					}
 				});
 			},
@@ -56,6 +81,7 @@ otter.simpleFlow = function(){
 					});
 					_box.handler.add(function(){
 						$('#attachs-list').datagrid('loadData', { total: 0, rows: [] });
+						$(".ui-edit").show();
 					});
 				},
 				edit:function(){
@@ -119,11 +145,12 @@ otter.simpleFlow = function(){
 				                $("#ck_bizAckImg").show();
 							}
 							
-							console.log("attachs :"+result.data.attachs);
+//							console.log("attachs :"+result.data.attachs);
 							if(null != result.data.attachs){
 								attachs_dataGrid.datagrid('loadData',result.data.attachs);
 							}
-							
+
+							$(".ui-edit").show();
 						});
 					}
 				},
@@ -167,7 +194,7 @@ otter.simpleFlow = function(){
 				],
 	   			columns:[[
 					{field:'id',checkbox:true},
-					{field:'tid',title:'流程编号',align:'center',sortable:false,
+					{field:'tid',title:'流程编号',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.id;
 						}
@@ -186,7 +213,7 @@ otter.simpleFlow = function(){
 								return value;
 							}
 						},
-					{field:'note',title:'事项内容',align:'left',sortable:true,width:200,
+					{field:'note',title:'事项内容',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.note;
 							}
@@ -223,7 +250,7 @@ otter.simpleFlow = function(){
 									return 'color:green;';  
 								}
 								if(value == 8){
-									return "color:black;";
+									return "color:gray;";
 								}
 								if(value == 9){
 									return 'color:red;';  
@@ -303,8 +330,8 @@ $(function(){
 	attachs_dataGrid = $('#attachs-list').datagrid({
 			url:'',
 			fit:true,
-			fitColumns:true,
-			width:200,
+//			fitColumns:true,
+//			width:240,
 			height:160,
 			toolbar:[
 			{id:'btnadd',text:'添加附件',btnType:'add',iconCls:'icon-edit',handler:function(){
@@ -349,7 +376,7 @@ $(function(){
 		],
 			columns:[[
 				{field:'id',checkbox:true},
-			{field:'filename',title:'附件名称',align:'center',sortable:false,width:200,
+			{field:'filename',title:'附件名称',align:'left',sortable:false,width:265,
 					formatter:function(value,row,index){
 						var html ="<a href='"+row.url+"' target='_blank'>"+row.filename+"</a>";
 						return html;

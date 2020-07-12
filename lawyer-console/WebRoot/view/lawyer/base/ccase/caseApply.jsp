@@ -16,8 +16,8 @@
 		cursor: pointer;
 		width: auto;
 		height: auto;
-		max-width: 20%;
-		max-height: 20%;
+		max-width: 50%;
+		max-height: 50%;
 		transition: all 0.6s;
 	}
 	
@@ -48,7 +48,7 @@
      <div id="edit-win" class="easyui-dialog" title="案件确立信息登记表" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:500px;height:450px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="caseId">
-     		 <div class="ui-edit">
+     		 <div class="ui-edit hidden">
 		     	   <!-- <div class="ftitle">案件确立阶段信息</div> -->
 <!-- 					<div class="fitem">
 						<label>状态</label>
@@ -84,7 +84,7 @@
 					</div>
 					<div class="fitem">
 						<label>被告名称(全称)</label>
-						<textarea name="defendantName" type="text" maxlength="1024" class="easyui-validatebox" placeholder="多被告换行分隔"  data-options="required:true" missingMessage="请填写被告名称" style="margin: 0px; width: 300px; height: 40px;"></textarea>
+						<textarea name="defendantName" type="text" maxlength="1024" class="easyui-validatebox" placeholder="多被告换行分隔"  data-options="required:true" missingMessage="请填写被告名称" style="margin: 0px; width: 300px; height: 60px;"></textarea>
 					</div>
 					<div class="fitem">
 						<label>被告注册资本</label>
@@ -143,7 +143,7 @@
 					</div>
 					<div class="fitem">
 						<label>侵权概况</label>
-						<textarea name="violateDesc" type="text" maxlength="3072" placeholder="请填写线上侵权链接数量、图片数量及线下侵权图片数量、载体。" class="easyui-validatebox" data-options="" missingMessage="请填写侵权概况" style="margin: 0px; width: 300px; height: 100px;"></textarea>
+						<textarea name="violateDesc" type="text" maxlength="3072" placeholder="请填写线上侵权链接数量、图片数量及线下侵权图片数量、载体。" class="easyui-validatebox" data-options="" missingMessage="请填写侵权概况" style="margin: 0px; width: 300px; height: 120px;"></textarea>
 					</div>
 					<div class="fitem">
 						<label>案件可诉确认日期</label>
