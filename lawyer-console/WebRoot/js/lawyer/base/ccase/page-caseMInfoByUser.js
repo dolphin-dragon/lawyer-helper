@@ -41,7 +41,7 @@ otter.caseMInfo = function(){
 					}}
 				],
 	   			columns:[[
-					{field:'id',title:'案件编号',rowspan:2,
+					{field:'id',title:'案件编号',rowspan:2,sortable:false,
 						formatter:function(value,row,index){
 							return row.id;
 						}
@@ -86,7 +86,7 @@ otter.caseMInfo = function(){
 								  return 'background-color:#CCCCCC;';
 							}
 						},
-					{field:'cp_applicant',title:'公证书申请人',align:'left',sortable:true,
+					{field:'cp_applicant',title:'公证书申请人',align:'left',sortable:false,width:100,
 							formatter:function(value,row,index){
 								return row.cpApplicant;
 							},
@@ -94,7 +94,7 @@ otter.caseMInfo = function(){
 								  return 'background-color:#CCCCCC;';
 							}
 						},
-					{field:'cp_forensics',title:'取证人',align:'center',sortable:true,
+					{field:'cp_forensics',title:'取证人',align:'left',sortable:false,width:100,
 							formatter:function(value,row,index){
 								return row.forensicsName;
 							},
@@ -131,7 +131,7 @@ otter.caseMInfo = function(){
 								  return 'background-color:#CCCCCC;';
 							}
 						},
-					{field:'cp_violate_desc',title:'侵权概况',align:'left',sortable:true,width:260,
+					{field:'cp_violate_desc',title:'侵权概况',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.cpViolateDesc;
 							},
@@ -249,7 +249,7 @@ otter.caseMInfo = function(){
 								  return 'background-color:#99FFCC;';
 							}
 						},
-					{field:'case_litigant',title:'当事人',align:'center',sortable:true,
+					{field:'case_litigant',title:'当事人',align:'left',sortable:false,width:100,
 							formatter:function(value,row,index){
 								return row.caseLitigant;
 							},
@@ -257,7 +257,7 @@ otter.caseMInfo = function(){
 								  return 'background-color:#99FFCC;';
 							}
 						},
-					{field:'case_defendant_name',title:'被告名称',align:'left',sortable:true,width:260,
+					{field:'case_defendant_name',title:'被告名称',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.caseDefendantName;
 							},
@@ -273,7 +273,7 @@ otter.caseMInfo = function(){
 								  return 'background-color:#99FFCC;';
 							}
 						},
-					{field:'case_defendant_area',title:'被告所在地',align:'left',sortable:true,width:260,
+					{field:'case_defendant_area',title:'被告所在地',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.caseDefendantArea;
 							},
@@ -281,7 +281,7 @@ otter.caseMInfo = function(){
 								  return 'background-color:#99FFCC;';
 							}
 						},
-					{field:'pr_letter',title:'律师函编号',align:'left',sortable:true,
+					{field:'pr_letter',title:'律师函编号',align:'left',sortable:false,width:100,
 							formatter:function(value,row,index){
 								return row.prLetter;
 							},
@@ -344,7 +344,7 @@ otter.caseMInfo = function(){
 								  return 'background-color:#FF9999;';
 							}
 						},
-					{field:'fir_firstor',title:'第一责任人',align:'center',sortable:true,
+					{field:'fir_firstor',title:'第一责任人',align:'left',sortable:false,width:100,
 							formatter:function(value,row,index){
 								return row.firFirstor;
 							},
@@ -408,7 +408,7 @@ otter.caseMInfo = function(){
 								  return 'background-color:#CCCCCC;';
 							}
 						},
-					{field:'fir_adjudication_court',title:'受理法院',align:'center',sortable:true,
+					{field:'fir_adjudication_court',title:'受理法院',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.firAdjudicationCourt;
 							},
@@ -416,7 +416,7 @@ otter.caseMInfo = function(){
 								  return 'background-color:#CCCCCC;';
 							}
 						},
-					{field:'fir_judge',title:'主办法官',align:'center',sortable:true,
+					{field:'fir_judge',title:'主办法官',align:'left',sortable:false,width:100,
 							formatter:function(value,row,index){
 								return row.firJudge;
 							},
@@ -424,7 +424,7 @@ otter.caseMInfo = function(){
 								  return 'background-color:#CCCCCC;';
 							}
 						},
-					{field:'fir_judge_contact',title:'联系方式',align:'center',sortable:true,
+					{field:'fir_judge_contact',title:'联系方式',align:'left',sortable:false,width:100,
 							formatter:function(value,row,index){
 								return row.firJudgeContact;
 							},
@@ -577,7 +577,7 @@ otter.caseMInfo = function(){
 								  return 'background-color:#CCCCCC;';
 							}
 						},
-					{field:'fir_appellant',title:'上诉人',align:'center',sortable:true,
+					{field:'fir_appellant',title:'上诉人',align:'left',sortable:false,width:100,
 							formatter:function(value,row,index){
 								return row.firAppellant;
 							},
@@ -615,7 +615,7 @@ otter.caseMInfo = function(){
 								  return 'background-color:#33CC99;';
 							}
 						},
-					{field:'two_judge',title:'主办法官',align:'center',sortable:true,
+					{field:'two_judge',title:'主办法官',align:'left',sortable:false,width:100,
 							formatter:function(value,row,index){
 								return row.twoJudge;
 							},
@@ -623,7 +623,7 @@ otter.caseMInfo = function(){
 								  return 'background-color:#33CC99;';
 							}
 						},
-					{field:'two_judge_contact',title:'联系方式',align:'center',sortable:true,
+					{field:'two_judge_contact',title:'联系方式',align:'left',sortable:false,width:100,
 							formatter:function(value,row,index){
 								return row.twoJudgeContact;
 							},
@@ -748,7 +748,7 @@ otter.caseMInfo = function(){
 								  return 'background-color:#99CC66;';
 							}
 						},
-					{field:'out_judge',title:'执行主办法官',align:'center',sortable:true,
+					{field:'out_judge',title:'执行主办法官',align:'left',sortable:false,width:100,
 							formatter:function(value,row,index){
 								return row.outJudge;
 							},
@@ -756,7 +756,7 @@ otter.caseMInfo = function(){
 								  return 'background-color:#99CC66;';
 							}
 						},
-					{field:'out_judge_contact',title:'联系方式',align:'center',sortable:true,
+					{field:'out_judge_contact',title:'联系方式',align:'left',sortable:false,width:100,
 							formatter:function(value,row,index){
 								return row.outJudgeContact;
 							},
@@ -772,7 +772,7 @@ otter.caseMInfo = function(){
 								  return 'background-color:#99CC66;';
 							}
 						},
-					{field:'out_f_collection_subject',title:'首位收款主体',align:'center',sortable:true,
+					{field:'out_f_collection_subject',title:'首位收款主体',align:'left',sortable:false,width:100,
 							formatter:function(value,row,index){
 								return row.outFCollectionSubject;
 							},

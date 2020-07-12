@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,6 +75,11 @@ public class CaseMInfoController extends BaseAction{
 		
 		if(!SessionUtilsExt.isAdmin(request)) {
 			page.setCaseDelFlag("0");
+		}
+		
+		if(StringUtils.isBlank(page.getPager().getOrderField())) {
+			page.setSort("id");
+			page.getPager().setOrderDirection(false);
 		}
 		
 		List<CaseMInfo> dataList = caseMInfoService.queryByList(page);
@@ -154,7 +160,15 @@ public class CaseMInfoController extends BaseAction{
 	public void exceportExcel(HttpServletResponse response, CaseMInfoPage page) {
 		OutputStream out = null;
 		try {
-			page.setCaseDelFlag("0");
+			if(!SessionUtilsExt.isAdmin(request)) {
+				page.setCaseDelFlag("0");
+			}
+
+			if(StringUtils.isBlank(page.getPager().getOrderField())) {
+				page.setSort("id");
+				page.getPager().setOrderDirection(false);
+			}
+
 			List<CaseMInfo> dataList = caseMInfoService.queryList(page);
 			Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams(null, "案件信息"), CaseMInfo.class,dataList);
 			String fileName = "案件信息.xls";
@@ -213,8 +227,13 @@ public class CaseMInfoController extends BaseAction{
 		if(null != user) {
 			if(!SessionUtilsExt.isAdmin(request)) {
 				page.setCaseCreatedBy(user.getId()+"");
+				page.setCaseDelFlag("0");
 			}
-			page.setCaseDelFlag("0");
+
+			if(StringUtils.isBlank(page.getPager().getOrderField())) {
+				page.setSort("id");
+				page.getPager().setOrderDirection(false);
+			}
 			dataList = caseMInfoService.queryByList(page);
 		}
 		//设置页面数据
@@ -239,6 +258,10 @@ public class CaseMInfoController extends BaseAction{
 				if(!SessionUtilsExt.isAdmin(request)) {
 					page.setCaseCreatedBy(user.getId()+"");
 					page.setCaseDelFlag("0");
+				}
+				if(StringUtils.isBlank(page.getPager().getOrderField())) {
+					page.setSort("id");
+					page.getPager().setOrderDirection(false);
 				}
 				dataList = caseMInfoService.queryList(page);
 			}

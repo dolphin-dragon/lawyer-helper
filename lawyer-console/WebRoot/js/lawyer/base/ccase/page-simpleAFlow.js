@@ -106,7 +106,7 @@ otter.simpleFlow = function(){
 							}
 							
 //							console.log("attachs :"+result.data.attachs);
-							if(null != result.data.attachs){
+							if(null != result.data.attachs && result.data.attachs.length>0){
 								attachs_dataGrid.datagrid('loadData',result.data.attachs);
 								$("#attachs-dv").show();
 							}

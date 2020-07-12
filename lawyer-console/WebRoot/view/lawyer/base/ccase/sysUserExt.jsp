@@ -13,7 +13,7 @@
 			<label class="ui-label">姓名:</label><input name="name" class="easyui-box ui-text" style="width:100px;">
 			<label class="ui-label">手机号:</label><input name="phone" class="easyui-box ui-text" style="width:100px;">
 	    </p>
-	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a><a href="#" id="btn-reset" class="easyui-linkbutton" iconCls="icon-reload">重置</a>
       </form>  
      </div> 
      <!--  Search panel end -->

@@ -15,7 +15,7 @@
 #end
 #end
 	    </p>
-	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a><a href="#" id="btn-reset" class="easyui-linkbutton" iconCls="icon-reload">重置</a>
       </form>  
      </div> 
      <!--  Search panel end -->
@@ -29,7 +29,7 @@
      <div id="edit-win" class="easyui-dialog" title="${codeName}" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:500px;height:450px;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
-     		 <div class="ui-edit">
+     		 <div class="ui-edit hidden">
 		     	   <div class="ftitle">${codeName}</div>
 #foreach($po in $!{columnDatas})
 #if  ($po.propertyName !='id')     	   

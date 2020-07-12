@@ -59,6 +59,15 @@ var YDataGrid = function(config){
 					});
 				}
 			},
+			//reset 重置事件
+			reset: function(callback){
+				Form.search.resetForm();
+				//回调函数
+				if(jQuery.isFunction(callback)){
+					callback();
+				}
+				return false;
+			},
 			//刷新Grid 数据
 			refresh: function(callback){
 				var param = Form.search.serializeObject();
@@ -161,6 +170,8 @@ var YDataGrid = function(config){
 		var Events ={
 			//serach 查询事件
 			search: evt.search || Handler.search,
+			//reset 查询事件
+			reset: evt.reset || Handler.reset,
 			//add按钮事件
 			add: evt.add || Handler.add,
 			//edit 按钮事件
@@ -310,6 +321,10 @@ var YDataGrid = function(config){
 		var initForm = function(){
 			if(Form.search && Form.search[0]){
 				Form.search.find("#btn-search").click(Events.search); //保存事件
+				if(Form.search.find("#btn-reset")){
+					//如果能找到重置按钮，则添加重置事件
+					Form.search.find("#btn-reset").click(Events.reset);
+				}
 			}
 		}
 		

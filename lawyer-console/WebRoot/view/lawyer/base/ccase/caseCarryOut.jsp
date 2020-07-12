@@ -12,7 +12,7 @@
             <label class="ui-label">当事人:</label><input name="litigant" class="easyui-box ui-text" style="width:100px;">
             <label class="ui-label">被告名称:</label><input name="defendantName" class="easyui-box ui-text" style="width:100px;">
 	    </p>
-	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a><a href="#" id="btn-reset" class="easyui-linkbutton" iconCls="icon-reload">重置</a>
       </form>  
      </div> 
      <!--  Search panel end -->
@@ -123,6 +123,6 @@
   			</div>
      	</form>
   	 </div>
-  	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-caseCarryOut.js?var=<%=ot_ver%>111111111"></script>
+  	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-caseCarryOut.js?var=<%=ot_ver%>"></script>
   </body>
 </html>

@@ -6,11 +6,15 @@ otter.${lowerName} = function(){
 			event:{
 				add:function(){
 					$('#typeIds_combobox').combobox('reload');
-					_box.handler.add();
+					_box.handler.add(function(){
+						$(".ui-edit").show();
+					});
 				},
 				edit:function(){
 					$('#typeIds_combobox').combobox('reload');
-					_box.handler.edit();
+					_box.handler.edit(function(){
+						$(".ui-edit").show();
+					});
 				}
 			},
   			dataGrid:{
@@ -25,7 +29,7 @@ otter.${lowerName} = function(){
 					{field:'id',checkbox:true},
 #foreach($po in $!{columnDatas})
 #if  ($po.propertyName !='id')
-					{field:'${po.columnName}',title:'${po.columnComment}',align:'center',sortable:true,
+					{field:'${po.columnName}',title:'${po.columnComment}',align:'left',sortable:false,width:100,
 							formatter:function(value,row,index){
 								return row.${po.propertyName};
 							}

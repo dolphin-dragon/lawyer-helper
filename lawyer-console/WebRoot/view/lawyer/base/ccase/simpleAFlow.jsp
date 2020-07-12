@@ -35,7 +35,7 @@
         	<label class="ui-label">审批事项:</label><input class="easyui-combobox" editable="false"  name="title" data-options="valueField:'itemValue',textField:'itemText',url:'<%=basePath %>/sysDictItem/listItems.do?dictCode=SIP_AUDIT_ITEM'" missingMessage="请填审批事项类型">
 			<label class="ui-label">事项内容:</label><input name="note" class="easyui-box ui-text" style="width:100px;">
 	    </p>
-	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a><a href="#" id="btn-reset" class="easyui-linkbutton" iconCls="icon-reload">重置</a>
       </form>  
      </div> 
      <!--  Search panel end -->

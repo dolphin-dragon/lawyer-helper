@@ -136,7 +136,7 @@ otter.caseApply = function(){
 				],
 				idField:'caseId',
 	   			columns:[[
-					{field:'case_id',checkbox:true},
+					{field:'caseId',checkbox:true},
 					{field:'status',title:'案件状态',align:'center',sortable:true,
 						styler:function(value,row,index){
 							if(value == 1){

@@ -746,5 +746,13 @@
 	,(select nickName from sys_user sut where sut.id=case_m_info.case_updated_by) as updated_name  
 	from case_m_info 
 	<include refid="Example_Where_Clause"/>
+	
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+
+	<if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
 </select>
 </mapper>

@@ -13,7 +13,7 @@
 			<label class="ui-label">删除标记:</label><input name="delFlag" class="easyui-box ui-text" style="width:100px;">
 			<label class="ui-label">机构编码:</label><input name="org" class="easyui-box ui-text" style="width:100px;">
 	    </p>
-	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a><a href="#" id="btn-reset" class="easyui-linkbutton" iconCls="icon-reload">重置</a>
       </form>  
      </div> 
      <!--  Search panel end -->

@@ -13,7 +13,7 @@
 			<label class="ui-label">当事人:</label><input name="litigant" class="easyui-box ui-text" style="width:100px;">
 			<label class="ui-label">代理律师:</label><input class="easyui-combobox" editable="false"  name="cpSupply" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请选择代理律师">
 	    </p>
-	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a><a href="#" id="btn-reset" class="easyui-linkbutton" iconCls="icon-reload">重置</a>
       </form>  
      </div> 
      <!--  Search panel end -->

@@ -83,6 +83,11 @@ public class CaseInfoController extends BaseAction{
 			page.setDelFlag("0");
 		}
 		
+		if(StringUtils.isBlank(page.getPager().getOrderField())) {
+			page.setSort("id");
+			page.getPager().setOrderDirection(false);
+		}
+		
 		List<CaseInfo> dataList = caseInfoService.queryByList(page);
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
@@ -182,6 +187,11 @@ public class CaseInfoController extends BaseAction{
 
 		if(!SessionUtilsExt.isAdmin(request)) {
 			page.setDelFlag("0");
+		}
+		
+		if(StringUtils.isBlank(page.getPager().getOrderField())) {
+			page.setSort("id");
+			page.getPager().setOrderDirection(false);
 		}
 		
 		List<CaseInfo> dataList = caseInfoService.queryByList(page);
