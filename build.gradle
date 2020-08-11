@@ -11,21 +11,16 @@ ext {
     //maven_snapshots = 'http://192.168.31.203:8081/nexus/content/repositories/snapshots/'
 	//maven_user = 'dev'
 	//maven_upwd = 'dev@123'
-	
-	maven_rep = 'http://39.100.203.167/nexus/content/groups/public/'
-    maven_snapshots = 'http://39.100.203.167/nexus/content/repositories/snapshots/'
-    maven_user = 'dev'
-    maven_upwd = 'dev@123#xQ'
 }
 
 repositories {
-	maven { url 'https://maven.aliyun.com/repository/public/' }
 	maven { url maven_rep
 	   credentials {
             username = maven_user
             password = maven_upwd
         }
 	} 
+	//maven { url 'https://maven.aliyun.com/repository/public/' }
     //mavenCentral()
     //jcenter()
 }
@@ -34,7 +29,7 @@ configurations.all {
     //每隔1分钟小时检查远程依赖是否存在更新
 	resolutionStrategy.cacheChangingModulesFor 1, 'seconds'
     //采用动态版本声明的依赖缓存10分钟
-    resolutionStrategy.cacheDynamicVersionsFor 10, 'seconds'
+    resolutionStrategy.cacheDynamicVersionsFor 1, 'seconds'
 }
 
 dependencies {
