@@ -31,12 +31,12 @@ dependencies {
 	//compile 'generate-framework:generate:0.1.+'
 	//runtime 'mysql:mysql-connector-java:5.+'
 	
-	compile 'cn.afterturn:easypoi-base:4.+'
-	compile 'cn.afterturn:easypoi-web:4.+'
-	compile 'cn.afterturn:easypoi-annotation:4.+'
+	compile 'cn.afterturn:easypoi-base:4.2.+'
+	compile 'cn.afterturn:easypoi-web:4.2.+'
+	compile 'cn.afterturn:easypoi-annotation:4.2.+'
 	
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
-	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.3'
+	//compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.4'
 }
 
 uploadArchives {
