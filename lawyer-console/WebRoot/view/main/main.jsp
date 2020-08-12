@@ -1,7 +1,7 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"  %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
     <title>星权办公助手</title>
@@ -40,33 +40,24 @@
 	<!-- 中间内容页面 -->
 	<div data-options="region:'center'" >
 		<div class="easyui-tabs" id="tab-box" data-options="fit:true,border:false">
-			<div title="工作台" style="padding:20px;overflow:hidden;"> 
-				<div style="margin-top:20px;">
-					<h3>简要说明</h3>
+			<div title="工作台" id="dktop-box" style="padding:10px;">
+			<!-- 根据菜单项创建桌面按钮 -->
+			<c:forEach var="item" items="${menuList}">
+			 	<div class="ftitle" >${item.text}</div>
+				<%-- <p>${item.text}</p> --%>
+				<div style="padding:0px 20px 20px 20px;">
+				<c:forEach var="node" items="${item.children}">
+				<a href="#" huref="<%=basePath%>${node.url}" class="easyui-linkbutton dktop-item" data-options="iconCls:'dktop-icon',size:'large',iconAlign:'top'">${node.text}</a>
+				</c:forEach>
+				</div>
+			</c:forEach>
+				<div style="margin-top:10px; color: red;">
+					<div class="ftitle" >功能更新说明</div>
 					<ul>
-					    <li>一款基于代码生成器的J2EE智能开发框架,借助该框架可以节省50%的工作量,实现代码生成+手工merge的半智能开发</li>
-					    <li>代码生成：根据表生成对应的Bean,Service,Dao,Action,XML,JSP等,增删改查功能直接使用,实现了快速开发</li> 
-						<li>采用SpringMVC+Mybatis等主流框架</li> 
-						<li>支持数据库: Mysql,Oracle10g</li> 
-						<li>前端:使用Jquery和Easyui技术.JS封装简洁,操作简单.</li> 
-						<li>权限:对菜单,按钮控制.根据登陆用户权限展示拥有的菜单和按钮.</li> 
-						<li>拦截:对所有无权限URL进行拦截,防止手动发送HTTP请求,确保系统全性.</li> 
+					    <li>1、修订流程功能，新建的流程优先显示。</li>
+					    <li>2、修订工作台页面信息显示。</li>
 					</ul>
 				</div>
-				
-				<div style="margin-top:20px;">
-					<h3>技术交流</h3>
-					<p>  &nbsp;&nbsp;本系统由dolphin-dragon开发提供,如需个性化定制,外包项目,可与本人联系.</p>
-					<ul>
-						<li>交流:19352530</li> 
-						<li>开发者：dolphin-dragon</li>
-						<li>邮箱：19352530@qq.com</li> 
-						<li>官网：<a href="https://github.com/dolphin-dragon">https://github.com/dolphin-dragon</a></li>
-					</ul>
-				</div>
-				
-				
-				
 			</div>
 		</div>	
 	</div>
@@ -91,8 +82,8 @@
 	         </div>
      	 </form>
      	 <div id="editPwdbtn" class="dialog-button" >  
-            <a href="javascript:void(0)" class="easyui-linkbutton" id="btn-pwd-submit">Submit</a>  
-            <a href="javascript:void(0)" class="easyui-linkbutton" id="btn-pwd-close">Close</a>  
+            <a href="javascript:void(0)" class="easyui-linkbutton" id="btn-pwd-submit">保存</a>  
+            <a href="javascript:void(0)" class="easyui-linkbutton" id="btn-pwd-close">关闭</a>  
          </div>
 	</div>
 	<!-- modify password end  -->

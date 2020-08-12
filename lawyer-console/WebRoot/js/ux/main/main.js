@@ -9,9 +9,18 @@ otter.main = function(){
 			otter.main.addTab(title,url);
 			return false;
 		},
+		dktopSelect:function(){
+			var _this = $(this);
+			var title=_this.text();
+			var url=_this.attr('huref');
+			otter.main.addTab(title,url);
+			return false;
+		},
 		treeInit:function(){
 			var  $items =  $('#tree-box').find(".menu-item");
 			$items.bind('click',this.treeSelect);
+			var  $items =  $('#dktop-box').find(".dktop-item");
+			$items.bind('click',this.dktopSelect);
 		},
 		addTab:function(_title,_url){
 			var boxId = '#tab-box';
@@ -68,6 +77,9 @@ otter.main = function(){
 			});
 			$('#btn-pwd-close').click(function(){
 				$('#modify-pwd-win').dialog('close');
+			});
+			$('.deskTop-btn').click(function(){
+				setTimeout("window.location.href='desktop.shtml'", 100);
 			});
 			$('#btn-pwd-submit').click(this.modifyPwd);
 			
