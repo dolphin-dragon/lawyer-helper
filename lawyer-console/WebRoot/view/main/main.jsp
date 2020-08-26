@@ -17,6 +17,7 @@
  		<div class="ui-login-info">
 	 		欢迎 <span class="orange">${user.nickName}</span> 第[<span class="orange">${user.loginCount}</span>]次登录 
 	 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	 		<a class="deskTop-btn"  href="javascript:void(0);">桌面模式</a> |
 	 		<a class="modify-pwd-btn"  href="javascript:void(0);">修改密码</a> |
  			<a class="logout-btn" href="<%=basePath%>/logout.shtml">退出</a>
  		</div>
