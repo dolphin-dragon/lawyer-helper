@@ -1,5 +1,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+    //String ot_ver = "202007122310";//System.currentTimeMillis()+"";
+    String ot_ver = System.currentTimeMillis()+"";
+%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"  %>
 <html>
@@ -7,7 +12,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>星权办公助手</title>
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />  
-    <%@include file="/view/resource.jsp" %>
+	<%--  <%@include file="/view/resource.jsp" %> --%>
     <link rel="stylesheet" type="text/css" href="<%=basePath%>/js/jquery-easyui/themes/material-teal/easyui.css">
 	<link rel="stylesheet" type="text/css" href="<%=basePath%>/js/jquery-easyui/themes/icon.css">
 	<link rel="stylesheet" type="text/css" href="<%=basePath%>/js/jquery-easyui-desktop/desktop.css">
