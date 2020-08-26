@@ -13,9 +13,11 @@
 	<title>星权办公助手</title>
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />  
 	<%--  <%@include file="/view/resource.jsp" %> --%>
-    <link rel="stylesheet" type="text/css" href="<%=basePath%>/js/jquery-easyui/themes/material-teal/easyui.css">
-	<link rel="stylesheet" type="text/css" href="<%=basePath%>/js/jquery-easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>/js/jquery-easyui-desktop/jquery-easyui/themes/material-teal/easyui.css">
+	<link rel="stylesheet" type="text/css" href="<%=basePath%>/js/jquery-easyui-desktop/jquery-easyui/themes/icon.css">
 	<link rel="stylesheet" type="text/css" href="<%=basePath%>/js/jquery-easyui-desktop/desktop.css">
+	<script type="text/javascript" src="<%=basePath%>/js/jquery-easyui-desktop/jquery-easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="<%=basePath%>/js/jquery-easyui-desktop/jquery-easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>/js/jquery-easyui-desktop/jquery.desktop.js"></script>
 </head>
 <body>
