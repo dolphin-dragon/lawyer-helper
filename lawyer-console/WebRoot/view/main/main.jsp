@@ -48,7 +48,7 @@
 				<%-- <p>${item.text}</p> --%>
 				<div style="padding:0px 20px 20px 20px;">
 				<c:forEach var="node" items="${item.children}">
-				<a href="#" huref="<%=basePath%>${node.url}" class="easyui-linkbutton dktop-item" data-options="iconCls:'dktop-icon',size:'large',iconAlign:'top'">${node.text}</a>
+				<a href="#" huref="<%=basePath%>${node.url}" class="easyui-linkbutton dktop-item" data-options="iconCls:'dktop-icon',size:'large',iconAlign:'left'">${node.text}</a>
 				</c:forEach>
 				</div>
 			</c:forEach>
