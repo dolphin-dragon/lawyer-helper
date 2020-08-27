@@ -19,6 +19,9 @@
 	<script type="text/javascript" src="<%=basePath%>/js/jquery-easyui-desktop/jquery-easyui/jquery.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>/js/jquery-easyui-desktop/jquery-easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>/js/jquery-easyui-desktop/jquery.desktop.js"></script>
+
+	<script type="text/javascript" src="<%=basePath%>/js/commons/package.js"></script>
+	<script type="text/javascript" src="<%=basePath%>/js/commons/base.js"></script>
 </head>
 <body>
 	<div id="buttons">
