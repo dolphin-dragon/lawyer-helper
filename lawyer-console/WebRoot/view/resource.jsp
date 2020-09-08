@@ -14,8 +14,8 @@
 <script type="text/javascript" src="<%=basePath%>/js/commons/jquery.form.js"></script>
 <script type="text/javascript" src="<%=basePath%>/js/commons/package.js"></script>
 <script type="text/javascript" src="<%=basePath%>/js/jquery-easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="<%=basePath%>/js/commons/urls.js?v=11"></script>
-<script type="text/javascript" src="<%=basePath%>/js/commons/base.js?v=11"></script>
+<script type="text/javascript" src="<%=basePath%>/js/commons/urls.js"></script>
+<script type="text/javascript" src="<%=basePath%>/js/commons/base.js"></script>
 <script type="text/javascript" src="<%=basePath%>/js/commons/YDataGrid.js"></script>
 <script type="text/javascript" src="<%=basePath%>/js/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
 

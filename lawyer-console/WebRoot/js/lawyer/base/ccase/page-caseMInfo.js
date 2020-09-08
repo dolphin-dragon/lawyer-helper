@@ -125,6 +125,8 @@ otter.caseMInfo = function(){
 								}
 								if(value == 7){
 									return "合同纠纷";
+								}if(value == 8){
+									return "继承案";
 								}
 								return "";
 							},
