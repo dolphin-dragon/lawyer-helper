@@ -172,6 +172,8 @@
 					</div>
 					<div class="fitem">
 						<label>侵权类型</label>
+						<input class="easyui-combobox" name="violateType" data-options="required:true,valueField:'itemValue',textField:'itemText',url:'<%=basePath %>/sysDictItem/listItems.do?dictCode=VIOLATE_TYPE'" editable="false" missingMessage="请填写侵权类型" style="margin: 0px; width: 300px;">
+						<!-- 
 						<select class="easyui-combobox" editable="false"  name="violateType" id="violateType" data-options="" missingMessage="请填写侵权类型">
                     		<option value="1" selected="selected">肖像权</option>
                     		<option value="2">肖像权(含名誉权)</option>
@@ -182,6 +184,7 @@
                     		<option value="7">合同纠纷</option>
                     		<option value="8">继承案</option>
                    		</select>
+                   		 -->
 					</div>
 					<div class="fitem">
 						<label>侵权概况</label>
