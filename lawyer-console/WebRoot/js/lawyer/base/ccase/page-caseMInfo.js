@@ -1,5 +1,14 @@
 $package('otter.caseMInfo');
 otter.caseMInfo = function(){
+	var violate_Type_map={};
+	url = urls.msUrl + '/sysDictItem/listItems.do?dictCode=VIOLATE_TYPE';
+	otter.ajaxJson(url,null,function(result){
+		$.each(result,function(index,v){
+			violate_Type_map[v.itemValue]=v.itemText
+		}
+		);
+	});
+	
 	var _box = null;
 	var _this = {
 		config:{
@@ -105,30 +114,10 @@ otter.caseMInfo = function(){
 						},
 					{field:'cpViolateType',title:'侵权类型',align:'center',sortable:true,
 							formatter:function(value,row,index){
-	                    		if(value == 1){
-									return "肖像权";
-								}
-								if(value == 2){
-									return "肖像权(含名誉权)";
-								}
-								if(value == 3){
-									return "肖像权(含姓名权)";
-								}
-								if(value == 4){
-									return "肖像权(含姓名权、名誉权)";
-								}
-								if(value == 5){
-									return "名誉权";
-								}
-								if(value == 6){
-									return "不当得利纠纷";
-								}
-								if(value == 7){
-									return "合同纠纷";
-								}if(value == 8){
-									return "继承案";
-								}
-								return "";
+								if(violate_Type_map.hasOwnProperty(value)){
+									return violate_Type_map[value]
+								}else
+									return "";
 							},
 							styler:function(index,row){
 								  return 'background-color:#CCCCCC;';
