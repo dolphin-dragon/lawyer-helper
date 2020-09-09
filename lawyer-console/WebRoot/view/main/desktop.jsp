@@ -2,8 +2,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
-    //String ot_ver = "202007122310";//System.currentTimeMillis()+"";
-    String ot_ver = System.currentTimeMillis()+"";
+    String ot_ver = "202009090900";//System.currentTimeMillis()+"";
+    //String ot_ver = System.currentTimeMillis()+"";
 %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"  %>
