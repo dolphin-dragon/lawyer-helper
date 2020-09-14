@@ -5,10 +5,10 @@ subprojects {
 	[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 ext {
-	maven_rep = 'http://127.0.0.1:8081/nexus/content/groups/public/'
-	maven_snapshots = 'http://127.0.0.1:8081/nexus/content/repositories/snapshots/'
-	maven_user = 'dev'
-	maven_upwd = 'dev@123'
+	maven_rep = 'http://localhost/nexus/content/groups/public/'
+    maven_snapshots = 'http://localhost/nexus/content/repositories/snapshots/'
+    maven_user = 'dev'
+    maven_upwd = 'dev@123#xQ'
 }
 
 repositories {
