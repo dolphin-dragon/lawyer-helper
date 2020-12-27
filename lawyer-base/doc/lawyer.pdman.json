@@ -1953,6 +1953,962 @@
         "edges": []
       },
       "associations": []
+    },
+    {
+      "name": "meeting_mgt",
+      "chnname": "会议管理",
+      "entities": [
+        {
+          "title": "MEETING_ROOM_INFO",
+          "fields": [
+            {
+              "name": "STATUS",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "状态"
+            },
+            {
+              "name": "DEL_FLAG",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "删除标记",
+              "defaultValue": "0"
+            },
+            {
+              "name": "ORG",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "机构编码"
+            },
+            {
+              "name": "CREATED_BY",
+              "type": "IdOrKey",
+              "remark": "",
+              "chnname": "创建人"
+            },
+            {
+              "name": "CREATED_TIME",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "创建时间"
+            },
+            {
+              "name": "UPDATED_BY",
+              "type": "IdOrKey",
+              "remark": "",
+              "chnname": "更新人"
+            },
+            {
+              "name": "UPDATED_TIME",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "更新时间"
+            },
+            {
+              "name": "ID",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "序号",
+              "autoIncrement": true,
+              "pk": true,
+              "notNull": true,
+              "relationNoShow": false
+            },
+            {
+              "name": "MTR_NAME",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "会议室名称"
+            },
+            {
+              "name": "MTR_CODE",
+              "type": "IdOrKey",
+              "remark": "",
+              "chnname": "会议室编号"
+            },
+            {
+              "name": "MTR_MAXPERSONNUMS",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "会议室最大容纳人数"
+            },
+            {
+              "name": "MTR_DESCRIPTION",
+              "type": "MiddleString",
+              "remark": "",
+              "chnname": "会议室说明"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "会议室基本信息",
+          "remark": "会议室基本信息登记表"
+        },
+        {
+          "title": "MEETING_INFO",
+          "fields": [
+            {
+              "name": "STATUS",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "状态"
+            },
+            {
+              "name": "DEL_FLAG",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "删除标记",
+              "defaultValue": "0"
+            },
+            {
+              "name": "ORG",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "机构编码"
+            },
+            {
+              "name": "CREATED_BY",
+              "type": "IdOrKey",
+              "remark": "",
+              "chnname": "创建人"
+            },
+            {
+              "name": "CREATED_TIME",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "创建时间"
+            },
+            {
+              "name": "UPDATED_BY",
+              "type": "IdOrKey",
+              "remark": "",
+              "chnname": "更新人"
+            },
+            {
+              "name": "UPDATED_TIME",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "更新时间"
+            },
+            {
+              "name": "ID",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "序号",
+              "autoIncrement": true,
+              "pk": true,
+              "notNull": true,
+              "relationNoShow": false
+            },
+            {
+              "name": "MT_NAME",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "会议名称"
+            },
+            {
+              "name": "MT_SPONSOR",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "会议发起人"
+            },
+            {
+              "name": "MT_MEMBERS",
+              "type": "MiddleString",
+              "remark": "",
+              "chnname": "会议参会人列表",
+              "defaultValue": ""
+            },
+            {
+              "name": "MT_TOPICS",
+              "type": "IdOrKey",
+              "remark": "",
+              "chnname": "会议议题"
+            },
+            {
+              "name": "MTR_ID",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "会议室"
+            },
+            {
+              "name": "MT_START_TIME",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "会议预定开始时间"
+            },
+            {
+              "name": "MT_END_TIME",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "会议预定结束时间"
+            },
+            {
+              "name": "MT_RESOLUTION",
+              "type": "LongString",
+              "remark": "",
+              "chnname": "会议决议内容"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "会议基本信息",
+          "remark": "会议基本信息登记表"
+        }
+      ],
+      "graphCanvas": {
+        "nodes": [],
+        "edges": []
+      },
+      "associations": []
+    },
+    {
+      "name": "sys_mgt",
+      "chnname": "系统管理模块",
+      "entities": [
+        {
+          "title": "SYS_DICT_ITEM",
+          "fields": [
+            {
+              "name": "STATUS",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "状态"
+            },
+            {
+              "name": "DEL_FLAG",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "删除标记",
+              "defaultValue": "0"
+            },
+            {
+              "name": "ORG",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "机构编码"
+            },
+            {
+              "name": "CREATED_BY",
+              "type": "IdOrKey",
+              "remark": "",
+              "chnname": "创建人"
+            },
+            {
+              "name": "CREATED_TIME",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "创建时间"
+            },
+            {
+              "name": "UPDATED_BY",
+              "type": "IdOrKey",
+              "remark": "",
+              "chnname": "更新人"
+            },
+            {
+              "name": "UPDATED_TIME",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "更新时间"
+            },
+            {
+              "name": "ID",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "字典项ID",
+              "autoIncrement": true,
+              "pk": true,
+              "notNull": true,
+              "relationNoShow": false
+            },
+            {
+              "name": "DICT_ID",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "字典ID"
+            },
+            {
+              "name": "ITEM_TEXT",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "字典项文本"
+            },
+            {
+              "name": "ITEM_VALUE",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "字典项值"
+            },
+            {
+              "name": "DESCRIPTION",
+              "type": "Intro",
+              "remark": "",
+              "chnname": "描述"
+            },
+            {
+              "name": "SORT_ORDER",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "排序"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "数据字典项目",
+          "remark": "数据字典项目信息登记表"
+        },
+        {
+          "title": "SYS_DICT",
+          "fields": [
+            {
+              "name": "STATUS",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "状态"
+            },
+            {
+              "name": "DEL_FLAG",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "删除标记",
+              "defaultValue": "0"
+            },
+            {
+              "name": "ORG",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "机构编码"
+            },
+            {
+              "name": "CREATED_BY",
+              "type": "IdOrKey",
+              "remark": "",
+              "chnname": "创建人"
+            },
+            {
+              "name": "CREATED_TIME",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "创建时间"
+            },
+            {
+              "name": "UPDATED_BY",
+              "type": "IdOrKey",
+              "remark": "",
+              "chnname": "更新人"
+            },
+            {
+              "name": "UPDATED_TIME",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "更新时间"
+            },
+            {
+              "name": "ID",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "字典ID",
+              "autoIncrement": true,
+              "pk": true,
+              "notNull": true,
+              "relationNoShow": false
+            },
+            {
+              "name": "DICT_NAME",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "字典名称"
+            },
+            {
+              "name": "DICT_CODE",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "字典编码"
+            },
+            {
+              "name": "TYPE",
+              "type": "Integer",
+              "remark": "字典类型0为STRING,1为NUMBER",
+              "chnname": "字典类型"
+            },
+            {
+              "name": "DESCRIPTION",
+              "type": "Intro",
+              "remark": "",
+              "chnname": "描述"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "数据字典",
+          "remark": "数据字典信息登记表"
+        },
+        {
+          "title": "SYS_FILE_ATTACH",
+          "fields": [
+            {
+              "name": "STATUS",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "状态"
+            },
+            {
+              "name": "DEL_FLAG",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "删除标记",
+              "defaultValue": "0"
+            },
+            {
+              "name": "ORG",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "机构编码"
+            },
+            {
+              "name": "CREATED_BY",
+              "type": "IdOrKey",
+              "remark": "",
+              "chnname": "创建人"
+            },
+            {
+              "name": "CREATED_TIME",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "创建时间"
+            },
+            {
+              "name": "UPDATED_BY",
+              "type": "IdOrKey",
+              "remark": "",
+              "chnname": "更新人"
+            },
+            {
+              "name": "UPDATED_TIME",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "更新时间"
+            },
+            {
+              "name": "ID",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "ID",
+              "autoIncrement": true,
+              "pk": true,
+              "notNull": true,
+              "relationNoShow": false
+            },
+            {
+              "name": "FILENAME",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "文件名"
+            },
+            {
+              "name": "FILEPATH",
+              "type": "MiddleString",
+              "remark": "",
+              "chnname": "文件路径"
+            },
+            {
+              "name": "EXT",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "扩展名"
+            },
+            {
+              "name": "FILETYPE",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "文件类型"
+            },
+            {
+              "name": "FSIZE",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "文件大小"
+            },
+            {
+              "name": "NOTE",
+              "type": "MiddleString",
+              "remark": "",
+              "chnname": "说明"
+            },
+            {
+              "name": "URL",
+              "type": "MiddleString",
+              "remark": "",
+              "chnname": "请求URL地址"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "附件信息表",
+          "remark": "附件文件信息表"
+        }
+      ],
+      "graphCanvas": {
+        "nodes": [],
+        "edges": []
+      },
+      "associations": []
+    },
+    {
+      "name": "flow_mgt",
+      "chnname": "流程管理模块",
+      "entities": [
+        {
+          "title": "SIMPLE_FLOW_ATTACH",
+          "fields": [
+            {
+              "name": "SFLOW_ID",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "流程ID",
+              "autoIncrement": false,
+              "pk": false,
+              "notNull": false,
+              "relationNoShow": false
+            },
+            {
+              "name": "SFILE_ATTACH_ID",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "附件ID"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "简单流程附件信息表",
+          "remark": "简单流程附件关联表"
+        },
+        {
+          "title": "SIMPLE_FLOW",
+          "fields": [
+            {
+              "name": "STATUS",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "状态"
+            },
+            {
+              "name": "DEL_FLAG",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "删除标记",
+              "defaultValue": "0"
+            },
+            {
+              "name": "ORG",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "机构编码"
+            },
+            {
+              "name": "CREATED_BY",
+              "type": "IdOrKey",
+              "remark": "",
+              "chnname": "创建人"
+            },
+            {
+              "name": "CREATED_TIME",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "创建时间"
+            },
+            {
+              "name": "UPDATED_BY",
+              "type": "IdOrKey",
+              "remark": "",
+              "chnname": "更新人"
+            },
+            {
+              "name": "UPDATED_TIME",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "更新时间"
+            },
+            {
+              "name": "ID",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "ID",
+              "autoIncrement": true,
+              "pk": true,
+              "notNull": true,
+              "relationNoShow": false
+            },
+            {
+              "name": "TITLE",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "流程标题"
+            },
+            {
+              "name": "NOTE",
+              "type": "MiddleString",
+              "remark": "",
+              "chnname": "流程说明"
+            },
+            {
+              "name": "FTYPE",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "流程业务类型"
+            },
+            {
+              "name": "APPROVER",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "审批人"
+            },
+            {
+              "name": "FILE_ACK_IMG",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "文件审核截图"
+            },
+            {
+              "name": "BIZ_ACK_IMG",
+              "type": "MiddleString",
+              "remark": "",
+              "chnname": "业务确认截图"
+            },
+            {
+              "name": "REMARK",
+              "type": "MiddleString",
+              "remark": "",
+              "chnname": "备注"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "简单流程信息表",
+          "remark": "简单流程信息表"
+        }
+      ],
+      "graphCanvas": {
+        "nodes": [],
+        "edges": []
+      },
+      "associations": []
     }
   ],
   "dataTypeDomains": {
