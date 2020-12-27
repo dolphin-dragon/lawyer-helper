@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.base.web.BaseAction;
 import com.base.util.HtmlUtil;
+import com.base.util.SessionUtilsExt;
 import ${bussPackage}.${entityPackage}.entity.${className};
 import ${bussPackage}.${entityPackage}.page.${className}Page;
 import ${bussPackage}.${entityPackage}.service.${className}Service;
@@ -66,7 +67,12 @@ public class ${className}Controller extends BaseAction{
 	@RequestMapping("/dataList") 
 	public void  datalist(${className}Page page,HttpServletResponse response) throws Exception{
 		log.info("/${lowerName}/dataList page :"+page+" response:"+response);
-		
+		//超级管理员可查看删除数据
+		SysUser user = SessionUtilsExt.getUser(request);
+		if(!SessionUtilsExt.isAdmin(request)) {
+			page.setCreatedBy(user.getId()+"");
+			page.setDelFlag("0");
+		}
 		List<${className}> dataList = ${lowerName}Service.queryByList(page);
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
@@ -89,12 +95,19 @@ public class ${className}Controller extends BaseAction{
 		log.info("/${lowerName}/save entity :"+entity+" typeIds:"+Arrays.toString(typeIds)+" response:"+response);
 		
 		//Map<String,Object>  context = new HashMap<String,Object>();
+		SysUser user = SessionUtilsExt.getUser(request);
 		if(entity.getId()==null||StringUtils.isBlank(entity.getId().toString())){
 	#if ($keyType =='01')
 		entity.setId(UUID.randomUUID().toString());
 	#end
+			entity.setCreatedBy(null!=user?user.getId()+"":"");
+			entity.setCreatedTime(new Date());
+			entity.setUpdatedBy(null!=user?user.getId()+"":"");
+			entity.setUpdatedTime(new Date());
 			${lowerName}Service.add(entity);
 		}else{
+			entity.setUpdatedBy(null!=user?user.getId()+"":"");
+			entity.setUpdatedTime(new Date());
 			${lowerName}Service.update(entity);
 		}
 		
