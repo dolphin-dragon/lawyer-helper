@@ -2166,7 +2166,7 @@
             },
             {
               "name": "MT_TOPICS",
-              "type": "IdOrKey",
+              "type": "MiddleString",
               "remark": "",
               "chnname": "会议议题"
             },
