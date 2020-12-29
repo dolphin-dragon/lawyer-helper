@@ -5,8 +5,8 @@ subprojects {
 	[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 ext {
-	maven_rep = 'http://localhost/nexus/content/groups/public/'
-    maven_snapshots = 'http://localhost/nexus/content/repositories/snapshots/'
+	maven_rep = 'http://dev.dolphin.cn/nexus/content/groups/public/'
+    maven_snapshots = 'http://dev.dolphin.cn/nexus/content/repositories/snapshots/'
     maven_user = 'dev'
     maven_upwd = 'dev@123#xQ'
 }
