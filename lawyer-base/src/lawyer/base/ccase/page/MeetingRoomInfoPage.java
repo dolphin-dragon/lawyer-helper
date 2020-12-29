@@ -1,0 +1,13 @@
+package lawyer.base.ccase.page;
+
+import com.base.page.BasePage;
+
+/**
+ * <b>功能：</b>MeetingRoomInfoPage<br>
+ * <b>作者：</b>dragon<br>
+ * <b>日期：</b> 2020-12-27 <br>
+ * <b>版权所有：<b>lawyer-helper版权所有(C) 2018，www.lawyer-helper.com<br>
+ */
+public class MeetingRoomInfoPage extends BasePage {
+		private java.lang.Integer status;//   状态	private java.lang.String delFlag;//   删除标记	private java.lang.String org;//   机构编码	private java.lang.String createdBy;//   创建人	private java.util.Date createdTime;//   创建时间	private java.lang.String updatedBy;//   更新人	private java.util.Date updatedTime;//   更新时间	private java.lang.Integer id;//   序号	private java.lang.String mtrName;//   会议室名称	private java.lang.String mtrCode;//   会议室编号	private java.lang.Integer mtrMaxpersonnums;//   会议室最大容纳人数	private java.lang.String mtrDescription;//   会议室说明	public java.lang.Integer getStatus() {	    return this.status;	}	public void setStatus(java.lang.Integer status) {	    this.status=status;	}	public java.lang.String getDelFlag() {	    return this.delFlag;	}	public void setDelFlag(java.lang.String delFlag) {	    this.delFlag=delFlag;	}	public java.lang.String getOrg() {	    return this.org;	}	public void setOrg(java.lang.String org) {	    this.org=org;	}	public java.lang.String getCreatedBy() {	    return this.createdBy;	}	public void setCreatedBy(java.lang.String createdBy) {	    this.createdBy=createdBy;	}	public java.util.Date getCreatedTime() {	    return this.createdTime;	}	public void setCreatedTime(java.util.Date createdTime) {	    this.createdTime=createdTime;	}	public java.lang.String getUpdatedBy() {	    return this.updatedBy;	}	public void setUpdatedBy(java.lang.String updatedBy) {	    this.updatedBy=updatedBy;	}	public java.util.Date getUpdatedTime() {	    return this.updatedTime;	}	public void setUpdatedTime(java.util.Date updatedTime) {	    this.updatedTime=updatedTime;	}	public java.lang.Integer getId() {	    return this.id;	}	public void setId(java.lang.Integer id) {	    this.id=id;	}	public java.lang.String getMtrName() {	    return this.mtrName;	}	public void setMtrName(java.lang.String mtrName) {	    this.mtrName=mtrName;	}	public java.lang.String getMtrCode() {	    return this.mtrCode;	}	public void setMtrCode(java.lang.String mtrCode) {	    this.mtrCode=mtrCode;	}	public java.lang.Integer getMtrMaxpersonnums() {	    return this.mtrMaxpersonnums;	}	public void setMtrMaxpersonnums(java.lang.Integer mtrMaxpersonnums) {	    this.mtrMaxpersonnums=mtrMaxpersonnums;	}	public java.lang.String getMtrDescription() {	    return this.mtrDescription;	}	public void setMtrDescription(java.lang.String mtrDescription) {	    this.mtrDescription=mtrDescription;	}
+}

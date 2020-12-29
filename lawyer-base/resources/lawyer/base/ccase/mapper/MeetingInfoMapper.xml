@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lawyer.base.ccase.dao.MeetingInfoDao" > 
+<!--*********************************** generation code  start ***********************************-->
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="lawyer.base.ccase.entity.MeetingInfo" >
+	<result column="status" property="status" jdbcType="INTEGER"/>
+	<result column="del_flag" property="delFlag" jdbcType="VARCHAR"/>
+	<result column="org" property="org" jdbcType="VARCHAR"/>
+	<result column="created_by" property="createdBy" jdbcType="VARCHAR"/>
+	<result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
+	<result column="updated_by" property="updatedBy" jdbcType="VARCHAR"/>
+	<result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
+	<result column="id" property="id" jdbcType="INTEGER"/>
+	<result column="mt_name" property="mtName" jdbcType="VARCHAR"/>
+	<result column="mt_sponsor" property="mtSponsor" jdbcType="VARCHAR"/>
+	<result column="mt_members" property="mtMembers" jdbcType="VARCHAR"/>
+	<result column="mt_topics" property="mtTopics" jdbcType="VARCHAR"/>
+	<result column="mtr_id" property="mtrId" jdbcType="INTEGER"/>
+	<result column="mt_start_time" property="mtStartTime" jdbcType="TIMESTAMP"/>
+	<result column="mt_end_time" property="mtEndTime" jdbcType="TIMESTAMP"/>
+	<result column="mt_resolution" property="mtResolution" jdbcType="VARCHAR"/>
+
+	<result column="mt_sponsor_name" property="mtSponsorName" jdbcType="VARCHAR"/>
+	<result column="mtr_name" property="mtrName" jdbcType="VARCHAR"/>
+</resultMap>
+       
+<!-- meeting_info table all fields -->
+<sql id="Base_Column_List" >
+	 status,del_flag,org,created_by,created_time,updated_by,updated_time,id,mt_name,mt_sponsor,mt_members,mt_topics,mtr_id,mt_start_time,mt_end_time,mt_resolution
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+<trim prefix = "where" prefixOverrides="and|or">
+	<!--  -->
+		<if test="status != null" >
+	    and status =  #{status}
+	</if>
+	<!--  -->
+		 	<if test="delFlag != null and delFlag != ''" >
+	    and del_flag =  #{delFlag}
+	</if>
+	<!--  -->
+		 	<if test="org != null and org != ''" >
+	    and org =  #{org}
+	</if>
+	<!--  -->
+		 	<if test="createdBy != null and createdBy != ''" >
+	    and created_by =  #{createdBy}
+	</if>
+	<!--  -->
+		<if test="createdTime != null" >
+	    and created_time =  #{createdTime}
+	</if>
+	<!--  -->
+		 	<if test="updatedBy != null and updatedBy != ''" >
+	    and updated_by =  #{updatedBy}
+	</if>
+	<!--  -->
+		<if test="updatedTime != null" >
+	    and updated_time =  #{updatedTime}
+	</if>
+	<!--  -->
+		<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	<!--  -->
+		 	<if test="mtName != null and mtName != ''" >
+	    and mt_name =  #{mtName}
+	</if>
+	<!--  -->
+		 	<if test="mtSponsor != null and mtSponsor != ''" >
+	    and mt_sponsor =  #{mtSponsor}
+	</if>
+	<!--  -->
+		 	<if test="mtMembers != null and mtMembers != ''" >
+	    and mt_members =  #{mtMembers}
+	</if>
+	<!--  -->
+		 	<if test="mtTopics != null and mtTopics != ''" >
+	    and mt_topics =  #{mtTopics}
+	</if>
+	<!--  -->
+		<if test="mtrId != null" >
+	    and mtr_id =  #{mtrId}
+	</if>
+	<!--  -->
+		<if test="mtStartTime != null" >
+	    and mt_start_time =  #{mtStartTime}
+	</if>
+	<!--  -->
+		<if test="mtEndTime != null" >
+	    and mt_end_time =  #{mtEndTime}
+	</if>
+	<!--  -->
+		 	<if test="mtResolution != null and mtResolution != ''" >
+	    and mt_resolution =  #{mtResolution}
+	</if>
+</trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into meeting_info(status,del_flag,org,created_by,created_time,updated_by,updated_time,id,mt_name,mt_sponsor,mt_members,mt_topics,mtr_id,mt_start_time,mt_end_time,mt_resolution)
+ values(#{status,jdbcType=INTEGER},#{delFlag,jdbcType=VARCHAR},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{id,jdbcType=INTEGER},#{mtName,jdbcType=VARCHAR},#{mtSponsor,jdbcType=VARCHAR},#{mtMembers,jdbcType=VARCHAR},#{mtTopics,jdbcType=VARCHAR},#{mtrId,jdbcType=INTEGER},#{mtStartTime,jdbcType=TIMESTAMP},#{mtEndTime,jdbcType=TIMESTAMP},#{mtResolution,jdbcType=VARCHAR})
+</insert>
+
+<!-- 根据id，修改记录-->
+ <update id="update" parameterType="Object" >
+  update meeting_info set del_flag=#{delFlag,jdbcType=VARCHAR},org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},id=#{id,jdbcType=INTEGER},mt_name=#{mtName,jdbcType=VARCHAR},mt_sponsor=#{mtSponsor,jdbcType=VARCHAR},mt_members=#{mtMembers,jdbcType=VARCHAR},mt_topics=#{mtTopics,jdbcType=VARCHAR},mtr_id=#{mtrId,jdbcType=INTEGER},mt_start_time=#{mtStartTime,jdbcType=TIMESTAMP},mt_end_time=#{mtEndTime,jdbcType=TIMESTAMP},mt_resolution=#{mtResolution,jdbcType=VARCHAR} where id=#{id,jdbcType=INTEGER}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update meeting_info set 
+	<trim  suffixOverrides="," >
+	<if test="delFlag != null  ">
+		del_flag=#{delFlag,jdbcType=VARCHAR},
+	</if>
+	<if test="org != null  ">
+		org=#{org,jdbcType=VARCHAR},
+	</if>
+	<if test="createdBy != null  ">
+		created_by=#{createdBy,jdbcType=VARCHAR},
+	</if>
+	<if test="createdTime != null  ">
+		created_time=#{createdTime,jdbcType=TIMESTAMP},
+	</if>
+	<if test="updatedBy != null  ">
+		updated_by=#{updatedBy,jdbcType=VARCHAR},
+	</if>
+	<if test="updatedTime != null  ">
+		updated_time=#{updatedTime,jdbcType=TIMESTAMP},
+	</if>
+	<if test="id != null  ">
+		id=#{id,jdbcType=INTEGER},
+	</if>
+	<if test="mtName != null  ">
+		mt_name=#{mtName,jdbcType=VARCHAR},
+	</if>
+	<if test="mtSponsor != null  ">
+		mt_sponsor=#{mtSponsor,jdbcType=VARCHAR},
+	</if>
+	<if test="mtMembers != null  ">
+		mt_members=#{mtMembers,jdbcType=VARCHAR},
+	</if>
+	<if test="mtTopics != null  ">
+		mt_topics=#{mtTopics,jdbcType=VARCHAR},
+	</if>
+	<if test="mtrId != null  ">
+		mtr_id=#{mtrId,jdbcType=INTEGER},
+	</if>
+	<if test="mtStartTime != null  ">
+		mt_start_time=#{mtStartTime,jdbcType=TIMESTAMP},
+	</if>
+	<if test="mtEndTime != null  ">
+		mt_end_time=#{mtEndTime,jdbcType=TIMESTAMP},
+	</if>
+	<if test="mtResolution != null  ">
+		mt_resolution=#{mtResolution,jdbcType=VARCHAR},
+	</if>
+	</trim> where id=#{id,jdbcType=INTEGER}
+</update>
+
+<!-- 删除记录 -->
+<!-- 
+<delete id="delete" parameterType="Object">
+	delete 	 from meeting_info where status = #{status}
+</delete>
+ -->
+<delete id="delete" parameterType="Object">
+	 update meeting_info set del_flag='1' where id=#{id,jdbcType=INTEGER}
+</delete>
+ 
+<!-- 根据id查询 会议基本信息表 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	,(select mtr_name from meeting_room_info mtr where mtr.id=meeting_info.mtr_id) as mtr_name 
+	,(select nickName from sys_user sut where sut.id=meeting_info.mt_sponsor) as mt_sponsor_name  
+	 from meeting_info where id=#{id,jdbcType=INTEGER}
+</select>
+
+<!-- 会议基本信息表 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from meeting_info 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询会议基本信息表列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	,(select mtr_name from meeting_room_info mtr where mtr.id=meeting_info.mtr_id) as mtr_name 
+	,(select nickName from sys_user sut where sut.id=meeting_info.mt_sponsor) as mt_sponsor_name  
+	from meeting_info 
+	<include refid="Example_Where_Clause"/>
+	
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+
+	<if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+
+</select>
+<!--*********************************** generation code  end ***********************************-->
+
+	
+</mapper>

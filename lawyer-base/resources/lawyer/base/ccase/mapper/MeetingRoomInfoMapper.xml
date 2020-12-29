@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lawyer.base.ccase.dao.MeetingRoomInfoDao" > 
+<!--*********************************** generation code  start ***********************************-->
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="lawyer.base.ccase.entity.MeetingRoomInfo" >
+	<result column="status" property="status" jdbcType="INTEGER"/>
+	<result column="del_flag" property="delFlag" jdbcType="VARCHAR"/>
+	<result column="org" property="org" jdbcType="VARCHAR"/>
+	<result column="created_by" property="createdBy" jdbcType="VARCHAR"/>
+	<result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
+	<result column="updated_by" property="updatedBy" jdbcType="VARCHAR"/>
+	<result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
+	<result column="id" property="id" jdbcType="INTEGER"/>
+	<result column="mtr_name" property="mtrName" jdbcType="VARCHAR"/>
+	<result column="mtr_code" property="mtrCode" jdbcType="VARCHAR"/>
+	<result column="mtr_maxpersonnums" property="mtrMaxpersonnums" jdbcType="INTEGER"/>
+	<result column="mtr_description" property="mtrDescription" jdbcType="VARCHAR"/>
+</resultMap>
+       
+<!-- meeting_room_info table all fields -->
+<sql id="Base_Column_List" >
+	 status,del_flag,org,created_by,created_time,updated_by,updated_time,id,mtr_name,mtr_code,mtr_maxpersonnums,mtr_description
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+<trim prefix = "where" prefixOverrides="and|or">
+	<!--  -->
+		<if test="status != null" >
+	    and status =  #{status}
+	</if>
+	<!--  -->
+		 	<if test="delFlag != null and delFlag != ''" >
+	    and del_flag =  #{delFlag}
+	</if>
+	<!--  -->
+		 	<if test="org != null and org != ''" >
+	    and org =  #{org}
+	</if>
+	<!--  -->
+		 	<if test="createdBy != null and createdBy != ''" >
+	    and created_by =  #{createdBy}
+	</if>
+	<!--  -->
+		<if test="createdTime != null" >
+	    and created_time =  #{createdTime}
+	</if>
+	<!--  -->
+		 	<if test="updatedBy != null and updatedBy != ''" >
+	    and updated_by =  #{updatedBy}
+	</if>
+	<!--  -->
+		<if test="updatedTime != null" >
+	    and updated_time =  #{updatedTime}
+	</if>
+	<!--  -->
+		<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	<!--  -->
+		 	<if test="mtrName != null and mtrName != ''" >
+	    and mtr_name =  #{mtrName}
+	</if>
+	<!--  -->
+		 	<if test="mtrCode != null and mtrCode != ''" >
+	    and mtr_code =  #{mtrCode}
+	</if>
+	<!--  -->
+		<if test="mtrMaxpersonnums != null" >
+	    and mtr_maxpersonnums =  #{mtrMaxpersonnums}
+	</if>
+	<!--  -->
+		 	<if test="mtrDescription != null and mtrDescription != ''" >
+	    and mtr_description =  #{mtrDescription}
+	</if>
+</trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into meeting_room_info(status,del_flag,org,created_by,created_time,updated_by,updated_time,id,mtr_name,mtr_code,mtr_maxpersonnums,mtr_description)
+ values(#{status,jdbcType=INTEGER},#{delFlag,jdbcType=VARCHAR},#{org,jdbcType=VARCHAR},#{createdBy,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{updatedBy,jdbcType=VARCHAR},#{updatedTime,jdbcType=TIMESTAMP},#{id,jdbcType=INTEGER},#{mtrName,jdbcType=VARCHAR},#{mtrCode,jdbcType=VARCHAR},#{mtrMaxpersonnums,jdbcType=INTEGER},#{mtrDescription,jdbcType=VARCHAR})
+</insert>
+
+<!-- 根据id，修改记录-->
+ <update id="update" parameterType="Object" >
+  update meeting_room_info set del_flag=#{delFlag,jdbcType=VARCHAR},org=#{org,jdbcType=VARCHAR},created_by=#{createdBy,jdbcType=VARCHAR},created_time=#{createdTime,jdbcType=TIMESTAMP},updated_by=#{updatedBy,jdbcType=VARCHAR},updated_time=#{updatedTime,jdbcType=TIMESTAMP},id=#{id,jdbcType=INTEGER},mtr_name=#{mtrName,jdbcType=VARCHAR},mtr_code=#{mtrCode,jdbcType=VARCHAR},mtr_maxpersonnums=#{mtrMaxpersonnums,jdbcType=INTEGER},mtr_description=#{mtrDescription,jdbcType=VARCHAR} where id=#{id,jdbcType=INTEGER}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update meeting_room_info set 
+	<trim  suffixOverrides="," >
+	<if test="delFlag != null  ">
+		del_flag=#{delFlag,jdbcType=VARCHAR},
+	</if>
+	<if test="org != null  ">
+		org=#{org,jdbcType=VARCHAR},
+	</if>
+	<if test="createdBy != null  ">
+		created_by=#{createdBy,jdbcType=VARCHAR},
+	</if>
+	<if test="createdTime != null  ">
+		created_time=#{createdTime,jdbcType=TIMESTAMP},
+	</if>
+	<if test="updatedBy != null  ">
+		updated_by=#{updatedBy,jdbcType=VARCHAR},
+	</if>
+	<if test="updatedTime != null  ">
+		updated_time=#{updatedTime,jdbcType=TIMESTAMP},
+	</if>
+	<if test="id != null  ">
+		id=#{id,jdbcType=INTEGER},
+	</if>
+	<if test="mtrName != null  ">
+		mtr_name=#{mtrName,jdbcType=VARCHAR},
+	</if>
+	<if test="mtrCode != null  ">
+		mtr_code=#{mtrCode,jdbcType=VARCHAR},
+	</if>
+	<if test="mtrMaxpersonnums != null  ">
+		mtr_maxpersonnums=#{mtrMaxpersonnums,jdbcType=INTEGER},
+	</if>
+	<if test="mtrDescription != null  ">
+		mtr_description=#{mtrDescription,jdbcType=VARCHAR},
+	</if>
+	</trim> where id=#{id,jdbcType=INTEGER}
+</update>
+
+<!-- 删除记录 -->
+<!--
+<delete id="delete" parameterType="Object">
+	delete 	 from meeting_room_info where status = #{status}
+</delete>
+-->
+<update id="delete" parameterType="Object">
+    update meeting_room_info set del_flag='1' where id=#{id,jdbcType=INTEGER}
+</update>
+ 
+<!-- 根据id查询 会议室基本信息表 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from meeting_room_info where id=#{id,jdbcType=INTEGER}
+</select>
+
+<!-- 会议室基本信息表 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from meeting_room_info 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询会议室基本信息表列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+
+	select 
+	<include refid="Base_Column_List"/>
+	from meeting_room_info 
+	<include refid="Example_Where_Clause"/>
+	
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+
+	<if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+
+</select>
+<!--*********************************** generation code  end ***********************************-->
+<!-- 用户信息列表 -->
+<select id="listDatas" resultMap="BaseResultMap"  parameterType="Object">
+	select <include refid="Base_Column_List"/>
+	from meeting_room_info 
+	<include refid="Example_Where_Clause"/>
+</select>
+</mapper>
