@@ -62,6 +62,7 @@ var YDataGrid = function(config){
 			//reset 重置事件
 			reset: function(callback){
 				Form.search.resetForm();
+				Form.search.form('clear');
 				//回调函数
 				if(jQuery.isFunction(callback)){
 					callback();
