@@ -1,5 +1,10 @@
 package lawyer.base.ccase.entity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.base.entity.BaseEntity;
@@ -21,6 +26,8 @@ public class MeetingInfo extends BaseEntity {
 	
 	private java.lang.String mtSponsorName;
 	private java.lang.String mtrName;
+	
+	private java.util.List<Object> mtMembersIds;//   会议参会人列表
 		public java.lang.Integer getStatus() {	    return this.status;	}	public void setStatus(java.lang.Integer status) {	    this.status=status;	}	public java.lang.String getDelFlag() {	    return this.delFlag;	}	public void setDelFlag(java.lang.String delFlag) {	    this.delFlag=delFlag;	}	public java.lang.String getOrg() {	    return this.org;	}	public void setOrg(java.lang.String org) {	    this.org=org;	}	public java.lang.String getCreatedBy() {	    return this.createdBy;	}	public void setCreatedBy(java.lang.String createdBy) {	    this.createdBy=createdBy;	}	public java.util.Date getCreatedTime() {	    return this.createdTime;	}	public void setCreatedTime(java.util.Date createdTime) {	    this.createdTime=createdTime;	}	public java.lang.String getUpdatedBy() {	    return this.updatedBy;	}	public void setUpdatedBy(java.lang.String updatedBy) {	    this.updatedBy=updatedBy;	}	public java.util.Date getUpdatedTime() {	    return this.updatedTime;	}	public void setUpdatedTime(java.util.Date updatedTime) {	    this.updatedTime=updatedTime;	}	public java.lang.Integer getId() {	    return this.id;	}	public void setId(java.lang.Integer id) {	    this.id=id;	}	public java.lang.String getMtName() {	    return this.mtName;	}	public void setMtName(java.lang.String mtName) {	    this.mtName=mtName;	}	public java.lang.String getMtSponsor() {	    return this.mtSponsor;	}	public void setMtSponsor(java.lang.String mtSponsor) {	    this.mtSponsor=mtSponsor;	}	public java.lang.String getMtMembers() {	    return this.mtMembers;	}	public void setMtMembers(java.lang.String mtMembers) {	    this.mtMembers=mtMembers;	}	public java.lang.String getMtTopics() {	    return this.mtTopics;	}	public void setMtTopics(java.lang.String mtTopics) {	    this.mtTopics=mtTopics;	}	public java.lang.Integer getMtrId() {	    return this.mtrId;	}	public void setMtrId(java.lang.Integer mtrId) {	    this.mtrId=mtrId;	}	public java.util.Date getMtStartTime() {	    return this.mtStartTime;	}	public void setMtStartTime(java.util.Date mtStartTime) {	    this.mtStartTime=mtStartTime;	}	public java.util.Date getMtEndTime() {	    return this.mtEndTime;	}	public void setMtEndTime(java.util.Date mtEndTime) {	    this.mtEndTime=mtEndTime;	}	public java.lang.String getMtResolution() {	    return this.mtResolution;	}	public void setMtResolution(java.lang.String mtResolution) {	    this.mtResolution=mtResolution;	}
 	public java.util.List<SysUserExt> getMembers() {
 		return members;
@@ -39,5 +46,23 @@ public class MeetingInfo extends BaseEntity {
 	}
 	public void setMtrName(java.lang.String mtrName) {
 		this.mtrName = mtrName;
+	}
+	public java.util.List<Object> getMtMembersIds() {
+		if(StringUtils.isNotBlank(mtMembers)) {
+			List<Object> tmp= new ArrayList<Object>();
+			String[] ids = StringUtils.split(mtMembers.replace("[", "").replace("]", ""), ",");
+			for (int i = 0; i < ids.length; i++) {
+				tmp.add(Integer.valueOf(ids[i].trim()));
+			}
+			mtMembersIds = tmp;
+		}
+		return mtMembersIds;
+	}
+	public void setMtMembersIds(java.util.List<Object> mtMembersIds) {
+		this.mtMembersIds = mtMembersIds;
+		if(null != mtMembersIds && mtMembersIds.size()>0)
+			this.setMtMembers(Arrays.toString(mtMembersIds.toArray()));
+		else
+			this.setMtMembers("");
 	}
 }

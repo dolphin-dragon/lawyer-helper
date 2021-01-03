@@ -9,9 +9,9 @@
  	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">状态:</label><input name="status" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">删除标记:</label><input name="delFlag" class="easyui-box ui-text" style="width:100px;">
-			<label class="ui-label">机构编码:</label><input name="org" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">会议名称:</label><input name="mtName" class="easyui-box ui-text" style="width:100px;">
+			<label class="ui-label">会议室:</label><input class="easyui-combobox" editable="false"  name="mtrId" data-options="valueField:'id',textField:'mtrName',url:'<%=basePath %>/meetingRoomInfo/listDatas.do'" missingMessage="请填选择会议室">
+			<label class="ui-label">发起人:</label><input class="easyui-combobox" editable="false"  name="mtSponsor" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请选择会议发起人">
 	    </p>
 	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a><a href="#" id="btn-reset" class="easyui-linkbutton" iconCls="icon-reload">重置</a>
       </form>  
@@ -72,7 +72,7 @@
 					</div>
 					<div class="fitem">
 						<label>参会人列表</label>
-						<input name="mtMembers" type="text" maxlength="1024" class="easyui-validatebox" data-options="" missingMessage="请填写会议参会人列表" style="margin: 0px; width: 300px;">
+						<input class="easyui-combobox" editable="false"  name="mtMembersIds" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do',multiple:true,multiline:true" missingMessage="请选择会议参会人" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>议题</label>
