@@ -84,19 +84,30 @@
 					</div>
 					<div class="fitem">
 						<label>预定开始时间</label>
-						<input name="mtStartTime" type="text" maxlength="19" class="easyui-datetimebox" data-options="required:true" missingMessage="请填写会议预定开始时间" style="margin: 0px; width: 300px;">
+						<input name="mtStartTime" id="mtStartTime" type="text" maxlength="19" class="easyui-datetimebox" data-options="required:true" missingMessage="请填写会议预定开始时间" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>预定结束时间</label>
-						<input name="mtEndTime" type="text" maxlength="19" class="easyui-datetimebox" data-options="required:true" missingMessage="请填写会议预定结束时间" style="margin: 0px; width: 300px;">
+						<input name="mtEndTime" id="mtEndTime" type="text" maxlength="19" class="easyui-datetimebox" data-options="required:true" missingMessage="请填写会议预定结束时间" style="margin: 0px; width: 300px;">
 					</div>
 					<div id="mtResolution" class="fitem hidden">
 						<label>决议内容</label>
-						<textarea name="mtResolution" type="text" maxlength="3072" class="easyui-validatebox" placeholder="请填写会议决议内容"  data-options="required:true" missingMessage="请填写会议决议内容" style="margin: 0px; width: 300px; height: 80px;"></textarea>
+						<textarea name="mtResolution" type="text" maxlength="3072" class="easyui-validatebox" placeholder="请填写会议决议内容"  data-options="" missingMessage="请填写会议决议内容" style="margin: 0px; width: 300px; height: 80px;"></textarea>
 					</div>
   			</div>
      	</form>
   	 </div>
   	 <script type="text/javascript" src="<%=basePath%>/js/lawyer/base/ccase/page-meetingInfo.js?var=<%=ot_ver%>"></script>
+  	 <script type="text/javascript" >
+/* 	$(function(){
+  		$("#mtStartTime").datetimebox().datetimebox('calendar').calendar({		
+			validator: function(date){
+				var nowdate=new Date();
+				var startTime=new Date(nowdate.getFullYear(),nowdate.getMonth(),nowdate.getDate());
+				return startTime <= date;
+			}
+		});
+  	}) */
+	</script>
   </body>
 </html>
