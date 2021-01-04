@@ -60,15 +60,15 @@
 					 -->
 					<div class="fitem">
 						<label>会议室名称</label>
-						<input name="mtrName" type="text" maxlength="128" class="easyui-validatebox" data-options="" missingMessage="请填写会议室名称" style="margin: 0px; width: 300px;">
+						<input name="mtrName" type="text" maxlength="128" class="easyui-validatebox" data-options="required:true" missingMessage="请填写会议室名称" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>会议室房间编号</label>
-						<input name="mtrCode" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写会议室编号" style="margin: 0px; width: 300px;">
+						<input name="mtrCode" type="text" maxlength="32" class="easyui-validatebox" data-options="required:true" missingMessage="请填写会议室编号" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>最大容纳人数</label>
-						<input name="mtrMaxpersonnums" type="text" maxlength="11" class="easyui-numberbox" data-options="" missingMessage="请填写会议室最大容纳人数" style="margin: 0px; width: 300px;">
+						<input name="mtrMaxpersonnums" type="text" maxlength="11" class="easyui-numberbox" data-options="required:true" missingMessage="请填写会议室最大容纳人数" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>会议室说明</label>

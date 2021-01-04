@@ -61,18 +61,18 @@
 					 -->
 					<div class="fitem">
 						<label>名称</label>
-						<input name="mtName" type="text" maxlength="128" class="easyui-validatebox" data-options="" missingMessage="请填写会议名称" style="margin: 0px; width: 300px;">
+						<input name="mtName" type="text" maxlength="128" class="easyui-validatebox" data-options="required:true" missingMessage="请填写会议名称" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>发起人</label>
 						<!-- 
 						<input name="mtSponsor" type="text" maxlength="32" class="easyui-validatebox" data-options="" missingMessage="请填写会议发起人" style="margin: 0px; width: 300px;">
 						 -->
-						<input class="easyui-combobox" editable="false"  name="mtSponsor" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do'" missingMessage="请填写会议发起人" style="margin: 0px; width: 300px;">
+						<input class="easyui-combobox" editable="false"  name="mtSponsor" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do',required:true" missingMessage="请填写会议发起人" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>参会人列表</label>
-						<input class="easyui-combobox" editable="false"  name="mtMembersIds" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do',multiple:true,multiline:true" missingMessage="请选择会议参会人" style="margin: 0px; width: 300px;">
+						<input class="easyui-combobox" editable="false"  name="mtMembersIds" data-options="valueField:'uid',textField:'name',url:'<%=basePath %>/sysUserExt/listDatas.do',multiple:true,multiline:true,required:true" missingMessage="请选择会议参会人" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>议题</label>
@@ -80,15 +80,15 @@
 					</div>
 					<div class="fitem">
 						<label>会议室</label>
-						<input class="easyui-combobox" editable="false"  name="mtrId" data-options="valueField:'id',textField:'mtrName',url:'<%=basePath %>/meetingRoomInfo/listDatas.do'" missingMessage="请填选择会议室" style="margin: 0px; width: 300px;">
+						<input class="easyui-combobox" editable="false"  name="mtrId" data-options="valueField:'id',textField:'mtrName',url:'<%=basePath %>/meetingRoomInfo/listDatas.do',required:true" missingMessage="请填选择会议室" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>预定开始时间</label>
-						<input name="mtStartTime" type="text" maxlength="19" class="easyui-datetimebox" data-options="" missingMessage="请填写会议预定开始时间" style="margin: 0px; width: 300px;">
+						<input name="mtStartTime" type="text" maxlength="19" class="easyui-datetimebox" data-options="required:true" missingMessage="请填写会议预定开始时间" style="margin: 0px; width: 300px;">
 					</div>
 					<div class="fitem">
 						<label>预定结束时间</label>
-						<input name="mtEndTime" type="text" maxlength="19" class="easyui-datetimebox" data-options="" missingMessage="请填写会议预定结束时间" style="margin: 0px; width: 300px;">
+						<input name="mtEndTime" type="text" maxlength="19" class="easyui-datetimebox" data-options="required:true" missingMessage="请填写会议预定结束时间" style="margin: 0px; width: 300px;">
 					</div>
 					<div id="mtResolution" class="fitem hidden">
 						<label>决议内容</label>

@@ -64,6 +64,11 @@ otter.meetingInfo = function(){
 							}
 						},
 					*/
+					{field:'mt_sponsor',title:'会议发起人',align:'left',sortable:false,width:100,
+						formatter:function(value,row,index){
+							return row.mtSponsorName;
+						}
+					},
 					{field:'mt_name',title:'会议名称',align:'left',sortable:false,width:200,
 							formatter:function(value,row,index){
 								return row.mtName;
@@ -79,16 +84,11 @@ otter.meetingInfo = function(){
 								return row.mtTopics;
 							}
 						},
-					{field:'mt_sponsor',title:'会议发起人',align:'left',sortable:false,width:100,
-							formatter:function(value,row,index){
-								return row.mtSponsorName;
-							}
-						},
-					{field:'mt_members',title:'会议参会人列表',align:'left',sortable:false,width:100,
+/*					{field:'mt_members',title:'会议参会人列表',align:'left',sortable:false,width:100,
 							formatter:function(value,row,index){
 								return row.mtMembers;
 							}
-						},
+						},*/
 					{field:'mt_start_time',title:'预定开始时间',align:'left',sortable:false,width:100,
 							formatter:function(value,row,index){
 								return row.mtStartTime;
