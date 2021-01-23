@@ -12,7 +12,7 @@
             <label class="ui-label">角色名:</label> 
             <input name="roleName" class="easyui-box ui-text" style="width:100px;">
         </p>  
-        <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+        <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a><a href="#" id="btn-reset" class="easyui-linkbutton" iconCls="icon-reload">重置</a>
       </form>  
      </div> 
      <!--  Search panel end -->

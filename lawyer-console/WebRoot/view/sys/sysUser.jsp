@@ -12,7 +12,7 @@
  	 	    <label class="ui-label">邮箱账号:</label><input name="email" class="easyui-box ui-text" style="width:100px;">
             <label class="ui-label">昵称: </label><input name="nickName" class="easyui-box ui-text" style="width:100px;">
         </p>
-        <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+        <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a><a href="#" id="btn-reset" class="easyui-linkbutton" iconCls="icon-reload">重置</a>
       </form>  
      </div> 
      <!--  Search panel end -->
