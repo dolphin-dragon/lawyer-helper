@@ -106,6 +106,8 @@ function Login() {
 				setTimeout("window.location.href='main.shtml'", 100);
 			} else {
 				$("#vc-pic").click();
+				$("#verifyCode").val("");
+				$("#pwd").val("");
 				showError(data.msg);
 			}
 		}
