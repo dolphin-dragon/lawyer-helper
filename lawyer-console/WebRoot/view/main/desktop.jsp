@@ -72,7 +72,7 @@
 					},
 					</c:forEach>
 					{
-					text: '浏览器模式',
+					text: '网页模式',
 					handler: function(){
 						setTimeout("window.location.href='main.shtml'", 100);
 					}
