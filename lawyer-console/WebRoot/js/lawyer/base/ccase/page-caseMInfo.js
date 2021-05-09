@@ -196,7 +196,7 @@ otter.caseMInfo = function(){
 										return "结案通过";
 									}								
 								}
-								return "进行中";
+								return "办理中";
 							}
 						},
 					/*{field:'case_del_flag',title:'删除标记',align:'center',sortable:true,

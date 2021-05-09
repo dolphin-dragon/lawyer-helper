@@ -128,7 +128,7 @@ otter.caseFirstInstance = function(){
 							if(value == 3){
 								return "结案驳回";
 							}
-							return "进行中";
+							return "办理中";
 						}
 					},
 					{field:'delFlag',title:'是否有效',align:'center',sortable:true,

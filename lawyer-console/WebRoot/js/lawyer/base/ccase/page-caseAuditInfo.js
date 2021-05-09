@@ -192,7 +192,7 @@ otter.caseInfo = function(){
 									return "结案通过";
 								}								
 							}
-							return "进行中";
+							return "办理中";
 						}
 					},
 					{field:'delFlag',title:'是否有效',align:'center',sortable:true,
