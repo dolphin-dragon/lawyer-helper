@@ -6,8 +6,11 @@ var html =
 	+ '		<div class="fitem">'
 	+ '			<div class="fitem">'
 	+ '  				<label>请选择上传文件：</label>'
-	+ '     			<input type="file" id="upt_file" name="upt_file" style="width:300px;" />'
+	+ '     			<input type="file" id="upt_file" name="upt_file" style="width:300px;" multiple/>'
+	//+ '     			<input class="easyui-filebox" multiple="multiple" id="upt_file" name="upt_file" data-options="multiple:\'TRUE\'" style="width:300px;" />'
 	+ '			</div>'
+	+ '		</div>'
+	+ '	</form>'
 	+ '			<div class="fitem">'
 	+ '				<label>存储路径：</label>'
 	+ '				<input name="savePath" type="text" id="savePath" style="width:300px;" readonly=true />'
@@ -19,8 +22,6 @@ var html =
 	+ '				<input type="button" id="uploadButton11" class="hidden" value="上传" />'
 	+ '				<input type="button" id="upOkButton" class="hidden" value="确认" />'
 	+ '			</div>'
-	+ '		</div>'
-	+ '	</form>'
 	+ '</div>';
 
 	var vdg = $("#dg_upload");
@@ -105,6 +106,20 @@ var html =
 			return ;
 		}else{
 			commonAjaxFileUpload('upt_file',uploadInfo);
+			/*
+			var files = $("#upt_file")[0].files;
+			var formData = new FormData();
+			for (var i = 0; i < files.length; i++) {
+				  var file = files[i];
+				  // 检查文件类型
+//				  if (!file.type.match('image.*')) {
+//				    continue;
+//				  }
+				  // 添加文件到formData
+				  formData.append('file[]', file, file.name);
+			}
+			formAjaxFileUpload(formData,uploadInfo);
+			*/
 			$("#upOkButton").show()
 		}
     })
